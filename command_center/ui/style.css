@@ -224,3 +224,10 @@ dialog .actions { justify-content: end; margin-top: .65rem; }
 .lab-example { margin: .4rem 0 0; }
 .lab-form textarea { width: 100%; resize: vertical; font: .88rem/1.55 ui-monospace, monospace; }
 .lab-form textarea[aria-invalid="true"] { border-color: var(--danger); }
+.lab-history-body { display: grid; gap: .8rem; min-width: 0; }
+.lab-history-body select { min-width: 0; width: 100%; }
+.lab-history-body .checkpoint-fields { max-width: 40rem; }
+.lab-history-body details > div { margin-top: .65rem; }
+.lab-history-body .log { margin-bottom: 0; }
+.lab-history-body h4 { margin: .65rem 0 .2rem; }
+.lab-history-body .dim { overflow-wrap: anywhere; }

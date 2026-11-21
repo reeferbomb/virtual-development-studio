@@ -1,4 +1,4 @@
-# Graveforge Studios — Practical Production Lab v28.0
+# Graveforge Studios — Academy Evidence & Artifact Lab v29.0
 
 **A free, open-source game development studio toolkit.**
 
@@ -113,6 +113,12 @@ and use **Download assessment JSON** to save the result if you want to keep it.
 JSON is a text format for structured data. The Lab checks measurable properties;
 passing an exercise is not the same as mastering a skill or training an AI model.
 
+With v29, you can also explicitly record an assessed submission under a
+specialist role, keep its original data and review it later from the Lab's
+private practice history. A different role can accept a passing new submission
+or reject it with a note. A teaching example cannot earn reviewed practice
+coverage. Nothing is recorded simply by choosing an exercise or assessing it.
+
 ## Meet the Midnight Shift — your optional AI-assisted team
 
 Graveforge defines six specialist roles so a lead developer can divide a
@@ -172,6 +178,74 @@ Godot, Blender and other external assets retain their respective licenses.
 For contributions see [CONTRIBUTING.md](CONTRIBUTING.md), and for release
 history see [CHANGELOG.md](CHANGELOG.md).
 
+## New in v29 — Academy practice history and real artifact inspection
+
+The Lab now separates assessment from evidence recording. An assessment remains
+stateless; an explicit record action recomputes it and saves the original
+submission, measured report, declared specialist role, exact rubric identity,
+and review state in the private workspace. A distinct reviewer role (including
+the lead) records one acceptance or rejection with a note. Only a current,
+passing, non-reference submission is eligible for acceptance. Exact teaching
+examples cannot count as independent practice; a modified example is not proof
+of originality either. Role names are declarations by the operator, not logins
+or authenticated model identities.
+
+Records survive restarts. A revision check prevents overwriting newer actions;
+refresh after a conflict and explicitly retry. Historical rubric records remain
+visible but cannot be reviewed or count toward current practice coverage. The
+ledger is bounded to 100 records and 32 MiB, enough for the current 39
+role-and-exercise assignments plus retries. It fails closed on invalid persisted
+data and refuses additional records rather than deleting old evidence.
+Do not place the ledger or exports in the public source checkout.
+
+| Endpoint | Purpose |
+| --- | --- |
+| `GET /api/training-records` | Read private practice history and current revision |
+| `POST /api/training-records` | Explicit revision-bound record or review |
+| `GET /api/training-progress` | Read current per-role practice coverage without submission contents |
+
+Write requests use the existing same-origin guard and `X-Studio-Request: 1`.
+Record action fields are `op: "record"`, `exercise_id`, `role`, and
+`submission`; review action fields are `op: "review"`, `record_id`,
+`reviewer_role`, `decision` (`accepted` or `rejected`), and `note`. Wrap the
+action with the latest `expected_revision` and `action` fields. When recording
+an already displayed assessment, include its `expected_assessment_sha256`
+in the record action; a changed assessment is rejected before persistence.
+The Lab supplies this automatically. The progress
+report deduplicates identical accepted submission digests per role and exercise;
+it excludes failed, unreviewed, rejected, teaching-example and historical
+records from qualifying coverage. It never establishes competency or release
+readiness.
+
+The same actions are available offline for an existing external workspace:
+
+```bash
+python3 -m command_center.training_records_cli --workspace ../studio-workspace list
+python3 -m command_center.training_records_cli --workspace ../studio-workspace progress
+python3 -m command_center.training_records_cli --workspace ../studio-workspace record interface ui submission.json --expected-revision 0
+```
+
+Use the actual latest revision instead of `0` for a populated ledger. Run the
+CLI with `--help` to see the review command. Treat the history JSON and original
+submissions as private project data.
+
+For an actual 3D export, the new offline GLB inspector reads self-contained,
+uncompressed static triangle meshes with untextured materials. It verifies
+supported mesh layouts, positions and index bounds and measures resource budgets:
+
+```bash
+python3 -m command_center.lab_artifact path/to/prop.glb
+python3 -m command_center.lab_artifact demo/first-batch/assets/supply_crate.glb
+```
+
+It reads the file without executing asset code or fetching external resources.
+The fixed practice budget is 1 MiB, 10,000 triangles, 64 mesh primitives and
+8 materials. Counts are before scene instancing, not runtime draw calls.
+Unsupported or malformed files are reported as unavailable, not as passing.
+Exit 0 means the supported measured checks passed, 1 means a measured check
+failed, and 2 means the file could not be assessed. This is not an engine
+import, visual review, animation check, or proof of playability.
+
 ## New in v28 — practical production lab
 
 Open **Lab** for ten structured practice exercises, one per Academy curriculum
@@ -184,7 +258,8 @@ self-reported completions.
 
 The assessment is deterministic and read-only with respect to the workspace.
 The catalog, submission and result have SHA-256 identities. Reports describe
-only the measured criteria. They are not persisted, signed, a human playtest,
+only the measured criteria. The assessment endpoint alone does not persist them;
+they are not signed, a human playtest,
 model fine-tuning, a certification of specialist ability, or release approval.
 The reference examples are teaching fixtures; customize a new submission to
 practice independently. No arbitrary code, file paths or commands are executed

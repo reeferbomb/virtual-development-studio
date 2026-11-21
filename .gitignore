@@ -28,6 +28,8 @@ secrets.json
 **/studio-validation.json
 *-recovery.json
 *-dossier.json
+**/training-records.json
+**/academy-practice-history.json
 
 # Tool caches and local build state
 __pycache__/

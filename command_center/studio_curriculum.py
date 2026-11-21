@@ -121,4 +121,8 @@ def training_instruction(role):
                  'new structured submission with POST /api/training-lab/assess or the offline training_lab_cli. '
                  'Reference examples are instructional and do not establish independent competency. '
                  'Never run unrelated exercises or treat structural checks as visual or release approval.')
+    parts.append('Only the lead records or reviews practice through /api/training-records after an explicit '
+                 'assignment. Return the actual new submission and measured result for review by a different '
+                 'role. Keep submissions and notes private. Accepted practice records establish review '
+                 'coverage, not authenticated identity, independent authorship, model training or release readiness.')
     return ' '.join(parts) + ' '

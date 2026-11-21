@@ -27,10 +27,13 @@ exercises an actual verified Godot build and a service restart.
 
 - Preserve project/specification identity, revision checks, same-origin
   confinement, and existing task and release acceptance gates.
+- Bump the Academy lab version whenever a rubric or evaluator's behavior
+  changes, even when its brief is unchanged. Saved records from older digests
+  remain historical rather than being silently re-scored.
 - Add tests for new behavior and failure modes. Include reproducible evidence
   and explicitly distinguish simulated UI tests from live browser acceptance.
 - Keep user workspaces, personal project information, credentials, private
-  handoffs and recovery exports out of the repository.
+  handoffs, Academy submissions/reviews and recovery exports out of the repository.
 - Include only redistributable original or properly licensed fixture assets,
   with provenance where appropriate. Never edit a sealed fixture without
   regenerating and verifying the associated manifest.

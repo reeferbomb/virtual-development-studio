@@ -45,11 +45,13 @@ from .supervisor import audit_project
 from .task_store import TaskStore, _valid_digest
 from .team import team_plan, release_summary
 from .training_lab import assess_submission, lab_catalog, reject_duplicate_keys
+from .training_progress import summarize_progress
+from .training_records import TrainingRecordStore
 from .work_orders import work_orders
 from world.procedural import generate, plan_route
 
 ROOT = Path(__file__).resolve().parents[1]
-VERSION = '28.0'
+VERSION = '29.0'
 LIMIT = 1024 * 1024
 STATIC = {'/': 'index.html', '/index.html': 'index.html', '/app.js': 'app.js',
           '/editor.js': 'editor.js', '/style.css': 'style.css', '/editor.css': 'editor.css'}
@@ -117,6 +119,7 @@ class StudioService:
         self.defects = DefectStore(self.projects)
         self.evidence_history = EvidenceHistory(self.projects)
         self.handoffs = HandoffStore(self.projects)
+        self.training_records = TrainingRecordStore(self.workspace)
         self.lock = threading.RLock()
 
     def status(self):
@@ -375,6 +378,10 @@ def create_server(service, port=8765):
                     if path == '/api/training': return self.json_response(curriculum())
                     if path == '/api/training-lab':
                         return self.json_response(lab_catalog())
+                    if path == '/api/training-records':
+                        return self.json_response(service.training_records.read())
+                    if path == '/api/training-progress':
+                        return self.json_response(summarize_progress(service.training_records.read()))
                     if path == '/api/projects': return self.json_response(service.projects.list())
                     if path == '/api/jobs': return self.json_response(service.pipeline.list())
                     if path == '/api/queue': return self.json_response(service.pipeline.queue())
@@ -443,6 +450,9 @@ def create_server(service, port=8765):
                         if set(data) != {'exercise_id', 'submission'}:
                             raise ValueError('Expected exercise_id and submission')
                         return self.json_response(assess_submission(data['exercise_id'], data['submission']))
+                    if self.command == 'POST' and path == '/api/training-records':
+                        data = self.body(object_pairs_hook=reject_duplicate_keys)
+                        return self.json_response(service.training_records.apply(data))
                     data = self.body()
                     with service.lock:
                         if self.command == 'POST' and path == '/api/projects' and set(data) == {'name', 'kind'}:

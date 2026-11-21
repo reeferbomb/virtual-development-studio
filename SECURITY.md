@@ -11,6 +11,12 @@ credential is required to run the local toolkit. Model dispatch exports are
 instructions only: they do not grant access to a model provider or launch a
 remote agent automatically.
 
+Academy practice history contains original submissions and reviewer notes. Keep
+the workspace, ledger and exported reports private; do not expose the local
+service port or publish these files. Declared submitter and reviewer roles are
+workflow labels, not authentication or proof of authorship. The local integrity
+digest detects inconsistency, not malicious rewriting by a trusted disk owner.
+
 For the original sample assets, provenance records document generated test
 content. Keep external dependencies and newly imported assets under their
 respective licenses. Never assume an external asset inherits the Studio MIT

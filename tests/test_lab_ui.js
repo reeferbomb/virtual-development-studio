@@ -52,6 +52,10 @@ const failed = {version: 1, lab_sha256: digest, exercise_id: "art", submission_s
     {id: "review", label: "Name a reviewer", status: "fail", detail: "Missing reviewer."}], note: "Structural measurements."};
 const passed = {...failed, status: "pass", summary: {pass: 2, fail: 0},
   checks: [failed.checks[0], {...failed.checks[1], status: "pass", detail: "Reviewer present."}]};
+const emptyRecords = {revision: 0, lab_sha256: digest, records: [], note: "Private workstation practice records."};
+const catalogAnd = snapshot => request => [200, request.url === "/api/training-records" ? snapshot : lab];
+const byId = id => find(node => node.id === id);
+const choose = (input, value) => { input.value = value; input.events.change(); };
 const posts = () => requests.filter(request => request.method === "POST");
 const find = fn => [...view.all()].find(fn);
 const tag = name => find(node => node.tag === name);
@@ -73,9 +77,9 @@ function pending() {
 }
 
 async function run() {
-  respond = () => [200, lab];
+  respond = catalogAnd(emptyRecords);
   await route();
-  assert.deepEqual(requests.map(row => row.url), ["/api/training-lab"], "The lab must load without a project");
+  assert.deepEqual(requests.map(row => row.url), ["/api/training-lab", "/api/training-records"], "The lab must load without a project");
   assert.match(fs.readFileSync(path.join(directory, "index.html"), "utf8"), /href="#lab" data-page="lab"/);
   assert(text(first.brief)); assert(text(first.criteria[0].label)); assert(text("Grimbrush · Content"));
   assert(text(JSON.stringify(sample, null, 2))); assert.equal(tag("textarea").value, "");
@@ -104,6 +108,8 @@ async function run() {
   reply.resolve([200, failed]); await firstRequest;
   assert(text("1 passed · 1 failed")); assert(text("Missing reviewer.")); assert(text("Found <mesh>."));
   assert(text(failed.note)); assert.equal(downloads.length, 0);
+  const oldRecord = text("Record assessed submission"), oldRole = byId("lab-record-role");
+  choose(oldRole, "content");
   const download = text("Download assessment JSON");
   assert(download, "Assessed submissions must be explicitly downloadable");
   download.events.click();
@@ -113,6 +119,7 @@ async function run() {
 
   edit('{"asset":"edited","reviewer":"Sam"}'); assert(!text("Missing reviewer."));
   download.events.click(); assert.equal(downloads.length, 1, "Stale assessment control must be inactive");
+  const countBefore = posts().length; await oldRecord.events.click(); assert.equal(posts().length, countBefore);
   respond = () => [400, {error: "Exercise fields are invalid."}];
   await submit();
   assert(text("Exercise fields are invalid.")); assert.match(tag("textarea").value, /edited/);
@@ -154,6 +161,92 @@ async function run() {
   await route(); assert(!tag("form")); assert(text("Lab unavailable"));
   respond = () => [200, lab]; await route();
   assert.equal(tag("textarea").value, "");
-  console.log("PASS project-independent Lab, accessible controls, explicit examples/assessment, JSON validation, structural evidence, identity, and stale responses.");
+  await recordsWorkflow();
+  console.log("PASS project-independent Lab, raw JSON, assessment identity, explicit private recording and review, revision conflicts, fail-closed history, and stale controls.");
+}
+async function recordsWorkflow() {
+  const id = "0".repeat(31) + "1";
+  const raw = '{"asset":"second","weight":1.2300}';
+  const record = {id, role: "content", exercise_id: "art", current: true, reference: false,
+    submission: JSON.parse(raw), report: passed, review: null, created_at: "2026-01-01T00:00:00+00:00"};
+  const saved = {...emptyRecords, revision: 1, records: [record]};
+  const review = {reviewer_role: "lead", decision: "accepted", note: "Checked the mesh.", reviewed_at: "2026-01-02T00:00:00+00:00"};
+  const reviewed = {...saved, revision: 2, records: [{...record, review}]};
+  const writeCount = () => posts().filter(row => row.url === "/api/training-records").length;
+  respond = catalogAnd(emptyRecords); await route();
+  assert(text("Private practice history")); assert(!text("Record assessed submission"));
+  const ambiguous = '{"asset":"first","asset":"second","weight":1.2300}';
+  // Even if an assessment reply was issued in error, the raw source must reach the strict record decoder.
+  edit(ambiguous); respond = () => [200, passed]; await submit();
+  choose(byId("lab-record-role"), "content");
+  respond = () => [400, {error: "Duplicate JSON key."}]; await text("Record assessed submission").events.click();
+  assert(posts().at(-1).rawBody.includes(ambiguous)); assert(text("Duplicate JSON key.")); assert(text("History unavailable"));
+  assert.equal(byId("lab-submission").value, ambiguous); assert.equal(writeCount(), 1);
+  respond = catalogAnd(emptyRecords); await text("Refresh history").events.click();
+  edit(raw); respond = () => [200, passed]; await submit();
+  const recordButton = text("Record assessed submission"), role = byId("lab-record-role");
+  assert.deepEqual(role.children.map(option => option.value), ["", "content"]);
+  assert.equal(recordButton.disabled, true); assert.equal(writeCount(), 1);
+  choose(role, "content");
+  assert.equal(recordButton.disabled, false);
+  respond = request => request.method === "POST" ? [409, {error: "The assessed evidence changed."}] : [200, emptyRecords];
+  await recordButton.events.click();
+  assert.equal(writeCount(), 2); assert.equal(requests.at(-1).method, "GET");
+  assert.equal(byId("lab-submission").value, raw); assert(text("2 passed · 0 failed"));
+  const started = pending(); respond = () => started.promise;
+  const saving = recordButton.events.click();
+  await recordButton.events.click(); assert.equal(writeCount(), 3);
+  assert.equal(posts().at(-1).headers["X-Studio-Request"], "1");
+  assert(posts().at(-1).rawBody.includes(raw), "Recording must send the original JSON lexemes to the strict decoder");
+  assert.deepEqual(posts().at(-1).body, {expected_revision: 0, action: {op: "record", role: "content", exercise_id: "art", expected_assessment_sha256: passed.assessment_sha256, submission: record.submission}});
+  started.resolve([200, saved]); await saving;
+  assert.equal(byId("lab-submission").value, raw);
+  assert(!text("Record assessed submission") || text("Record assessed submission").disabled);
+  assert(text("Pending review")); assert(!text(JSON.stringify(record.submission, null, 2)));
+  const inspector = find(node => node.tag === "details" && node.children.some(child => child.textContent === "Inspect submission and rubric results"));
+  inspector.open = true; inspector.events.toggle(); assert(text(JSON.stringify(record.submission, null, 2)));
+  const reviewer = byId("lab-reviewer"), decision = byId("lab-decision"), note = byId("lab-review-note");
+  assert(reviewer.children.some(option => option.value === "lead"));
+  assert(!reviewer.children.some(option => option.value === "content"));
+  assert(decision.children.some(option => option.value === "accepted"));
+  assert(decision.children.some(option => option.value === "rejected"));
+  choose(reviewer, "lead"); choose(decision, "accepted"); note.value = review.note; note.events.input();
+  const other = {...record, id: "2".repeat(32), review};
+  const changed = {...saved, revision: 3, records: [other, record]};
+  respond = request => request.method === "POST" ? [409, {error: "Conflict"}] : [200, changed];
+  await text("Save review").events.click();
+  assert.equal(writeCount(), 4); assert.equal(requests.at(-1).method, "GET");
+  assert.equal(byId("lab-submission").value, raw); assert.equal(byId("lab-review-note").value, review.note);
+  respond = () => [200, {...changed, revision: 4, records: [other, {...record, review}]}]; await text("Save review").events.click();
+  assert.deepEqual(posts().at(-1).body, {expected_revision: 3, action: {op: "review", record_id: id, reviewer_role: "lead", decision: "accepted", note: review.note}});
+  assert(text("Accepted")); assert(text(review.note)); assert(!text("Save review"));
+
+  for (const properties of [{reference: true}, {report: failed}]) {
+    respond = catalogAnd({...saved, records: [{...record, ...properties}]}); await route();
+    assert(byId("lab-decision").children.some(option => option.value === "rejected"));
+    assert(!byId("lab-decision").children.some(option => option.value === "accepted"));
+    if (properties.reference) assert(text("Reference example"));
+  }
+  const historical = {...record, current: false, report: {...passed, lab_sha256: "9".repeat(64)}};
+  respond = catalogAnd({...saved, records: [historical]}); await route();
+  assert(text("Historical catalog")); assert(!text("Save review"));
+  for (const invalid of [null, {...saved, revision: 0}, {...saved, lab_sha256: "9".repeat(64)}, {...saved, records: [record, record]},
+    {...saved, records: [{...record, reference: true, review}]}, {...saved, records: [{...historical, current: true}]},
+    {...saved, records: [{...record, review: {...review, reviewer_role: record.role}}]}]) {
+    respond = catalogAnd(invalid); await route();
+    assert(text("History unavailable")); assert(!text("Save review"));
+    edit(raw); respond = () => [200, passed]; await submit();
+    assert(!text("Record assessed submission") || text("Record assessed submission").disabled);
+  }
+  respond = catalogAnd(saved); await route();
+  const stale = text("Save review");
+  choose(byId("lab-reviewer"), "lead"); choose(byId("lab-decision"), "accepted");
+  byId("lab-review-note").value = review.note; byId("lab-review-note").events.input();
+  const late = pending(); respond = () => late.promise;
+  const posting = stale.events.click();
+  location.hash = "#projects"; respond = () => [200, []]; await route();
+  late.resolve([200, reviewed]); await posting;
+  assert(text("Start your first project")); assert(!text(review.note));
+  const count = writeCount(); await stale.events.click(); assert.equal(writeCount(), count);
 }
 run().catch(error => { console.error(error); process.exitCode = 1; });

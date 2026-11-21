@@ -2704,20 +2704,58 @@ function validLab(data) {
     && uniqueIds(exercise.criteria) && exercise.criteria.every(row => coordinationText(row?.id) && coordinationText(row.label)));
 }
 
-function validLabAssessment(report, lab, exercise) {
-  if (report?.version !== lab.version || report.lab_sha256 !== lab.lab_sha256 || report.exercise_id !== exercise.id
-    || !isDigest(report.submission_sha256) || !isDigest(report.assessment_sha256) || !coordinationText(report.note)
-    || !Array.isArray(report.checks) || report.checks.length !== exercise.criteria.length) return false;
-  const labels = new Map(exercise.criteria.map(row => [row.id, row.label]));
+function validPracticeReport(report) {
+  if (!Number.isSafeInteger(report?.version) || report.version < 1 || !isDigest(report.lab_sha256)
+    || !coordinationText(report.exercise_id) || !isDigest(report.submission_sha256) || !isDigest(report.assessment_sha256)
+    || !coordinationText(report.note) || !Array.isArray(report.checks) || !report.checks.length) return false;
+  const ids = new Set();
   let passed = 0;
   for (const check of report.checks) {
-    if (!check || !labels.has(check.id) || labels.get(check.id) !== check.label || !coordinationText(check.detail)
+    if (!coordinationText(check?.id) || ids.has(check.id) || !coordinationText(check.label) || !coordinationText(check.detail)
       || !["pass", "fail"].includes(check.status)) return false;
-    labels.delete(check.id);
+    ids.add(check.id);
     if (check.status === "pass") passed++;
   }
   const failed = report.checks.length - passed;
   return report.summary?.pass === passed && report.summary.fail === failed && report.status === (failed ? "fail" : "pass");
+}
+
+function matchesLabRubric(report, lab, exercise) {
+  return report.version === lab.version && report.lab_sha256 === lab.lab_sha256 && report.exercise_id === exercise.id
+    && report.checks.length === exercise.criteria.length && report.checks.every((check, i) =>
+      check.id === exercise.criteria[i].id && check.label === exercise.criteria[i].label);
+}
+
+function validLabAssessment(report, lab, exercise) {
+  return validPracticeReport(report) && matchesLabRubric(report, lab, exercise);
+}
+
+const labReviewerRoles = {lead: "Studio lead", ...taskRoles};
+const practiceDecisions = {accepted: "Accepted", rejected: "Rejected"};
+
+function validTrainingRecords(data, lab) {
+  if (!isRevision(data?.revision) || data.lab_sha256 !== lab.lab_sha256 || !coordinationText(data.note)
+    || !Array.isArray(data.records)) return false;
+  const ids = new Set();
+  let expectedRevision = data.records.length, previousTime = Infinity;
+  return data.records.every(row => {
+    const created = typeof row?.created_at === "string" ? Date.parse(row.created_at) : NaN;
+    if (typeof row?.id !== "string" || !/^[a-f0-9]{32}$/.test(row.id) || ids.has(row.id) || !coordinationRole(row.role)
+      || !Number.isFinite(created) || created > previousTime || typeof row.reference !== "boolean" || !labObject(row.submission)
+      || !validPracticeReport(row.report) || row.exercise_id !== row.report.exercise_id
+      || row.current !== (row.report.lab_sha256 === lab.lab_sha256)) return false;
+    ids.add(row.id);
+    previousTime = created;
+    const exercise = lab.exercises.find(item => item.id === row.exercise_id);
+    if (row.current && (!exercise?.roles.includes(row.role) || !matchesLabRubric(row.report, lab, exercise))) return false;
+    const review = row.review;
+    if (review === null) return true;
+    expectedRevision++;
+    return labObject(review) && coordinationText(review.reviewer_role) && Object.hasOwn(labReviewerRoles, review.reviewer_role)
+      && review.reviewer_role !== row.role && coordinationText(review.decision) && Object.hasOwn(practiceDecisions, review.decision)
+      && coordinationText(review.note) && [...review.note].length <= 512 && typeof review.reviewed_at === "string"
+      && Date.parse(review.reviewed_at) >= created && (review.decision !== "accepted" || (!row.reference && row.report.status === "pass"));
+  }) && data.revision === expectedRevision;
 }
 
 function labAssessmentPanel(report, download) {
@@ -2735,6 +2773,190 @@ function labAssessmentPanel(report, download) {
     element("p", "dim", "Assessment SHA-256 · " + report.assessment_sha256));
   panel.append(identity, button("Download assessment JSON", download));
   return panel;
+}
+
+function labHistory(lab, active) {
+  const panel = supervisorPanel("Private practice history"), message = element("p", "sprint-message");
+  const body = element("div", "lab-history-body");
+  const refresh = button("Refresh history", () => update());
+  message.setAttribute("role", "status");
+  panel.append(refresh, message, body);
+  const reviewDrafts = new Map();
+  let snapshot = null, selectedId = null, busy = false;
+  let syncReview = null, syncRecord = null;
+
+  function lock(value) {
+    busy = value;
+    refresh.disabled = busy;
+    if (syncReview) syncReview();
+    if (syncRecord) syncRecord();
+  }
+
+  async function update(rawAction, confirmChange) {
+    if (!active() || busy || (rawAction && !snapshot)) return;
+    const previous = snapshot;
+    lock(true);
+    message.textContent = rawAction ? "Saving…" : "Loading history…";
+    try {
+      let data;
+      if (rawAction) {
+        const request = '{"expected_revision":' + previous.revision + ',"action":' + rawAction + '}';
+        data = await apiWithJsonBody("/training-records", "POST", request);
+      } else data = await api("/training-records");
+      if (!active()) return;
+      if (!validTrainingRecords(data, lab)) throw new Error("The practice history could not be verified.");
+      if (rawAction && (data.revision !== previous.revision + 1 || !confirmChange(data, previous))) {
+        throw new Error("The saved change could not be verified. Refresh history before trying again.");
+      }
+      snapshot = data;
+      message.textContent = rawAction ? "Saved to private practice history." : "";
+    } catch (error) {
+      if (!active()) return;
+      snapshot = null;
+      message.textContent = error.message;
+      if (rawAction && error.status === 409) {
+        try {
+          const latest = await api("/training-records");
+          if (!active()) return;
+          if (!validTrainingRecords(latest, lab)) throw new Error("The practice history could not be verified.");
+          snapshot = latest;
+          message.textContent = error.message + " History refreshed. Check the saved evidence or reassess your draft before submitting again.";
+        } catch (failure) {
+          if (active()) message.textContent = failure.message;
+        }
+      }
+    } finally {
+      if (active()) {
+        renderHistory();
+        lock(false);
+      }
+    }
+  }
+
+  function reviewFields(target, record) {
+    const draft = reviewDrafts.get(record.id) || {role: "", decision: "", note: ""};
+    const fields = element("div", "checkpoint-fields");
+    const roles = {...labReviewerRoles};
+    delete roles[record.role];
+    const choices = {"": "Choose a decision"};
+    if (!record.reference && record.report.status === "pass") choices.accepted = "Accept";
+    choices.rejected = "Reject";
+    const role = taskField(fields, "reviewer_role", "Reviewer role", {id: "lab-reviewer", value: draft.role}, {"": "Choose a reviewer role", ...roles});
+    const decision = taskField(fields, "decision", "Review decision", {id: "lab-decision", value: draft.decision}, choices);
+    const note = taskField(fields, "note", "Review note (up to 512 characters)", {id: "lab-review-note", value: draft.note, rows: 3});
+    const bound = snapshot;
+    const valid = () => active() && !busy && snapshot === bound && selectedId === record.id
+      && Object.hasOwn(roles, role.value) && decision.value && Object.hasOwn(choices, decision.value)
+      && note.value.trim().length > 0 && [...note.value].length <= 512;
+    const save = button("Save review", () => {
+      if (!valid() || syncReview !== sync) return;
+      const action = {op: "review", record_id: record.id, reviewer_role: role.value, decision: decision.value, note: note.value.trim()};
+      return update(JSON.stringify(action), data => {
+        const review = data.records.find(row => row.id === record.id)?.review;
+        if (review?.reviewer_role !== action.reviewer_role || review.decision !== action.decision || review.note !== action.note) return false;
+        reviewDrafts.delete(record.id);
+        return true;
+      });
+    });
+    function sync() {
+      save.disabled = !valid();
+      role.disabled = decision.disabled = note.disabled = busy;
+    }
+    function edited() {
+      if (syncReview !== sync || !active() || busy) return;
+      reviewDrafts.set(record.id, {role: role.value, decision: decision.value, note: note.value});
+      sync();
+    }
+    role.addEventListener("change", edited);
+    decision.addEventListener("change", edited);
+    note.addEventListener("input", edited);
+    fields.append(save);
+    target.append(fields);
+    syncReview = sync;
+    sync();
+  }
+
+  function renderHistory() {
+    syncReview = null;
+    body.replaceChildren();
+    if (!snapshot) {
+      body.append(element("h3", null, "History unavailable"));
+      return;
+    }
+    body.append(element("p", "dim", snapshot.note));
+    if (!snapshot.records.length) {
+      body.append(element("p", null, "No practice submissions recorded."));
+      return;
+    }
+    const record = snapshot.records.find(row => row.id === selectedId) || snapshot.records[0];
+    selectedId = record.id;
+    const titles = new Map(lab.exercises.map(exercise => [exercise.id, exercise.title]));
+    const options = Object.fromEntries(snapshot.records.map(row => [row.id,
+      (titles.get(row.exercise_id) || row.exercise_id) + " · " + taskRoles[row.role] + " · " + row.created_at + " · " + row.id.slice(-8)]));
+    const picker = taskField(body, "record_id", "Recorded submission (newest first)", {id: "lab-history-record", value: selectedId}, options);
+    picker.addEventListener("change", () => {
+      if (!active() || busy) { picker.value = selectedId; return; }
+      selectedId = picker.value;
+      renderHistory();
+    });
+    const tags = element("div", "actions");
+    tags.append(auditBadge(record.report.status), badge(record.current ? "Current catalog" : "Historical catalog"));
+    tags.append(badge(record.reference ? "Reference example" : "Non-reference submission"));
+    tags.append(badge(record.review ? practiceDecisions[record.review.decision] : record.current ? "Pending review" : "Unreviewed"));
+    body.append(tags);
+    const details = element("details"), contents = element("div");
+    details.append(element("summary", null, "Inspect submission and rubric results"), contents);
+    details.addEventListener("toggle", () => {
+      if (!active() || !details.open || contents.children.length) return;
+      for (const check of record.report.checks) {
+        contents.append(element("h4", null, check.label + " · " + check.status), element("p", null, check.detail));
+      }
+      contents.append(element("p", "dim", "Lab SHA-256 · " + record.report.lab_sha256),
+        element("p", "dim", "Submission SHA-256 · " + record.report.submission_sha256),
+        element("p", "dim", "Assessment SHA-256 · " + record.report.assessment_sha256),
+        element("pre", "log", JSON.stringify(record.submission, null, 2)));
+    });
+    body.append(details);
+    if (record.review) {
+      body.append(element("p", "dim", labReviewerRoles[record.review.reviewer_role] + " · " + record.review.reviewed_at),
+        element("p", null, record.review.note));
+    } else if (record.current) reviewFields(body, record);
+  }
+
+  function recordFields(exercise, source, report, current) {
+    const fields = element("div", "checkpoint-fields");
+    const options = Object.fromEntries(exercise.roles.map(id => [id, taskRoles[id]]));
+    const role = taskField(fields, "role", "Submitting role", {id: "lab-record-role", value: ""}, {"": "Choose a submitting role", ...options});
+    let saved = false;
+    const enabled = () => active() && current() && syncRecord === sync && snapshot && !busy && !saved && Object.hasOwn(options, role.value);
+    const record = button("Record assessed submission", () => {
+      if (!enabled()) return;
+      const roleId = role.value;
+      // Embed the unmodified assessed text so repeated fields and numeric literals reach the strict decoder.
+      const action = '{"op":"record","exercise_id":' + JSON.stringify(exercise.id)
+        + ',"role":' + JSON.stringify(roleId) + ',"expected_assessment_sha256":' + JSON.stringify(report.assessment_sha256)
+        + ',"submission":' + source + '}';
+      return update(action, (data, previous) => {
+        const row = data.records[0];
+        if (!row?.current || row.role !== roleId || row.exercise_id !== exercise.id || row.review !== null
+          || previous.records.some(old => old.id === row.id) || row.report.assessment_sha256 !== report.assessment_sha256
+          || row.report.submission_sha256 !== report.submission_sha256) return false;
+        saved = true;
+        selectedId = row.id;
+        return true;
+      });
+    });
+    function sync() {
+      record.disabled = !enabled();
+      role.disabled = busy || saved || !snapshot;
+    }
+    syncRecord = sync;
+    role.addEventListener("change", sync);
+    fields.append(record);
+    sync();
+    return fields;
+  }
+  return {panel, refresh: () => update(), recordFields, clearAssessment() { syncRecord = null; }};
 }
 
 function renderLab(lab, routeId) {
@@ -2758,12 +2980,14 @@ function renderLab(lab, routeId) {
   const status = element("p", "sprint-message"), result = element("div");
   status.setAttribute("role", "status");
   const drafts = new Map();
+  const history = labHistory(lab, active);
   let revision = 0;
 
   function showExercise() {
     const exercise = lab.exercises.find(item => item.id === selector.value);
     if (!exercise || !active()) return;
     revision++;
+    history.clearAssessment();
     status.textContent = "";
     result.replaceChildren();
     const brief = supervisorPanel(exercise.title), roles = element("div", "actions");
@@ -2792,6 +3016,7 @@ function renderLab(lab, routeId) {
       if (!selected()) return;
       drafts.set(exercise.id, input.value);
       revision++;
+      history.clearAssessment();
       assess.disabled = false;
       status.textContent = "";
       error.textContent = "";
@@ -2825,7 +3050,8 @@ function renderLab(lab, routeId) {
         return;
       }
       const requestId = ++revision;
-      const current = () => selected() && requestId === revision;
+      const current = () => selected() && requestId === revision && source === input.value;
+      history.clearAssessment();
       assess.disabled = true;
       error.textContent = "";
       input.removeAttribute("aria-invalid");
@@ -2837,9 +3063,11 @@ function renderLab(lab, routeId) {
         const {data: report, raw} = await apiWithJsonBody("/training-lab/assess", "POST", body, true);
         if (!current()) return;
         if (!validLabAssessment(report, lab, exercise)) throw new Error("The assessment could not be matched to this exercise.");
-        result.replaceChildren(labAssessmentPanel(report, () => {
+        const panel = labAssessmentPanel(report, () => {
           if (current()) downloadJson(raw, "assessment-" + report.assessment_sha256 + ".json");
-        }));
+        });
+        panel.append(history.recordFields(exercise, source, report, current));
+        result.replaceChildren(panel);
         status.textContent = report.summary.pass + " passed · " + report.summary.fail + " failed";
       } catch (failure) {
         if (!current()) return;
@@ -2854,8 +3082,10 @@ function renderLab(lab, routeId) {
   }
   selector.value = lab.exercises[0].id;
   selector.addEventListener("change", showExercise);
-  view.replaceChildren(heading("Lab", lab.note), controls, workspace, status, result);
+  view.replaceChildren(heading("Lab", "Assess structured submissions against the exercise rubric. Record an assessment explicitly to keep it in private practice history."),
+    controls, workspace, status, result, history.panel);
   showExercise();
+  return history.refresh();
 }
 
 function renderPortfolio(portfolio) {
@@ -2998,7 +3228,7 @@ async function route() {
   try {
     if (page === "lab") {
       const lab = await api("/training-lab");
-      if (routeId === state.route && location.hash === "#lab") renderLab(lab, routeId);
+      if (routeId === state.route && location.hash === "#lab") await renderLab(lab, routeId);
       return;
     }
     if (page === "training") {

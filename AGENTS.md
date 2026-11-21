@@ -1,5 +1,17 @@
 # Graveforge Studios agent deployment policy
 
+## Academy evidence (v29)
+
+Only the lead records an explicitly assigned practice submission or review via
+`/api/training-records` or `training_records_cli`, using the latest ledger revision.
+The lead must review the actual measured artifact and assign a different reviewer
+role; declared role names are not authenticated identities. Never accept exact
+teaching examples, failed checks, or outdated rubrics as current practice coverage.
+Use `/api/training-progress` for deduplicated review coverage, not competency.
+The offline `lab_artifact` CLI checks supported static GLB artifacts structurally;
+it cannot replace visual, rig, engine import or human playtest acceptance.
+Keep practice submissions, reports and review notes private and outside this checkout.
+
 ## Practical academy lab (v28)
 
 Use `GET /api/training-lab` for the versioned practice catalog. When the

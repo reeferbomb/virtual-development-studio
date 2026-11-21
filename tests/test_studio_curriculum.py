@@ -34,6 +34,8 @@ class CurriculumTests(unittest.TestCase):
             self.assertIn(instruction, item['message'])
             self.assertIn('applicable', instruction)
             self.assertIn('/api/training-lab/assess', instruction)
+            self.assertIn('/api/training-records', instruction)
+            self.assertIn('Only the lead records or reviews practice', instruction)
             for track in curriculum()['tracks']:
                 if role['id'] in track['roles']:
                     self.assertIn(track['title'], instruction)

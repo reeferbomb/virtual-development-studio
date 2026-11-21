@@ -1,5 +1,21 @@
 # Changelog
 
+## 29.0 — Academy Evidence & Artifact Lab
+
+### Added
+
+- Explicit private practice recording and revision-bound review, including rubric
+  identity, original submission and server-computed assessment.
+- Lab history and distinct reviewer-role workflow, plus deduplicated current
+  practice-coverage reports and offline record/review commands.
+- Read-only GLB artifact inspection for supported static meshes and resource budgets.
+
+### Preserved
+
+- Stateless assessment, original reference rubrics and six-role specialist policy.
+- No automatic model calls, authenticated identity claims, competency certification,
+  or changes to project release gates.
+
 ## 28.0 — Practical Production Lab
 
 ### Added
