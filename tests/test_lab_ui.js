@@ -182,6 +182,10 @@ async function actualAcademyWorkflow() {
   for (const id of ["cutscenes", "game-audio", "multiplayer", "persistence", "ai-encounters", "production-pipeline"]) {
     const exercise = actual.exercises.find(row => row.id === id);
     assert(exercise, id); change(id); assert(text(exercise.brief));
+    assert.equal(Boolean(text("Run a real Godot cutscene")), id === "cutscenes");
+    if (id === "cutscenes") {
+      assert([...view.all()].some(node => node.tag === "pre" && node.textContent.includes("cinematic.production.runner") && node.textContent.includes("--engine")));
+    }
     text("Use example").events.click();
     assert.deepEqual(JSON.parse(tag("textarea").value), exercise.example);
     respond = request => {

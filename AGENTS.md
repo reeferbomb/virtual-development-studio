@@ -1,5 +1,18 @@
 # Graveforge Studios agent deployment policy
 
+## Engine-backed cinematic production (v32)
+
+For an authorized cutscene production task, assess the edit in the cutscenes
+Lab and use the separate `cinematic.production.runner` with an explicit camera
+and actor binding document. Generate only into a fresh private directory
+outside this checkout. `--engine` explicitly runs the trusted generated Godot
+project and its fixed QA scene; an export alone is not runtime evidence.
+Keep generated projects, source plans for private games and runtime logs private.
+Confirm actual camera ownership, frame windows, animation, input gating, pause,
+skip, interruption, retry and story state; review rendered appearance and sound
+separately. Scratch sound demonstrates timing, not recorded speech. Do not
+reinterpret the existing Lab rubric, release gates or specialist assignments.
+
 ## Cinematic and development workflow academy (v31)
 
 Use the sixteen tracks in `/api/training` and matching version-2 exercises in

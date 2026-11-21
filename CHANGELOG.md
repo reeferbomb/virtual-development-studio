@@ -1,5 +1,22 @@
 # Changelog
 
+## 32.0 — Engine-Backed Cinematic Production
+
+### Added
+
+- Separate cutscene plan compiler and local Godot production runner with explicit
+  camera and actor bindings, original assets and deterministic frame playback.
+- Runtime QA for camera cuts, imported animation, captions, scratch audio,
+  input ownership, pause, interruption, retry, completion and skip.
+- Original production example, beginner instructions and a Cutscenes Lab guide.
+
+### Preserved
+
+- All existing factories, sealed demo packages, sixteen Academy exercises,
+  historical evidence, release gates and six-role Midnight Shift configuration.
+- Private local outputs and explicit engine execution; no automatic model calls,
+  new provider credentials, practice recording, or release promotion.
+
 ## 31.0 — Cinematic & Development Workflow Academy
 
 ### Added

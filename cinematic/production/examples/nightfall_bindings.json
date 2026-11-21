@@ -1,0 +1,23 @@
+{
+  "cameras": {
+    "street_pair": {
+      "position": [0.15, 1.75, 4.8],
+      "look_at": [0.0, 1.05, 0.0],
+      "fov": 35.0
+    },
+    "ivo_single": {
+      "position": [-0.12, 1.65, 2.05],
+      "look_at": [0.9, 1.45, -0.05],
+      "fov": 31.0
+    },
+    "mara_single": {
+      "position": [0.28, 1.6, 2.25],
+      "look_at": [-0.82, 1.4, 0.15],
+      "fov": 31.0
+    }
+  },
+  "actors": {
+    "mara": {"position": [-1.0, 0.0, 0.15], "rotation_y": 59.0},
+    "ivo": {"position": [1.1, 0.0, -0.15], "rotation_y": -55.0}
+  }
+}

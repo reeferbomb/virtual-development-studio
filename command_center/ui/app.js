@@ -3127,6 +3127,14 @@ function renderLab(lab, routeId) {
     preview.append(element("summary", null, "Example JSON"), element("pre", "log lab-example", example));
     brief.append(element("p", null, exercise.brief), roles, element("h3", null, "Criteria"),
       evidenceList(exercise.criteria.map(row => row.label)), preview);
+    if (exercise.id === "cutscenes") {
+      const production = element("details");
+      production.append(element("summary", null, "Run a real Godot cutscene"),
+        element("p", "dim", "The Lab checks your edit plan as data. The separate local production runner uses that plan with camera and actor bindings to create a playable Godot project and test playback and handoff. Try the bundled production example from the Studio source directory:"),
+        element("pre", "log", "python3 -m cinematic.production.runner cinematic/production/examples/nightfall_plan.json cinematic/production/examples/nightfall_bindings.json --output ../nightfall-production --engine"),
+        element("p", "dim", "Keep the output outside the checkout. Runtime checks do not assess picture quality or recorded dialogue; the sample uses placeholder sound. The dashboard never launches the engine or records this as practice evidence."));
+      brief.append(production);
+    }
 
     const form = element("form", "panel team-brief orchestration lab-form");
     const input = element("textarea"), inputLabel = element("label", null, "Submission JSON");

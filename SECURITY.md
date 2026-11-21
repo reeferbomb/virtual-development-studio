@@ -32,6 +32,14 @@ content. Keep external dependencies and newly imported assets under their
 respective licenses. Never assume an external asset inherits the Studio MIT
 license.
 
+The cinematic production runner accepts bounded JSON plans and bindings only.
+It creates a fresh private output using fixed trusted Studio scripts and
+original verified assets; `--engine` explicitly executes that generated project.
+Do not use it to launch unknown Godot projects, scripts, plugins or asset files.
+Do not expose or publish private scripts, plans, diagnostics or reports.
+Engine checks report observed runtime behavior, not authentication or a
+general-purpose engine sandbox.
+
 Before sharing any release, review the exact staged paths and scan text and
 binary files for secrets and personal information. Review Git history before
 publishing it. If a credential has been committed or otherwise exposed,

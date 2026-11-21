@@ -1,4 +1,4 @@
-# Graveforge Studios — Cinematic & Development Workflow Academy v31.0
+# Graveforge Studios — Engine-Backed Cinematic Production v32.0
 
 **A free, open-source game development studio toolkit.**
 
@@ -184,6 +184,41 @@ Godot, Blender and other external assets retain their respective licenses.
 For contributions see [CONTRIBUTING.md](CONTRIBUTING.md), and for release
 history see [CHANGELOG.md](CHANGELOG.md).
 
+## New in v32 — engine-backed cinematic production
+
+Turn a cutscene Lab plan into an editable Godot project with the new local
+production runner. The Lab verifies your edit on paper; the runner adds real
+camera and actor placements and exercises the imported animation, captions,
+audio cue timing and handoff to a small gameplay control demonstration.
+The established cinematic factory, all sixteen Academy tracks and the
+Midnight Shift dispatch profile remain unchanged.
+
+Try the original Nightfall production example from the repository directory:
+
+```bash
+python3 -m cinematic.production.runner \
+  cinematic/production/examples/nightfall_plan.json \
+  cinematic/production/examples/nightfall_bindings.json \
+  --output ../nightfall-production --engine
+godot --path ../nightfall-production
+```
+
+Use Enter to begin, Space to pause/resume, S to skip and Escape to interrupt.
+The arrow keys move the gameplay viewpoint before and after the edit.
+Interruption preserves the starting story state so you can try again; completion
+and skip advance the state and prevent the same trigger from firing twice.
+The generated scene uses original bundled city and mannequin assets, real
+animation clips and a placeholder audio cue, not recorded dialogue or lip sync.
+The v32 workstation exposes Godot 4.7.2 and Blender 4.3.2; this runner does not
+need to regenerate the bundled assets in Blender.
+
+Without `--engine`, the runner exports the project only. The runtime report
+is separate from the original data-only Lab assessment and does not record
+Academy practice, approve a release, or replace a human visual/audio review.
+The Lab's Cutscenes exercise links to these instructions. See the
+[production guide](cinematic/production/README.md) for the binding format,
+private output and evidence limitations.
+
 ## New in v31 — cinematic and development workflow academy
 
 The Academy now contains sixteen production playbooks and corresponding
@@ -216,9 +251,10 @@ JSON checks exercise the submitted design and simulation, not a finished game.
    Nightfall Patrol cinematic demo has a three-shot, ten-second timeline with
    imported character animation, camera motion, weather, lighting and spatial audio.
    See [Original cinematic production](#new-in-v7--original-cinematic-production)
-   for the actual Godot factory and build commands. The Lab's richer teaching
-   submission is not the factory's `sequence.json` format; translate the design
-   into the engine's timeline rather than feeding it directly to the builder.
+   for the original Godot factory and build commands. The Lab's richer teaching
+   submission is not the factory's `sequence.json` format. Use the separate
+   v32 production runner with explicit scene bindings, or translate the design
+   into the original engine timeline rather than feeding it directly to the builder.
 5. Verify normal completion, skip, replay, pause, interruption, control and
    camera restoration, and persistence in the actual project. Separately review
    framing, performance, voice clarity, pacing and player experience.

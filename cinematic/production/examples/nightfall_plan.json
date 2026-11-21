@@ -1,0 +1,41 @@
+{
+  "fps": 24,
+  "frame_count": 312,
+  "duration_ms": 13000,
+  "cameras": ["street_pair", "ivo_single", "mara_single"],
+  "actors": ["mara", "ivo"],
+  "shots": [
+    {"camera": "street_pair", "start_frame": 0, "end_frame": 72},
+    {"camera": "ivo_single", "start_frame": 72, "end_frame": 166},
+    {"camera": "mara_single", "start_frame": 166, "end_frame": 228},
+    {"camera": "ivo_single", "start_frame": 228, "end_frame": 276},
+    {"camera": "street_pair", "start_frame": 276, "end_frame": 312}
+  ],
+  "blocking": [
+    {"actor": "mara", "clip": "crouch", "start_frame": 0, "end_frame": 72},
+    {"actor": "ivo", "clip": "idle", "start_frame": 0, "end_frame": 312},
+    {"actor": "mara", "clip": "idle", "start_frame": 72, "end_frame": 312}
+  ],
+  "dialogue": [
+    {"line": "painted_numbers", "speaker": "mara", "text": "They painted over the numbers.", "start_frame": 12, "end_frame": 64},
+    {"line": "third_door", "speaker": "ivo", "text": "Third door. You had to lift it to turn the key.", "start_frame": 78, "end_frame": 152},
+    {"line": "kept_key", "speaker": "mara", "text": "You still have it?", "start_frame": 173, "end_frame": 210},
+    {"line": "every_move", "speaker": "ivo", "text": "Three cities. Same key.", "start_frame": 233, "end_frame": 268}
+  ],
+  "subtitles": [
+    {"line": "painted_numbers", "text": "They painted over the numbers.", "start_frame": 12, "end_frame": 64},
+    {"line": "third_door", "text": "Third door. You had to lift it to turn the key.", "start_frame": 78, "end_frame": 152},
+    {"line": "kept_key", "text": "You still have it?", "start_frame": 173, "end_frame": 210},
+    {"line": "every_move", "text": "Three cities. Same key.", "start_frame": 233, "end_frame": 268}
+  ],
+  "trigger": {
+    "event": "enter_nightfall_street",
+    "requires": "home_unlocated",
+    "advances_to": "third_door_found"
+  },
+  "exits": {
+    "complete": {"restore": ["camera", "input", "voice", "subtitles"], "next_state": "third_door_found"},
+    "skip": {"restore": ["camera", "input", "voice", "subtitles"], "next_state": "third_door_found"},
+    "interrupt": {"restore": ["camera", "input", "voice", "subtitles"], "next_state": "home_unlocated"}
+  }
+}
