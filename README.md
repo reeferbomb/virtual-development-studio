@@ -1,26 +1,176 @@
 # Graveforge Studios — Practical Production Lab v28.0
 
-Graveforge Studios (formerly Virtual Development Studio) is a local, evidence-oriented game development
-toolkit with procedural factories, a loopback Command Center, build queues,
-release registers, and specialist dispatch exports. This public distribution
-contains original Studio source, synthetic demo fixtures and tests; it does
-not contain private project registries, local API credentials or workspaces.
-Original Studio code and bundled original test assets are MIT-licensed; see
-`LICENSE`. Obtain Blender and Godot separately under their own licenses.
+**A free, open-source game development studio toolkit.**
 
-### Quick start (Linux)
+## What is Graveforge Studios?
 
-Install Python 3.11 or newer, Godot 4.x, and Blender for asset generation.
-Then run from the extracted directory:
+Imagine having a small game studio inside your computer. You are the creative
+director: you decide what kind of game you want to make. Graveforge helps you
+organize the work, create starting assets and playable prototypes, build
+projects, spot problems and keep track of what has actually been finished.
+
+It is designed for solo developers, small teams, beginners learning game
+development, and people working with AI coding assistants.
+
+Graveforge (formerly Virtual Development Studio) works alongside tools such as
+Godot (a game engine) and Blender (a 3D modeling and animation program).
+It is **not** a replacement for either tool, nor a button that instantly turns
+an idea into a finished commercial game. Think of it as a workshop, project
+manager and production checklist in one place.
+
+### What can I do with it?
+
+- **Start a game:** choose a built-in template for an environment, gameplay
+  prototype, multiplayer arena, cinematic, city or other supported project.
+- **Make assets:** use built-in generators to create sample models,
+  materials, animations, sounds and environments. You can refine them in
+  your normal game development tools.
+- **Plan development:** break a game into smaller jobs, decide what comes
+  first, assign jobs to specialists and keep track of unfinished work.
+- **Build and test:** generate a project, read its build logs, check assets
+  and record bugs. A build is a generated set of game or asset files.
+- **Learn game development:** study ten training topics and try practical
+  exercises in the Academy and Lab, including game design, coding, 3D
+  modeling, textures, storytelling, animation and testing.
+- **Keep progress organized:** save checkpoints, review completed work and
+  maintain a history of verified builds and release candidates.
+
+## Getting started — no coding required to explore
+
+### 1. Download Graveforge
+
+On the [GitHub repository](https://github.com/reeferbomb/virtual-development-studio),
+select the green **Code** button, then **Download ZIP**. Extract the ZIP into
+a folder of your choice. If you already use Git, you can instead run:
+
+```bash
+git clone https://github.com/reeferbomb/virtual-development-studio.git
+cd virtual-development-studio
+```
+
+### 2. Get the tools you need (Linux)
+
+The documented local setup uses Linux and **Python 3.11 or newer**. Python runs
+the dashboard. Install [Godot 4](https://godotengine.org/) and
+[Blender](https://www.blender.org/) separately if you want to generate and run
+game projects or assets. Some factories require particular versions or extra
+dependencies; see the technical instructions below for each factory.
+The command center looks for the `godot` executable and either `blender52`
+or `blender` on your command path (PATH).
+
+You can explore the dashboard, planning tools and Lab without an AI account,
+API key or game-engine build. Native Windows and macOS support is not
+established by this Linux quick start.
+
+### 3. Open the studio
+
+Open a terminal in the extracted Graveforge folder (the one containing this
+README). Type the following command and press Enter:
 
 ```bash
 python3 -m command_center.server --workspace ../studio-workspace
 ```
 
-Open `http://127.0.0.1:8765`. The local application has no API-key requirement
-and does not call a model API. A compatible external host is required to
-launch the optional exported specialist assignments. Keep the workspace and
-all user-created project data outside the public repository. See `SECURITY.md`.
+Keep that terminal open. In your web browser, visit
+[http://127.0.0.1:8765](http://127.0.0.1:8765).
+
+This opens the **Command Center**, the studio's local dashboard.
+It runs on your own computer, not on a public website. The new
+`studio-workspace` folder sits next to the downloaded source folder and
+holds your saved projects and build output. When you finish, let running
+builds finish and press Ctrl+C in the terminal to stop the dashboard.
+
+### 4. Try your first project
+
+For example, suppose you want to make a small first-person exploration game.
+
+1. Open **Projects**, select **+ New project**, enter a name such as
+   `My First Game`, select a World project type and choose **Create project**.
+2. Open **Workspace** to inspect the starting level template and its settings.
+   The specification (spec) is a file of settings that describes what to build.
+   World and cinematic templates also offer visual editing controls.
+3. When the settings are saved and the required tools are installed, choose
+   **Queue build**. Visit **Build queue** to see progress, logs and the result.
+   Generated files are stored in the separate workspace under
+   `jobs/<job-id>/output/`.
+4. Open **Planning** to review a proposed series of development tasks.
+   Apply the plan only if it fits your idea. Use **Team** to track and
+   assign work.
+5. Open **Supervisor** and **Quality** to see what passed, what failed and
+   what still needs checking. Open the generated Godot project and playtest
+   it yourself before treating it as a finished game.
+6. Use **Releases** to keep a verified build as an active local release
+   candidate when ready. This does not publish your game to the internet.
+
+This produces a starting point for development, not a complete custom FPS.
+
+### Just want to learn?
+
+Open **Training** to read the ten learning tracks. Open **Lab**, choose an
+exercise, select **Use example**, then **Assess submission**. The studio shows
+which checks passed and why. Change the example to try your own solution,
+and use **Download assessment JSON** to save the result if you want to keep it.
+JSON is a text format for structured data. The Lab checks measurable properties;
+passing an exercise is not the same as mastering a skill or training an AI model.
+
+## Meet the Midnight Shift — your optional AI-assisted team
+
+Graveforge defines six specialist roles so a lead developer can divide a
+project into manageable jobs.
+
+| Specialist | Plain-English role |
+| --- | --- |
+| Count Blueprint | Plans how the game and its systems fit together. |
+| Major Mayhem | Works on gameplay, controls, rules and mechanics. |
+| Doctor Doomcheck | Tests features, looks for bugs and checks evidence. |
+| Madame Glitch | Works on menus, HUDs and player-facing interfaces. |
+| Grimbrush | Works on models, art, animation, textures and other content. |
+| Baron Buildgrave | Manages builds, packaging and production operations. |
+
+The default dispatch profile requests five GPT-6.2 Astra Ultra workers and
+one GPT-6.2 Sol Max worker in parallel on a compatible host.
+
+**How do I activate the AI team?** You need an AI development environment
+that can read the repository, work on your files and launch the supported
+agents. Give it the Graveforge repository and your project, have it read
+[AGENTS.md](AGENTS.md), and say something like:
+
+> Activate Graveforge Studios. Help me build a small first-person exploration
+> game. Plan the work, use the Midnight Shift for independent tasks, test
+> each feature and show me the results. Preserve my existing work.
+
+For an existing project, provide its actual folder or repository and describe
+what you want improved. The lead can use Team's dispatch exports to send
+precise assignments to an authorized external host.
+
+The dashboard itself **does not run AI models, contact a model API or
+automatically spawn agents**. Its local tools work independently. AI model
+access, parallel worker availability, costs and session limits depend on
+your external host. Private API keys and project files are not included in
+this public repository. Keep your own credentials and workspace separate;
+see [SECURITY.md](SECURITY.md).
+
+## Where do I go in the dashboard?
+
+| Tab | What it means |
+| --- | --- |
+| Projects / Workspace | Create projects and edit their starting settings. |
+| Asset catalog | Browse sample assets and their source information. |
+| Build queue / Releases | Generate files, track build results and manage verified local packages. |
+| Planning / Sprint | Decide what needs to be done next. |
+| Team / Operations | Assign jobs and review work handed back by specialists. |
+| Coordination / Portfolio | See dependencies and workloads across projects. |
+| Supervisor / Quality | Investigate problems and see what still needs to be verified. |
+| Training / Lab | Read production lessons and try measured exercises. |
+
+## Technical reference
+
+The remaining sections document the version history, commands, supported
+factories, integration interfaces and verification procedures. Original Studio
+code and bundled original test assets are MIT-licensed; see [LICENSE](LICENSE).
+Godot, Blender and other external assets retain their respective licenses.
+For contributions see [CONTRIBUTING.md](CONTRIBUTING.md), and for release
+history see [CHANGELOG.md](CHANGELOG.md).
 
 ## New in v28 — practical production lab
 
@@ -1900,15 +2050,19 @@ projects. Agents are created on demand, not permanent background employees.
 
 ## Staff and ownership
 
-| Role | Owns | Required handoff |
+The lead producer/architect coordinates the objective, scope, dependencies,
+interfaces and final integration. The current six-role Midnight Shift uses
+the following ownership and handoffs (see [AGENTS.md](AGENTS.md) for exact
+model and dispatch policy).
+
+| Specialist | Owns | Required handoff |
 |---|---|---|
-| Lead producer/architect | Objective, interfaces, scope, dependencies, final integration | Accepted milestone + evidence + next boundary |
-| Astra 1 — Engine | Build, platform adapters, rendering, storage, reusable systems | Code, interface contract, runtime/build evidence |
-| Astra 2 — Gameplay | Movement, combat, interaction, AI, rules, network simulation | Playable feature slice, focused tests, tuning values |
-| Astra 3 — Art | Meshes, UVs, materials, textures, props | Editable source, exports, provenance, visual checks |
-| Astra 4 — Animation | Skeleton, weights, animation state and clips | Rig contract, clips, deformation/retarget checks |
-| Astra 5 — World | Levels, environment, navigation, lighting, blockouts | Layout source, traversal tests, screenshots |
-| Astra 6 — Quality | Independent test, regression, performance, accessibility, security review | Repro steps, test log, severity, release checklist |
+| Count Blueprint | Architecture, engine interfaces, world and system design | Interface contract, implementation plan and evidence |
+| Major Mayhem | Movement, combat, interaction, AI, rules, networking | Playable feature slice, focused tests and tuning values |
+| Doctor Doomcheck | Independent verification, defects, performance and quality | Repro steps, test logs, severity and release checklist |
+| Madame Glitch | UI, player feedback, HUD, controls and accessibility | Interface implementation, interaction checks and evidence |
+| Grimbrush | Models, textures, materials, animation and environment content | Editable source, exports, provenance and visual checks |
+| Baron Buildgrave | Builds, packaging, release and production operations | Reproducible build, package evidence and known limitations |
 
 The lead owns integration. Agents work in separate files/directories or branches;
 never let two edit the same shared asset simultaneously. Assign concrete slices
