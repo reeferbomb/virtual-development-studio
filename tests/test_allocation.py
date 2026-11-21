@@ -72,17 +72,17 @@ class AllocationTests(unittest.TestCase):
         before = copy.deepcopy(snapshot)
         report = allocation(snapshot)
         self.assertEqual(report['status'], 'current')
-        self.assertEqual(report['summary'], dict(capacity=6, assigned=1, occupied=1, conflicts=1, idle=3))
+        self.assertEqual(report['summary'], dict(capacity=6, assigned=0, occupied=1, conflicts=1, idle=4))
         self.assertEqual([r['role'] for r in report['roles']], ROLES)
         rows = {r['role']: r for r in report['roles']}
         self.assertEqual(rows['architecture'], dict(role='architecture', state='conflict',
                                                     project_ids=[alpha, beta], assignment=None))
         self.assertEqual(rows['ui'], dict(role='ui', state='occupied', project_ids=[alpha], assignment=None))
-        self.assertEqual(rows['verification'], dict(role='verification', state='assigned', project_ids=[beta],
-                                                    assignment=snapshot['assignments'][0]))
+        self.assertEqual(rows['verification'], dict(role='verification', state='idle', project_ids=[],
+                                                    assignment=None))
         self.assertEqual(rows['content']['state'], 'idle')
         self.assertEqual(allocation(snapshot), report)
-        rows['verification']['assignment']['title'] = 'Edited locally'
+        rows['architecture']['project_ids'].append('edited-locally')
         self.assertEqual(snapshot, before)
         self.assertEqual([path.read_bytes() for path in boards], originals)
 
@@ -141,6 +141,10 @@ class AllocationTests(unittest.TestCase):
             self.add(pid, 'draw', 'ui')
             self.operate(pid, dict(op='start', task_id='draw'))
         self.add(alpha, 'play', 'gameplay')
+        self.operate(beta, dict(op='block', task_id='draw', reason='Resolve competing role claim'))
+        assignment = self.snapshot()['assignments'][0]
+        self.operate(beta, dict(op='requeue', task_id='draw'))
+        self.operate(beta, dict(op='start', task_id='draw'))
         snapshot = self.snapshot()
         for field, value in (
                 ('role_occupancy', {'ui': [alpha]}), ('role_occupancy', {'ui': [alpha, alpha]}),
@@ -150,7 +154,7 @@ class AllocationTests(unittest.TestCase):
             with self.subTest(field=field, value=value):
                 self.assert_unavailable(dict(snapshot, **{field: value}))
         damaged = copy.deepcopy(snapshot)
-        damaged['assignments'][0]['role'] = 'ui'
+        damaged['assignments'].append(assignment)
         self.assert_unavailable(damaged)
 
 

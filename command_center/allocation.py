@@ -80,6 +80,8 @@ def _owners(portfolio, projects):
 def _assignments(portfolio, projects, owners):
     if not isinstance(portfolio['assignments'], list):
         raise ValueError('Invalid assignments')
+    if portfolio['assignments'] and any(len(ids) > 1 for ids in owners.values()):
+        raise ValueError('Resolve role conflicts before assigning new work')
     selected = {}
     task_ids = set()
     counts = Counter()

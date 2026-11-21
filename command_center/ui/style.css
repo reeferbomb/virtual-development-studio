@@ -210,3 +210,13 @@ dialog .actions { justify-content: end; margin-top: .65rem; }
 .coordination-priorities li { padding: .65rem 0 .65rem .25rem; border-top: 1px solid var(--edge); }
 .coordination-priorities li p { margin-top: .35rem; }
 .coordination-priorities li::marker { color: var(--subtle); font-variant-numeric: tabular-nums; }
+.quality-grid > :nth-child(3), .quality-grid > :nth-child(4) { grid-column: 1 / -1; }
+.quality-table-wrap { min-width: 0; overflow-x: auto; }
+.quality-table-wrap th[scope=row] { font-family: inherit; }
+.quality-gate { border-top: 1px solid var(--edge); }
+.quality-gate summary span:first-child { margin-right: .5rem; }
+.quality-gate > p, .quality-gate > h3 { margin-top: .5rem; }
+.training-count { margin-bottom: .65rem; }
+.training-lesson > h3 { margin-block: .8rem .35rem; }
+.training-identity { margin-top: 1rem; overflow-wrap: anywhere; }
+.training-identity > summary { cursor: pointer; }

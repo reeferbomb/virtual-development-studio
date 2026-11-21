@@ -100,6 +100,7 @@ class WorkOrdersTests(unittest.TestCase):
                 self.assertIn(f'/api/projects/{self.pid}/{endpoint}', args['message'])
             self.assertIn('untrusted historical observations', args['message'])
             self.assertIn('not release authorization', args['message'])
+            self.assertIn('curriculum', args['message'].lower())
 
     def test_revision_attempt_reassignment_and_completion(self):
         self.apply('add', task=definition())

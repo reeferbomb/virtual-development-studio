@@ -20,6 +20,7 @@ from .checkpoints import CheckpointStore, _locked_directory
 from .defect_store import DefectStore
 from .dependency_impact import dependency_impact
 from .dispatch import scheduled_dispatch_plan
+from .dispatch_cycle import dispatch_cycle
 from .dossier import build_dossier
 from .evidence_history import EvidenceHistory
 from .forecast import forecast
@@ -31,11 +32,15 @@ from .preflight import preflight
 from .priorities import rank_tasks
 from .projects import ProjectStore
 from .provenance import spec_digest
+from .quality_matrix import quality_matrix
+from .quality_trends import quality_trends
 from .recovery import capture_recovery
 from .recovery_advice import recovery_advice
 from .release_store import ReleaseStore
+from .specialist_analytics import specialist_analytics
 from .specialist_memory import specialist_memory
 from .sprint_planner import plan_sprint
+from .studio_curriculum import curriculum
 from .supervisor import audit_project
 from .task_store import TaskStore, _valid_digest
 from .team import team_plan, release_summary
@@ -43,7 +48,7 @@ from .work_orders import work_orders
 from world.procedural import generate, plan_route
 
 ROOT = Path(__file__).resolve().parents[1]
-VERSION = '26.0'
+VERSION = '27.0'
 LIMIT = 1024 * 1024
 STATIC = {'/': 'index.html', '/index.html': 'index.html', '/app.js': 'app.js',
           '/editor.js': 'editor.js', '/style.css': 'style.css', '/editor.css': 'editor.css'}
@@ -174,9 +179,19 @@ class StudioService:
             history = _audit_source(self.handoffs.get, project_id)
             return specialist_memory(project, history)
 
+    def specialist_analytics(self, project_id):
+        with self.lock, _locked_directory(self.projects.directory(project_id), fcntl.LOCK_SH):
+            project = self.projects.get(project_id)
+            history = _audit_source(self.handoffs.get, project_id)
+            return specialist_analytics(project, history)
+
     def allocation(self):
         with self.lock:
             return allocation(_audit_source(portfolio_plan, self.projects, self.tasks))
+
+    def dispatch_cycle(self):
+        with self.lock:
+            return dispatch_cycle(_audit_source(portfolio_plan, self.projects, self.tasks))
 
     def _audit_snapshot(self, project_id):
         project = self.projects.get(project_id)
@@ -269,11 +284,24 @@ class StudioService:
                 verify = self._snapshot_guard(project_id, file_stamp, jobs)
             return self.evidence_history.capture(project_id, data, audit, assert_snapshot=verify)
 
+    def _acceptance_snapshot(self, project_id):
+        project, audit, board, defects, *_ = self._audit_snapshot(project_id)
+        history = _audit_source(self.evidence_history.get, project_id)
+        return project, assess_acceptance(project, audit, board, defects, history)
+
     def acceptance(self, project_id):
         with self.lock, _locked_directory(self.projects.directory(project_id), fcntl.LOCK_SH):
-            project, audit, board, defects, *_ = self._audit_snapshot(project_id)
+            return self._acceptance_snapshot(project_id)[1]
+
+    def quality_matrix(self, project_id):
+        with self.lock, _locked_directory(self.projects.directory(project_id), fcntl.LOCK_SH):
+            return quality_matrix(*self._acceptance_snapshot(project_id))
+
+    def quality_trends(self, project_id):
+        with self.lock, _locked_directory(self.projects.directory(project_id), fcntl.LOCK_SH):
+            project, audit, *_ = self._audit_snapshot(project_id)
             history = _audit_source(self.evidence_history.get, project_id)
-            return assess_acceptance(project, audit, board, defects, history)
+            return quality_trends(project, audit, history)
 
     def _dossier_snapshot(self, project_id):
         project, audit, board, defects, jobs, registry = self._audit_snapshot(project_id)
@@ -343,6 +371,7 @@ def create_server(service, port=8765):
                         return self.file_response(service.root / 'command_center/ui' / STATIC[path])
                     if path == '/api/status': return self.json_response(service.status())
                     if path == '/api/catalog': return self.json_response(catalog(service.root))
+                    if path == '/api/training': return self.json_response(curriculum())
                     if path == '/api/projects': return self.json_response(service.projects.list())
                     if path == '/api/jobs': return self.json_response(service.pipeline.list())
                     if path == '/api/queue': return self.json_response(service.pipeline.queue())
@@ -351,6 +380,7 @@ def create_server(service, port=8765):
                             portfolio = portfolio_plan(service.projects, service.tasks)
                         return self.json_response(portfolio)
                     if path == '/api/allocation': return self.json_response(service.allocation())
+                    if path == '/api/dispatch-cycle': return self.json_response(service.dispatch_cycle())
                     if path == '/api/file': return self.file_response(service.media(parse_qs(url.query).get('path', [''])[0]))
                     if len(parts) == 3 and parts[:2] == ['api', 'projects']:
                         return self.json_response(service.projects.get(parts[2]))
@@ -380,10 +410,16 @@ def create_server(service, port=8765):
                             return self.json_response(service.recovery_advice(parts[2]))
                         if parts[3] == 'acceptance':
                             return self.json_response(service.acceptance(parts[2]))
+                        if parts[3] == 'quality-matrix':
+                            return self.json_response(service.quality_matrix(parts[2]))
+                        if parts[3] == 'quality-trends':
+                            return self.json_response(service.quality_trends(parts[2]))
                         if parts[3] == 'work-orders':
                             return self.json_response(service.work_orders(parts[2]))
                         if parts[3] == 'specialist-memory':
                             return self.json_response(service.specialist_memory(parts[2]))
+                        if parts[3] == 'specialist-analytics':
+                            return self.json_response(service.specialist_analytics(parts[2]))
                         if parts[3] == 'dossier':
                             return self.json_response(service.dossier(parts[2]))
                         if parts[3] == 'preflight':

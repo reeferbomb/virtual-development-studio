@@ -1,4 +1,4 @@
-# Virtual Development Studio — Specialist Coordination v26.0
+# Virtual Development Studio — Game Production Academy v27.0
 
 Virtual Development Studio is a local, evidence-oriented game development
 toolkit with procedural factories, a loopback Command Center, build queues,
@@ -21,6 +21,56 @@ Open `http://127.0.0.1:8765`. The local application has no API-key requirement
 and does not call a model API. A compatible external host is required to
 launch the optional exported specialist assignments. Keep the workspace and
 all user-created project data outside the public repository. See `SECURITY.md`.
+
+## New in v27 — game production academy and quality engineering
+
+Open **Training** to review the original, versioned Studio curriculum. Each
+track defines a production workflow, deliverables, verification criteria,
+and a practical exercise. Specialist dispatch exports and claimed work orders
+automatically include the applicable tracks for the assigned role.
+
+| Track | Practice focus |
+| --- | --- |
+| Game design | Core loops, systems, balance, playtesting |
+| Game development | Architecture, gameplay logic, testing, integration |
+| Modeling | Topology, scale, LODs, collisions, engine imports |
+| Textures | UVs, PBR maps, materials, compression, memory |
+| Storytelling | Character arcs, quest beats, dialogue, narrative continuity |
+| Animation | Rigging, motion, state transitions, deformation |
+| Level design | Blockouts, traversal, encounters, navigation |
+| Interface | HUD, control schemes, accessibility |
+| Quality assurance | Regression tests, defects, acceptance evidence |
+| Build performance | Profiling, provenance, reproducible packages |
+
+The curriculum is instructional context, not fine-tuned model weights or a
+certification. Exercises are optional proposals, not completed tasks.
+Instructional guidance never overrides the approved project specification,
+task scope, permissions, or evidence requirements.
+
+Open **Quality** to inspect current release gates, changes against the latest
+matching captured audit, and reviewed specialist handoff statistics. Review
+latency is elapsed time between submission and review, not agent runtime or
+a skill rating. Unknown, missing, stale, and invalid evidence cannot pass a
+gate. The dispatch-cycle preview identifies the next eligible task claims
+across the shared roster and blocks new exports on role contention. Refresh
+after each claim; a preview is not a global reservation or launch operation.
+
+| Endpoint | Purpose |
+| --- | --- |
+| `GET /api/training` | Versioned curriculum and content digest |
+| `GET /api/projects/{id}/quality-matrix` | Current gate status and suggested next action |
+| `GET /api/projects/{id}/quality-trends` | Current gates compared with matching captured evidence |
+| `GET /api/projects/{id}/specialist-analytics` | Current-specification handoff review statistics |
+| `GET /api/dispatch-cycle` | Revision-bound claims preview from one portfolio snapshot |
+
+Check current quality from the CLI with the loopback service running:
+
+```bash
+python3 -m command_center.quality_cli PROJECT_ID --port 8765
+```
+
+Exit codes: 0 ready, 1 pending or blocked, 2 unavailable. All five endpoints
+are read-only; none can claim, execute, or promote work.
 
 ## New in v26 — specialist coordination and recovery
 

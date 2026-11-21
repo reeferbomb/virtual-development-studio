@@ -161,6 +161,7 @@ class PortfolioTests(unittest.TestCase):
             self.assertEqual((args['task_name'], args['fork_turns'], args['model'], args['reasoning_effort']),
                              (roles[task['role']]['agent_task_name'], 'none', task['model_id'], task['reasoning_effort']))
             self.assertIn(roles[task['role']]['codename'], args['message'])
+            self.assertIn('curriculum', args['message'].lower())
             for field in (project_id, task['task_id'], task['title'], task['spec_sha256'],
                           f"board revision {task['board_revision']}", '/api/portfolio',
                           f'/api/projects/{project_id}/tasks', 'claim the exact task',
@@ -188,9 +189,9 @@ class PortfolioTests(unittest.TestCase):
         self.assertEqual(plan['occupied_roles'], ['architecture', 'gameplay'])
         self.assertEqual(plan['role_occupancy'], {'architecture': [alpha, beta], 'gameplay': [alpha]})
         self.assertEqual(plan['conflicts'], [{'role': 'architecture', 'project_ids': [alpha, beta]}])
-        self.assertEqual([a['task_id'] for a in plan['assignments']], ['compose'])
+        self.assertEqual(plan['assignments'], [])
         self.assertEqual(plan['dispatch_plan']['assignments'], plan['assignments'])
-        self.assertEqual([a['task_name'] for a in plan['dispatch_plan']['spawn_args']], ['grimbrush'])
+        self.assertEqual(plan['dispatch_plan']['spawn_args'], [])
         self.apply(beta, {'op': 'block', 'task_id': 'design', 'reason': 'Waiting for a decision'})
         self.assertEqual(self.plan()['conflicts'], [])
         self.assertEqual(self.plan()['occupied_roles'], ['architecture', 'gameplay'])

@@ -141,5 +141,6 @@ class CommandDispatchTests(unittest.TestCase):
         self.assertIn("test-build", args["message"])
         self.assertIn("Verify the build", args["message"])
         self.assertIn("claim", args["message"])
+        self.assertIn("curriculum", args["message"].lower())
         for invalid in (dict(board, state="stale"), dict(board, spec_sha256="wrong"), dict(board, project_id="wrong")):
             self.assertEqual(scheduled_dispatch_plan(self.project, invalid)["spawn_args"], [])

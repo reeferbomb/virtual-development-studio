@@ -9,6 +9,7 @@ from .checkpoints import _locked_directory
 from .dispatch import default_profile, production_instruction
 from .projects import PROJECT_ID, ProjectStore
 from .priorities import rank_tasks
+from .studio_curriculum import training_instruction
 from .task_store import TaskStore, _read_json
 
 
@@ -47,6 +48,7 @@ def _dispatch_plan(assignments):
             "the recommendation or specification has changed or the claim fails. "
             "Work only on the claimed task. Return completion evidence to the lead for board and checkpoint updates. "
             f"{production_instruction(project_id)}"
+            f"{training_instruction(role)}"
             f"{profile['continuity']['host_instruction']}"
         )
         spawn_args.append({'task_name': roles[role]['agent_task_name'], 'fork_turns': 'none', 'model': assignment['model_id'],
@@ -108,7 +110,7 @@ def portfolio_plan(projects: ProjectStore, tasks: TaskStore) -> dict:
 
     summary['projects'] = len(rows)
     assignments = []
-    if not summary['unavailable']:
+    if not summary['unavailable'] and not any(len(owners) > 1 for owners in running_projects.values()):
         taken = set(running_projects)
         for _, candidate in sorted(candidates, key=lambda entry: entry[0]):
             if candidate['role'] not in taken:

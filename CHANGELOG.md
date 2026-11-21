@@ -1,5 +1,24 @@
 # Changelog
 
+## 27.0 — Game Production Academy
+
+### Added
+
+- Ten role-targeted game production curriculum tracks with workflows, deliverables,
+  verification criteria and optional hands-on exercises, injected into dispatch exports.
+- Current quality gate matrix, captured-evidence trends and reviewed specialist analytics.
+- Revision-bound dispatch-cycle preview and local quality-check CLI.
+- Training and Quality workspaces, read-only HTTP endpoints and regression tests.
+
+### Changed
+
+- Portfolio exports now suppress all new assignments while observed role conflicts remain unresolved.
+
+### Preserved
+
+- Six specialist roles, explicit claims and lead review, local-only data, and
+  independent verification; no automatic exercise execution, model fine-tuning or release promotion.
+
 ## 26.0 — Specialist Coordination
 
 ### Added

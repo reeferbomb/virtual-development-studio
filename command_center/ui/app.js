@@ -3,7 +3,7 @@
 const titles = {
   projects: "Projects", workspace: "Workspace", catalog: "Asset catalog",
   builds: "Build queue", releases: "Releases", supervisor: "Supervisor", sprint: "Sprint",
-  planning: "Planning", operations: "Operations", coordination: "Coordination", team: "Team", portfolio: "Portfolio"
+  planning: "Planning", operations: "Operations", coordination: "Coordination", quality: "Quality", training: "Training", team: "Team", portfolio: "Portfolio"
 };
 const kinds = {
   assets: "Asset factory", world: "World", gameplay: "Gameplay",
@@ -2408,6 +2408,282 @@ async function renderCoordination(id, routeId) {
   await load();
 }
 
+const qualityTitles = {
+  "quality-matrix": "Quality matrix", "quality-trends": "Quality trends",
+  "specialist-analytics": "Specialist analytics", "dispatch-cycle": "Workspace dispatch cycle"
+};
+const qualityGates = ["build", "release", "task_board", "manual_review", "defects", "performance"];
+const gateOrder = ["fail", "warn", "pending", "pass"];
+const auditOverall = ["blocked", "attention", "pending", "pass"];
+const trendLabels = {improved: "Improved", regressed: "Regressed", unchanged: "Unchanged"};
+
+function matchingCounts(summary, rows, field, keys) {
+  return keys.every(key => isRevision(summary?.[key]) && summary[key] === rows.filter(row => row?.[field] === key).length);
+}
+
+function completeChecks(checks, gates) {
+  return checks.length === gates.length && gates.every(id => checks.some(row => row?.id === id && coordinationText(row.label)));
+}
+
+function validMatrix(data) {
+  const checks = data.checks;
+  if (!Array.isArray(checks) || !matchingCounts(data.summary, checks, "status", ["pass", "pending", "fail"])) return false;
+  if (data.status === "unavailable") return !checks.length;
+  const expected = data.summary.fail ? "blocked" : data.summary.pending ? "pending" : "ready";
+  return data.status === expected && completeChecks(checks, [...qualityGates, "audit_history"])
+    && checks.every(row => ["pass", "pending", "fail"].includes(row.status) && coordinationText(row.evidence)
+      && coordinationText(row.next_action) && coordinationRole(row.role));
+}
+
+function validTrends(data) {
+  const checks = data.checks;
+  if (!Array.isArray(checks) || !matchingCounts(data.summary, checks, "trend", Object.keys(trendLabels))) return false;
+  if (data.status === "unavailable") return !checks.length && ["history_revision", "historical_count", "live_status",
+    "baseline_status", "baseline_id"].every(key => data[key] === null);
+  if (!isRevision(data.history_revision) || !isRevision(data.historical_count) || !auditOverall.includes(data.live_status)) return false;
+  if (data.status === "empty") return data.history_revision === data.historical_count && data.baseline_id === null
+    && data.baseline_status === null && !checks.length;
+  if (data.status !== "current" || data.history_revision <= data.historical_count || !handoffId(data.baseline_id)
+    || !completeChecks(checks, qualityGates)) return false;
+  const consistent = checks.every(row => {
+    const before = gateOrder.indexOf(row.baseline_status), after = gateOrder.indexOf(row.live_status);
+    return before >= 0 && after >= 0 && row.trend === (after > before ? "improved" : after < before ? "regressed" : "unchanged");
+  });
+  return consistent && ["baseline_status", "live_status"].every(key =>
+    data[key] === auditOverall[Math.min(...checks.map(row => gateOrder.indexOf(row[key])))]);
+}
+
+function validAnalytics(data) {
+  if (data.status === "unavailable") return data.handoff_revision === null && data.historical_count === null
+    && Array.isArray(data.roles) && !data.roles.length;
+  if (!["empty", "current"].includes(data.status) || !fullRoleList(data.roles)
+    || !isRevision(data.handoff_revision) || !isRevision(data.historical_count)) return false;
+  return (data.status === "current") === data.roles.some(row => row.submitted > 0) && data.roles.every(row => {
+    const reviewed = row.accepted + row.rejected;
+    return ["submitted", "accepted", "rejected", "pending", "unique_orders", "completed", "blocked", "progress"].every(key => isRevision(row[key]))
+      && row.submitted === reviewed + row.pending && row.accepted === row.completed + row.blocked + row.progress
+      && row.unique_orders <= row.submitted && Boolean(row.unique_orders) === Boolean(row.submitted)
+      && (reviewed ? Number.isFinite(row.median_review_seconds) && row.median_review_seconds >= 0 : row.median_review_seconds === null);
+  });
+}
+
+function validCycle(data, projects) {
+  const {steps, conflicts} = data;
+  if (!Array.isArray(steps) || !Array.isArray(conflicts)) return false;
+  if (data.status === "unavailable") return data.cycle_id === null && !steps.length && !conflicts.length;
+  if (!isDigest(data.cycle_id)) return false;
+  if (data.status === "idle") return !steps.length && !conflicts.length;
+  const known = new Set(projects.map(project => project.id));
+  if (data.status === "blocked") return !steps.length && conflicts.length > 0
+    && new Set(conflicts.map(row => row?.role)).size === conflicts.length && conflicts.every(row => coordinationRole(row?.role)
+      && Array.isArray(row.project_ids) && row.project_ids.length >= 2 && new Set(row.project_ids).size === row.project_ids.length
+      && row.project_ids.every(id => known.has(id)));
+  if (data.status !== "ready" || !steps.length || conflicts.length || new Set(steps.map(row => row?.role)).size !== steps.length) return false;
+  const seen = new Map();
+  return steps.every(row => {
+    if (!known.has(row?.project_id) || !coordinationRole(row.role) || !coordinationText(row.title) || !coordinationText(row.task_id)
+      || !isDigest(row.spec_sha256) || !isRevision(row.expected_revision) || !Number.isInteger(row.priority) || row.priority < 1 || row.priority > 5
+      || row.action?.op !== "start" || row.action.task_id !== row.task_id || Object.keys(row.action).length !== 2) return false;
+    const previous = seen.get(row.project_id);
+    if (previous && (previous.spec !== row.spec_sha256 || previous.revision !== row.expected_revision || previous.tasks.has(row.task_id))) return false;
+    const scope = previous || {spec: row.spec_sha256, revision: row.expected_revision, tasks: new Set()};
+    scope.tasks.add(row.task_id);
+    seen.set(row.project_id, scope);
+    return true;
+  });
+}
+
+function qualityTable(caption, columns, rows) {
+  const wrap = element("div", "quality-table-wrap"), table = element("table", "sample-table");
+  const head = element("thead"), header = element("tr"), body = element("tbody");
+  for (const column of columns) {
+    const cell = element("th", null, column);
+    cell.scope = "col";
+    header.append(cell);
+  }
+  head.append(header);
+  for (const values of rows) {
+    const row = element("tr");
+    values.forEach((value, index) => {
+      const cell = element(index ? "td" : "th", null, value);
+      if (!index) cell.scope = "row";
+      row.append(cell);
+    });
+    body.append(row);
+  }
+  table.append(element("caption", null, caption), head, body);
+  wrap.append(table);
+  return wrap;
+}
+
+function qualityIdentity(panel, data, fields) {
+  const detail = element("details");
+  detail.append(element("summary", null, "Report identity"));
+  for (const [label, value] of fields) if (value != null) detail.append(element("p", "dim", label + " " + value));
+  if (data.spec_sha256) detail.append(element("p", "dim", "Specification " + data.spec_sha256));
+  panel.append(detail);
+}
+
+function qualityPanel(source, data) {
+  const panel = supervisorPanel(qualityTitles[source]);
+  const labels = {ready: "Ready for review", blocked: "Blocked", pending: "Pending", current: "Current", empty: "Empty",
+    idle: "Idle", unavailable: "Unavailable"};
+  panel.setAttribute("aria-label", qualityTitles[source]);
+  panel.append(badge(labels[data.status], ["blocked", "unavailable"].includes(data.status) ? "bad" : ""),
+    element("p", "dim", data.note));
+  if (data.status === "unavailable") return panel;
+  if (source === "quality-matrix") {
+    panel.append(metricList([["Passed", data.summary.pass], ["Pending", data.summary.pending], ["Failed", data.summary.fail]]));
+    for (const row of data.checks) {
+      const item = element("details", "quality-gate"), summary = element("summary");
+      summary.append(element("span", null, row.label), auditBadge(row.status));
+      item.append(summary, element("p", "dim", taskRoles[row.role]), element("p", null, row.evidence),
+        element("h3", null, "Next action"), element("p", null, row.next_action));
+      panel.append(item);
+    }
+    qualityIdentity(panel, data, []);
+  } else if (source === "quality-trends") {
+    panel.append(element("p", null, "Live audit · " + auditStates[data.live_status][0]));
+    if (data.status === "empty") panel.append(element("h3", null, "No current-specification capture"));
+    else {
+      panel.append(element("p", null, "Baseline audit · " + auditStates[data.baseline_status][0]),
+        metricList(Object.entries(trendLabels).map(([key, label]) => [label, data.summary[key]])),
+        qualityTable("Gate changes since the latest current-specification capture", ["Gate", "Baseline", "Live", "Change"],
+          data.checks.map(row => [row.label, auditStates[row.baseline_status][0], auditStates[row.live_status][0], trendLabels[row.trend]])));
+    }
+    qualityIdentity(panel, data, [["Capture", data.baseline_id], ["History revision", data.history_revision],
+      ["Earlier-specification captures excluded ·", data.historical_count]]);
+  } else if (source === "specialist-analytics") {
+    panel.append(qualityTable("Handoffs for the selected specification", ["Specialist", "Submitted", "Accepted", "Rejected",
+      "Pending", "Work orders", "Accepted completed", "Accepted blocked", "Accepted progress", "Median review (seconds)"],
+    data.roles.map(row => [taskRoles[row.role], row.submitted, row.accepted, row.rejected, row.pending, row.unique_orders,
+      row.completed, row.blocked, row.progress, row.median_review_seconds ?? "No reviews"])));
+    qualityIdentity(panel, data, [["Handoff revision", data.handoff_revision], ["Earlier-specification handoffs excluded ·", data.historical_count]]);
+  } else {
+    if (data.status === "ready") {
+      const steps = element("ol", "coordination-priorities");
+      for (const row of data.steps) {
+        const item = element("li");
+        item.append(element("h3", null, row.title), element("p", null, row.project_id + " · " + taskRoles[row.role]),
+          element("p", "dim", "Priority " + row.priority + " · Board revision " + row.expected_revision),
+          element("p", "dim", "Proposed action · Start task " + row.action.task_id),
+          element("p", "dim", "Specification " + row.spec_sha256));
+        steps.append(item);
+      }
+      panel.append(steps);
+    }
+    for (const conflict of data.conflicts) {
+      const item = element("article", "task-row");
+      item.append(element("h3", null, taskRoles[conflict.role]), element("p", null, "Projects · " + conflict.project_ids.join(", ")));
+      panel.append(item);
+    }
+    qualityIdentity(panel, data, [["Cycle", data.cycle_id]]);
+  }
+  return panel;
+}
+
+async function renderQuality(id, routeId) {
+  const active = () => state.page === "quality" && location.hash === "#quality" && state.route === routeId && state.selected === id;
+  const refresh = button("Refresh quality", () => {
+    if (!active() || refresh.disabled) return;
+    refresh.disabled = true;
+    return route();
+  });
+  refresh.disabled = true;
+  const panels = element("div", "operations-grid quality-grid"), message = element("p", "sprint-message", "Loading quality reports…");
+  message.setAttribute("role", "status");
+  view.replaceChildren(heading("Quality", "Review release gates, changes since the last capture, specialist handoffs, and proposed assignments.", refresh),
+    projectPicker(route), message, panels);
+  const sources = Object.keys(qualityTitles);
+  const results = await Promise.allSettled(sources.map(source => api(source === "dispatch-cycle" ? "/dispatch-cycle" : projectPath(id, "/" + source))));
+  if (!active()) return;
+  const specs = new Set();
+  let mismatched = false;
+  const validators = {"quality-matrix": validMatrix, "quality-trends": validTrends, "specialist-analytics": validAnalytics, "dispatch-cycle": validCycle};
+  const reports = results.map((result, index) => {
+    if (result.status === "rejected") return {error: result.reason.message};
+    const data = result.value, source = sources[index];
+    if (!data || !coordinationText(data.note)) return {error: "The report could not be verified."};
+    if (source !== "dispatch-cycle") {
+      if (data.project_id !== id && !(data.status === "unavailable" && data.project_id === null)) mismatched = true;
+      if (isDigest(data.spec_sha256)) specs.add(data.spec_sha256);
+      else if (data.status !== "unavailable" || data.spec_sha256 !== null) return {error: "The report specification could not be verified."};
+    }
+    if (!validators[source](data, state.projects)) return {error: "The report could not be verified."};
+    if (source === "dispatch-cycle") {
+      for (const step of data.steps) if (step.project_id === id) specs.add(step.spec_sha256);
+    }
+    return {data};
+  });
+  const inconsistent = mismatched || specs.size > 1;
+  reports.forEach(({data, error}, index) => {
+    const source = sources[index];
+    if (inconsistent) error = "Refresh to verify this report against the selected project.";
+    panels.append(error ? box(qualityTitles[source] + " unavailable", error, null, "panel team-brief orchestration") : qualityPanel(source, data));
+  });
+  const partial = reports.some(report => report.error || report.data.status === "unavailable");
+  message.textContent = inconsistent ? "Project reports disagree. Refresh quality to load a consistent snapshot."
+    : partial ? "Some quality reports are unavailable." : "Quality reports refreshed.";
+  refresh.disabled = false;
+}
+
+function validCurriculum(data) {
+  if (data?.version !== 1 || !isDigest(data.curriculum_sha256) || !coordinationText(data.note)
+    || !Array.isArray(data.tracks) || !data.tracks.length) return false;
+  return new Set(data.tracks.map(track => track?.id)).size === data.tracks.length && data.tracks.every(track =>
+    coordinationText(track?.id) && coordinationText(track.title) && coordinationText(track.exercise)
+    && Array.isArray(track.roles) && track.roles.length > 0 && track.roles.every(coordinationRole)
+    && new Set(track.roles).size === track.roles.length && ["workflow", "deliverables", "verification"].every(key =>
+      Array.isArray(track[key]) && track[key].length > 0 && track[key].every(coordinationText)));
+}
+
+function trainingTrack(track) {
+  const panel = supervisorPanel(track.title), roles = element("div", "actions"), details = element("details", "training-lesson");
+  for (const role of track.roles) roles.append(badge(taskRoles[role]));
+  details.append(element("summary", null, "Read playbook"));
+  for (const [key, title] of [["workflow", "Workflow"], ["deliverables", "Deliverables"], ["verification", "Verification"]]) {
+    const list = element(key === "workflow" ? "ol" : "ul", "task-suggestions");
+    for (const item of track[key]) list.append(element("li", null, item));
+    details.append(element("h3", null, title), list);
+  }
+  details.append(element("h3", null, "Practice exercise"), element("p", null, track.exercise));
+  panel.append(roles, details);
+  return panel;
+}
+
+function renderTraining(data) {
+  if (!validCurriculum(data)) {
+    view.replaceChildren(heading("Training", "Game production playbooks for the specialist team."),
+      box("Training unavailable", "The curriculum could not be verified.", button("Reload training", route)));
+    return;
+  }
+  const controls = element("div", "workspace-tools"), label = element("label", null, "Specialist role");
+  const select = element("select"), all = element("option", null, "All specialists");
+  select.id = "training-role";
+  label.htmlFor = select.id;
+  all.value = "";
+  select.append(all);
+  for (const [id, title] of Object.entries(taskRoles)) {
+    const option = element("option", null, title);
+    option.value = id;
+    select.append(option);
+  }
+  select.value = "";
+  controls.append(label, select);
+  const count = element("p", "dim training-count"), tracks = element("div", "operations-grid");
+  count.setAttribute("role", "status");
+  function filter() {
+    const selected = data.tracks.filter(track => !select.value || track.roles.includes(select.value));
+    tracks.replaceChildren(...selected.map(trainingTrack));
+    count.textContent = selected.length + (selected.length === 1 ? " playbook" : " playbooks");
+  }
+  filter();
+  select.addEventListener("change", filter);
+  const identity = element("details", "training-identity");
+  identity.append(element("summary", null, "Curriculum version " + data.version), element("p", "dim", "Curriculum " + data.curriculum_sha256));
+  view.replaceChildren(heading("Training", data.note), controls, count, tracks, identity);
+}
+
 function renderPortfolio(portfolio) {
   view.replaceChildren(heading("Portfolio", "Review task boards and available specialist roles across projects.",
     button("Refresh portfolio", route)));
@@ -2546,6 +2822,11 @@ async function route() {
   view.replaceChildren(heading(titles[page], "Loading workstation data…"));
   view.setAttribute("aria-busy", "true");
   try {
+    if (page === "training") {
+      const curriculum = await api("/training");
+      if (routeId === state.route) renderTraining(curriculum);
+      return;
+    }
     if (page !== "catalog" && page !== "portfolio") {
       const projects = await api("/projects");
       if (routeId !== state.route) return;
@@ -2589,6 +2870,11 @@ async function route() {
       renderProjects();
       return;
     }
+    if (page === "quality" && !state.selected) {
+      view.replaceChildren(heading("Quality", "Review project quality and workspace dispatch proposals."),
+        box("No projects yet", "Quality reports will appear after the first project is created."));
+      return;
+    }
     if (page === "coordination" && !state.selected) {
       view.replaceChildren(heading("Coordination", "Project advice and shared specialist availability."),
         box("No projects yet", "Coordination reports will appear after the first project is created."));
@@ -2615,6 +2901,8 @@ async function route() {
       await renderSprint(id, routeId);
     } else if (page === "operations") {
       await renderOperations(id, routeId);
+    } else if (page === "quality") {
+      await renderQuality(id, routeId);
     } else if (page === "coordination") {
       await renderCoordination(id, routeId);
     } else {

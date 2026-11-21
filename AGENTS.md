@@ -173,3 +173,19 @@ for missing or failed gates before concluding the sprint. Readiness depends
 on current evidence and a passing current-spec capture, not on time elapsed,
 agent claims, or historical builds. The report is advisory; do not confuse it
 with publication authority, hardware acceptance, or game quality guarantees.
+
+### Quality engineering and game production academy (v27)
+
+Use the curriculum at `GET /api/training` and the role-specific instruction
+in each dispatch export. Follow the relevant production workflow, deliverables
+and verification steps within the assigned scope. The ten tracks cover
+design, development, modeling, textures, storytelling, animation, level
+design, interface, QA and build performance. Do not execute practice
+exercises automatically or claim model weights have been retrained.
+
+Review the quality matrix, trends and specialist analytics before recommending
+release readiness. Preserve the distinction between current acceptance gates,
+captured audit observations and reviewed handoffs. Analytics describe review
+records, not intrinsic agent ability. Use the dispatch-cycle preview only
+as advice; resolve conflicts, refresh before every individual claim and
+continue to require explicit revision-bound task operations and lead review.
