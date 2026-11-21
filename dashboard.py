@@ -101,8 +101,8 @@ def render_dashboard(projects: list[dict], destination: Path) -> None:
     page = (
         '<!doctype html><html lang="en"><head><meta charset="utf-8">'
         '<meta name="viewport" content="width=device-width, initial-scale=1">'
-        '<title>Studio production dashboard</title><style>' + STYLE
-        + '</style></head><body><main><header><h1>Studio production dashboard</h1></header>'
+        '<title>Graveforge Studios production dashboard</title><style>' + STYLE
+        + '</style></head><body><main><header><h1>Graveforge Studios production dashboard</h1></header>'
         + body + "</main></body></html>"
     )
     destination.parent.mkdir(parents=True, exist_ok=True)

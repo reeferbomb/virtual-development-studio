@@ -1,6 +1,6 @@
-# Virtual Development Studio — Game Production Academy v27.0
+# Graveforge Studios — Game Production Academy v27.0
 
-Virtual Development Studio is a local, evidence-oriented game development
+Graveforge Studios (formerly Virtual Development Studio) is a local, evidence-oriented game development
 toolkit with procedural factories, a loopback Command Center, build queues,
 release registers, and specialist dispatch exports. This public distribution
 contains original Studio source, synthetic demo fixtures and tests; it does

@@ -1,4 +1,4 @@
-# Virtual Development Studio agent deployment policy
+# Graveforge Studios agent deployment policy
 
 For an authorized Studio activation or substantive parallel development sprint,
 use the following default specialist team. This is the owner's chosen profile.

@@ -1,4 +1,4 @@
-# Contributing to Virtual Development Studio
+# Contributing to Graveforge Studios
 
 Studio is a local development workbench, not a hosted agent service. Please
 keep changes small, reproducible and independently verifiable.

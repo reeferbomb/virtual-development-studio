@@ -69,7 +69,7 @@ const refresh = () => find("Refresh quality").events.click();
 const patch = (source, changes) => { override = url => url.endsWith("/" + source) ? [200, {...normal(url), ...changes}] : null; };
 async function run() {
   await route();
-  assert.equal(link.attrs["aria-current"], "page"); assert.equal(document.title, "Quality · Studio Command Center");
+  assert.equal(link.attrs["aria-current"], "page"); assert.equal(document.title, "Quality · Graveforge Studios Command Center");
   assert.deepEqual(requests, ["/api/projects", ...Object.keys(sources).map(key => "/api/projects/alpha/" + key), "/api/dispatch-cycle"]);
   assert.equal(all().find(node => node.tag === "label").htmlFor, all().find(node => node.tag === "select").id);
   assert(all().some(node => node.attrs.role === "status"));

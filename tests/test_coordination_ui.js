@@ -77,7 +77,7 @@ const warning = "Project reports disagree. Refresh coordination to load a consis
 async function run() {
   await route();
   assert.equal(link.attrs["aria-current"], "page");
-  assert.equal(document.title, "Coordination · Studio Command Center");
+  assert.equal(document.title, "Coordination · Graveforge Studios Command Center");
   assert.equal(all().find(node => node.tag === "label").htmlFor, all().find(node => node.tag === "select").id);
   assert.deepEqual(requests, ["/api/projects", ...Object.keys(sources).map(key => "/api/projects/alpha/" + key), "/api/allocation"]);
   const panels = all().filter(node => node.tag === "section");

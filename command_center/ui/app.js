@@ -2818,7 +2818,7 @@ async function route() {
     else link.removeAttribute("aria-current");
   }
   document.querySelector("#location").textContent = titles[page];
-  document.title = `${titles[page]} · Studio Command Center`;
+  document.title = `${titles[page]} · Graveforge Studios Command Center`;
   view.replaceChildren(heading(titles[page], "Loading workstation data…"));
   view.setAttribute("aria-busy", "true");
   try {

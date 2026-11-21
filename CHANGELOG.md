@@ -12,6 +12,7 @@
 
 ### Changed
 
+- The Studio is now branded Graveforge Studios; The Midnight Shift remains its specialist team. Existing workspace and API identifiers are unchanged.
 - Portfolio exports now suppress all new assignments while observed role conflicts remain unresolved.
 
 ### Preserved
