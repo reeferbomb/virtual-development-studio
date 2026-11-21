@@ -17,6 +17,14 @@ service port or publish these files. Declared submitter and reviewer roles are
 workflow labels, not authentication or proof of authorship. The local integrity
 digest detects inconsistency, not malicious rewriting by a trusted disk owner.
 
+The Player Experience Academy uses synthetic practice fixtures, not a player
+analytics service. Its playtest-interpretation exercise accepts only bounded
+synthetic codes and categorical responses. Never enter real participant data,
+recordings, contact details or session notes into Lab. Real playtests need
+separate authorization, informed consent, minimized private records, limited
+access and a deletion policy. Neither the dashboard nor dispatch automatically
+collects player reactions or transmits telemetry.
+
 Asset validation reports identify the inspected bytes by SHA-256 and are not
 authenticated certificates of quality or safety. The Lab's report viewer reads
 selected JSON files in the browser; it does not upload, store or approve them.

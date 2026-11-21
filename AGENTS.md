@@ -1,5 +1,22 @@
 # Graveforge Studios agent deployment policy
 
+## Player experience academy (v33)
+
+Use the six new tracks in the version-3 Academy and Lab and the field guide
+at `command_center/PLAYER_EXPERIENCE.md`. The intended player fantasy, genre,
+audience, visual target and device define the experience standard. Diagnose
+boredom, confusion, frustration, meaningful choice, pacing and voluntary
+replay using observations and competing explanations; do not equate playtime,
+technical correctness or a rubric pass with enjoyment. Prioritize satisfying
+choices, mastery and coherent visual feedback over compulsory engagement.
+Use real gameplay views and device measurements for visual and performance
+review. Human playtests require explicit authorization, informed consent,
+minimized private evidence and honest uncertainty. Never invent participant
+responses or collect telemetry automatically. For authorized design or art
+work, return the hypothesis, exact build evidence, proposed iteration and
+remaining questions. Existing sixteen exercises and releases are preserved;
+v2 records remain historical and cannot count as current rubric coverage.
+
 ## Engine-backed cinematic production (v32)
 
 For an authorized cutscene production task, assess the edit in the cutscenes
@@ -15,8 +32,8 @@ reinterpret the existing Lab rubric, release gates or specialist assignments.
 
 ## Cinematic and development workflow academy (v31)
 
-Use the sixteen tracks in `/api/training` and matching version-2 exercises in
-`/api/training-lab` for authorized work. New subjects are cutscenes, audio,
+The v31 expansion introduced six tracks in `/api/training` and matching exercises in
+`/api/training-lab` for authorized work. Subjects are cutscenes, audio,
 multiplayer engineering, persistence, AI encounters and production pipeline.
 In cutscene work deliver a shot/cue timeline with explicit entry, completion,
 skip and interruption behavior; separately verify engine playback, control and

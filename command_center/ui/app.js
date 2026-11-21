@@ -2633,7 +2633,7 @@ async function renderQuality(id, routeId) {
 }
 
 function validCurriculum(data) {
-  if (![1, 2].includes(data?.version) || !isDigest(data.curriculum_sha256) || !coordinationText(data.note)
+  if (![1, 2, 3].includes(data?.version) || !isDigest(data.curriculum_sha256) || !coordinationText(data.note)
     || !Array.isArray(data.tracks) || !data.tracks.length) return false;
   return new Set(data.tracks.map(track => track?.id)).size === data.tracks.length && data.tracks.every(track =>
     coordinationText(track?.id) && coordinationText(track.title) && coordinationText(track.exercise)
@@ -2825,7 +2825,7 @@ function labArtifactViewer(active) {
 }
 
 function validLab(data) {
-  if (![1, 2].includes(data?.version) || !isDigest(data.lab_sha256) || !coordinationText(data.note)
+  if (![1, 2, 3].includes(data?.version) || !isDigest(data.lab_sha256) || !coordinationText(data.note)
     || !Array.isArray(data.exercises) || !data.exercises.length) return false;
   const uniqueIds = rows => new Set(rows.map(row => row?.id)).size === rows.length;
   return uniqueIds(data.exercises) && data.exercises.every(exercise =>
@@ -3134,6 +3134,14 @@ function renderLab(lab, routeId) {
         element("pre", "log", "python3 -m cinematic.production.runner cinematic/production/examples/nightfall_plan.json cinematic/production/examples/nightfall_bindings.json --output ../nightfall-production --engine"),
         element("p", "dim", "Keep the output outside the checkout. Runtime checks do not assess picture quality or recorded dialogue; the sample uses placeholder sound. The dashboard never launches the engine or records this as practice evidence."));
       brief.append(production);
+    }
+    if (["player-enjoyment", "replayability", "player-research", "visual-direction",
+      "visual-readability", "experience-iteration"].includes(exercise.id)) {
+      const guide = element("details");
+      guide.append(element("summary", null, "Apply this to a real game"),
+        element("p", null, "Choose the audience, intended experience, platform and exact build. Test a concrete hypothesis, compare observations against a baseline, and check for regression or unintended tradeoffs."),
+        element("p", "dim", "The Lab measures structured practice only. Record real player reactions only with consent and separately from simulated data. Review actual gameplay visuals and responsiveness on target devices; no rubric can certify fun or artistic quality. See command_center/PLAYER_EXPERIENCE.md."));
+      brief.append(guide);
     }
 
     const form = element("form", "panel team-brief orchestration lab-form");

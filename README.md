@@ -1,4 +1,4 @@
-# Graveforge Studios — Engine-Backed Cinematic Production v32.0
+# Graveforge Studios — Player Experience Academy v33.0
 
 **A free, open-source game development studio toolkit.**
 
@@ -29,9 +29,10 @@ manager and production checklist in one place.
   first, assign jobs to specialists and keep track of unfinished work.
 - **Build and test:** generate a project, read its build logs, check assets
   and record bugs. A build is a generated set of game or asset files.
-- **Learn game development:** study sixteen training topics and try practical
+- **Learn game development:** study twenty-two training topics and try practical
   exercises in the Academy and Lab, including game design, coding, 3D
-  modeling, textures, storytelling, animation and testing.
+  modeling, textures, storytelling, animation, testing, fun, replayability
+  and visual quality.
 - **Keep progress organized:** save checkpoints, review completed work and
   maintain a history of verified builds and release candidates.
 
@@ -106,7 +107,7 @@ This produces a starting point for development, not a complete custom FPS.
 
 ### Just want to learn?
 
-Open **Training** to read the sixteen learning tracks. Open **Lab**, choose an
+Open **Training** to read the twenty-two learning tracks. Open **Lab**, choose an
 exercise, select **Use example**, then **Assess submission**. The studio shows
 which checks passed and why. Change the example to try your own solution,
 and use **Download assessment JSON** to save the result if you want to keep it.
@@ -183,6 +184,35 @@ code and bundled original test assets are MIT-licensed; see [LICENSE](LICENSE).
 Godot, Blender and other external assets retain their respective licenses.
 For contributions see [CONTRIBUTING.md](CONTRIBUTING.md), and for release
 history see [CHANGELOG.md](CHANGELOG.md).
+
+## New in v33 — player experience academy
+
+The studio now teaches designing for enjoyable and memorable play, not just
+working features. Six new subjects supplement the existing sixteen:
+
+| Discipline | What specialists practice |
+| --- | --- |
+| Player enjoyment | Meaningful choices, understandable goals, feedback and challenge |
+| Replayability | Distinct viable approaches and meaningful variation without forced grind |
+| Player research | Evidence-based diagnosis of enjoyment, boredom and frustration |
+| Visual direction | Coherent style, reference targets and actual gameplay review |
+| Visual readability | Clear hierarchy, contrast, cues and accessible composition |
+| Experience iteration | Compare performance, responsiveness and quality regressions |
+
+Learn more in the [Player Experience field guide](command_center/PLAYER_EXPERIENCE.md).
+Open Training, filter by specialist, then practice a new subject in Lab.
+To run the synthetic teaching examples offline:
+
+```bash
+python3 -m command_center.training_lab_cli examples
+```
+
+Dispatch includes applicable workflows automatically; exercises are only run
+when explicitly assigned. The exercises check structured evidence and
+simulated scenarios. Real fun, aesthetic quality and player responses require
+real playtesting and visual review; no telemetry is automatically collected.
+Lab v3 preserves all previous exercises but older practice records stay
+historical, not current coverage. No new dependencies or permissions.
 
 ## New in v32 — engine-backed cinematic production
 

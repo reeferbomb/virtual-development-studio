@@ -8,7 +8,7 @@ from copy import deepcopy
 
 from .provenance import spec_digest
 
-VERSION = 2
+VERSION = 3
 
 
 def _track(identifier, title, roles, workflow, deliverables, verification, exercise):
@@ -103,7 +103,11 @@ _TRACKS = [
 def extension_modules():
     """One registry for the new workflow tracks and their matching lab exercises."""
     from . import lab_cutscenes, lab_audio, lab_multiplayer, lab_persistence, lab_encounters, lab_production
-    return (lab_cutscenes, lab_audio, lab_multiplayer, lab_persistence, lab_encounters, lab_production)
+    from . import lab_fun, lab_replayability, lab_player_research, lab_visual_direction
+    from . import lab_visual_readability, lab_experience_iteration
+    return (lab_cutscenes, lab_audio, lab_multiplayer, lab_persistence, lab_encounters, lab_production,
+            lab_fun, lab_replayability, lab_player_research, lab_visual_direction,
+            lab_visual_readability, lab_experience_iteration)
 
 
 def _all_tracks():

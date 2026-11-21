@@ -174,15 +174,19 @@ async function actualAcademyWorkflow() {
     assert.equal(run.status, 0, run.stderr); return JSON.parse(run.stdout);
   };
   const actual = fromPython(["-m", "command_center.training_lab_cli", "catalog"]);
-  assert.equal(actual.exercises.length, 16);
+  assert.equal(actual.version, 3);
+  assert.equal(actual.exercises.length, 22);
   const empty = {...emptyRecords, lab_sha256: actual.lab_sha256};
   location.hash = "#lab";
   respond = request => [200, request.url === "/api/training-records" ? empty : actual];
   await route();
-  for (const id of ["cutscenes", "game-audio", "multiplayer", "persistence", "ai-encounters", "production-pipeline"]) {
+  const experienceIds = ["player-enjoyment", "replayability", "player-research", "visual-direction",
+    "visual-readability", "experience-iteration"];
+  for (const id of ["cutscenes", "game-audio", "multiplayer", "persistence", "ai-encounters", "production-pipeline", ...experienceIds]) {
     const exercise = actual.exercises.find(row => row.id === id);
     assert(exercise, id); change(id); assert(text(exercise.brief));
     assert.equal(Boolean(text("Run a real Godot cutscene")), id === "cutscenes");
+    assert.equal(Boolean(text("Apply this to a real game")), experienceIds.includes(id));
     if (id === "cutscenes") {
       assert([...view.all()].some(node => node.tag === "pre" && node.textContent.includes("cinematic.production.runner") && node.textContent.includes("--engine")));
     }

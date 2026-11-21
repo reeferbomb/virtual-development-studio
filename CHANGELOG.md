@@ -1,5 +1,23 @@
 # Changelog
 
+## 33.0 — Player Experience Academy
+
+### Added
+
+- Six specialist playbooks and practical exercises for enjoyment, meaningful
+  replayability, player research, visual direction, visual readability and
+  experience iteration on representative hardware.
+- A field guide for genre-specific design, observed player reactions,
+  fair challenges, replay incentives, visual quality and review evidence.
+- Role-specific training integrated into dispatch, Training and Lab.
+
+### Preserved
+
+- All sixteen previous exercises, factories, cinematic runner, specialist
+  configuration, privacy boundaries and release requirements.
+- Curriculum and Lab version 3 retain earlier records as historical evidence;
+  practice does not certify fun, visual quality, human behavior or model training.
+
 ## 32.0 — Engine-Backed Cinematic Production
 
 ### Added

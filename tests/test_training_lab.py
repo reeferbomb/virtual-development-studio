@@ -15,11 +15,16 @@ from command_center.training_lab_cli import main
 
 
 class TrainingLabTests(unittest.TestCase):
-    def test_all_sixteen_reference_exercises_have_measured_passing_checks(self):
+    def test_all_twenty_two_reference_exercises_have_measured_passing_checks(self):
         catalog = lab_catalog()
         tracks = curriculum()['tracks']
-        self.assertEqual(catalog['version'], 2)
-        self.assertEqual(len(tracks), 16)
+        self.assertEqual(catalog['version'], 3)
+        self.assertEqual(len(tracks), 22)
+        # Every original rubric and teaching artifact remains byte-identical
+        # under the v2 catalog contract, despite the new catalog identity.
+        self.assertEqual(spec_digest({**{k: v for k, v in catalog.items() if k != 'lab_sha256'},
+                                      'version': 2, 'exercises': catalog['exercises'][:16]}),
+                         'e6cafd623df8cd1863e39d46da19b133d3a9679efd18cf078a3d30082b6f2722')
         self.assertEqual([e['id'] for e in catalog['exercises']], [t['id'] for t in tracks])
         self.assertEqual(catalog['lab_sha256'], spec_digest({k: v for k, v in catalog.items() if k != 'lab_sha256'}))
         for exercise, track in zip(catalog['exercises'], tracks, strict=True):
@@ -85,7 +90,7 @@ class TrainingLabTests(unittest.TestCase):
         with redirect_stdout(io.StringIO()) as output:
             self.assertEqual(main(['examples']), 0)
         summary = json.loads(output.getvalue())
-        self.assertEqual(summary['summary'], {'pass': 16, 'fail': 0})
+        self.assertEqual(summary['summary'], {'pass': 22, 'fail': 0})
         example = next(e['example'] for e in lab_catalog()['exercises'] if e['id'] == 'interface')
         with tempfile.TemporaryDirectory() as temporary:
             path = Path(temporary) / 'submission.json'
