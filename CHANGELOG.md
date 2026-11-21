@@ -1,5 +1,19 @@
 # Changelog
 
+## 30.0 — Production Asset Validation Lab
+
+### Added
+
+- Bounded GLB rig and animation inspectors for actual character exports.
+- Local PNG texture inspection and resource-budget measurements.
+- Explicit, isolated Godot import probe and combined digest-bound asset pipeline.
+- Read-only local artifact report viewer in Lab.
+
+### Preserved
+
+- Existing static-prop inspection, private Academy review ledger, release gates,
+  six-specialist deployment, and no automatic model or paid-service usage.
+
 ## 29.0 — Academy Evidence & Artifact Lab
 
 ### Added

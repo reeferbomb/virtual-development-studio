@@ -17,6 +17,16 @@ service port or publish these files. Declared submitter and reviewer roles are
 workflow labels, not authentication or proof of authorship. The local integrity
 digest detects inconsistency, not malicious rewriting by a trusted disk owner.
 
+Asset validation reports identify the inspected bytes by SHA-256 and are not
+authenticated certificates of quality or safety. The Lab's report viewer reads
+selected JSON files in the browser; it does not upload, store or approve them.
+Keep reports containing private production information local. Structural asset
+checks do not make arbitrary models safe to execute. The optional Godot import
+probe is a separate, explicit operation with a disposable project and network
+isolation; it does not execute a supplied game project or user script. Treat an
+unavailable isolation mechanism as unavailable evidence, not as permission to
+run the probe without isolation.
+
 For the original sample assets, provenance records document generated test
 content. Keep external dependencies and newly imported assets under their
 respective licenses. Never assume an external asset inherits the Studio MIT

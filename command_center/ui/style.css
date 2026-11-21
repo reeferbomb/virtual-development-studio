@@ -231,3 +231,8 @@ dialog .actions { justify-content: end; margin-top: .65rem; }
 .lab-history-body .log { margin-bottom: 0; }
 .lab-history-body h4 { margin: .65rem 0 .2rem; }
 .lab-history-body .dim { overflow-wrap: anywhere; }
+.lab-artifact { margin-top: 1rem; }
+.lab-artifact input { justify-self: start; min-width: 0; }
+.lab-artifact-result { display: grid; min-width: 0; gap: .8rem; }
+.lab-artifact details[open] > :not(summary) { margin-top: .5rem; }
+.lab-artifact .sample-table td { white-space: normal; overflow-wrap: anywhere; }

@@ -162,7 +162,96 @@ async function run() {
   respond = () => [200, lab]; await route();
   assert.equal(tag("textarea").value, "");
   await recordsWorkflow();
-  console.log("PASS project-independent Lab, raw JSON, assessment identity, explicit private recording and review, revision conflicts, fail-closed history, and stale controls.");
+  await artifactReportWorkflow();
+  console.log("PASS Lab assessments, private history and reviews, local artifact report import, invalid files, and stale controls.");
+}
+
+async function artifactReportWorkflow() {
+  location.hash = "#lab";
+  respond = catalogAnd(emptyRecords); await route();
+  const picker = byId("lab-artifact-file");
+  assert(picker, "The Lab must offer a local artifact report file picker");
+  assert.equal(picker.type, "file"); assert(find(node => node.tag === "label" && node.htmlFor === picker.id));
+  const message = byId("lab-artifact-status");
+  assert.equal(message.attrs.role, "status");
+  const file = report => new Blob([JSON.stringify(report)], {type: "application/json"});
+  const selectFile = selected => { picker.files = selected ? [selected] : []; return picker.events.change(); };
+  const check = {id: "triangle_budget", measured: 24, limit: 100, status: "pass"};
+  const base = {profile: "static-prop-glb-v1", status: "pass", sha256: digest, measurements: {triangles: 24},
+    checks: [check], note: "Use <img onerror=alert(0)> only as report text."};
+  const requestCount = requests.length, downloadCount = downloads.length;
+  edit('{"in_progress":true}');
+  await selectFile(file(base));
+  assert(text(base.profile)); assert(text(base.note)); assert(text(check.id)); assert(text(digest));
+  assert.equal(byId("lab-submission").value, '{"in_progress":true}'); assert(!text("Record assessed submission"));
+  const failure = {...base, profile: "texture", status: "fail", checks: [{...check, status: "fail", measured: 120}]};
+  await selectFile(file(failure)); assert(text("texture")); assert(!text(base.profile));
+  for (const sha256 of [null, digest]) {
+    const missing = {...base, sha256, status: "unavailable", checks: [], measurements: {}, note: "Engine missing"};
+    const combined = {...base, profile: "character", status: "unavailable", sha256,
+      checks: [{id: "engine", measured: "unavailable", limit: "pass", status: "unavailable"}], reports: [missing]};
+    await selectFile(file(combined)); assert(text("character")); assert(text("Engine missing")); assert(text("engine"));
+  }
+  const componentCheck = {id: "static", measured: "pass", limit: "pass", status: "pass"};
+  const bundle = {...base, profile: "artifact-pipeline-static-v1", checks: [componentCheck], reports: [base]};
+  for (const invalid of [null, [], passed, {...base, sha256: null}, {...base, sha256: "x"},
+    {...base, profile: ""}, {...base, status: "unknown"}, {...base, note: null}, {...base, measurements: []},
+    {...base, checks: []}, {...base, checks: [{...check, status: "maybe"}]}, {...base, checks: [check, check]},
+    {...base, checks: [{...check, measured: []}]}, {...base, checks: [{id: "budget", measured: 0, status: "pass"}]},
+    {...base, status: "fail"}, {...base, reports: [{...base, sha256: null}]}, {...bundle, reports: []},
+    {...bundle, reports: [{...base, sha256: "b".repeat(64)}]}, {...bundle, reports: [failure]},
+    {...bundle, reports: [bundle]}, {...bundle, reports: [{...base, status: "unavailable", checks: []}]}]) {
+    await selectFile(file(invalid)); assert.equal(picker.attrs["aria-invalid"], "true"); assert(!text(base.note));
+  }
+  await selectFile(new Blob(["1".padEnd(512 * 1024, " ")]));
+  assert.match(message.textContent, /report/i);
+  const maxSize = new Blob([JSON.stringify(base).padEnd(512 * 1024, " ")]);
+  await selectFile(maxSize); assert(text(base.note)); assert(!picker.attrs["aria-invalid"]);
+  let oversizedRead = false;
+  await selectFile({size: 512 * 1024 + 1, text() { oversizedRead = true; }});
+  assert.equal(oversizedRead, false); assert.match(message.textContent, /512 KiB/); assert(!text(base.note));
+  for (const malformed of ["{", JSON.stringify(base).replace('"triangles":24', '"triangles":1e999')]) {
+    await selectFile(new Blob([malformed])); assert.equal(picker.attrs["aria-invalid"], "true");
+  }
+  const slow = pending();
+  const firstRead = selectFile({size: 20, text: () => slow.promise});
+  await selectFile(file(failure)); slow.resolve(JSON.stringify(base)); await firstRead;
+  assert(text(failure.profile)); assert(!text(base.profile));
+  await selectFile({size: 18, async text() { throw Error("unreadable file"); }});
+  assert(!text(failure.profile)); assert.equal(picker.attrs["aria-invalid"], "true");
+  await selectFile(null); assert(!picker.attrs["aria-invalid"]); assert(!text(failure.profile));
+  assert.equal(requests.length, requestCount, "Opening a local report must never make an API request");
+  assert.equal(downloads.length, downloadCount);
+  const {spawnSync} = require("node:child_process");
+  const commands = [
+    ["pass", "artifact_pipeline", "--profile", "static", "demo/first-batch/assets/supply_crate.glb"],
+    ["pass", "artifact_pipeline", "--profile", "character", "vertical/demo/character/courier.glb"],
+    ["fail", "artifact_pipeline", "--profile", "texture", "demo/asset-preview.png"],
+    ["unavailable", "artifact_pipeline", "--profile", "static", "missing-for-ui-test.glb"],
+    ["unavailable", "lab_engine_import", "missing-for-ui-test.glb"]
+  ];
+  for (const [expected, module, ...args] of commands) {
+    const run = spawnSync("python3", ["-m", "command_center." + module, ...args],
+      {cwd: path.join(__dirname, ".."), encoding: "utf8", timeout: 20000});
+    assert.equal(run.status, {pass: 0, fail: 1, unavailable: 2}[expected], run.stderr);
+    const generated = JSON.parse(run.stdout);
+    assert.equal(generated.status, expected);
+    await selectFile(new Blob([run.stdout]));
+    assert(!picker.attrs["aria-invalid"], generated.profile); assert(text(generated.profile)); assert(text(generated.note));
+    for (const component of generated.reports || []) {
+      assert(text(component.profile)); assert(text(component.note));
+      await selectFile(file(component)); assert(!picker.attrs["aria-invalid"], component.profile);
+      assert(text(component.profile)); assert(text(component.note));
+      await selectFile(file(generated));
+    }
+  }
+  assert.equal(requests.length, requestCount);
+  const departed = pending();
+  const lastRead = selectFile({size: 20, text: () => departed.promise});
+  location.hash = "#projects"; respond = () => [200, []]; await route();
+  const oldStatus = message.textContent;
+  departed.resolve(JSON.stringify(failure)); await lastRead;
+  assert.equal(message.textContent, oldStatus); assert(text("Start your first project"));
 }
 async function recordsWorkflow() {
   const id = "0".repeat(31) + "1";

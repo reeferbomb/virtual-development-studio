@@ -1,5 +1,17 @@
 # Graveforge Studios agent deployment policy
 
+## Real asset validation (v30)
+
+Use `artifact_pipeline --profile static|character|texture PATH` via the Python
+module in `command_center`, or the individual `lab_artifact`, `lab_rig`,
+`lab_animation`, `lab_texture`, and `lab_engine_import` CLIs. Inspect only
+authorized local files. Preserve exact digests; never combine reports from
+different bytes. The explicit `--engine` flag is a disposable local Godot
+import probe for supported GLB assets after structural preflight. Never run
+untrusted project code, permit external resource fetches, or treat reports as
+release acceptance or competency. View local JSON reports in Lab; do not
+commit them or private source assets into this public checkout.
+
 ## Academy evidence (v29)
 
 Only the lead records an explicitly assigned practice submission or review via

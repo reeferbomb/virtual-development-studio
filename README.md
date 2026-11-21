@@ -1,4 +1,4 @@
-# Graveforge Studios — Academy Evidence & Artifact Lab v29.0
+# Graveforge Studios — Production Asset Validation Lab v30.0
 
 **A free, open-source game development studio toolkit.**
 
@@ -113,6 +113,12 @@ and use **Download assessment JSON** to save the result if you want to keep it.
 JSON is a text format for structured data. The Lab checks measurable properties;
 passing an exercise is not the same as mastering a skill or training an AI model.
 
+Have a 3D model or texture you want to check? The asset validation commands
+below generate a report of measurable properties and any failed limits. In
+the Lab, open the artifact report viewer and select the saved JSON file to
+read the results without uploading it. A passing report is one step toward
+using an asset in a game, not a substitute for looking at it and playtesting.
+
 With v29, you can also explicitly record an assessed submission under a
 specialist role, keep its original data and review it later from the Lab's
 private practice history. A different role can accept a passing new submission
@@ -177,6 +183,83 @@ code and bundled original test assets are MIT-licensed; see [LICENSE](LICENSE).
 Godot, Blender and other external assets retain their respective licenses.
 For contributions see [CONTRIBUTING.md](CONTRIBUTING.md), and for release
 history see [CHANGELOG.md](CHANGELOG.md).
+
+## New in v30 — production asset validation
+
+Use the new local inspectors to check real files produced by your art and
+animation tools. They report precisely what they measured, including SHA-256
+of the inspected bytes. Run these commands from the Studio source directory:
+
+| What to check | Command |
+| --- | --- |
+| Static mesh | `python3 -m command_center.lab_artifact path/to/prop.glb` |
+| Character skeleton and skin weights | `python3 -m command_center.lab_rig path/to/character.glb` |
+| Animation clips and keyframes | `python3 -m command_center.lab_animation path/to/character.glb` |
+| Supported PNG texture | `python3 -m command_center.lab_texture path/to/texture.png` |
+| Actual Godot import | `python3 -m command_center.lab_engine_import path/to/character.glb` |
+
+The rig profile checks one untextured, single-scene skinned character GLB:
+joint references, hierarchy, inverse-bind matrices, normalized skin weights,
+vertex attributes and triangle indices. Its practice budget is 4 MiB,
+20,000 triangles, 64 primitives, 16 materials, 128 joints per skin and four
+influences per vertex. Visual skin deformation still needs a separate review.
+
+PNG inspection reconstructs the actual pixels, measures the decoded size and
+estimated uncompressed mip-chain storage, and checks a single-texture practice
+budget (1024-pixel maximum edge, power-of-two dimensions, up to 4 MiB on disk
+and in the estimated mip chain). It supports non-interlaced 8-bit grayscale,
+grayscale-alpha, RGB and RGBA images. Indexed PNGs, animation, and implicit
+transparency require a different workflow. Specify an optional declared
+texture role with `lab_texture --role base_color` (or `normal`, `roughness`,
+`metallic`, `occlusion`, `orm`, `emissive`, `height`, `opacity`); it is not
+inferred from the file. A non-power-of-two screenshot can be valid PNG and
+still fail this game-texture budget.
+
+Animation inspection reads binary key times and transform values, checks
+finite values, channel targets, sampler counts and unit rotation quaternions.
+The supported subset includes dense FLOAT translation, rotation and scale
+tracks with LINEAR, STEP or CUBICSPLINE interpolation. Its practice budget is
+2 MiB per file, 32 clips, 1024 channels, 100,000 channel-keyframes and 300 seconds
+per clip's keyed span. It does not judge motion, loop continuity or poses.
+
+Or run a combined character pipeline, collecting rig and animation reports:
+
+```bash
+python3 -m command_center.artifact_pipeline --profile character vertical/demo/character/courier.glb
+python3 -m command_center.artifact_pipeline --profile character --engine vertical/demo/character/courier.glb
+```
+
+Use `--profile static` for a static prop or `--profile texture` for a PNG.
+`--engine` is optional and only runs after structural preflight; it is not
+available for textures. Each component must observe exactly the same asset
+digest, or the combined result is unavailable. The engine probe requires a
+compatible local Godot 4 installation plus Linux util-linux `unshare` and
+permitted user/network namespaces. It uses a disposable project, a fixed probe
+script, a minimal environment and bounded process time/output; it does not
+launch a supplied project or user script. If prerequisites are unavailable,
+it does not pretend an import passed. This is network isolation, not a complete
+filesystem or process sandbox: inspect only trusted local assets with a trusted
+Godot installation. It observes an instantiated mesh/skeleton/animation
+inventory, not whether animation playback or rendering looks correct.
+The supported import candidates are untextured static props and skinned
+characters with or without supported animations, not general GLB scenes or
+unskinned animated props. The probe refuses scenes above 4096 declared nodes
+or 1024 declared mesh instances before running the editor.
+
+Save a report to a private file (outside this repository), then open **Lab**
+and use the local artifact report viewer to read it. For example:
+
+```bash
+python3 -m command_center.artifact_pipeline --profile character vertical/demo/character/courier.glb > ../courier-report.json
+```
+
+The viewer reads selected JSON in the browser only; it is not an authenticated
+review or an automatic Academy record. Reports may contain asset details and
+must be kept private when examining private projects. Supported profiles are
+bounded subsets, not full glTF or PNG conformance validators. Exit 0 means
+measured checks passed, 1 means a check failed, and 2 means unavailable.
+No report evaluates artistic merit, human playability, game performance,
+material color-space intent, or final release readiness.
 
 ## New in v29 — Academy practice history and real artifact inspection
 

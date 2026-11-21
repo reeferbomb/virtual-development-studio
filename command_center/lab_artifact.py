@@ -103,7 +103,7 @@ class Accessor:
         return (self.packed.unpack_from(binary, self.start + i * self.stride) for i in range(self.count))
 
 
-def read_layout(doc, binary):
+def read_layout(doc, binary, *, allow_mat4=False):
     buffers = objects(doc, 'buffers', required=True)
     require(len(buffers) == 1, 'Expected one embedded buffer')
     length = uint(buffers[0].get('byteLength'), 'buffer byteLength', 1)
@@ -126,12 +126,14 @@ def read_layout(doc, binary):
         view = reference(row.get('bufferView'), views, 'accessor bufferView')
         component = uint(row.get('componentType'), 'componentType')
         kind = row.get('type')
-        require(component in COMPONENTS and isinstance(kind, str) and kind in SHAPES, 'Unsupported accessor layout')
+        require(component in COMPONENTS and isinstance(kind, str), 'Unsupported accessor layout')
+        components = 16 if allow_mat4 and kind == 'MAT4' and component == 5126 else SHAPES.get(kind)
+        require(components is not None, 'Unsupported accessor layout')
         normalized = row.get('normalized', False)
         require(type(normalized) is bool and (not normalized or component in (5120, 5121, 5122, 5123)),
                 'Invalid accessor normalization')
-        packed = struct.Struct('<' + COMPONENTS[component] * SHAPES[kind])
-        alignment = packed.size // SHAPES[kind]
+        packed = struct.Struct('<' + COMPONENTS[component] * components)
+        alignment = packed.size // components
         count = uint(row.get('count'), 'accessor count', 1)
         offset = uint(row.get('byteOffset', 0), 'accessor byteOffset')
         start = view.get('byteOffset', 0) + offset
@@ -285,36 +287,45 @@ def measure(raw):
     return dict(counts, materials=len(materials), file_bytes=len(raw), buffer_bytes=length)
 
 
-def inspect_glb(path):
+def read_glb_bytes(path):
+    flags = os.O_RDONLY | os.O_NONBLOCK | os.O_NOFOLLOW
+    fd = os.open(path, flags)
+    try:
+        info = os.fstat(fd)
+        require(stat.S_ISREG(info.st_mode), 'Expected a regular GLB file')
+        require(info.st_size <= MAX_FILE_BYTES, 'GLB exceeds the file inspection limit')
+        with os.fdopen(fd, 'rb', closefd=False) as source:
+            raw = source.read(MAX_FILE_BYTES + 1)
+        require(len(raw) <= MAX_FILE_BYTES, 'GLB exceeds the file inspection limit')
+    finally:
+        os.close(fd)
+    return raw
+
+
+def inspect_profile(path, profile, measure_fn, budget, note):
     """Read only the chosen regular file and return a digest of the exact inspected bytes."""
-    report = {'profile': PROFILE, 'status': 'unavailable', 'sha256': None,
+    report = {'profile': profile, 'status': 'unavailable', 'sha256': None,
               'measurements': {}, 'checks': []}
     try:
-        flags = os.O_RDONLY | os.O_NONBLOCK | os.O_NOFOLLOW
-        fd = os.open(path, flags)
-        try:
-            info = os.fstat(fd)
-            require(stat.S_ISREG(info.st_mode), 'Expected a regular GLB file')
-            require(info.st_size <= MAX_FILE_BYTES, 'GLB exceeds the file inspection limit')
-            with os.fdopen(fd, 'rb', closefd=False) as source:
-                raw = source.read(MAX_FILE_BYTES + 1)
-            require(len(raw) <= MAX_FILE_BYTES, 'GLB exceeds the file inspection limit')
-        finally:
-            os.close(fd)
+        raw = read_glb_bytes(path)
         report['sha256'] = hashlib.sha256(raw).hexdigest()
-        measurements = measure(raw)
+        measurements = measure_fn(raw)
     except (OSError, ValueError, OverflowError, struct.error, RecursionError) as exc:
         report['note'] = str(exc)
         return report
     checks = [{'id': name, 'measured': measurements[name], 'limit': limit,
                'status': 'pass' if measurements[name] <= limit else 'fail'}
-              for name, limit in BUDGET.items()]
+              for name, limit in budget.items()]
     report.update(status='pass' if all(c['status'] == 'pass' for c in checks) else 'fail',
-                  checks=checks, measurements=measurements,
-                  note='Counts triangle lists and position entries per mesh primitive before node instancing. '
-                       'Measures stored bytes and declared material count. Visual quality, scene behavior and '
-                       'engine performance require separate review.')
+                  checks=checks, measurements=measurements, note=note)
     return report
+
+
+def inspect_glb(path):
+    return inspect_profile(path, PROFILE, measure, BUDGET,
+                           'Counts triangle lists and position entries per mesh primitive before node instancing. '
+                           'Measures stored bytes and declared material count. Visual quality, scene behavior and '
+                           'engine performance require separate review.')
 
 
 def main(argv=None):

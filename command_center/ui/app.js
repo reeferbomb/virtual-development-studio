@@ -2693,6 +2693,137 @@ function labObject(value) {
   return value !== null && typeof value === "object" && !Array.isArray(value);
 }
 
+const artifactStatuses = ["pass", "fail", "unavailable"];
+
+function validArtifactReport(report) {
+  if (!labObject(report) || !coordinationText(report.profile) || !artifactStatuses.includes(report.status)
+    || !(isDigest(report.sha256) || report.status === "unavailable" && report.sha256 === null)
+    || !coordinationText(report.note) || !labObject(report.measurements) || !Array.isArray(report.checks)) return false;
+  const value = item => typeof item === "string" || typeof item === "boolean" || Number.isFinite(item);
+  const ids = new Set();
+  for (const check of report.checks) {
+    if (!coordinationText(check?.id) || ids.has(check.id) || !artifactStatuses.includes(check.status)
+      || !value(check.measured) || !value(check.limit)) return false;
+    ids.add(check.id);
+  }
+  if (report.status === "pass" && (!report.checks.length || report.checks.some(check => check.status !== "pass"))) return false;
+  if (report.status === "fail" && !report.checks.some(check => check.status === "fail")) return false;
+  if (!Object.hasOwn(report, "reports")) return true;
+  const parts = report.reports;
+  if (!Array.isArray(parts) || !parts.length || parts.length > report.checks.length) return false;
+  for (const [index, part] of parts.entries()) {
+    if (!labObject(part) || Object.hasOwn(part, "reports") || !validArtifactReport(part)) return false;
+    const check = report.checks[index];
+    if (check.status !== part.status || check.measured !== part.status || check.limit !== "pass") return false;
+  }
+  const digest = parts.every(part => part.sha256 === parts[0].sha256) ? parts[0].sha256 : null;
+  if (report.sha256 !== digest) return false;
+  if (digest === null) return report.status === "unavailable";
+  if (report.checks.some(check => check.status === "fail")) return report.status === "fail";
+  const unavailable = report.checks.some(check => check.status === "unavailable");
+  return report.status === (unavailable ? "unavailable" : "pass");
+}
+
+function artifactReportContents(report) {
+  const body = element("div", "lab-artifact-result");
+  const header = element("div", "task-heading");
+  header.append(element("h3", null, report.profile), auditBadge(report.status));
+  const identity = element("dl", "checkpoint-facts");
+  identity.append(element("dt", null, "Reported file SHA-256"), element("dd", null, report.sha256 ?? "Unavailable"));
+  body.append(header, identity, element("p", null, report.note));
+  if (report.checks.length) {
+    const wrap = element("div", "quality-table-wrap"), table = element("table", "sample-table");
+    const head = element("thead"), row = element("tr"), rows = element("tbody");
+    for (const label of ["Check", "Measured", "Limit", "Reported status"]) {
+      const cell = element("th", null, label);
+      cell.scope = "col";
+      row.append(cell);
+    }
+    head.append(row);
+    for (const check of report.checks) {
+      const line = element("tr"), name = element("th", null, check.id);
+      name.scope = "row";
+      line.append(name, element("td", null, String(check.measured)), element("td", null, String(check.limit)),
+        element("td", null, check.status));
+      rows.append(line);
+    }
+    table.append(element("caption", null, "Reported checks"), head, rows);
+    wrap.append(table);
+    body.append(wrap);
+  }
+  const measurements = Object.entries(report.measurements);
+  if (measurements.length) {
+    const details = element("details"), facts = element("dl", "checkpoint-facts");
+    for (const [name, measured] of measurements) {
+      facts.append(element("dt", null, name), element("dd", null, typeof measured === "string" ? measured : JSON.stringify(measured)));
+    }
+    details.append(element("summary", null, "All measurements"), facts);
+    body.append(details);
+  }
+  for (const component of report.reports || []) {
+    const details = element("details");
+    details.append(element("summary", null, component.profile + " · " + component.status), artifactReportContents(component));
+    body.append(details);
+  }
+  return body;
+}
+
+function labArtifactViewer(active) {
+  const panel = supervisorPanel("Local artifact report");
+  panel.className += " lab-artifact";
+  const guide = element("details");
+  guide.append(element("summary", null, "Create a report from the command line"),
+    element("p", "dim", "Run one command from the Studio directory. Replace the asset path and save the JSON outside the checkout. The character profile checks the rig and animations. Add --engine to include the Godot import check."),
+    element("pre", "log", [
+      "python3 -m command_center.artifact_pipeline --profile static prop.glb > ../prop-report.json",
+      "python3 -m command_center.artifact_pipeline --profile character --engine character.glb > ../character-report.json",
+      "python3 -m command_center.artifact_pipeline --profile texture texture.png > ../texture-report.json"
+    ].join("\n")));
+  const picker = element("input"), label = element("label", null, "Open a report JSON file (up to 512 KiB)");
+  picker.id = "lab-artifact-file";
+  picker.type = "file";
+  picker.accept = ".json,application/json";
+  label.htmlFor = picker.id;
+  const status = element("p", "dim"), result = element("div");
+  status.id = "lab-artifact-status";
+  status.setAttribute("role", "status");
+  picker.setAttribute("aria-describedby", status.id);
+  let selection = 0;
+  picker.addEventListener("change", async () => {
+    if (!active()) return;
+    const chosen = ++selection, file = picker.files[0];
+    const current = () => active() && chosen === selection;
+    result.replaceChildren();
+    picker.removeAttribute("aria-invalid");
+    status.textContent = "";
+    if (!file) return;
+    if (file.size > 512 * 1024) {
+      picker.setAttribute("aria-invalid", "true");
+      status.textContent = "Choose a report of 512 KiB or less.";
+      return;
+    }
+    status.textContent = "Reading report…";
+    try {
+      const source = await file.text();
+      if (!current()) return;
+      const report = JSON.parse(source, (key, value) => {
+        if (typeof value === "number" && !Number.isFinite(value)) throw new Error("Non-finite measurement");
+        return value;
+      });
+      if (!validArtifactReport(report)) throw new Error("Invalid report");
+      result.append(artifactReportContents(report));
+      status.textContent = "Local report opened.";
+    } catch {
+      if (!current()) return;
+      picker.setAttribute("aria-invalid", "true");
+      status.textContent = "Could not read an artifact report. Choose a JSON report generated by the inspection CLI.";
+    }
+  });
+  panel.append(element("p", "dim", "The selected file stays in this tab. Anyone can edit report values and hashes. Release approval requires independent verification."),
+    guide, label, picker, status, result);
+  return panel;
+}
+
 function validLab(data) {
   if (data?.version !== 1 || !isDigest(data.lab_sha256) || !coordinationText(data.note)
     || !Array.isArray(data.exercises) || !data.exercises.length) return false;
@@ -3083,7 +3214,7 @@ function renderLab(lab, routeId) {
   selector.value = lab.exercises[0].id;
   selector.addEventListener("change", showExercise);
   view.replaceChildren(heading("Lab", "Assess structured submissions against the exercise rubric. Record an assessment explicitly to keep it in private practice history."),
-    controls, workspace, status, result, history.panel);
+    controls, workspace, status, result, history.panel, labArtifactViewer(active));
   showExercise();
   return history.refresh();
 }
