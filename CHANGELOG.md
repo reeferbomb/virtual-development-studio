@@ -1,5 +1,25 @@
 # Changelog
 
+## 31.0 — Cinematic & Development Workflow Academy
+
+### Added
+
+- Six specialist playbooks and measurable practice exercises for cutscenes,
+  game audio, multiplayer, persistence, AI encounters and production integration.
+- Expanded role-specific dispatch instructions and a beginner cutscene workflow.
+
+### Changed
+
+- Academy curriculum and Lab version 2, with sixteen total disciplines. Prior
+  rubric records remain readable as historical evidence, not current coverage.
+- Practice ledger record limit increased to 200, preserving the 32 MiB cap.
+
+### Preserved
+
+- Original ten exercises, private ledger format, explicit review and release
+  gates, bounded offline assessment, and six-specialist dispatch configuration.
+- No model fine-tuning, automatic exercise execution, or new provider calls.
+
 ## 30.0 — Production Asset Validation Lab
 
 ### Added

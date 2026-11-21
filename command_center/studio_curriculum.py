@@ -8,6 +8,8 @@ from copy import deepcopy
 
 from .provenance import spec_digest
 
+VERSION = 2
+
 
 def _track(identifier, title, roles, workflow, deliverables, verification, exercise):
     return dict(id=identifier, title=title, roles=roles.split(), workflow=workflow,
@@ -98,18 +100,28 @@ _TRACKS = [
 ]
 
 
+def extension_modules():
+    """One registry for the new workflow tracks and their matching lab exercises."""
+    from . import lab_cutscenes, lab_audio, lab_multiplayer, lab_persistence, lab_encounters, lab_production
+    return (lab_cutscenes, lab_audio, lab_multiplayer, lab_persistence, lab_encounters, lab_production)
+
+
+def _all_tracks():
+    return [*_TRACKS, *(module.TRACK for module in extension_modules())]
+
+
 def curriculum():
-    body = dict(version=1, tracks=deepcopy(_TRACKS),
+    body = dict(version=VERSION, tracks=deepcopy(_all_tracks()),
                 note='Role-specific production playbooks and practice exercises. Apply only to authorized work; '
                      'record actual evidence, not claimed training or model-weight changes.')
     return {**body, 'curriculum_sha256': spec_digest(body)}
 
 
 def training_instruction(role):
-    tracks = [track for track in _TRACKS if role in track['roles']]
+    tracks = [track for track in _all_tracks() if role in track['roles']]
     if not tracks:
         raise ValueError('Unknown Studio training role')
-    parts = ['Studio curriculum v1 (/api/training). Use the following applicable role playbooks within the '
+    parts = [f'Studio curriculum v{VERSION} (/api/training). Use the following applicable role playbooks within the '
              'claimed task only; do not broaden scope or run practice exercises unless assigned.']
     for track in tracks:
         parts.append(f"{track['title']}: {' '.join(track['workflow'])} "

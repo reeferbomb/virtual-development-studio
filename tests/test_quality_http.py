@@ -102,7 +102,7 @@ class QualityHTTPTests(unittest.TestCase):
     def test_training_serves_the_versioned_curriculum(self):
         result = self.request('/api/training')
         self.assertEqual(result, curriculum())
-        self.assertEqual(result['version'], 1)
+        self.assertEqual(result['version'], 2)
         self.assertRegex(result['curriculum_sha256'], r'^[0-9a-f]{64}$')
         self.assertTrue(result['tracks'])
 

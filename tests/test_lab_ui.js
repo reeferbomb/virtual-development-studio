@@ -45,8 +45,8 @@ const first = {id: "art", title: "Art review", brief: "Review the <mesh> package
   criteria: [{id: "asset", label: "Identify asset"}, {id: "review", label: "Name a reviewer"}], example: sample};
 const second = {id: "review", title: "Interface review", brief: "Inspect the interface.", roles: ["ui"],
   criteria: [{id: "items", label: "List controls"}], example: {items: ["Menu"]}};
-const lab = {version: 1, lab_sha256: digest, exercises: [first, second], note: "Practice with structural checks."};
-const failed = {version: 1, lab_sha256: digest, exercise_id: "art", submission_sha256: "b".repeat(64),
+const lab = {version: 2, lab_sha256: digest, exercises: [first, second], note: "Practice with structural checks."};
+const failed = {version: 2, lab_sha256: digest, exercise_id: "art", submission_sha256: "b".repeat(64),
   assessment_sha256: "c".repeat(64), status: "fail", summary: {pass: 1, fail: 1}, checks: [
     {id: "asset", label: "Identify asset", status: "pass", detail: "Found <mesh>."},
     {id: "review", label: "Name a reviewer", status: "fail", detail: "Missing reviewer."}], note: "Structural measurements."};
@@ -163,7 +163,36 @@ async function run() {
   assert.equal(tag("textarea").value, "");
   await recordsWorkflow();
   await artifactReportWorkflow();
+  await actualAcademyWorkflow();
   console.log("PASS Lab assessments, private history and reviews, local artifact report import, invalid files, and stale controls.");
+}
+
+async function actualAcademyWorkflow() {
+  const {spawnSync} = require("node:child_process");
+  const fromPython = (args, input) => {
+    const run = spawnSync("python3", args, {cwd: path.join(__dirname, ".."), encoding: "utf8", input, timeout: 20000});
+    assert.equal(run.status, 0, run.stderr); return JSON.parse(run.stdout);
+  };
+  const actual = fromPython(["-m", "command_center.training_lab_cli", "catalog"]);
+  assert.equal(actual.exercises.length, 16);
+  const empty = {...emptyRecords, lab_sha256: actual.lab_sha256};
+  location.hash = "#lab";
+  respond = request => [200, request.url === "/api/training-records" ? empty : actual];
+  await route();
+  for (const id of ["cutscenes", "game-audio", "multiplayer", "persistence", "ai-encounters", "production-pipeline"]) {
+    const exercise = actual.exercises.find(row => row.id === id);
+    assert(exercise, id); change(id); assert(text(exercise.brief));
+    text("Use example").events.click();
+    assert.deepEqual(JSON.parse(tag("textarea").value), exercise.example);
+    respond = request => {
+      assert.equal(request.url, "/api/training-lab/assess");
+      assert.equal(request.body.exercise_id, id);
+      return [200, fromPython(["-c", "import json,sys; from command_center.training_lab import assess_submission; r=json.load(sys.stdin); print(json.dumps(assess_submission(r['exercise_id'],r['submission'])))"], request.rawBody)];
+    };
+    await submit();
+    assert(text(`${exercise.criteria.length} passed · 0 failed`), id);
+    assert(exercise.criteria.every(check => text(check.label)));
+  }
 }
 
 async function artifactReportWorkflow() {
@@ -316,7 +345,7 @@ async function recordsWorkflow() {
     assert(!byId("lab-decision").children.some(option => option.value === "accepted"));
     if (properties.reference) assert(text("Reference example"));
   }
-  const historical = {...record, current: false, report: {...passed, lab_sha256: "9".repeat(64)}};
+  const historical = {...record, current: false, report: {...passed, version: 1, lab_sha256: "9".repeat(64)}};
   respond = catalogAnd({...saved, records: [historical]}); await route();
   assert(text("Historical catalog")); assert(!text("Save review"));
   for (const invalid of [null, {...saved, revision: 0}, {...saved, lab_sha256: "9".repeat(64)}, {...saved, records: [record, record]},

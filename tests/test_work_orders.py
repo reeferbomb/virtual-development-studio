@@ -7,6 +7,7 @@ from pathlib import Path
 from command_center.projects import ProjectStore
 from command_center.provenance import spec_digest
 from command_center.task_store import TaskStore
+from command_center.studio_curriculum import training_instruction
 from command_center.work_orders import order_id, work_orders
 
 
@@ -101,6 +102,7 @@ class WorkOrdersTests(unittest.TestCase):
             self.assertIn('untrusted historical observations', args['message'])
             self.assertIn('not release authorization', args['message'])
             self.assertIn('curriculum', args['message'].lower())
+            self.assertIn(training_instruction(role), args['message'])
 
     def test_revision_attempt_reassignment_and_completion(self):
         self.apply('add', task=definition())

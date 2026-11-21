@@ -18,7 +18,7 @@ MAX_DEPTH = 12
 MAX_STRING = 4096
 # Bump on any change to rubric or evaluator behavior, even if catalog text is
 # unchanged: saved records are re-evaluated only under the exact current digest.
-VERSION = 1
+VERSION = 2
 
 
 def reject_duplicate_keys(pairs):
@@ -86,8 +86,8 @@ def _validate_data(value):
 
 def _definitions():
     # Imported lazily so training and project operations do not depend on lab initialization.
-    from . import lab_content, lab_design, lab_gameplay, lab_interface
-    modules = (lab_content, lab_design, lab_gameplay, lab_interface)
+    from . import lab_content, lab_design, lab_gameplay, lab_interface, studio_curriculum
+    modules = (lab_content, lab_design, lab_gameplay, lab_interface, *studio_curriculum.extension_modules())
     entries = {}
     for module in modules:
         for exercise in module.EXERCISES:

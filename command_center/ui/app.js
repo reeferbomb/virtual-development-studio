@@ -2633,7 +2633,7 @@ async function renderQuality(id, routeId) {
 }
 
 function validCurriculum(data) {
-  if (data?.version !== 1 || !isDigest(data.curriculum_sha256) || !coordinationText(data.note)
+  if (![1, 2].includes(data?.version) || !isDigest(data.curriculum_sha256) || !coordinationText(data.note)
     || !Array.isArray(data.tracks) || !data.tracks.length) return false;
   return new Set(data.tracks.map(track => track?.id)).size === data.tracks.length && data.tracks.every(track =>
     coordinationText(track?.id) && coordinationText(track.title) && coordinationText(track.exercise)
@@ -2825,7 +2825,7 @@ function labArtifactViewer(active) {
 }
 
 function validLab(data) {
-  if (data?.version !== 1 || !isDigest(data.lab_sha256) || !coordinationText(data.note)
+  if (![1, 2].includes(data?.version) || !isDigest(data.lab_sha256) || !coordinationText(data.note)
     || !Array.isArray(data.exercises) || !data.exercises.length) return false;
   const uniqueIds = rows => new Set(rows.map(row => row?.id)).size === rows.length;
   return uniqueIds(data.exercises) && data.exercises.every(exercise =>

@@ -1,4 +1,4 @@
-# Graveforge Studios — Production Asset Validation Lab v30.0
+# Graveforge Studios — Cinematic & Development Workflow Academy v31.0
 
 **A free, open-source game development studio toolkit.**
 
@@ -29,7 +29,7 @@ manager and production checklist in one place.
   first, assign jobs to specialists and keep track of unfinished work.
 - **Build and test:** generate a project, read its build logs, check assets
   and record bugs. A build is a generated set of game or asset files.
-- **Learn game development:** study ten training topics and try practical
+- **Learn game development:** study sixteen training topics and try practical
   exercises in the Academy and Lab, including game design, coding, 3D
   modeling, textures, storytelling, animation and testing.
 - **Keep progress organized:** save checkpoints, review completed work and
@@ -106,7 +106,7 @@ This produces a starting point for development, not a complete custom FPS.
 
 ### Just want to learn?
 
-Open **Training** to read the ten learning tracks. Open **Lab**, choose an
+Open **Training** to read the sixteen learning tracks. Open **Lab**, choose an
 exercise, select **Use example**, then **Assess submission**. The studio shows
 which checks passed and why. Change the example to try your own solution,
 and use **Download assessment JSON** to save the result if you want to keep it.
@@ -183,6 +183,60 @@ code and bundled original test assets are MIT-licensed; see [LICENSE](LICENSE).
 Godot, Blender and other external assets retain their respective licenses.
 For contributions see [CONTRIBUTING.md](CONTRIBUTING.md), and for release
 history see [CHANGELOG.md](CHANGELOG.md).
+
+## New in v31 — cinematic and development workflow academy
+
+The Academy now contains sixteen production playbooks and corresponding
+hands-on JSON exercises, including six new specialist disciplines:
+
+| Discipline | Production skills |
+| --- | --- |
+| Cutscenes | Script, storyboard, blocking, camera coverage, timed cues, editing, subtitles, and safe exit to gameplay |
+| Game audio | Sound events, mixer buses, headroom, dialogue, ducking, loops, interruption and provenance |
+| Multiplayer | Authority, command validation, replication, recovery, latency and adversarial inputs |
+| Persistence | Save schemas, state invariants, migration, checkpoints, death/retry and corruption recovery |
+| AI encounters | Perception, behavior states, navigation, encounter pacing, recovery and fairness |
+| Production pipeline | Dependency scheduling, prototype-to-vertical-slice integration, versioned builds, review and rollback |
+
+Open **Training** to see the role-specific workflows, deliverables and evidence
+targets; the same applicable instructions are included in specialist dispatch
+and work-order exports. Open **Lab** to inspect the corresponding exercise,
+edit its example or author a new submission, then run the measured rubric.
+JSON checks exercise the submitted design and simulation, not a finished game.
+
+### Your first cutscene workflow
+
+1. Write a short beat sheet with the scene's entry trigger, what the player
+   learns, and the gameplay state that must be true at the end.
+2. Storyboard the establishing shot, action and reaction shots. Choose a frame
+   rate, define shot ranges, block actors, and plan camera motion and focal point.
+3. Edit a timeline with animation, sound, dialogue and subtitle cues; check
+   continuity, readability and interruption paths with the cutscenes Lab.
+4. Implement the intended timeline in the target engine. Graveforge's existing
+   Nightfall Patrol cinematic demo has a three-shot, ten-second timeline with
+   imported character animation, camera motion, weather, lighting and spatial audio.
+   See [Original cinematic production](#new-in-v7--original-cinematic-production)
+   for the actual Godot factory and build commands. The Lab's richer teaching
+   submission is not the factory's `sequence.json` format; translate the design
+   into the engine's timeline rather than feeding it directly to the builder.
+5. Verify normal completion, skip, replay, pause, interruption, control and
+   camera restoration, and persistence in the actual project. Separately review
+   framing, performance, voice clarity, pacing and player experience.
+
+Run the versioned practice catalog and all teaching fixtures offline:
+
+```bash
+python3 -m command_center.training_lab_cli catalog
+python3 -m command_center.training_lab_cli examples
+python3 -m command_center.training_lab_cli assess cutscenes ../my-cutscene-plan.json
+```
+
+The curriculum and Lab are now version 2. The original ten exercises remain;
+older practice records keep their original report, review and digest as historical
+evidence. They do not silently count toward current rubric coverage. The private
+ledger format and explicit review rules are unchanged. Nothing here fine-tunes
+model weights, generates a finished cinematic automatically, or authorizes
+release promotion.
 
 ## New in v30 — production asset validation
 
@@ -276,8 +330,8 @@ or authenticated model identities.
 Records survive restarts. A revision check prevents overwriting newer actions;
 refresh after a conflict and explicitly retry. Historical rubric records remain
 visible but cannot be reviewed or count toward current practice coverage. The
-ledger is bounded to 100 records and 32 MiB, enough for the current 39
-role-and-exercise assignments plus retries. It fails closed on invalid persisted
+ledger is bounded to 200 records (increased in v31) and 32 MiB, shared across current and historical
+role-and-exercise assignments and retries. It fails closed on invalid persisted
 data and refuses additional records rather than deleting old evidence.
 Do not place the ledger or exports in the public source checkout.
 
@@ -331,7 +385,7 @@ import, visual review, animation check, or proof of playability.
 
 ## New in v28 — practical production lab
 
-Open **Lab** for ten structured practice exercises, one per Academy curriculum
+At v28, **Lab** introduced ten structured practice exercises, one per Academy curriculum
 track. Each has a brief, rubric, role coverage and editable reference example.
 Submit a JSON artifact explicitly to compute pass/fail observations against
 the rubric. The labs inspect actual proposed data (such as mesh topology,

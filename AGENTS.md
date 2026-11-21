@@ -1,5 +1,16 @@
 # Graveforge Studios agent deployment policy
 
+## Cinematic and development workflow academy (v31)
+
+Use the sixteen tracks in `/api/training` and matching version-2 exercises in
+`/api/training-lab` for authorized work. New subjects are cutscenes, audio,
+multiplayer engineering, persistence, AI encounters and production pipeline.
+In cutscene work deliver a shot/cue timeline with explicit entry, completion,
+skip and interruption behavior; separately verify engine playback, control and
+camera restoration, sound and artistic review. Never confuse a Lab simulation
+with an engine or device result. Earlier rubric records remain historical;
+do not reclassify or rewrite them. Only the lead may assign and record practice.
+
 ## Real asset validation (v30)
 
 Use `artifact_pipeline --profile static|character|texture PATH` via the Python
@@ -213,7 +224,7 @@ with publication authority, hardware acceptance, or game quality guarantees.
 
 Use the curriculum at `GET /api/training` and the role-specific instruction
 in each dispatch export. Follow the relevant production workflow, deliverables
-and verification steps within the assigned scope. The ten tracks cover
+and verification steps within the assigned scope. The original ten tracks cover
 design, development, modeling, textures, storytelling, animation, level
 design, interface, QA and build performance. Do not execute practice
 exercises automatically or claim model weights have been retrained.

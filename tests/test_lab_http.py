@@ -58,9 +58,9 @@ class LabHTTPTests(unittest.TestCase):
 
         catalog = self.request(CATALOG, headers={'Origin': self.origin})
         self.assertEqual(self.request(CATALOG), catalog)
-        self.assertEqual(catalog['version'], 1)
+        self.assertEqual(catalog['version'], 2)
         self.assertRegex(catalog['lab_sha256'], r'^[0-9a-f]{64}\Z')
-        self.assertEqual(len(catalog['exercises']), 10)
+        self.assertEqual(len(catalog['exercises']), 16)
         self.assertTrue(catalog['note'])
         exercise = self.interface_exercise(catalog)
         for field in ('title', 'brief', 'roles', 'criteria', 'example'):
@@ -68,7 +68,7 @@ class LabHTTPTests(unittest.TestCase):
 
         submission = {'exercise_id': exercise['id'], 'submission': exercise['example']}
         assessment = self.request(ASSESS, 'POST', submission, headers={**JSON_HEADERS, 'Origin': self.origin})
-        self.assertEqual(assessment['version'], 1)
+        self.assertEqual(assessment['version'], 2)
         self.assertEqual(assessment['exercise_id'], 'interface')
         self.assertEqual(assessment['lab_sha256'], catalog['lab_sha256'])
         self.assertRegex(assessment['submission_sha256'], r'^[0-9a-f]{64}\Z')
@@ -89,6 +89,26 @@ class LabHTTPTests(unittest.TestCase):
         self.assertIn('contrast', {check['id'] for check in failed['checks'] if check['status'] == 'fail'})
         self.assertNotEqual(failed['submission_sha256'], assessment['submission_sha256'])
         self.assertNotEqual(failed['assessment_sha256'], assessment['assessment_sha256'])
+        self.assertEqual(self.workspace_snapshot(), before)
+
+    def test_new_workflows_are_available_as_read_only_practice(self):
+        before = self.workspace_snapshot()
+        titles = {'cutscenes', 'game-audio', 'multiplayer', 'persistence', 'ai-encounters', 'production-pipeline'}
+        tracks = self.request('/api/training')['tracks']
+        exercises = self.request(CATALOG)['exercises']
+        for exercise in exercises:
+            if exercise['id'] not in titles:
+                continue
+            with self.subTest(exercise=exercise['id']):
+                track = next(t for t in tracks if t['id'] == exercise['id'])
+                self.assertEqual(track['roles'], exercise['roles'])
+                result = self.request(ASSESS, 'POST', {'exercise_id': exercise['id'], 'submission': exercise['example']})
+                self.assertEqual(result['status'], 'pass')
+                self.assertEqual(result['version'], 2)
+                self.assertGreaterEqual(len(result['checks']), 3)
+                self.assert_error(400, ASSESS, 'POST', {'exercise_id': exercise['id'], 'submission': {}})
+                titles.remove(exercise['id'])
+        self.assertFalse(titles)
         self.assertEqual(self.workspace_snapshot(), before)
 
     def test_assessment_rejects_invalid_payloads(self):

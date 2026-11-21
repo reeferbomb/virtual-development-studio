@@ -8,11 +8,14 @@ from command_center.studio_curriculum import curriculum, training_instruction
 class CurriculumTests(unittest.TestCase):
     def test_core_disciplines_and_role_coverage_are_versioned(self):
         result = curriculum()
-        self.assertEqual(result['version'], 1)
+        self.assertEqual(result['version'], 2)
         self.assertEqual(result['curriculum_sha256'], spec_digest({k: v for k, v in result.items()
                                                                 if k != 'curriculum_sha256'}))
         ids = {track['id'] for track in result['tracks']}
         self.assertTrue({'game-design', 'game-development', 'modeling', 'textures', 'storytelling'} <= ids)
+        self.assertEqual(len(ids), 16)
+        self.assertTrue({'cutscenes', 'game-audio', 'multiplayer', 'persistence', 'ai-encounters',
+                         'production-pipeline'} <= ids)
         roles = {row['id'] for row in default_profile()['roles']}
         self.assertEqual({role for track in result['tracks'] for role in track['roles']}, roles)
         self.assertEqual(len(ids), len(result['tracks']))
@@ -41,5 +44,7 @@ class CurriculumTests(unittest.TestCase):
                     self.assertIn(track['title'], instruction)
                     for deliverable in track['deliverables']:
                         self.assertIn(deliverable, instruction)
+                else:
+                    self.assertNotIn(track['title'] + ':', instruction)
         with self.assertRaises(ValueError):
             training_instruction('unrecognized')

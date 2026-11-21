@@ -9,7 +9,7 @@ from datetime import datetime
 from pathlib import Path
 from unittest.mock import patch
 
-from command_center import lab_interface, training_lab
+from command_center import lab_interface, studio_curriculum, training_lab
 from command_center.provenance import spec_digest
 from command_center.training_records import TrainingRecordStore
 
@@ -98,6 +98,27 @@ class TrainingRecordIntegrityTests(unittest.TestCase):
             with self.assertRaises(FileExistsError):
                 self.apply(1, review_action(record['id']))
             self.assertEqual(self.path.read_bytes(), before)
+
+    def test_v30_records_survive_the_v31_curriculum_expansion_without_rescoring(self):
+        # Reconstruct the exact shipped v30 catalog, not merely an invented stale digest.
+        with patch.object(studio_curriculum, 'extension_modules', return_value=()), \
+                patch.object(training_lab, 'VERSION', 1):
+            old_catalog = training_lab.lab_catalog()
+            self.assertEqual(old_catalog['lab_sha256'],
+                             '5d9ba57de3369cb03647c5da893cf14ee217025f81e0b79e4f3d523d7fa2afaf')
+            record, = self.apply(0, record_action())['records']
+            reviewed, = self.apply(1, review_action(record['id']))['records']
+        persisted = self.path.read_bytes()
+        snapshot = self.store.read()
+        self.assertEqual(snapshot['revision'], 2)
+        self.assertEqual(snapshot['records'], [dict(reviewed, current=False)])
+        self.assertEqual(self.path.read_bytes(), persisted)
+        self.assertNotEqual(snapshot['lab_sha256'], old_catalog['lab_sha256'])
+        mixed = self.apply(2, record_action('No tools in this crate'))
+        self.assertEqual(mixed['revision'], 3)
+        self.assertEqual(next(row for row in mixed['records'] if row['id'] == record['id']),
+                         dict(reviewed, current=False))
+        self.assertEqual(sum(row['current'] for row in mixed['records']), 1)
 
     def test_stale_unreviewed_record_cannot_be_reviewed(self):
         written = self.apply(0, record_action())

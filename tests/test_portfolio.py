@@ -10,6 +10,7 @@ from command_center import portfolio
 from command_center.dispatch import default_profile
 from command_center.portfolio import portfolio_plan
 from command_center.projects import ProjectStore
+from command_center.studio_curriculum import training_instruction
 from command_center.task_store import BOARD, TaskStore
 
 
@@ -162,6 +163,7 @@ class PortfolioTests(unittest.TestCase):
                              (roles[task['role']]['agent_task_name'], 'none', task['model_id'], task['reasoning_effort']))
             self.assertIn(roles[task['role']]['codename'], args['message'])
             self.assertIn('curriculum', args['message'].lower())
+            self.assertIn(training_instruction(task['role']), args['message'])
             for field in (project_id, task['task_id'], task['title'], task['spec_sha256'],
                           f"board revision {task['board_revision']}", '/api/portfolio',
                           f'/api/projects/{project_id}/tasks', 'claim the exact task',

@@ -45,7 +45,7 @@ const cycle = {status: "ready", cycle_id: cycleId, steps: [step], conflicts: [],
 const sources = {"quality-matrix": matrix, "quality-trends": trends, "specialist-analytics": analytics};
 const lesson = {id: "simulation", title: "Gameplay practice", roles: ["gameplay"], workflow: ["Prototype the loop."],
   deliverables: ["Playable loop."], verification: ["Test the transition."], exercise: "<script>practice()</script>"};
-const curriculum = {version: 1, curriculum_sha256: "d".repeat(64), tracks: [lesson,
+const curriculum = {version: 2, curriculum_sha256: "d".repeat(64), tracks: [lesson,
   {...lesson, id: "modeling", title: "Modeling practice", roles: ["content"]}], note: "Production playbooks."};
 function normal(url) {
   if (url === "/api/training") return curriculum;
@@ -130,7 +130,7 @@ async function run() {
   assert.equal(filter.id, all().find(node => node.tag === "label").htmlFor);
   filter.value = "gameplay"; filter.events.change(); assert(find(lesson.title)); assert(!find("Modeling practice"));
   assert.equal(requests.length, start + 1);
-  for (const malformed of [{version: 2}, {tracks: [lesson, lesson]}, {tracks: [{...lesson, roles: ["unknown"]}]},
+  for (const malformed of [{version: 3}, {tracks: [lesson, lesson]}, {tracks: [{...lesson, roles: ["unknown"]}]},
     {tracks: [{...lesson, workflow: []}]}, {curriculum_sha256: null}]) {
     patch("training", malformed); await route(); assert(find("Training unavailable")); assert(!find(lesson.exercise));
   }
@@ -139,6 +139,19 @@ async function run() {
   const pendingTraining = route();
   location.hash = "#quality"; await route(); assert(find(evidence));
   finishTraining(curriculum); await pendingTraining; assert(!find(lesson.exercise));
+  // Confirm the actual published curriculum—not just the compact UI fixtures—renders and filters.
+  const {spawnSync} = require("node:child_process");
+  const generated = spawnSync("python3", ["-c", "import json; from command_center.studio_curriculum import curriculum; print(json.dumps(curriculum()))"],
+    {cwd: path.join(__dirname, ".."), encoding: "utf8", timeout: 20000});
+  assert.equal(generated.status, 0, generated.stderr);
+  const actual = JSON.parse(generated.stdout);
+  assert.equal(actual.tracks.length, 16);
+  location.hash = "#training"; override = url => url === "/api/training" ? [200, actual] : null;
+  await route();
+  assert(actual.tracks.every(track => find(track.title)));
+  const actualFilter = all().find(node => node.tag === "select");
+  actualFilter.value = "content"; actualFilter.events.change();
+  for (const track of actual.tracks) assert.equal(Boolean(find(track.title)), track.roles.includes("content"), track.id);
   console.log("PASS Training navigation without a project, role filters, safe playbooks, invalid content and late replies.");
   console.log("PASS Read-only Quality route, scope checks, report totals, unsafe markup, partial and empty data, refresh and navigation races.");
 }
