@@ -1,0 +1,68 @@
+[
+  {
+    "op": "add",
+    "task": {
+      "id": "define-route",
+      "title": "Define the route and acceptance criteria",
+      "role": "architecture",
+      "priority": 5,
+      "depends_on": [],
+      "gate": "manual"
+    }
+  },
+  {
+    "op": "add",
+    "task": {
+      "id": "check-traversal",
+      "title": "Check spawn placement and route traversal",
+      "role": "gameplay",
+      "priority": 4,
+      "depends_on": ["define-route"],
+      "gate": "manual"
+    }
+  },
+  {
+    "op": "add",
+    "task": {
+      "id": "review-wayfinding",
+      "title": "Review route markers and navigation cues",
+      "role": "ui",
+      "priority": 3,
+      "depends_on": ["define-route"],
+      "gate": "manual"
+    }
+  },
+  {
+    "op": "add",
+    "task": {
+      "id": "review-scene-content",
+      "title": "Review landmark placement and asset provenance",
+      "role": "content",
+      "priority": 3,
+      "depends_on": ["define-route"],
+      "gate": "manual"
+    }
+  },
+  {
+    "op": "add",
+    "task": {
+      "id": "build-world",
+      "title": "Build and verify the saved world specification",
+      "role": "build_operations",
+      "priority": 5,
+      "depends_on": ["check-traversal", "review-wayfinding", "review-scene-content"],
+      "gate": "build"
+    }
+  },
+  {
+    "op": "add",
+    "task": {
+      "id": "review-world",
+      "title": "Review the verified scene and route QA report",
+      "role": "verification",
+      "priority": 4,
+      "depends_on": ["build-world"],
+      "gate": "manual"
+    }
+  }
+]

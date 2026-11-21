@@ -1,0 +1,59 @@
+{
+  "assets": [
+    {
+      "color": [
+        0.25,
+        0.42,
+        0.3
+      ],
+      "id": "supply_crate",
+      "kind": "prop",
+      "max_file_bytes": 8388608,
+      "max_materials": 8,
+      "max_triangles": 10000,
+      "size_m": 1.1,
+      "variant": "crate"
+    },
+    {
+      "color": [
+        0.22,
+        0.45,
+        0.65
+      ],
+      "id": "industrial_barrel",
+      "kind": "prop",
+      "max_file_bytes": 8388608,
+      "max_materials": 8,
+      "max_triangles": 10000,
+      "size_m": 0.9,
+      "variant": "barrel"
+    },
+    {
+      "color": [
+        0.8,
+        0.44,
+        0.08
+      ],
+      "id": "road_barricade",
+      "kind": "prop",
+      "max_file_bytes": 8388608,
+      "max_materials": 8,
+      "max_triangles": 10000,
+      "size_m": 1.2,
+      "variant": "barricade"
+    },
+    {
+      "color": [
+        0.42,
+        0.58,
+        0.62
+      ],
+      "height_m": 1.7,
+      "id": "training_mannequin",
+      "kind": "character",
+      "max_file_bytes": 8388608,
+      "max_materials": 8,
+      "max_triangles": 30000
+    }
+  ]
+}

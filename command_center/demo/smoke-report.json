@@ -1,0 +1,65 @@
+{
+  "project": "Studio Acceptance Yard",
+  "kind": "world",
+  "seed": 237,
+  "cover": 24,
+  "planned_route_m": 37.8110874503476,
+  "route_qa": {
+    "metrics": {
+      "goal_error_m": 0.0568477101624012,
+      "goal_triggered": true,
+      "headless_wall_seconds": 0.368826,
+      "horizontal_collision_contacts": 0,
+      "physics_ticks": 566,
+      "simulation_seconds": 9.43333333333333,
+      "travel_m": 37.7334073930979,
+      "waypoints_reached": 4,
+      "waypoints_total": 4
+    },
+    "pass": true
+  },
+  "edited_terrain_amplitude": 0.5,
+  "builder_output": "project.godot",
+  "status": "passed",
+  "verified": true,
+  "commands": [
+    {
+      "stage": "build",
+      "exit_code": 0,
+      "duration_seconds": 5.959,
+      "timed_out": false
+    },
+    {
+      "stage": "verify",
+      "exit_code": 0,
+      "duration_seconds": 0.065,
+      "timed_out": false
+    }
+  ],
+  "gates": [
+    {
+      "name": "Build",
+      "status": "passed"
+    },
+    {
+      "name": "Verification",
+      "status": "passed"
+    },
+    {
+      "name": "Human render review",
+      "status": "pending"
+    },
+    {
+      "name": "Device review",
+      "status": "pending"
+    }
+  ],
+  "role_count": 6,
+  "snapshot_matches": true,
+  "edited_build_gate": "stale",
+  "tools": {
+    "blender": "Blender 5.2.4 LTS",
+    "godot": "4.7.2.stable.official.ed1daf0bf"
+  },
+  "log": "\nbuild [\"/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3\", \"<studio>/world/build.py\", \"<workspace>/jobs/ff953912a2b04e41abebf6d6a8e13e3b/spec.json\", \"--assets\", \"<studio>/demo/first-batch\", \"--route-qa\", \"--output\", \"<workspace>/jobs/ff953912a2b04e41abebf6d6a8e13e3b/output\"]\nLevel staging: <workspace>/jobs/ff953912a2b04e41abebf6d6a8e13e3b/output.staging-x3mce6on\nWORLD_FACTORY_PASS <workspace>/jobs/ff953912a2b04e41abebf6d6a8e13e3b/output\n\nverify [\"/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3\", \"<studio>/world/build.py\", \"--verify\", \"<workspace>/jobs/ff953912a2b04e41abebf6d6a8e13e3b/output\"]\nWORLD_INTEGRITY_PASS\n"
+}

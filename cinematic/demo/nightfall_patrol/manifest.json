@@ -1,0 +1,242 @@
+{
+  "files": [
+    {
+      "bytes": 220544,
+      "path": "assets/ambience.wav",
+      "sha256": "05d686f0a75a74bbc39a6b5c67fe46856c626aefdb64e4937c81e70c545cdbe8"
+    },
+    {
+      "bytes": 488,
+      "path": "assets/ambience.wav.import",
+      "sha256": "5093faf2c73aeb06b9bd5b6a49dec61516157b4c04ca1c511bb77923b9f666f7"
+    },
+    {
+      "bytes": 349680,
+      "path": "assets/animated_actor.glb",
+      "sha256": "156b7594b1f3b9aa07ba5344c371cef2c4e2d0406ae603fb39094d51333c3817"
+    },
+    {
+      "bytes": 1164,
+      "path": "assets/animated_actor.glb.import",
+      "sha256": "05d1ac369216c5bfc515ba5592a65349fdc73d04e9b2813b09fd92f6b943dd4c"
+    },
+    {
+      "bytes": 522972,
+      "path": "assets/city.glb",
+      "sha256": "add26af271437ae62ce7f7ff7bed6516d5ddfa2cbb6ed19972cce461a7400bf2"
+    },
+    {
+      "bytes": 1134,
+      "path": "assets/city.glb.import",
+      "sha256": "73c238fbf9a6caa939bbc55adb3c74a73512f0c3eadd96467eacd8be5818b361"
+    },
+    {
+      "bytes": 325,
+      "path": "assets/city.json",
+      "sha256": "9841fe00832c33caabcb49f013c4b6cd9ff79804646bb6f6dfe775c5c38b272e"
+    },
+    {
+      "bytes": 18566,
+      "path": "assets/footstep.wav",
+      "sha256": "3f7ec76f3b891ad8061a93647aa5c5be72b78a6e1abdeb67ba89501f3774997c"
+    },
+    {
+      "bytes": 489,
+      "path": "assets/footstep.wav.import",
+      "sha256": "ca7a7a997b32da41b795f9698d856a9b787d0e9ea612eebb1bf5302232fee576"
+    },
+    {
+      "bytes": 919,
+      "path": "assets/metadata.json",
+      "sha256": "bf8fce7c599222837f43a58e5b1783f5a6b90493a730dc1ff8fbf09cab1d8192"
+    },
+    {
+      "bytes": 1213,
+      "path": "assets/provenance.json",
+      "sha256": "a69b7072d14cd66a6046f0ab98940c229d6d072b2d3ca73db4621e2450c514db"
+    },
+    {
+      "bytes": 132344,
+      "path": "assets/thunder.wav",
+      "sha256": "9f3ce62602840e68641f47eeb8468fa24e22a1913076006251724819120d6cd9"
+    },
+    {
+      "bytes": 486,
+      "path": "assets/thunder.wav.import",
+      "sha256": "5b287a38a8dc46fde777a011b8898bc2e63962b09beaa23ba818bc95d4a681ad"
+    },
+    {
+      "bytes": 6124,
+      "path": "cinematic.gd",
+      "sha256": "2cfd819325f7f62f1af3bb7ae5d7644d235283d88258cc7d654fa692ba19bcf3"
+    },
+    {
+      "bytes": 20,
+      "path": "cinematic.gd.uid",
+      "sha256": "1f7ea6928b462016be6b03f71d25c65e963861f41f49fd91c98ec858d02b1f52"
+    },
+    {
+      "bytes": 166,
+      "path": "cinematic.tscn",
+      "sha256": "34dbb188ea018a637d9ccee6318df77120d36f932218451a49fda67ea8b095a8"
+    },
+    {
+      "bytes": 2317,
+      "path": "cinematic_qa.gd",
+      "sha256": "cec9841f7fe9fc450994b0e2bea73d6d22a5e2d5394ac92949b94e4676d3b4a6"
+    },
+    {
+      "bytes": 20,
+      "path": "cinematic_qa.gd.uid",
+      "sha256": "664e96ef4cb4ea33a425525429c4029115c9c93fa75edca29c56c293fe7278cc"
+    },
+    {
+      "bytes": 625075,
+      "path": "preview.png",
+      "sha256": "58a1d784b993e957f931e24b52189d5d1a79636b915636a92869de59d87c9445"
+    },
+    {
+      "bytes": 309,
+      "path": "project.godot",
+      "sha256": "825688fc6ac9a48312bdb3b3eb4f8808172158e385d487fdf9cf42658046ef35"
+    },
+    {
+      "bytes": 649,
+      "path": "reports/animation-build.log",
+      "sha256": "784ac1d76b88a8fcd15e0df4f75d32b1bf0dc46a249a16c43c08e0a0533034f8"
+    },
+    {
+      "bytes": 194,
+      "path": "reports/animation-test.log",
+      "sha256": "3ef3178569b2732c8b6685c465d91097743cbb8e6f8d7e5144701bea9eff6d32"
+    },
+    {
+      "bytes": 0,
+      "path": "reports/audio-build.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 2248,
+      "path": "reports/city-build.log",
+      "sha256": "933e6977c1b357e65d3bd53f3b32ee0174fa908521d18363ee0746a31332e960"
+    },
+    {
+      "bytes": 327,
+      "path": "reports/city-test.log",
+      "sha256": "4724009f34f8be4b58a74a9069bbf61c97600784b07df874bfe35ec272f0465f"
+    },
+    {
+      "bytes": 3494,
+      "path": "reports/import.log",
+      "sha256": "ccf56724d0d2204ba6535de154ae26d739b3b17bdbe3a34b9fc12f123ce6a1a0"
+    },
+    {
+      "bytes": 96,
+      "path": "reports/launch.log",
+      "sha256": "12832208a6a22def86aa719f90ee601aab1bc04b75a7baca7a752cf078e82ee3"
+    },
+    {
+      "bytes": 1710,
+      "path": "reports/preview-render.log",
+      "sha256": "4487b9589cc0d969e0cba66c1ef6ce039f359dc3df03586a7fb17d13870ce1d6"
+    },
+    {
+      "bytes": 214,
+      "path": "reports/preview.json",
+      "sha256": "c4e8f34021cb3bd8ecb351dbdc3ef56e988852d8dae88f8c576a929202b8642d"
+    },
+    {
+      "bytes": 1096,
+      "path": "reports/qa.json",
+      "sha256": "f291b672a7a533ce884ab16b9768a97b96a2b35afa42be8a4453b4e65e3c8061"
+    },
+    {
+      "bytes": 831,
+      "path": "reports/qa.log",
+      "sha256": "19b57ea261e0b599855ead97ce806041390075eab4226d0f6cfae864aff4b18c"
+    },
+    {
+      "bytes": 1706,
+      "path": "sequence.json",
+      "sha256": "f0d9d16cb1316daa9303e685b99d1087b86ea38b6aec0259e665efaf714a1357"
+    },
+    {
+      "bytes": 0,
+      "path": "source/.gdignore",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 168803,
+      "path": "source/animated_actor.blend",
+      "sha256": "fc056aff8088b2e4a1a97fffe86e98e4b370c06b089531d98ce412b4f2ad1eb5"
+    },
+    {
+      "bytes": 134988,
+      "path": "source/city.blend",
+      "sha256": "92fe307b3353fe047102f88f38526635d7a6d9a71dd91e5fe56150dccbc0d86a"
+    }
+  ],
+  "qa": {
+    "checks": [
+      {
+        "detail": "",
+        "name": "Imported city",
+        "status": "passed"
+      },
+      {
+        "detail": "16",
+        "name": "Imported skeleton",
+        "status": "passed"
+      },
+      {
+        "detail": "[\"Aim\", \"Crouch\", \"Idle\", \"Reload\", \"Run\", \"Walk\"]",
+        "name": "Animation library",
+        "status": "passed"
+      },
+      {
+        "detail": "",
+        "name": "Animated bone motion",
+        "status": "passed"
+      },
+      {
+        "detail": "",
+        "name": "Camera dolly",
+        "status": "passed"
+      },
+      {
+        "detail": "",
+        "name": "Actor blocking",
+        "status": "passed"
+      },
+      {
+        "detail": "",
+        "name": "Shot cut",
+        "status": "passed"
+      },
+      {
+        "detail": "",
+        "name": "Weather transition",
+        "status": "passed"
+      },
+      {
+        "detail": "",
+        "name": "Spatial sound",
+        "status": "passed"
+      },
+      {
+        "detail": "",
+        "name": "Timeline end",
+        "status": "passed"
+      },
+      {
+        "detail": "",
+        "name": "Timeline rewind",
+        "status": "passed"
+      }
+    ],
+    "pass": true
+  },
+  "schema": 1,
+  "sequence": "nightfall_patrol",
+  "status": "passed"
+}

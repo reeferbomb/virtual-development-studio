@@ -1,0 +1,37 @@
+[
+  {
+    "path": "ambience.wav",
+    "sha256": "05d686f0a75a74bbc39a6b5c67fe46856c626aefdb64e4937c81e70c545cdbe8",
+    "source": "Studio original procedural generation"
+  },
+  {
+    "path": "animated_actor.glb",
+    "sha256": "156b7594b1f3b9aa07ba5344c371cef2c4e2d0406ae603fb39094d51333c3817",
+    "source": "Studio original procedural generation"
+  },
+  {
+    "path": "city.glb",
+    "sha256": "add26af271437ae62ce7f7ff7bed6516d5ddfa2cbb6ed19972cce461a7400bf2",
+    "source": "Studio original procedural generation"
+  },
+  {
+    "path": "city.json",
+    "sha256": "9841fe00832c33caabcb49f013c4b6cd9ff79804646bb6f6dfe775c5c38b272e",
+    "source": "Studio original procedural generation"
+  },
+  {
+    "path": "footstep.wav",
+    "sha256": "3f7ec76f3b891ad8061a93647aa5c5be72b78a6e1abdeb67ba89501f3774997c",
+    "source": "Studio original procedural generation"
+  },
+  {
+    "path": "metadata.json",
+    "sha256": "bf8fce7c599222837f43a58e5b1783f5a6b90493a730dc1ff8fbf09cab1d8192",
+    "source": "Studio original procedural generation"
+  },
+  {
+    "path": "thunder.wav",
+    "sha256": "9f3ce62602840e68641f47eeb8468fa24e22a1913076006251724819120d6cd9",
+    "source": "Studio original procedural generation"
+  }
+]

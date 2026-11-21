@@ -1,0 +1,6 @@
+{
+  "capacity": 40,
+  "chunk_size": 32,
+  "radius": 1,
+  "seed": 237
+}

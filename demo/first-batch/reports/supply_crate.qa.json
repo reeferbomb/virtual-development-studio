@@ -1,0 +1,23 @@
+{
+  "animation_names": [],
+  "bones": 0,
+  "bounds": {
+    "position": [
+      -0.550000011920929,
+      0.0,
+      -0.522994995117188
+    ],
+    "size": [
+      1.10000002384186,
+      1.10770010948181,
+      1.04598999023438
+    ]
+  },
+  "errors": [],
+  "materials": 3,
+  "mesh_count": 18,
+  "pass": true,
+  "skeleton_count": 0,
+  "skinned_meshes": 0,
+  "triangles": 792
+}

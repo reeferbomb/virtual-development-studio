@@ -1,0 +1,25 @@
+{
+  "animation_names": [
+    "Idle"
+  ],
+  "bones": 16,
+  "bounds": {
+    "position": [
+      -0.483881562948227,
+      0.0,
+      -0.142800003290176
+    ],
+    "size": [
+      0.967763125896454,
+      1.70000004768372,
+      0.328100025653839
+    ]
+  },
+  "errors": [],
+  "materials": 2,
+  "mesh_count": 1,
+  "pass": true,
+  "skeleton_count": 1,
+  "skinned_meshes": 1,
+  "triangles": 3096
+}

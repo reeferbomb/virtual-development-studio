@@ -1,0 +1,14 @@
+{
+  "metrics": {
+    "goal_error_m": 0.0157258603721857,
+    "goal_triggered": true,
+    "headless_wall_seconds": 0.375585,
+    "horizontal_collision_contacts": 0,
+    "physics_ticks": 686,
+    "simulation_seconds": 11.4333333333333,
+    "travel_m": 45.7332981675863,
+    "waypoints_reached": 6,
+    "waypoints_total": 6
+  },
+  "pass": true
+}

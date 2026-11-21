@@ -1,0 +1,3844 @@
+{
+  "block_size": 64,
+  "blocks": 8,
+  "buildings": [
+    {
+      "center": [
+        34.5,
+        0,
+        21.0
+      ],
+      "district": "downtown",
+      "id": "b0_0_0",
+      "size": [
+        39,
+        14,
+        16
+      ],
+      "style": "midrise"
+    },
+    {
+      "center": [
+        32.5,
+        0,
+        44.0
+      ],
+      "district": "downtown",
+      "id": "b0_0_1",
+      "size": [
+        45,
+        16,
+        22
+      ],
+      "style": "midrise"
+    },
+    {
+      "center": [
+        86.0,
+        0,
+        32.5
+      ],
+      "district": "downtown",
+      "id": "b1_0_0",
+      "size": [
+        14,
+        36,
+        41
+      ],
+      "style": "tower"
+    },
+    {
+      "center": [
+        107.0,
+        0,
+        26.5
+      ],
+      "district": "downtown",
+      "id": "b1_0_1",
+      "size": [
+        20,
+        29,
+        31
+      ],
+      "style": "tower"
+    },
+    {
+      "center": [
+        147.5,
+        0,
+        20.5
+      ],
+      "district": "downtown",
+      "id": "b2_0_0",
+      "size": [
+        21,
+        14,
+        21
+      ],
+      "style": "midrise"
+    },
+    {
+      "center": [
+        148.5,
+        0,
+        44.0
+      ],
+      "district": "downtown",
+      "id": "b2_0_1",
+      "size": [
+        21,
+        39,
+        22
+      ],
+      "style": "tower"
+    },
+    {
+      "center": [
+        168.0,
+        0,
+        21.0
+      ],
+      "district": "downtown",
+      "id": "b2_0_2",
+      "size": [
+        14,
+        17,
+        18
+      ],
+      "style": "midrise"
+    },
+    {
+      "center": [
+        171.5,
+        0,
+        44.5
+      ],
+      "district": "downtown",
+      "id": "b2_0_3",
+      "size": [
+        21,
+        41,
+        19
+      ],
+      "style": "tower"
+    },
+    {
+      "center": [
+        223.0,
+        0,
+        31.0
+      ],
+      "district": "industrial",
+      "id": "b3_0_0",
+      "size": [
+        30,
+        8,
+        42
+      ],
+      "style": "warehouse"
+    },
+    {
+      "center": [
+        286.0,
+        0,
+        32.0
+      ],
+      "district": "industrial",
+      "id": "b4_0_0",
+      "size": [
+        40,
+        7,
+        46
+      ],
+      "style": "workshop"
+    },
+    {
+      "center": [
+        350.5,
+        0,
+        20.5
+      ],
+      "district": "industrial",
+      "id": "b5_0_0",
+      "size": [
+        33,
+        8,
+        21
+      ],
+      "style": "workshop"
+    },
+    {
+      "center": [
+        358.0,
+        0,
+        44.0
+      ],
+      "district": "industrial",
+      "id": "b5_0_1",
+      "size": [
+        34,
+        5,
+        22
+      ],
+      "style": "workshop"
+    },
+    {
+      "center": [
+        414.5,
+        0,
+        33.5
+      ],
+      "district": "industrial",
+      "id": "b6_0_0",
+      "size": [
+        37,
+        7,
+        35
+      ],
+      "style": "workshop"
+    },
+    {
+      "center": [
+        482.0,
+        0,
+        31.5
+      ],
+      "district": "industrial",
+      "id": "b7_0_0",
+      "size": [
+        32,
+        9,
+        35
+      ],
+      "style": "warehouse"
+    },
+    {
+      "center": [
+        34.0,
+        0,
+        97.5
+      ],
+      "district": "downtown",
+      "id": "b0_1_0",
+      "size": [
+        38,
+        43,
+        43
+      ],
+      "style": "tower"
+    },
+    {
+      "center": [
+        95.0,
+        0,
+        96.0
+      ],
+      "district": "downtown",
+      "id": "b1_1_0",
+      "size": [
+        38,
+        46,
+        46
+      ],
+      "style": "tower"
+    },
+    {
+      "center": [
+        148.0,
+        0,
+        85.0
+      ],
+      "district": "downtown",
+      "id": "b2_1_0",
+      "size": [
+        18,
+        18,
+        14
+      ],
+      "style": "midrise"
+    },
+    {
+      "center": [
+        149.0,
+        0,
+        108.5
+      ],
+      "district": "downtown",
+      "id": "b2_1_1",
+      "size": [
+        20,
+        18,
+        17
+      ],
+      "style": "midrise"
+    },
+    {
+      "center": [
+        171.0,
+        0,
+        85.0
+      ],
+      "district": "downtown",
+      "id": "b2_1_2",
+      "size": [
+        18,
+        23,
+        18
+      ],
+      "style": "midrise"
+    },
+    {
+      "center": [
+        168.0,
+        0,
+        110.5
+      ],
+      "district": "downtown",
+      "id": "b2_1_3",
+      "size": [
+        14,
+        42,
+        15
+      ],
+      "style": "tower"
+    },
+    {
+      "center": [
+        215.0,
+        0,
+        85.5
+      ],
+      "district": "downtown",
+      "id": "b3_1_0",
+      "size": [
+        14,
+        19,
+        19
+      ],
+      "style": "midrise"
+    },
+    {
+      "center": [
+        211.5,
+        0,
+        107.0
+      ],
+      "district": "downtown",
+      "id": "b3_1_1",
+      "size": [
+        21,
+        37,
+        20
+      ],
+      "style": "tower"
+    },
+    {
+      "center": [
+        239.0,
+        0,
+        85.5
+      ],
+      "district": "downtown",
+      "id": "b3_1_2",
+      "size": [
+        14,
+        18,
+        15
+      ],
+      "style": "midrise"
+    },
+    {
+      "center": [
+        239.5,
+        0,
+        106.5
+      ],
+      "district": "downtown",
+      "id": "b3_1_3",
+      "size": [
+        15,
+        23,
+        15
+      ],
+      "style": "midrise"
+    },
+    {
+      "center": [
+        285.5,
+        0,
+        82.5
+      ],
+      "district": "downtown",
+      "id": "b4_1_0",
+      "size": [
+        39,
+        23,
+        19
+      ],
+      "style": "midrise"
+    },
+    {
+      "center": [
+        293.0,
+        0,
+        109.5
+      ],
+      "district": "downtown",
+      "id": "b4_1_1",
+      "size": [
+        32,
+        20,
+        19
+      ],
+      "style": "midrise"
+    },
+    {
+      "center": [
+        352.0,
+        0,
+        99.0
+      ],
+      "district": "industrial",
+      "id": "b5_1_0",
+      "size": [
+        30,
+        8,
+        38
+      ],
+      "style": "workshop"
+    },
+    {
+      "center": [
+        417.5,
+        0,
+        81.0
+      ],
+      "district": "industrial",
+      "id": "b6_1_0",
+      "size": [
+        35,
+        6,
+        16
+      ],
+      "style": "warehouse"
+    },
+    {
+      "center": [
+        419.5,
+        0,
+        107.5
+      ],
+      "district": "industrial",
+      "id": "b6_1_1",
+      "size": [
+        37,
+        10,
+        17
+      ],
+      "style": "warehouse"
+    },
+    {
+      "center": [
+        473.5,
+        0,
+        84.0
+      ],
+      "district": "industrial",
+      "id": "b7_1_0",
+      "size": [
+        33,
+        6,
+        22
+      ],
+      "style": "warehouse"
+    },
+    {
+      "center": [
+        479.0,
+        0,
+        109.5
+      ],
+      "district": "industrial",
+      "id": "b7_1_1",
+      "size": [
+        34,
+        8,
+        17
+      ],
+      "style": "warehouse"
+    },
+    {
+      "center": [
+        32.5,
+        0,
+        160.0
+      ],
+      "district": "downtown",
+      "id": "b0_2_0",
+      "size": [
+        45,
+        27,
+        46
+      ],
+      "style": "tower"
+    },
+    {
+      "center": [
+        85.0,
+        0,
+        160.5
+      ],
+      "district": "downtown",
+      "id": "b1_2_0",
+      "size": [
+        14,
+        29,
+        31
+      ],
+      "style": "tower"
+    },
+    {
+      "center": [
+        104.5,
+        0,
+        166.0
+      ],
+      "district": "downtown",
+      "id": "b1_2_1",
+      "size": [
+        15,
+        38,
+        34
+      ],
+      "style": "tower"
+    },
+    {
+      "center": [
+        148.5,
+        0,
+        148.0
+      ],
+      "district": "downtown",
+      "id": "b2_2_0",
+      "size": [
+        15,
+        21,
+        16
+      ],
+      "style": "midrise"
+    },
+    {
+      "center": [
+        148.0,
+        0,
+        170.5
+      ],
+      "district": "downtown",
+      "id": "b2_2_1",
+      "size": [
+        20,
+        30,
+        19
+      ],
+      "style": "tower"
+    },
+    {
+      "center": [
+        170.0,
+        0,
+        146.5
+      ],
+      "district": "downtown",
+      "id": "b2_2_2",
+      "size": [
+        16,
+        43,
+        17
+      ],
+      "style": "tower"
+    },
+    {
+      "center": [
+        172.5,
+        0,
+        170.5
+      ],
+      "district": "downtown",
+      "id": "b2_2_3",
+      "size": [
+        19,
+        17,
+        17
+      ],
+      "style": "midrise"
+    },
+    {
+      "center": [
+        214.0,
+        0,
+        166.0
+      ],
+      "district": "downtown",
+      "id": "b3_2_0",
+      "size": [
+        16,
+        39,
+        32
+      ],
+      "style": "tower"
+    },
+    {
+      "center": [
+        235.0,
+        0,
+        160.0
+      ],
+      "district": "downtown",
+      "id": "b3_2_1",
+      "size": [
+        20,
+        25,
+        44
+      ],
+      "style": "tower"
+    },
+    {
+      "center": [
+        274.0,
+        0,
+        158.0
+      ],
+      "district": "downtown",
+      "id": "b4_2_0",
+      "size": [
+        16,
+        32,
+        38
+      ],
+      "style": "tower"
+    },
+    {
+      "center": [
+        303.0,
+        0,
+        162.5
+      ],
+      "district": "downtown",
+      "id": "b4_2_1",
+      "size": [
+        16,
+        15,
+        31
+      ],
+      "style": "midrise"
+    },
+    {
+      "center": [
+        340.0,
+        0,
+        148.0
+      ],
+      "district": "downtown",
+      "id": "b5_2_0",
+      "size": [
+        22,
+        17,
+        22
+      ],
+      "style": "midrise"
+    },
+    {
+      "center": [
+        340.0,
+        0,
+        173.0
+      ],
+      "district": "downtown",
+      "id": "b5_2_1",
+      "size": [
+        22,
+        14,
+        20
+      ],
+      "style": "midrise"
+    },
+    {
+      "center": [
+        365.5,
+        0,
+        148.5
+      ],
+      "district": "downtown",
+      "id": "b5_2_2",
+      "size": [
+        17,
+        24,
+        21
+      ],
+      "style": "tower"
+    },
+    {
+      "center": [
+        363.5,
+        0,
+        172.0
+      ],
+      "district": "downtown",
+      "id": "b5_2_3",
+      "size": [
+        17,
+        25,
+        16
+      ],
+      "style": "midrise"
+    },
+    {
+      "center": [
+        403.0,
+        0,
+        160.0
+      ],
+      "district": "industrial",
+      "id": "b6_2_0",
+      "size": [
+        14,
+        7,
+        44
+      ],
+      "style": "workshop"
+    },
+    {
+      "center": [
+        430.5,
+        0,
+        162.0
+      ],
+      "district": "industrial",
+      "id": "b6_2_1",
+      "size": [
+        15,
+        8,
+        34
+      ],
+      "style": "warehouse"
+    },
+    {
+      "center": [
+        476.5,
+        0,
+        160.5
+      ],
+      "district": "industrial",
+      "id": "b7_2_0",
+      "size": [
+        39,
+        8,
+        45
+      ],
+      "style": "warehouse"
+    },
+    {
+      "center": [
+        23.5,
+        0,
+        209.0
+      ],
+      "district": "residential",
+      "id": "b0_3_0",
+      "size": [
+        15,
+        9,
+        14
+      ],
+      "style": "townhouse"
+    },
+    {
+      "center": [
+        22.5,
+        0,
+        236.0
+      ],
+      "district": "residential",
+      "id": "b0_3_1",
+      "size": [
+        17,
+        8,
+        22
+      ],
+      "style": "townhouse"
+    },
+    {
+      "center": [
+        43.0,
+        0,
+        211.5
+      ],
+      "district": "residential",
+      "id": "b0_3_2",
+      "size": [
+        20,
+        14,
+        19
+      ],
+      "style": "apartment"
+    },
+    {
+      "center": [
+        41.5,
+        0,
+        237.5
+      ],
+      "district": "residential",
+      "id": "b0_3_3",
+      "size": [
+        17,
+        9,
+        17
+      ],
+      "style": "townhouse"
+    },
+    {
+      "center": [
+        85.0,
+        0,
+        221.5
+      ],
+      "district": "downtown",
+      "id": "b1_3_0",
+      "size": [
+        14,
+        30,
+        31
+      ],
+      "style": "tower"
+    },
+    {
+      "center": [
+        106.0,
+        0,
+        224.5
+      ],
+      "district": "downtown",
+      "id": "b1_3_1",
+      "size": [
+        18,
+        35,
+        41
+      ],
+      "style": "tower"
+    },
+    {
+      "center": [
+        153.0,
+        0,
+        212.0
+      ],
+      "district": "downtown",
+      "id": "b2_3_0",
+      "size": [
+        32,
+        41,
+        22
+      ],
+      "style": "tower"
+    },
+    {
+      "center": [
+        160.0,
+        0,
+        236.0
+      ],
+      "district": "downtown",
+      "id": "b2_3_1",
+      "size": [
+        40,
+        21,
+        20
+      ],
+      "style": "midrise"
+    },
+    {
+      "center": [
+        211.0,
+        0,
+        212.5
+      ],
+      "district": "downtown",
+      "id": "b3_3_0",
+      "size": [
+        20,
+        16,
+        15
+      ],
+      "style": "midrise"
+    },
+    {
+      "center": [
+        212.0,
+        0,
+        238.5
+      ],
+      "district": "downtown",
+      "id": "b3_3_1",
+      "size": [
+        14,
+        48,
+        17
+      ],
+      "style": "tower"
+    },
+    {
+      "center": [
+        235.5,
+        0,
+        213.5
+      ],
+      "district": "downtown",
+      "id": "b3_3_2",
+      "size": [
+        19,
+        42,
+        15
+      ],
+      "style": "tower"
+    },
+    {
+      "center": [
+        238.0,
+        0,
+        236.0
+      ],
+      "district": "downtown",
+      "id": "b3_3_3",
+      "size": [
+        18,
+        23,
+        20
+      ],
+      "style": "midrise"
+    },
+    {
+      "center": [
+        274.5,
+        0,
+        212.0
+      ],
+      "district": "downtown",
+      "id": "b4_3_0",
+      "size": [
+        17,
+        39,
+        22
+      ],
+      "style": "tower"
+    },
+    {
+      "center": [
+        272.5,
+        0,
+        238.5
+      ],
+      "district": "downtown",
+      "id": "b4_3_1",
+      "size": [
+        15,
+        18,
+        15
+      ],
+      "style": "midrise"
+    },
+    {
+      "center": [
+        300.5,
+        0,
+        208.0
+      ],
+      "district": "downtown",
+      "id": "b4_3_2",
+      "size": [
+        15,
+        27,
+        14
+      ],
+      "style": "tower"
+    },
+    {
+      "center": [
+        299.0,
+        0,
+        236.0
+      ],
+      "district": "downtown",
+      "id": "b4_3_3",
+      "size": [
+        20,
+        39,
+        14
+      ],
+      "style": "tower"
+    },
+    {
+      "center": [
+        351.0,
+        0,
+        211.5
+      ],
+      "district": "downtown",
+      "id": "b5_3_0",
+      "size": [
+        44,
+        47,
+        15
+      ],
+      "style": "tower"
+    },
+    {
+      "center": [
+        350.0,
+        0,
+        232.5
+      ],
+      "district": "downtown",
+      "id": "b5_3_1",
+      "size": [
+        40,
+        48,
+        15
+      ],
+      "style": "tower"
+    },
+    {
+      "center": [
+        403.5,
+        0,
+        226.5
+      ],
+      "district": "downtown",
+      "id": "b6_3_0",
+      "size": [
+        17,
+        35,
+        41
+      ],
+      "style": "tower"
+    },
+    {
+      "center": [
+        426.0,
+        0,
+        224.5
+      ],
+      "district": "downtown",
+      "id": "b6_3_1",
+      "size": [
+        18,
+        15,
+        45
+      ],
+      "style": "midrise"
+    },
+    {
+      "center": [
+        480.0,
+        0,
+        220.5
+      ],
+      "district": "industrial",
+      "id": "b7_3_0",
+      "size": [
+        38,
+        7,
+        31
+      ],
+      "style": "workshop"
+    },
+    {
+      "center": [
+        20.0,
+        0,
+        289.5
+      ],
+      "district": "residential",
+      "id": "b0_4_0",
+      "size": [
+        22,
+        14,
+        43
+      ],
+      "style": "apartment"
+    },
+    {
+      "center": [
+        43.0,
+        0,
+        286.0
+      ],
+      "district": "residential",
+      "id": "b0_4_1",
+      "size": [
+        16,
+        8,
+        38
+      ],
+      "style": "townhouse"
+    },
+    {
+      "center": [
+        82.5,
+        0,
+        288.0
+      ],
+      "district": "downtown",
+      "id": "b1_4_0",
+      "size": [
+        17,
+        44,
+        44
+      ],
+      "style": "tower"
+    },
+    {
+      "center": [
+        109.0,
+        0,
+        283.5
+      ],
+      "district": "downtown",
+      "id": "b1_4_1",
+      "size": [
+        14,
+        36,
+        35
+      ],
+      "style": "tower"
+    },
+    {
+      "center": [
+        163.0,
+        0,
+        276.0
+      ],
+      "district": "downtown",
+      "id": "b2_4_0",
+      "size": [
+        30,
+        25,
+        22
+      ],
+      "style": "midrise"
+    },
+    {
+      "center": [
+        163.0,
+        0,
+        304.0
+      ],
+      "district": "downtown",
+      "id": "b2_4_1",
+      "size": [
+        40,
+        35,
+        14
+      ],
+      "style": "tower"
+    },
+    {
+      "center": [
+        224.0,
+        0,
+        275.5
+      ],
+      "district": "downtown",
+      "id": "b3_4_0",
+      "size": [
+        44,
+        26,
+        21
+      ],
+      "style": "tower"
+    },
+    {
+      "center": [
+        226.0,
+        0,
+        300.0
+      ],
+      "district": "downtown",
+      "id": "b3_4_1",
+      "size": [
+        30,
+        43,
+        20
+      ],
+      "style": "tower"
+    },
+    {
+      "center": [
+        288.5,
+        0,
+        276.5
+      ],
+      "district": "downtown",
+      "id": "b4_4_0",
+      "size": [
+        37,
+        28,
+        21
+      ],
+      "style": "tower"
+    },
+    {
+      "center": [
+        288.5,
+        0,
+        300.5
+      ],
+      "district": "downtown",
+      "id": "b4_4_1",
+      "size": [
+        43,
+        15,
+        21
+      ],
+      "style": "midrise"
+    },
+    {
+      "center": [
+        340.0,
+        0,
+        277.5
+      ],
+      "district": "downtown",
+      "id": "b5_4_0",
+      "size": [
+        18,
+        24,
+        15
+      ],
+      "style": "tower"
+    },
+    {
+      "center": [
+        340.0,
+        0,
+        300.0
+      ],
+      "district": "downtown",
+      "id": "b5_4_1",
+      "size": [
+        22,
+        28,
+        18
+      ],
+      "style": "tower"
+    },
+    {
+      "center": [
+        363.0,
+        0,
+        274.5
+      ],
+      "district": "downtown",
+      "id": "b5_4_2",
+      "size": [
+        14,
+        33,
+        19
+      ],
+      "style": "tower"
+    },
+    {
+      "center": [
+        365.0,
+        0,
+        302.0
+      ],
+      "district": "downtown",
+      "id": "b5_4_3",
+      "size": [
+        20,
+        17,
+        14
+      ],
+      "style": "midrise"
+    },
+    {
+      "center": [
+        403.5,
+        0,
+        275.5
+      ],
+      "district": "downtown",
+      "id": "b6_4_0",
+      "size": [
+        21,
+        30,
+        21
+      ],
+      "style": "tower"
+    },
+    {
+      "center": [
+        405.5,
+        0,
+        300.5
+      ],
+      "district": "downtown",
+      "id": "b6_4_1",
+      "size": [
+        15,
+        19,
+        17
+      ],
+      "style": "midrise"
+    },
+    {
+      "center": [
+        427.5,
+        0,
+        277.0
+      ],
+      "district": "downtown",
+      "id": "b6_4_2",
+      "size": [
+        19,
+        14,
+        16
+      ],
+      "style": "midrise"
+    },
+    {
+      "center": [
+        430.5,
+        0,
+        299.0
+      ],
+      "district": "downtown",
+      "id": "b6_4_3",
+      "size": [
+        17,
+        44,
+        18
+      ],
+      "style": "tower"
+    },
+    {
+      "center": [
+        485.0,
+        0,
+        285.0
+      ],
+      "district": "downtown",
+      "id": "b7_4_0",
+      "size": [
+        32,
+        21,
+        30
+      ],
+      "style": "midrise"
+    },
+    {
+      "center": [
+        18.5,
+        0,
+        341.0
+      ],
+      "district": "residential",
+      "id": "b0_5_0",
+      "size": [
+        19,
+        7,
+        20
+      ],
+      "style": "townhouse"
+    },
+    {
+      "center": [
+        22.5,
+        0,
+        364.0
+      ],
+      "district": "residential",
+      "id": "b0_5_1",
+      "size": [
+        17,
+        10,
+        14
+      ],
+      "style": "apartment"
+    },
+    {
+      "center": [
+        41.0,
+        0,
+        339.0
+      ],
+      "district": "residential",
+      "id": "b0_5_2",
+      "size": [
+        16,
+        14,
+        14
+      ],
+      "style": "apartment"
+    },
+    {
+      "center": [
+        46.5,
+        0,
+        362.5
+      ],
+      "district": "residential",
+      "id": "b0_5_3",
+      "size": [
+        15,
+        17,
+        19
+      ],
+      "style": "apartment"
+    },
+    {
+      "center": [
+        91.0,
+        0,
+        341.0
+      ],
+      "district": "residential",
+      "id": "b1_5_0",
+      "size": [
+        36,
+        9,
+        14
+      ],
+      "style": "apartment"
+    },
+    {
+      "center": [
+        96.0,
+        0,
+        363.0
+      ],
+      "district": "residential",
+      "id": "b1_5_1",
+      "size": [
+        40,
+        7,
+        20
+      ],
+      "style": "townhouse"
+    },
+    {
+      "center": [
+        148.0,
+        0,
+        346.0
+      ],
+      "district": "downtown",
+      "id": "b2_5_0",
+      "size": [
+        22,
+        41,
+        34
+      ],
+      "style": "tower"
+    },
+    {
+      "center": [
+        173.5,
+        0,
+        350.5
+      ],
+      "district": "downtown",
+      "id": "b2_5_1",
+      "size": [
+        15,
+        17,
+        35
+      ],
+      "style": "midrise"
+    },
+    {
+      "center": [
+        224.0,
+        0,
+        341.5
+      ],
+      "district": "downtown",
+      "id": "b3_5_0",
+      "size": [
+        46,
+        48,
+        19
+      ],
+      "style": "tower"
+    },
+    {
+      "center": [
+        221.0,
+        0,
+        364.0
+      ],
+      "district": "downtown",
+      "id": "b3_5_1",
+      "size": [
+        36,
+        14,
+        14
+      ],
+      "style": "midrise"
+    },
+    {
+      "center": [
+        275.0,
+        0,
+        339.5
+      ],
+      "district": "downtown",
+      "id": "b4_5_0",
+      "size": [
+        14,
+        30,
+        21
+      ],
+      "style": "tower"
+    },
+    {
+      "center": [
+        274.0,
+        0,
+        363.5
+      ],
+      "district": "downtown",
+      "id": "b4_5_1",
+      "size": [
+        18,
+        15,
+        19
+      ],
+      "style": "midrise"
+    },
+    {
+      "center": [
+        300.5,
+        0,
+        338.0
+      ],
+      "district": "downtown",
+      "id": "b4_5_2",
+      "size": [
+        19,
+        25,
+        16
+      ],
+      "style": "midrise"
+    },
+    {
+      "center": [
+        298.0,
+        0,
+        362.5
+      ],
+      "district": "downtown",
+      "id": "b4_5_3",
+      "size": [
+        14,
+        36,
+        15
+      ],
+      "style": "tower"
+    },
+    {
+      "center": [
+        350.5,
+        0,
+        337.5
+      ],
+      "district": "downtown",
+      "id": "b5_5_0",
+      "size": [
+        37,
+        16,
+        17
+      ],
+      "style": "midrise"
+    },
+    {
+      "center": [
+        350.0,
+        0,
+        361.5
+      ],
+      "district": "downtown",
+      "id": "b5_5_1",
+      "size": [
+        32,
+        27,
+        17
+      ],
+      "style": "tower"
+    },
+    {
+      "center": [
+        413.0,
+        0,
+        342.0
+      ],
+      "district": "downtown",
+      "id": "b6_5_0",
+      "size": [
+        38,
+        39,
+        16
+      ],
+      "style": "tower"
+    },
+    {
+      "center": [
+        418.5,
+        0,
+        364.0
+      ],
+      "district": "downtown",
+      "id": "b6_5_1",
+      "size": [
+        31,
+        16,
+        22
+      ],
+      "style": "midrise"
+    },
+    {
+      "center": [
+        468.5,
+        0,
+        339.5
+      ],
+      "district": "downtown",
+      "id": "b7_5_0",
+      "size": [
+        21,
+        22,
+        17
+      ],
+      "style": "midrise"
+    },
+    {
+      "center": [
+        469.5,
+        0,
+        364.5
+      ],
+      "district": "downtown",
+      "id": "b7_5_1",
+      "size": [
+        19,
+        37,
+        19
+      ],
+      "style": "tower"
+    },
+    {
+      "center": [
+        493.5,
+        0,
+        339.0
+      ],
+      "district": "downtown",
+      "id": "b7_5_2",
+      "size": [
+        19,
+        43,
+        14
+      ],
+      "style": "tower"
+    },
+    {
+      "center": [
+        495.5,
+        0,
+        366.0
+      ],
+      "district": "downtown",
+      "id": "b7_5_3",
+      "size": [
+        15,
+        36,
+        16
+      ],
+      "style": "tower"
+    },
+    {
+      "center": [
+        21.5,
+        0,
+        416.0
+      ],
+      "district": "residential",
+      "id": "b0_6_0",
+      "size": [
+        19,
+        8,
+        46
+      ],
+      "style": "townhouse"
+    },
+    {
+      "center": [
+        42.5,
+        0,
+        421.0
+      ],
+      "district": "residential",
+      "id": "b0_6_1",
+      "size": [
+        19,
+        6,
+        36
+      ],
+      "style": "townhouse"
+    },
+    {
+      "center": [
+        99.0,
+        0,
+        406.5
+      ],
+      "district": "residential",
+      "id": "b1_6_0",
+      "size": [
+        38,
+        8,
+        17
+      ],
+      "style": "townhouse"
+    },
+    {
+      "center": [
+        95.0,
+        0,
+        428.0
+      ],
+      "district": "residential",
+      "id": "b1_6_1",
+      "size": [
+        30,
+        7,
+        22
+      ],
+      "style": "townhouse"
+    },
+    {
+      "center": [
+        149.5,
+        0,
+        403.0
+      ],
+      "district": "residential",
+      "id": "b2_6_0",
+      "size": [
+        15,
+        8,
+        20
+      ],
+      "style": "townhouse"
+    },
+    {
+      "center": [
+        151.0,
+        0,
+        428.0
+      ],
+      "district": "residential",
+      "id": "b2_6_1",
+      "size": [
+        16,
+        13,
+        22
+      ],
+      "style": "apartment"
+    },
+    {
+      "center": [
+        174.0,
+        0,
+        403.0
+      ],
+      "district": "residential",
+      "id": "b2_6_2",
+      "size": [
+        16,
+        7,
+        18
+      ],
+      "style": "townhouse"
+    },
+    {
+      "center": [
+        172.5,
+        0,
+        429.5
+      ],
+      "district": "residential",
+      "id": "b2_6_3",
+      "size": [
+        21,
+        5,
+        19
+      ],
+      "style": "townhouse"
+    },
+    {
+      "center": [
+        210.0,
+        0,
+        414.0
+      ],
+      "district": "downtown",
+      "id": "b3_6_0",
+      "size": [
+        14,
+        26,
+        38
+      ],
+      "style": "tower"
+    },
+    {
+      "center": [
+        235.0,
+        0,
+        422.0
+      ],
+      "district": "downtown",
+      "id": "b3_6_1",
+      "size": [
+        16,
+        15,
+        34
+      ],
+      "style": "midrise"
+    },
+    {
+      "center": [
+        277.5,
+        0,
+        413.0
+      ],
+      "district": "downtown",
+      "id": "b4_6_0",
+      "size": [
+        19,
+        32,
+        40
+      ],
+      "style": "tower"
+    },
+    {
+      "center": [
+        298.5,
+        0,
+        417.0
+      ],
+      "district": "downtown",
+      "id": "b4_6_1",
+      "size": [
+        19,
+        18,
+        30
+      ],
+      "style": "midrise"
+    },
+    {
+      "center": [
+        340.5,
+        0,
+        403.5
+      ],
+      "district": "downtown",
+      "id": "b5_6_0",
+      "size": [
+        19,
+        24,
+        21
+      ],
+      "style": "tower"
+    },
+    {
+      "center": [
+        339.5,
+        0,
+        428.0
+      ],
+      "district": "downtown",
+      "id": "b5_6_1",
+      "size": [
+        21,
+        33,
+        22
+      ],
+      "style": "tower"
+    },
+    {
+      "center": [
+        362.0,
+        0,
+        403.0
+      ],
+      "district": "downtown",
+      "id": "b5_6_2",
+      "size": [
+        16,
+        48,
+        20
+      ],
+      "style": "tower"
+    },
+    {
+      "center": [
+        365.0,
+        0,
+        427.0
+      ],
+      "district": "downtown",
+      "id": "b5_6_3",
+      "size": [
+        16,
+        43,
+        20
+      ],
+      "style": "tower"
+    },
+    {
+      "center": [
+        412.5,
+        0,
+        403.5
+      ],
+      "district": "downtown",
+      "id": "b6_6_0",
+      "size": [
+        35,
+        18,
+        21
+      ],
+      "style": "midrise"
+    },
+    {
+      "center": [
+        416.5,
+        0,
+        429.0
+      ],
+      "district": "downtown",
+      "id": "b6_6_1",
+      "size": [
+        31,
+        18,
+        16
+      ],
+      "style": "midrise"
+    },
+    {
+      "center": [
+        467.5,
+        0,
+        404.0
+      ],
+      "district": "downtown",
+      "id": "b7_6_0",
+      "size": [
+        21,
+        20,
+        22
+      ],
+      "style": "midrise"
+    },
+    {
+      "center": [
+        469.0,
+        0,
+        428.0
+      ],
+      "district": "downtown",
+      "id": "b7_6_1",
+      "size": [
+        20,
+        47,
+        16
+      ],
+      "style": "tower"
+    },
+    {
+      "center": [
+        492.0,
+        0,
+        404.0
+      ],
+      "district": "downtown",
+      "id": "b7_6_2",
+      "size": [
+        22,
+        15,
+        14
+      ],
+      "style": "midrise"
+    },
+    {
+      "center": [
+        492.5,
+        0,
+        425.5
+      ],
+      "district": "downtown",
+      "id": "b7_6_3",
+      "size": [
+        21,
+        24,
+        15
+      ],
+      "style": "tower"
+    },
+    {
+      "center": [
+        20.5,
+        0,
+        480.0
+      ],
+      "district": "residential",
+      "id": "b0_7_0",
+      "size": [
+        21,
+        6,
+        46
+      ],
+      "style": "townhouse"
+    },
+    {
+      "center": [
+        41.5,
+        0,
+        473.5
+      ],
+      "district": "residential",
+      "id": "b0_7_1",
+      "size": [
+        15,
+        8,
+        33
+      ],
+      "style": "townhouse"
+    },
+    {
+      "center": [
+        85.0,
+        0,
+        477.0
+      ],
+      "district": "residential",
+      "id": "b1_7_0",
+      "size": [
+        20,
+        16,
+        36
+      ],
+      "style": "apartment"
+    },
+    {
+      "center": [
+        108.0,
+        0,
+        480.0
+      ],
+      "district": "residential",
+      "id": "b1_7_1",
+      "size": [
+        22,
+        8,
+        36
+      ],
+      "style": "townhouse"
+    },
+    {
+      "center": [
+        163.0,
+        0,
+        471.5
+      ],
+      "district": "residential",
+      "id": "b2_7_0",
+      "size": [
+        40,
+        9,
+        15
+      ],
+      "style": "townhouse"
+    },
+    {
+      "center": [
+        160.0,
+        0,
+        492.0
+      ],
+      "district": "residential",
+      "id": "b2_7_1",
+      "size": [
+        34,
+        11,
+        20
+      ],
+      "style": "apartment"
+    },
+    {
+      "center": [
+        211.5,
+        0,
+        468.0
+      ],
+      "district": "residential",
+      "id": "b3_7_0",
+      "size": [
+        15,
+        5,
+        20
+      ],
+      "style": "townhouse"
+    },
+    {
+      "center": [
+        209.5,
+        0,
+        493.5
+      ],
+      "district": "residential",
+      "id": "b3_7_1",
+      "size": [
+        17,
+        13,
+        15
+      ],
+      "style": "apartment"
+    },
+    {
+      "center": [
+        240.0,
+        0,
+        471.0
+      ],
+      "district": "residential",
+      "id": "b3_7_2",
+      "size": [
+        14,
+        8,
+        14
+      ],
+      "style": "townhouse"
+    },
+    {
+      "center": [
+        236.5,
+        0,
+        493.5
+      ],
+      "district": "residential",
+      "id": "b3_7_3",
+      "size": [
+        19,
+        16,
+        17
+      ],
+      "style": "apartment"
+    },
+    {
+      "center": [
+        275.0,
+        0,
+        477.5
+      ],
+      "district": "downtown",
+      "id": "b4_7_0",
+      "size": [
+        18,
+        23,
+        39
+      ],
+      "style": "midrise"
+    },
+    {
+      "center": [
+        297.5,
+        0,
+        482.0
+      ],
+      "district": "downtown",
+      "id": "b4_7_1",
+      "size": [
+        15,
+        17,
+        42
+      ],
+      "style": "midrise"
+    },
+    {
+      "center": [
+        341.5,
+        0,
+        467.0
+      ],
+      "district": "downtown",
+      "id": "b5_7_0",
+      "size": [
+        19,
+        45,
+        20
+      ],
+      "style": "tower"
+    },
+    {
+      "center": [
+        339.5,
+        0,
+        494.5
+      ],
+      "district": "downtown",
+      "id": "b5_7_1",
+      "size": [
+        19,
+        25,
+        17
+      ],
+      "style": "midrise"
+    },
+    {
+      "center": [
+        365.0,
+        0,
+        467.5
+      ],
+      "district": "downtown",
+      "id": "b5_7_2",
+      "size": [
+        18,
+        23,
+        21
+      ],
+      "style": "midrise"
+    },
+    {
+      "center": [
+        362.5,
+        0,
+        491.0
+      ],
+      "district": "downtown",
+      "id": "b5_7_3",
+      "size": [
+        19,
+        24,
+        16
+      ],
+      "style": "midrise"
+    },
+    {
+      "center": [
+        406.0,
+        0,
+        466.5
+      ],
+      "district": "downtown",
+      "id": "b6_7_0",
+      "size": [
+        14,
+        19,
+        19
+      ],
+      "style": "midrise"
+    },
+    {
+      "center": [
+        404.0,
+        0,
+        492.0
+      ],
+      "district": "downtown",
+      "id": "b6_7_1",
+      "size": [
+        22,
+        22,
+        22
+      ],
+      "style": "midrise"
+    },
+    {
+      "center": [
+        425.5,
+        0,
+        465.5
+      ],
+      "district": "downtown",
+      "id": "b6_7_2",
+      "size": [
+        17,
+        18,
+        17
+      ],
+      "style": "midrise"
+    },
+    {
+      "center": [
+        428.0,
+        0,
+        492.5
+      ],
+      "district": "downtown",
+      "id": "b6_7_3",
+      "size": [
+        22,
+        47,
+        21
+      ],
+      "style": "tower"
+    },
+    {
+      "center": [
+        485.0,
+        0,
+        478.5
+      ],
+      "district": "downtown",
+      "id": "b7_7_0",
+      "size": [
+        36,
+        16,
+        37
+      ],
+      "style": "midrise"
+    }
+  ],
+  "civilians": 40,
+  "districts": [
+    {
+      "id": "downtown",
+      "name": "Central Business District",
+      "zone": "commercial"
+    },
+    {
+      "id": "residential",
+      "name": "Garden Quarter",
+      "zone": "residential"
+    },
+    {
+      "id": "industrial",
+      "name": "Foundry District",
+      "zone": "industrial"
+    }
+  ],
+  "road_width": 12,
+  "roads": {
+    "edges": [
+      {
+        "from": "n0_0",
+        "to": "n1_0"
+      },
+      {
+        "from": "n0_0",
+        "to": "n0_1"
+      },
+      {
+        "from": "n1_0",
+        "to": "n2_0"
+      },
+      {
+        "from": "n1_0",
+        "to": "n1_1"
+      },
+      {
+        "from": "n2_0",
+        "to": "n3_0"
+      },
+      {
+        "from": "n2_0",
+        "to": "n2_1"
+      },
+      {
+        "from": "n3_0",
+        "to": "n4_0"
+      },
+      {
+        "from": "n3_0",
+        "to": "n3_1"
+      },
+      {
+        "from": "n4_0",
+        "to": "n5_0"
+      },
+      {
+        "from": "n4_0",
+        "to": "n4_1"
+      },
+      {
+        "from": "n5_0",
+        "to": "n6_0"
+      },
+      {
+        "from": "n5_0",
+        "to": "n5_1"
+      },
+      {
+        "from": "n6_0",
+        "to": "n7_0"
+      },
+      {
+        "from": "n6_0",
+        "to": "n6_1"
+      },
+      {
+        "from": "n7_0",
+        "to": "n8_0"
+      },
+      {
+        "from": "n7_0",
+        "to": "n7_1"
+      },
+      {
+        "from": "n8_0",
+        "to": "n8_1"
+      },
+      {
+        "from": "n0_1",
+        "to": "n1_1"
+      },
+      {
+        "from": "n0_1",
+        "to": "n0_2"
+      },
+      {
+        "from": "n1_1",
+        "to": "n2_1"
+      },
+      {
+        "from": "n1_1",
+        "to": "n1_2"
+      },
+      {
+        "from": "n2_1",
+        "to": "n3_1"
+      },
+      {
+        "from": "n2_1",
+        "to": "n2_2"
+      },
+      {
+        "from": "n3_1",
+        "to": "n4_1"
+      },
+      {
+        "from": "n3_1",
+        "to": "n3_2"
+      },
+      {
+        "from": "n4_1",
+        "to": "n5_1"
+      },
+      {
+        "from": "n4_1",
+        "to": "n4_2"
+      },
+      {
+        "from": "n5_1",
+        "to": "n6_1"
+      },
+      {
+        "from": "n5_1",
+        "to": "n5_2"
+      },
+      {
+        "from": "n6_1",
+        "to": "n7_1"
+      },
+      {
+        "from": "n6_1",
+        "to": "n6_2"
+      },
+      {
+        "from": "n7_1",
+        "to": "n8_1"
+      },
+      {
+        "from": "n7_1",
+        "to": "n7_2"
+      },
+      {
+        "from": "n8_1",
+        "to": "n8_2"
+      },
+      {
+        "from": "n0_2",
+        "to": "n1_2"
+      },
+      {
+        "from": "n0_2",
+        "to": "n0_3"
+      },
+      {
+        "from": "n1_2",
+        "to": "n2_2"
+      },
+      {
+        "from": "n1_2",
+        "to": "n1_3"
+      },
+      {
+        "from": "n2_2",
+        "to": "n3_2"
+      },
+      {
+        "from": "n2_2",
+        "to": "n2_3"
+      },
+      {
+        "from": "n3_2",
+        "to": "n4_2"
+      },
+      {
+        "from": "n3_2",
+        "to": "n3_3"
+      },
+      {
+        "from": "n4_2",
+        "to": "n5_2"
+      },
+      {
+        "from": "n4_2",
+        "to": "n4_3"
+      },
+      {
+        "from": "n5_2",
+        "to": "n6_2"
+      },
+      {
+        "from": "n5_2",
+        "to": "n5_3"
+      },
+      {
+        "from": "n6_2",
+        "to": "n7_2"
+      },
+      {
+        "from": "n6_2",
+        "to": "n6_3"
+      },
+      {
+        "from": "n7_2",
+        "to": "n8_2"
+      },
+      {
+        "from": "n7_2",
+        "to": "n7_3"
+      },
+      {
+        "from": "n8_2",
+        "to": "n8_3"
+      },
+      {
+        "from": "n0_3",
+        "to": "n1_3"
+      },
+      {
+        "from": "n0_3",
+        "to": "n0_4"
+      },
+      {
+        "from": "n1_3",
+        "to": "n2_3"
+      },
+      {
+        "from": "n1_3",
+        "to": "n1_4"
+      },
+      {
+        "from": "n2_3",
+        "to": "n3_3"
+      },
+      {
+        "from": "n2_3",
+        "to": "n2_4"
+      },
+      {
+        "from": "n3_3",
+        "to": "n4_3"
+      },
+      {
+        "from": "n3_3",
+        "to": "n3_4"
+      },
+      {
+        "from": "n4_3",
+        "to": "n5_3"
+      },
+      {
+        "from": "n4_3",
+        "to": "n4_4"
+      },
+      {
+        "from": "n5_3",
+        "to": "n6_3"
+      },
+      {
+        "from": "n5_3",
+        "to": "n5_4"
+      },
+      {
+        "from": "n6_3",
+        "to": "n7_3"
+      },
+      {
+        "from": "n6_3",
+        "to": "n6_4"
+      },
+      {
+        "from": "n7_3",
+        "to": "n8_3"
+      },
+      {
+        "from": "n7_3",
+        "to": "n7_4"
+      },
+      {
+        "from": "n8_3",
+        "to": "n8_4"
+      },
+      {
+        "from": "n0_4",
+        "to": "n1_4"
+      },
+      {
+        "from": "n0_4",
+        "to": "n0_5"
+      },
+      {
+        "from": "n1_4",
+        "to": "n2_4"
+      },
+      {
+        "from": "n1_4",
+        "to": "n1_5"
+      },
+      {
+        "from": "n2_4",
+        "to": "n3_4"
+      },
+      {
+        "from": "n2_4",
+        "to": "n2_5"
+      },
+      {
+        "from": "n3_4",
+        "to": "n4_4"
+      },
+      {
+        "from": "n3_4",
+        "to": "n3_5"
+      },
+      {
+        "from": "n4_4",
+        "to": "n5_4"
+      },
+      {
+        "from": "n4_4",
+        "to": "n4_5"
+      },
+      {
+        "from": "n5_4",
+        "to": "n6_4"
+      },
+      {
+        "from": "n5_4",
+        "to": "n5_5"
+      },
+      {
+        "from": "n6_4",
+        "to": "n7_4"
+      },
+      {
+        "from": "n6_4",
+        "to": "n6_5"
+      },
+      {
+        "from": "n7_4",
+        "to": "n8_4"
+      },
+      {
+        "from": "n7_4",
+        "to": "n7_5"
+      },
+      {
+        "from": "n8_4",
+        "to": "n8_5"
+      },
+      {
+        "from": "n0_5",
+        "to": "n1_5"
+      },
+      {
+        "from": "n0_5",
+        "to": "n0_6"
+      },
+      {
+        "from": "n1_5",
+        "to": "n2_5"
+      },
+      {
+        "from": "n1_5",
+        "to": "n1_6"
+      },
+      {
+        "from": "n2_5",
+        "to": "n3_5"
+      },
+      {
+        "from": "n2_5",
+        "to": "n2_6"
+      },
+      {
+        "from": "n3_5",
+        "to": "n4_5"
+      },
+      {
+        "from": "n3_5",
+        "to": "n3_6"
+      },
+      {
+        "from": "n4_5",
+        "to": "n5_5"
+      },
+      {
+        "from": "n4_5",
+        "to": "n4_6"
+      },
+      {
+        "from": "n5_5",
+        "to": "n6_5"
+      },
+      {
+        "from": "n5_5",
+        "to": "n5_6"
+      },
+      {
+        "from": "n6_5",
+        "to": "n7_5"
+      },
+      {
+        "from": "n6_5",
+        "to": "n6_6"
+      },
+      {
+        "from": "n7_5",
+        "to": "n8_5"
+      },
+      {
+        "from": "n7_5",
+        "to": "n7_6"
+      },
+      {
+        "from": "n8_5",
+        "to": "n8_6"
+      },
+      {
+        "from": "n0_6",
+        "to": "n1_6"
+      },
+      {
+        "from": "n0_6",
+        "to": "n0_7"
+      },
+      {
+        "from": "n1_6",
+        "to": "n2_6"
+      },
+      {
+        "from": "n1_6",
+        "to": "n1_7"
+      },
+      {
+        "from": "n2_6",
+        "to": "n3_6"
+      },
+      {
+        "from": "n2_6",
+        "to": "n2_7"
+      },
+      {
+        "from": "n3_6",
+        "to": "n4_6"
+      },
+      {
+        "from": "n3_6",
+        "to": "n3_7"
+      },
+      {
+        "from": "n4_6",
+        "to": "n5_6"
+      },
+      {
+        "from": "n4_6",
+        "to": "n4_7"
+      },
+      {
+        "from": "n5_6",
+        "to": "n6_6"
+      },
+      {
+        "from": "n5_6",
+        "to": "n5_7"
+      },
+      {
+        "from": "n6_6",
+        "to": "n7_6"
+      },
+      {
+        "from": "n6_6",
+        "to": "n6_7"
+      },
+      {
+        "from": "n7_6",
+        "to": "n8_6"
+      },
+      {
+        "from": "n7_6",
+        "to": "n7_7"
+      },
+      {
+        "from": "n8_6",
+        "to": "n8_7"
+      },
+      {
+        "from": "n0_7",
+        "to": "n1_7"
+      },
+      {
+        "from": "n0_7",
+        "to": "n0_8"
+      },
+      {
+        "from": "n1_7",
+        "to": "n2_7"
+      },
+      {
+        "from": "n1_7",
+        "to": "n1_8"
+      },
+      {
+        "from": "n2_7",
+        "to": "n3_7"
+      },
+      {
+        "from": "n2_7",
+        "to": "n2_8"
+      },
+      {
+        "from": "n3_7",
+        "to": "n4_7"
+      },
+      {
+        "from": "n3_7",
+        "to": "n3_8"
+      },
+      {
+        "from": "n4_7",
+        "to": "n5_7"
+      },
+      {
+        "from": "n4_7",
+        "to": "n4_8"
+      },
+      {
+        "from": "n5_7",
+        "to": "n6_7"
+      },
+      {
+        "from": "n5_7",
+        "to": "n5_8"
+      },
+      {
+        "from": "n6_7",
+        "to": "n7_7"
+      },
+      {
+        "from": "n6_7",
+        "to": "n6_8"
+      },
+      {
+        "from": "n7_7",
+        "to": "n8_7"
+      },
+      {
+        "from": "n7_7",
+        "to": "n7_8"
+      },
+      {
+        "from": "n8_7",
+        "to": "n8_8"
+      },
+      {
+        "from": "n0_8",
+        "to": "n1_8"
+      },
+      {
+        "from": "n1_8",
+        "to": "n2_8"
+      },
+      {
+        "from": "n2_8",
+        "to": "n3_8"
+      },
+      {
+        "from": "n3_8",
+        "to": "n4_8"
+      },
+      {
+        "from": "n4_8",
+        "to": "n5_8"
+      },
+      {
+        "from": "n5_8",
+        "to": "n6_8"
+      },
+      {
+        "from": "n6_8",
+        "to": "n7_8"
+      },
+      {
+        "from": "n7_8",
+        "to": "n8_8"
+      }
+    ],
+    "nodes": [
+      {
+        "id": "n0_0",
+        "x": 0,
+        "z": 0
+      },
+      {
+        "id": "n1_0",
+        "x": 64,
+        "z": 0
+      },
+      {
+        "id": "n2_0",
+        "x": 128,
+        "z": 0
+      },
+      {
+        "id": "n3_0",
+        "x": 192,
+        "z": 0
+      },
+      {
+        "id": "n4_0",
+        "x": 256,
+        "z": 0
+      },
+      {
+        "id": "n5_0",
+        "x": 320,
+        "z": 0
+      },
+      {
+        "id": "n6_0",
+        "x": 384,
+        "z": 0
+      },
+      {
+        "id": "n7_0",
+        "x": 448,
+        "z": 0
+      },
+      {
+        "id": "n8_0",
+        "x": 512,
+        "z": 0
+      },
+      {
+        "id": "n0_1",
+        "x": 0,
+        "z": 64
+      },
+      {
+        "id": "n1_1",
+        "x": 64,
+        "z": 64
+      },
+      {
+        "id": "n2_1",
+        "x": 128,
+        "z": 64
+      },
+      {
+        "id": "n3_1",
+        "x": 192,
+        "z": 64
+      },
+      {
+        "id": "n4_1",
+        "x": 256,
+        "z": 64
+      },
+      {
+        "id": "n5_1",
+        "x": 320,
+        "z": 64
+      },
+      {
+        "id": "n6_1",
+        "x": 384,
+        "z": 64
+      },
+      {
+        "id": "n7_1",
+        "x": 448,
+        "z": 64
+      },
+      {
+        "id": "n8_1",
+        "x": 512,
+        "z": 64
+      },
+      {
+        "id": "n0_2",
+        "x": 0,
+        "z": 128
+      },
+      {
+        "id": "n1_2",
+        "x": 64,
+        "z": 128
+      },
+      {
+        "id": "n2_2",
+        "x": 128,
+        "z": 128
+      },
+      {
+        "id": "n3_2",
+        "x": 192,
+        "z": 128
+      },
+      {
+        "id": "n4_2",
+        "x": 256,
+        "z": 128
+      },
+      {
+        "id": "n5_2",
+        "x": 320,
+        "z": 128
+      },
+      {
+        "id": "n6_2",
+        "x": 384,
+        "z": 128
+      },
+      {
+        "id": "n7_2",
+        "x": 448,
+        "z": 128
+      },
+      {
+        "id": "n8_2",
+        "x": 512,
+        "z": 128
+      },
+      {
+        "id": "n0_3",
+        "x": 0,
+        "z": 192
+      },
+      {
+        "id": "n1_3",
+        "x": 64,
+        "z": 192
+      },
+      {
+        "id": "n2_3",
+        "x": 128,
+        "z": 192
+      },
+      {
+        "id": "n3_3",
+        "x": 192,
+        "z": 192
+      },
+      {
+        "id": "n4_3",
+        "x": 256,
+        "z": 192
+      },
+      {
+        "id": "n5_3",
+        "x": 320,
+        "z": 192
+      },
+      {
+        "id": "n6_3",
+        "x": 384,
+        "z": 192
+      },
+      {
+        "id": "n7_3",
+        "x": 448,
+        "z": 192
+      },
+      {
+        "id": "n8_3",
+        "x": 512,
+        "z": 192
+      },
+      {
+        "id": "n0_4",
+        "x": 0,
+        "z": 256
+      },
+      {
+        "id": "n1_4",
+        "x": 64,
+        "z": 256
+      },
+      {
+        "id": "n2_4",
+        "x": 128,
+        "z": 256
+      },
+      {
+        "id": "n3_4",
+        "x": 192,
+        "z": 256
+      },
+      {
+        "id": "n4_4",
+        "x": 256,
+        "z": 256
+      },
+      {
+        "id": "n5_4",
+        "x": 320,
+        "z": 256
+      },
+      {
+        "id": "n6_4",
+        "x": 384,
+        "z": 256
+      },
+      {
+        "id": "n7_4",
+        "x": 448,
+        "z": 256
+      },
+      {
+        "id": "n8_4",
+        "x": 512,
+        "z": 256
+      },
+      {
+        "id": "n0_5",
+        "x": 0,
+        "z": 320
+      },
+      {
+        "id": "n1_5",
+        "x": 64,
+        "z": 320
+      },
+      {
+        "id": "n2_5",
+        "x": 128,
+        "z": 320
+      },
+      {
+        "id": "n3_5",
+        "x": 192,
+        "z": 320
+      },
+      {
+        "id": "n4_5",
+        "x": 256,
+        "z": 320
+      },
+      {
+        "id": "n5_5",
+        "x": 320,
+        "z": 320
+      },
+      {
+        "id": "n6_5",
+        "x": 384,
+        "z": 320
+      },
+      {
+        "id": "n7_5",
+        "x": 448,
+        "z": 320
+      },
+      {
+        "id": "n8_5",
+        "x": 512,
+        "z": 320
+      },
+      {
+        "id": "n0_6",
+        "x": 0,
+        "z": 384
+      },
+      {
+        "id": "n1_6",
+        "x": 64,
+        "z": 384
+      },
+      {
+        "id": "n2_6",
+        "x": 128,
+        "z": 384
+      },
+      {
+        "id": "n3_6",
+        "x": 192,
+        "z": 384
+      },
+      {
+        "id": "n4_6",
+        "x": 256,
+        "z": 384
+      },
+      {
+        "id": "n5_6",
+        "x": 320,
+        "z": 384
+      },
+      {
+        "id": "n6_6",
+        "x": 384,
+        "z": 384
+      },
+      {
+        "id": "n7_6",
+        "x": 448,
+        "z": 384
+      },
+      {
+        "id": "n8_6",
+        "x": 512,
+        "z": 384
+      },
+      {
+        "id": "n0_7",
+        "x": 0,
+        "z": 448
+      },
+      {
+        "id": "n1_7",
+        "x": 64,
+        "z": 448
+      },
+      {
+        "id": "n2_7",
+        "x": 128,
+        "z": 448
+      },
+      {
+        "id": "n3_7",
+        "x": 192,
+        "z": 448
+      },
+      {
+        "id": "n4_7",
+        "x": 256,
+        "z": 448
+      },
+      {
+        "id": "n5_7",
+        "x": 320,
+        "z": 448
+      },
+      {
+        "id": "n6_7",
+        "x": 384,
+        "z": 448
+      },
+      {
+        "id": "n7_7",
+        "x": 448,
+        "z": 448
+      },
+      {
+        "id": "n8_7",
+        "x": 512,
+        "z": 448
+      },
+      {
+        "id": "n0_8",
+        "x": 0,
+        "z": 512
+      },
+      {
+        "id": "n1_8",
+        "x": 64,
+        "z": 512
+      },
+      {
+        "id": "n2_8",
+        "x": 128,
+        "z": 512
+      },
+      {
+        "id": "n3_8",
+        "x": 192,
+        "z": 512
+      },
+      {
+        "id": "n4_8",
+        "x": 256,
+        "z": 512
+      },
+      {
+        "id": "n5_8",
+        "x": 320,
+        "z": 512
+      },
+      {
+        "id": "n6_8",
+        "x": 384,
+        "z": 512
+      },
+      {
+        "id": "n7_8",
+        "x": 448,
+        "z": 512
+      },
+      {
+        "id": "n8_8",
+        "x": 512,
+        "z": 512
+      }
+    ]
+  },
+  "seed": 239,
+  "spawn": [
+    256,
+    0,
+    256
+  ],
+  "traffic": 24,
+  "world_size": 512,
+  "zoning": [
+    {
+      "block": [
+        0,
+        0
+      ],
+      "district": "downtown",
+      "zone": "commercial"
+    },
+    {
+      "block": [
+        1,
+        0
+      ],
+      "district": "downtown",
+      "zone": "commercial"
+    },
+    {
+      "block": [
+        2,
+        0
+      ],
+      "district": "downtown",
+      "zone": "commercial"
+    },
+    {
+      "block": [
+        3,
+        0
+      ],
+      "district": "industrial",
+      "zone": "industrial"
+    },
+    {
+      "block": [
+        4,
+        0
+      ],
+      "district": "industrial",
+      "zone": "industrial"
+    },
+    {
+      "block": [
+        5,
+        0
+      ],
+      "district": "industrial",
+      "zone": "industrial"
+    },
+    {
+      "block": [
+        6,
+        0
+      ],
+      "district": "industrial",
+      "zone": "industrial"
+    },
+    {
+      "block": [
+        7,
+        0
+      ],
+      "district": "industrial",
+      "zone": "industrial"
+    },
+    {
+      "block": [
+        0,
+        1
+      ],
+      "district": "downtown",
+      "zone": "commercial"
+    },
+    {
+      "block": [
+        1,
+        1
+      ],
+      "district": "downtown",
+      "zone": "commercial"
+    },
+    {
+      "block": [
+        2,
+        1
+      ],
+      "district": "downtown",
+      "zone": "commercial"
+    },
+    {
+      "block": [
+        3,
+        1
+      ],
+      "district": "downtown",
+      "zone": "commercial"
+    },
+    {
+      "block": [
+        4,
+        1
+      ],
+      "district": "downtown",
+      "zone": "commercial"
+    },
+    {
+      "block": [
+        5,
+        1
+      ],
+      "district": "industrial",
+      "zone": "industrial"
+    },
+    {
+      "block": [
+        6,
+        1
+      ],
+      "district": "industrial",
+      "zone": "industrial"
+    },
+    {
+      "block": [
+        7,
+        1
+      ],
+      "district": "industrial",
+      "zone": "industrial"
+    },
+    {
+      "block": [
+        0,
+        2
+      ],
+      "district": "downtown",
+      "zone": "commercial"
+    },
+    {
+      "block": [
+        1,
+        2
+      ],
+      "district": "downtown",
+      "zone": "commercial"
+    },
+    {
+      "block": [
+        2,
+        2
+      ],
+      "district": "downtown",
+      "zone": "commercial"
+    },
+    {
+      "block": [
+        3,
+        2
+      ],
+      "district": "downtown",
+      "zone": "commercial"
+    },
+    {
+      "block": [
+        4,
+        2
+      ],
+      "district": "downtown",
+      "zone": "commercial"
+    },
+    {
+      "block": [
+        5,
+        2
+      ],
+      "district": "downtown",
+      "zone": "commercial"
+    },
+    {
+      "block": [
+        6,
+        2
+      ],
+      "district": "industrial",
+      "zone": "industrial"
+    },
+    {
+      "block": [
+        7,
+        2
+      ],
+      "district": "industrial",
+      "zone": "industrial"
+    },
+    {
+      "block": [
+        0,
+        3
+      ],
+      "district": "residential",
+      "zone": "residential"
+    },
+    {
+      "block": [
+        1,
+        3
+      ],
+      "district": "downtown",
+      "zone": "commercial"
+    },
+    {
+      "block": [
+        2,
+        3
+      ],
+      "district": "downtown",
+      "zone": "commercial"
+    },
+    {
+      "block": [
+        3,
+        3
+      ],
+      "district": "downtown",
+      "zone": "commercial"
+    },
+    {
+      "block": [
+        4,
+        3
+      ],
+      "district": "downtown",
+      "zone": "commercial"
+    },
+    {
+      "block": [
+        5,
+        3
+      ],
+      "district": "downtown",
+      "zone": "commercial"
+    },
+    {
+      "block": [
+        6,
+        3
+      ],
+      "district": "downtown",
+      "zone": "commercial"
+    },
+    {
+      "block": [
+        7,
+        3
+      ],
+      "district": "industrial",
+      "zone": "industrial"
+    },
+    {
+      "block": [
+        0,
+        4
+      ],
+      "district": "residential",
+      "zone": "residential"
+    },
+    {
+      "block": [
+        1,
+        4
+      ],
+      "district": "downtown",
+      "zone": "commercial"
+    },
+    {
+      "block": [
+        2,
+        4
+      ],
+      "district": "downtown",
+      "zone": "commercial"
+    },
+    {
+      "block": [
+        3,
+        4
+      ],
+      "district": "downtown",
+      "zone": "commercial"
+    },
+    {
+      "block": [
+        4,
+        4
+      ],
+      "district": "downtown",
+      "zone": "commercial"
+    },
+    {
+      "block": [
+        5,
+        4
+      ],
+      "district": "downtown",
+      "zone": "commercial"
+    },
+    {
+      "block": [
+        6,
+        4
+      ],
+      "district": "downtown",
+      "zone": "commercial"
+    },
+    {
+      "block": [
+        7,
+        4
+      ],
+      "district": "downtown",
+      "zone": "commercial"
+    },
+    {
+      "block": [
+        0,
+        5
+      ],
+      "district": "residential",
+      "zone": "residential"
+    },
+    {
+      "block": [
+        1,
+        5
+      ],
+      "district": "residential",
+      "zone": "residential"
+    },
+    {
+      "block": [
+        2,
+        5
+      ],
+      "district": "downtown",
+      "zone": "commercial"
+    },
+    {
+      "block": [
+        3,
+        5
+      ],
+      "district": "downtown",
+      "zone": "commercial"
+    },
+    {
+      "block": [
+        4,
+        5
+      ],
+      "district": "downtown",
+      "zone": "commercial"
+    },
+    {
+      "block": [
+        5,
+        5
+      ],
+      "district": "downtown",
+      "zone": "commercial"
+    },
+    {
+      "block": [
+        6,
+        5
+      ],
+      "district": "downtown",
+      "zone": "commercial"
+    },
+    {
+      "block": [
+        7,
+        5
+      ],
+      "district": "downtown",
+      "zone": "commercial"
+    },
+    {
+      "block": [
+        0,
+        6
+      ],
+      "district": "residential",
+      "zone": "residential"
+    },
+    {
+      "block": [
+        1,
+        6
+      ],
+      "district": "residential",
+      "zone": "residential"
+    },
+    {
+      "block": [
+        2,
+        6
+      ],
+      "district": "residential",
+      "zone": "residential"
+    },
+    {
+      "block": [
+        3,
+        6
+      ],
+      "district": "downtown",
+      "zone": "commercial"
+    },
+    {
+      "block": [
+        4,
+        6
+      ],
+      "district": "downtown",
+      "zone": "commercial"
+    },
+    {
+      "block": [
+        5,
+        6
+      ],
+      "district": "downtown",
+      "zone": "commercial"
+    },
+    {
+      "block": [
+        6,
+        6
+      ],
+      "district": "downtown",
+      "zone": "commercial"
+    },
+    {
+      "block": [
+        7,
+        6
+      ],
+      "district": "downtown",
+      "zone": "commercial"
+    },
+    {
+      "block": [
+        0,
+        7
+      ],
+      "district": "residential",
+      "zone": "residential"
+    },
+    {
+      "block": [
+        1,
+        7
+      ],
+      "district": "residential",
+      "zone": "residential"
+    },
+    {
+      "block": [
+        2,
+        7
+      ],
+      "district": "residential",
+      "zone": "residential"
+    },
+    {
+      "block": [
+        3,
+        7
+      ],
+      "district": "residential",
+      "zone": "residential"
+    },
+    {
+      "block": [
+        4,
+        7
+      ],
+      "district": "downtown",
+      "zone": "commercial"
+    },
+    {
+      "block": [
+        5,
+        7
+      ],
+      "district": "downtown",
+      "zone": "commercial"
+    },
+    {
+      "block": [
+        6,
+        7
+      ],
+      "district": "downtown",
+      "zone": "commercial"
+    },
+    {
+      "block": [
+        7,
+        7
+      ],
+      "district": "downtown",
+      "zone": "commercial"
+    }
+  ]
+}

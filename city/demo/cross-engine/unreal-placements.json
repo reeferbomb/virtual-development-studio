@@ -1,0 +1,2131 @@
+{
+  "schema": 1,
+  "coordinate_system": "Unreal left-handed, +X forward, +Y right, +Z up",
+  "units": "centimeters",
+  "pivot": "geometric center",
+  "placement_usage": "Use these transforms and full local sizes to reconstruct centered unit boxes. The GLB scene already contains its own placements.",
+  "conversion": "location = (-source.z, source.x, source.y) * 100; yaw = -source yaw",
+  "verification": "Placement conversion checked in Python; Unreal Editor import requires a local check.",
+  "actors": [
+    {
+      "name": "Building_00000_b0_0_0",
+      "kind": "building",
+      "source_id": "b0_0_0",
+      "location_cm": [
+        -2350.0,
+        2450.0,
+        700.0
+      ],
+      "size_cm": [
+        2900,
+        2500,
+        1400
+      ],
+      "rotation_deg": {
+        "pitch": 0,
+        "yaw": 0,
+        "roll": 0
+      }
+    },
+    {
+      "name": "Building_00001_b1_0_0",
+      "kind": "building",
+      "source_id": "b1_0_0",
+      "location_cm": [
+        -2500.0,
+        7400.0,
+        400.0
+      ],
+      "size_cm": [
+        2000,
+        2400,
+        800
+      ],
+      "rotation_deg": {
+        "pitch": 0,
+        "yaw": 0,
+        "roll": 0
+      }
+    },
+    {
+      "name": "Building_00002_b2_0_0",
+      "kind": "building",
+      "source_id": "b2_0_0",
+      "location_cm": [
+        -2450.0,
+        12200.0,
+        350.0
+      ],
+      "size_cm": [
+        2700,
+        2600,
+        700
+      ],
+      "rotation_deg": {
+        "pitch": 0,
+        "yaw": 0,
+        "roll": 0
+      }
+    },
+    {
+      "name": "Building_00003_b3_0_0",
+      "kind": "building",
+      "source_id": "b3_0_0",
+      "location_cm": [
+        -2200.0,
+        16000.0,
+        250.0
+      ],
+      "size_cm": [
+        2600,
+        1400,
+        500
+      ],
+      "rotation_deg": {
+        "pitch": 0,
+        "yaw": 0,
+        "roll": 0
+      }
+    },
+    {
+      "name": "Building_00004_b3_0_1",
+      "kind": "building",
+      "source_id": "b3_0_1",
+      "location_cm": [
+        -2400.0,
+        17550.0,
+        500.0
+      ],
+      "size_cm": [
+        3000,
+        1300,
+        1000
+      ],
+      "rotation_deg": {
+        "pitch": 0,
+        "yaw": 0,
+        "roll": 0
+      }
+    },
+    {
+      "name": "Building_00005_b0_1_0",
+      "kind": "building",
+      "source_id": "b0_1_0",
+      "location_cm": [
+        -7400.0,
+        1550.0,
+        400.0
+      ],
+      "size_cm": [
+        2600,
+        1300,
+        800
+      ],
+      "rotation_deg": {
+        "pitch": 0,
+        "yaw": 0,
+        "roll": 0
+      }
+    },
+    {
+      "name": "Building_00006_b0_1_1",
+      "kind": "building",
+      "source_id": "b0_1_1",
+      "location_cm": [
+        -7200.0,
+        3350.0,
+        850.0
+      ],
+      "size_cm": [
+        3000,
+        900,
+        1700
+      ],
+      "rotation_deg": {
+        "pitch": 0,
+        "yaw": 0,
+        "roll": 0
+      }
+    },
+    {
+      "name": "Building_00007_b1_1_0",
+      "kind": "building",
+      "source_id": "b1_1_0",
+      "location_cm": [
+        -6200.0,
+        7350.0,
+        1250.0
+      ],
+      "size_cm": [
+        1000,
+        2700,
+        2500
+      ],
+      "rotation_deg": {
+        "pitch": 0,
+        "yaw": 0,
+        "roll": 0
+      }
+    },
+    {
+      "name": "Building_00008_b1_1_1",
+      "kind": "building",
+      "source_id": "b1_1_1",
+      "location_cm": [
+        -7900.0,
+        6700.0,
+        900.0
+      ],
+      "size_cm": [
+        1200,
+        2000,
+        1800
+      ],
+      "rotation_deg": {
+        "pitch": 0,
+        "yaw": 0,
+        "roll": 0
+      }
+    },
+    {
+      "name": "Building_00009_b2_1_0",
+      "kind": "building",
+      "source_id": "b2_1_0",
+      "location_cm": [
+        -6450.0,
+        11000.0,
+        750.0
+      ],
+      "size_cm": [
+        1300,
+        1000,
+        1500
+      ],
+      "rotation_deg": {
+        "pitch": 0,
+        "yaw": 0,
+        "roll": 0
+      }
+    },
+    {
+      "name": "Building_00010_b2_1_1",
+      "kind": "building",
+      "source_id": "b2_1_1",
+      "location_cm": [
+        -7900.0,
+        11200.0,
+        700.0
+      ],
+      "size_cm": [
+        1200,
+        1400,
+        1400
+      ],
+      "rotation_deg": {
+        "pitch": 0,
+        "yaw": 0,
+        "roll": 0
+      }
+    },
+    {
+      "name": "Building_00011_b2_1_2",
+      "kind": "building",
+      "source_id": "b2_1_2",
+      "location_cm": [
+        -6450.0,
+        12800.0,
+        1250.0
+      ],
+      "size_cm": [
+        1100,
+        1400,
+        2500
+      ],
+      "rotation_deg": {
+        "pitch": 0,
+        "yaw": 0,
+        "roll": 0
+      }
+    },
+    {
+      "name": "Building_00012_b2_1_3",
+      "kind": "building",
+      "source_id": "b2_1_3",
+      "location_cm": [
+        -8050.0,
+        12950.0,
+        1750.0
+      ],
+      "size_cm": [
+        1300,
+        1100,
+        3500
+      ],
+      "rotation_deg": {
+        "pitch": 0,
+        "yaw": 0,
+        "roll": 0
+      }
+    },
+    {
+      "name": "Building_00013_b3_1_0",
+      "kind": "building",
+      "source_id": "b3_1_0",
+      "location_cm": [
+        -7200.0,
+        16700.0,
+        350.0
+      ],
+      "size_cm": [
+        3000,
+        2800,
+        700
+      ],
+      "rotation_deg": {
+        "pitch": 0,
+        "yaw": 0,
+        "roll": 0
+      }
+    },
+    {
+      "name": "Building_00014_b0_2_0",
+      "kind": "building",
+      "source_id": "b0_2_0",
+      "location_cm": [
+        -11950.0,
+        1350.0,
+        250.0
+      ],
+      "size_cm": [
+        2300,
+        900,
+        500
+      ],
+      "rotation_deg": {
+        "pitch": 0,
+        "yaw": 0,
+        "roll": 0
+      }
+    },
+    {
+      "name": "Building_00015_b0_2_1",
+      "kind": "building",
+      "source_id": "b0_2_1",
+      "location_cm": [
+        -12450.0,
+        3250.0,
+        450.0
+      ],
+      "size_cm": [
+        2100,
+        1300,
+        900
+      ],
+      "rotation_deg": {
+        "pitch": 0,
+        "yaw": 0,
+        "roll": 0
+      }
+    },
+    {
+      "name": "Building_00016_b1_2_0",
+      "kind": "building",
+      "source_id": "b1_2_0",
+      "location_cm": [
+        -11150.0,
+        7150.0,
+        1550.0
+      ],
+      "size_cm": [
+        1300,
+        2100,
+        3100
+      ],
+      "rotation_deg": {
+        "pitch": 0,
+        "yaw": 0,
+        "roll": 0
+      }
+    },
+    {
+      "name": "Building_00017_b1_2_1",
+      "kind": "building",
+      "source_id": "b1_2_1",
+      "location_cm": [
+        -12800.0,
+        7250.0,
+        850.0
+      ],
+      "size_cm": [
+        1000,
+        2300,
+        1700
+      ],
+      "rotation_deg": {
+        "pitch": 0,
+        "yaw": 0,
+        "roll": 0
+      }
+    },
+    {
+      "name": "Building_00018_b2_2_0",
+      "kind": "building",
+      "source_id": "b2_2_0",
+      "location_cm": [
+        -12000.0,
+        11350.0,
+        1950.0
+      ],
+      "size_cm": [
+        3000,
+        1100,
+        3900
+      ],
+      "rotation_deg": {
+        "pitch": 0,
+        "yaw": 0,
+        "roll": 0
+      }
+    },
+    {
+      "name": "Building_00019_b2_2_1",
+      "kind": "building",
+      "source_id": "b2_2_1",
+      "location_cm": [
+        -11750.0,
+        12650.0,
+        1000.0
+      ],
+      "size_cm": [
+        2300,
+        1100,
+        2000
+      ],
+      "rotation_deg": {
+        "pitch": 0,
+        "yaw": 0,
+        "roll": 0
+      }
+    },
+    {
+      "name": "Building_00020_b3_2_0",
+      "kind": "building",
+      "source_id": "b3_2_0",
+      "location_cm": [
+        -12100.0,
+        16850.0,
+        1200.0
+      ],
+      "size_cm": [
+        2800,
+        2100,
+        2400
+      ],
+      "rotation_deg": {
+        "pitch": 0,
+        "yaw": 0,
+        "roll": 0
+      }
+    },
+    {
+      "name": "Building_00021_b0_3_0",
+      "kind": "building",
+      "source_id": "b0_3_0",
+      "location_cm": [
+        -15900.0,
+        1700.0,
+        250.0
+      ],
+      "size_cm": [
+        1000,
+        1000,
+        500
+      ],
+      "rotation_deg": {
+        "pitch": 0,
+        "yaw": 0,
+        "roll": 0
+      }
+    },
+    {
+      "name": "Building_00022_b0_3_1",
+      "kind": "building",
+      "source_id": "b0_3_1",
+      "location_cm": [
+        -17400.0,
+        1650.0,
+        450.0
+      ],
+      "size_cm": [
+        1000,
+        1100,
+        900
+      ],
+      "rotation_deg": {
+        "pitch": 0,
+        "yaw": 0,
+        "roll": 0
+      }
+    },
+    {
+      "name": "Building_00023_b0_3_2",
+      "kind": "building",
+      "source_id": "b0_3_2",
+      "location_cm": [
+        -16150.0,
+        3050.0,
+        600.0
+      ],
+      "size_cm": [
+        1100,
+        1100,
+        1200
+      ],
+      "rotation_deg": {
+        "pitch": 0,
+        "yaw": 0,
+        "roll": 0
+      }
+    },
+    {
+      "name": "Building_00024_b0_3_3",
+      "kind": "building",
+      "source_id": "b0_3_3",
+      "location_cm": [
+        -17600.0,
+        3450.0,
+        600.0
+      ],
+      "size_cm": [
+        1400,
+        900,
+        1200
+      ],
+      "rotation_deg": {
+        "pitch": 0,
+        "yaw": 0,
+        "roll": 0
+      }
+    },
+    {
+      "name": "Building_00025_b1_3_0",
+      "kind": "building",
+      "source_id": "b1_3_0",
+      "location_cm": [
+        -15950.0,
+        6400.0,
+        350.0
+      ],
+      "size_cm": [
+        900,
+        1400,
+        700
+      ],
+      "rotation_deg": {
+        "pitch": 0,
+        "yaw": 0,
+        "roll": 0
+      }
+    },
+    {
+      "name": "Building_00026_b1_3_1",
+      "kind": "building",
+      "source_id": "b1_3_1",
+      "location_cm": [
+        -17650.0,
+        6550.0,
+        250.0
+      ],
+      "size_cm": [
+        1300,
+        1100,
+        500
+      ],
+      "rotation_deg": {
+        "pitch": 0,
+        "yaw": 0,
+        "roll": 0
+      }
+    },
+    {
+      "name": "Building_00027_b1_3_2",
+      "kind": "building",
+      "source_id": "b1_3_2",
+      "location_cm": [
+        -16250.0,
+        8100.0,
+        750.0
+      ],
+      "size_cm": [
+        900,
+        1000,
+        1500
+      ],
+      "rotation_deg": {
+        "pitch": 0,
+        "yaw": 0,
+        "roll": 0
+      }
+    },
+    {
+      "name": "Building_00028_b1_3_3",
+      "kind": "building",
+      "source_id": "b1_3_3",
+      "location_cm": [
+        -17600.0,
+        8000.0,
+        650.0
+      ],
+      "size_cm": [
+        1200,
+        1400,
+        1300
+      ],
+      "rotation_deg": {
+        "pitch": 0,
+        "yaw": 0,
+        "roll": 0
+      }
+    },
+    {
+      "name": "Building_00029_b2_3_0",
+      "kind": "building",
+      "source_id": "b2_3_0",
+      "location_cm": [
+        -16000.0,
+        12100.0,
+        1100.0
+      ],
+      "size_cm": [
+        1400,
+        2000,
+        2200
+      ],
+      "rotation_deg": {
+        "pitch": 0,
+        "yaw": 0,
+        "roll": 0
+      }
+    },
+    {
+      "name": "Building_00030_b2_3_1",
+      "kind": "building",
+      "source_id": "b2_3_1",
+      "location_cm": [
+        -17650.0,
+        11550.0,
+        2150.0
+      ],
+      "size_cm": [
+        1100,
+        2100,
+        4300
+      ],
+      "rotation_deg": {
+        "pitch": 0,
+        "yaw": 0,
+        "roll": 0
+      }
+    },
+    {
+      "name": "Building_00031_b3_3_0",
+      "kind": "building",
+      "source_id": "b3_3_0",
+      "location_cm": [
+        -16050.0,
+        15950.0,
+        1200.0
+      ],
+      "size_cm": [
+        1100,
+        1300,
+        2400
+      ],
+      "rotation_deg": {
+        "pitch": 0,
+        "yaw": 0,
+        "roll": 0
+      }
+    },
+    {
+      "name": "Building_00032_b3_3_1",
+      "kind": "building",
+      "source_id": "b3_3_1",
+      "location_cm": [
+        -17500.0,
+        16000.0,
+        900.0
+      ],
+      "size_cm": [
+        1000,
+        1400,
+        1800
+      ],
+      "rotation_deg": {
+        "pitch": 0,
+        "yaw": 0,
+        "roll": 0
+      }
+    },
+    {
+      "name": "Building_00033_b3_3_2",
+      "kind": "building",
+      "source_id": "b3_3_2",
+      "location_cm": [
+        -16200.0,
+        17700.0,
+        1250.0
+      ],
+      "size_cm": [
+        1000,
+        1000,
+        2500
+      ],
+      "rotation_deg": {
+        "pitch": 0,
+        "yaw": 0,
+        "roll": 0
+      }
+    },
+    {
+      "name": "Building_00034_b3_3_3",
+      "kind": "building",
+      "source_id": "b3_3_3",
+      "location_cm": [
+        -17650.0,
+        17600.0,
+        1500.0
+      ],
+      "size_cm": [
+        1300,
+        1000,
+        3000
+      ],
+      "rotation_deg": {
+        "pitch": 0,
+        "yaw": 0,
+        "roll": 0
+      }
+    },
+    {
+      "name": "Road_00000_n0_0_n1_0",
+      "kind": "road",
+      "source_id": [
+        "n0_0",
+        "n1_0"
+      ],
+      "location_cm": [
+        -0.0,
+        2400.0,
+        -6.25
+      ],
+      "size_cm": [
+        3600.0,
+        1200,
+        12.5
+      ],
+      "rotation_deg": {
+        "pitch": 0,
+        "yaw": -90.0,
+        "roll": 0
+      }
+    },
+    {
+      "name": "Road_00001_n0_0_n0_1",
+      "kind": "road",
+      "source_id": [
+        "n0_0",
+        "n0_1"
+      ],
+      "location_cm": [
+        -2400.0,
+        0.0,
+        -6.25
+      ],
+      "size_cm": [
+        3600.0,
+        1200,
+        12.5
+      ],
+      "rotation_deg": {
+        "pitch": 0,
+        "yaw": -0.0,
+        "roll": 0
+      }
+    },
+    {
+      "name": "Road_00002_n1_0_n2_0",
+      "kind": "road",
+      "source_id": [
+        "n1_0",
+        "n2_0"
+      ],
+      "location_cm": [
+        -0.0,
+        7200.0,
+        -6.25
+      ],
+      "size_cm": [
+        3600.0,
+        1200,
+        12.5
+      ],
+      "rotation_deg": {
+        "pitch": 0,
+        "yaw": -90.0,
+        "roll": 0
+      }
+    },
+    {
+      "name": "Road_00003_n1_0_n1_1",
+      "kind": "road",
+      "source_id": [
+        "n1_0",
+        "n1_1"
+      ],
+      "location_cm": [
+        -2400.0,
+        4800.0,
+        -6.25
+      ],
+      "size_cm": [
+        3600.0,
+        1200,
+        12.5
+      ],
+      "rotation_deg": {
+        "pitch": 0,
+        "yaw": -0.0,
+        "roll": 0
+      }
+    },
+    {
+      "name": "Road_00004_n2_0_n3_0",
+      "kind": "road",
+      "source_id": [
+        "n2_0",
+        "n3_0"
+      ],
+      "location_cm": [
+        -0.0,
+        12000.0,
+        -6.25
+      ],
+      "size_cm": [
+        3600.0,
+        1200,
+        12.5
+      ],
+      "rotation_deg": {
+        "pitch": 0,
+        "yaw": -90.0,
+        "roll": 0
+      }
+    },
+    {
+      "name": "Road_00005_n2_0_n2_1",
+      "kind": "road",
+      "source_id": [
+        "n2_0",
+        "n2_1"
+      ],
+      "location_cm": [
+        -2400.0,
+        9600.0,
+        -6.25
+      ],
+      "size_cm": [
+        3600.0,
+        1200,
+        12.5
+      ],
+      "rotation_deg": {
+        "pitch": 0,
+        "yaw": -0.0,
+        "roll": 0
+      }
+    },
+    {
+      "name": "Road_00006_n3_0_n4_0",
+      "kind": "road",
+      "source_id": [
+        "n3_0",
+        "n4_0"
+      ],
+      "location_cm": [
+        -0.0,
+        16800.0,
+        -6.25
+      ],
+      "size_cm": [
+        3600.0,
+        1200,
+        12.5
+      ],
+      "rotation_deg": {
+        "pitch": 0,
+        "yaw": -90.0,
+        "roll": 0
+      }
+    },
+    {
+      "name": "Road_00007_n3_0_n3_1",
+      "kind": "road",
+      "source_id": [
+        "n3_0",
+        "n3_1"
+      ],
+      "location_cm": [
+        -2400.0,
+        14400.0,
+        -6.25
+      ],
+      "size_cm": [
+        3600.0,
+        1200,
+        12.5
+      ],
+      "rotation_deg": {
+        "pitch": 0,
+        "yaw": -0.0,
+        "roll": 0
+      }
+    },
+    {
+      "name": "Road_00008_n4_0_n4_1",
+      "kind": "road",
+      "source_id": [
+        "n4_0",
+        "n4_1"
+      ],
+      "location_cm": [
+        -2400.0,
+        19200.0,
+        -6.25
+      ],
+      "size_cm": [
+        3600.0,
+        1200,
+        12.5
+      ],
+      "rotation_deg": {
+        "pitch": 0,
+        "yaw": -0.0,
+        "roll": 0
+      }
+    },
+    {
+      "name": "Road_00009_n0_1_n1_1",
+      "kind": "road",
+      "source_id": [
+        "n0_1",
+        "n1_1"
+      ],
+      "location_cm": [
+        -4800.0,
+        2400.0,
+        -6.25
+      ],
+      "size_cm": [
+        3600.0,
+        1200,
+        12.5
+      ],
+      "rotation_deg": {
+        "pitch": 0,
+        "yaw": -90.0,
+        "roll": 0
+      }
+    },
+    {
+      "name": "Road_00010_n0_1_n0_2",
+      "kind": "road",
+      "source_id": [
+        "n0_1",
+        "n0_2"
+      ],
+      "location_cm": [
+        -7200.0,
+        0.0,
+        -6.25
+      ],
+      "size_cm": [
+        3600.0,
+        1200,
+        12.5
+      ],
+      "rotation_deg": {
+        "pitch": 0,
+        "yaw": -0.0,
+        "roll": 0
+      }
+    },
+    {
+      "name": "Road_00011_n1_1_n2_1",
+      "kind": "road",
+      "source_id": [
+        "n1_1",
+        "n2_1"
+      ],
+      "location_cm": [
+        -4800.0,
+        7200.0,
+        -6.25
+      ],
+      "size_cm": [
+        3600.0,
+        1200,
+        12.5
+      ],
+      "rotation_deg": {
+        "pitch": 0,
+        "yaw": -90.0,
+        "roll": 0
+      }
+    },
+    {
+      "name": "Road_00012_n1_1_n1_2",
+      "kind": "road",
+      "source_id": [
+        "n1_1",
+        "n1_2"
+      ],
+      "location_cm": [
+        -7200.0,
+        4800.0,
+        -6.25
+      ],
+      "size_cm": [
+        3600.0,
+        1200,
+        12.5
+      ],
+      "rotation_deg": {
+        "pitch": 0,
+        "yaw": -0.0,
+        "roll": 0
+      }
+    },
+    {
+      "name": "Road_00013_n2_1_n3_1",
+      "kind": "road",
+      "source_id": [
+        "n2_1",
+        "n3_1"
+      ],
+      "location_cm": [
+        -4800.0,
+        12000.0,
+        -6.25
+      ],
+      "size_cm": [
+        3600.0,
+        1200,
+        12.5
+      ],
+      "rotation_deg": {
+        "pitch": 0,
+        "yaw": -90.0,
+        "roll": 0
+      }
+    },
+    {
+      "name": "Road_00014_n2_1_n2_2",
+      "kind": "road",
+      "source_id": [
+        "n2_1",
+        "n2_2"
+      ],
+      "location_cm": [
+        -7200.0,
+        9600.0,
+        -6.25
+      ],
+      "size_cm": [
+        3600.0,
+        1200,
+        12.5
+      ],
+      "rotation_deg": {
+        "pitch": 0,
+        "yaw": -0.0,
+        "roll": 0
+      }
+    },
+    {
+      "name": "Road_00015_n3_1_n4_1",
+      "kind": "road",
+      "source_id": [
+        "n3_1",
+        "n4_1"
+      ],
+      "location_cm": [
+        -4800.0,
+        16800.0,
+        -6.25
+      ],
+      "size_cm": [
+        3600.0,
+        1200,
+        12.5
+      ],
+      "rotation_deg": {
+        "pitch": 0,
+        "yaw": -90.0,
+        "roll": 0
+      }
+    },
+    {
+      "name": "Road_00016_n3_1_n3_2",
+      "kind": "road",
+      "source_id": [
+        "n3_1",
+        "n3_2"
+      ],
+      "location_cm": [
+        -7200.0,
+        14400.0,
+        -6.25
+      ],
+      "size_cm": [
+        3600.0,
+        1200,
+        12.5
+      ],
+      "rotation_deg": {
+        "pitch": 0,
+        "yaw": -0.0,
+        "roll": 0
+      }
+    },
+    {
+      "name": "Road_00017_n4_1_n4_2",
+      "kind": "road",
+      "source_id": [
+        "n4_1",
+        "n4_2"
+      ],
+      "location_cm": [
+        -7200.0,
+        19200.0,
+        -6.25
+      ],
+      "size_cm": [
+        3600.0,
+        1200,
+        12.5
+      ],
+      "rotation_deg": {
+        "pitch": 0,
+        "yaw": -0.0,
+        "roll": 0
+      }
+    },
+    {
+      "name": "Road_00018_n0_2_n1_2",
+      "kind": "road",
+      "source_id": [
+        "n0_2",
+        "n1_2"
+      ],
+      "location_cm": [
+        -9600.0,
+        2400.0,
+        -6.25
+      ],
+      "size_cm": [
+        3600.0,
+        1200,
+        12.5
+      ],
+      "rotation_deg": {
+        "pitch": 0,
+        "yaw": -90.0,
+        "roll": 0
+      }
+    },
+    {
+      "name": "Road_00019_n0_2_n0_3",
+      "kind": "road",
+      "source_id": [
+        "n0_2",
+        "n0_3"
+      ],
+      "location_cm": [
+        -12000.0,
+        0.0,
+        -6.25
+      ],
+      "size_cm": [
+        3600.0,
+        1200,
+        12.5
+      ],
+      "rotation_deg": {
+        "pitch": 0,
+        "yaw": -0.0,
+        "roll": 0
+      }
+    },
+    {
+      "name": "Road_00020_n1_2_n2_2",
+      "kind": "road",
+      "source_id": [
+        "n1_2",
+        "n2_2"
+      ],
+      "location_cm": [
+        -9600.0,
+        7200.0,
+        -6.25
+      ],
+      "size_cm": [
+        3600.0,
+        1200,
+        12.5
+      ],
+      "rotation_deg": {
+        "pitch": 0,
+        "yaw": -90.0,
+        "roll": 0
+      }
+    },
+    {
+      "name": "Road_00021_n1_2_n1_3",
+      "kind": "road",
+      "source_id": [
+        "n1_2",
+        "n1_3"
+      ],
+      "location_cm": [
+        -12000.0,
+        4800.0,
+        -6.25
+      ],
+      "size_cm": [
+        3600.0,
+        1200,
+        12.5
+      ],
+      "rotation_deg": {
+        "pitch": 0,
+        "yaw": -0.0,
+        "roll": 0
+      }
+    },
+    {
+      "name": "Road_00022_n2_2_n3_2",
+      "kind": "road",
+      "source_id": [
+        "n2_2",
+        "n3_2"
+      ],
+      "location_cm": [
+        -9600.0,
+        12000.0,
+        -6.25
+      ],
+      "size_cm": [
+        3600.0,
+        1200,
+        12.5
+      ],
+      "rotation_deg": {
+        "pitch": 0,
+        "yaw": -90.0,
+        "roll": 0
+      }
+    },
+    {
+      "name": "Road_00023_n2_2_n2_3",
+      "kind": "road",
+      "source_id": [
+        "n2_2",
+        "n2_3"
+      ],
+      "location_cm": [
+        -12000.0,
+        9600.0,
+        -6.25
+      ],
+      "size_cm": [
+        3600.0,
+        1200,
+        12.5
+      ],
+      "rotation_deg": {
+        "pitch": 0,
+        "yaw": -0.0,
+        "roll": 0
+      }
+    },
+    {
+      "name": "Road_00024_n3_2_n4_2",
+      "kind": "road",
+      "source_id": [
+        "n3_2",
+        "n4_2"
+      ],
+      "location_cm": [
+        -9600.0,
+        16800.0,
+        -6.25
+      ],
+      "size_cm": [
+        3600.0,
+        1200,
+        12.5
+      ],
+      "rotation_deg": {
+        "pitch": 0,
+        "yaw": -90.0,
+        "roll": 0
+      }
+    },
+    {
+      "name": "Road_00025_n3_2_n3_3",
+      "kind": "road",
+      "source_id": [
+        "n3_2",
+        "n3_3"
+      ],
+      "location_cm": [
+        -12000.0,
+        14400.0,
+        -6.25
+      ],
+      "size_cm": [
+        3600.0,
+        1200,
+        12.5
+      ],
+      "rotation_deg": {
+        "pitch": 0,
+        "yaw": -0.0,
+        "roll": 0
+      }
+    },
+    {
+      "name": "Road_00026_n4_2_n4_3",
+      "kind": "road",
+      "source_id": [
+        "n4_2",
+        "n4_3"
+      ],
+      "location_cm": [
+        -12000.0,
+        19200.0,
+        -6.25
+      ],
+      "size_cm": [
+        3600.0,
+        1200,
+        12.5
+      ],
+      "rotation_deg": {
+        "pitch": 0,
+        "yaw": -0.0,
+        "roll": 0
+      }
+    },
+    {
+      "name": "Road_00027_n0_3_n1_3",
+      "kind": "road",
+      "source_id": [
+        "n0_3",
+        "n1_3"
+      ],
+      "location_cm": [
+        -14400.0,
+        2400.0,
+        -6.25
+      ],
+      "size_cm": [
+        3600.0,
+        1200,
+        12.5
+      ],
+      "rotation_deg": {
+        "pitch": 0,
+        "yaw": -90.0,
+        "roll": 0
+      }
+    },
+    {
+      "name": "Road_00028_n0_3_n0_4",
+      "kind": "road",
+      "source_id": [
+        "n0_3",
+        "n0_4"
+      ],
+      "location_cm": [
+        -16800.0,
+        0.0,
+        -6.25
+      ],
+      "size_cm": [
+        3600.0,
+        1200,
+        12.5
+      ],
+      "rotation_deg": {
+        "pitch": 0,
+        "yaw": -0.0,
+        "roll": 0
+      }
+    },
+    {
+      "name": "Road_00029_n1_3_n2_3",
+      "kind": "road",
+      "source_id": [
+        "n1_3",
+        "n2_3"
+      ],
+      "location_cm": [
+        -14400.0,
+        7200.0,
+        -6.25
+      ],
+      "size_cm": [
+        3600.0,
+        1200,
+        12.5
+      ],
+      "rotation_deg": {
+        "pitch": 0,
+        "yaw": -90.0,
+        "roll": 0
+      }
+    },
+    {
+      "name": "Road_00030_n1_3_n1_4",
+      "kind": "road",
+      "source_id": [
+        "n1_3",
+        "n1_4"
+      ],
+      "location_cm": [
+        -16800.0,
+        4800.0,
+        -6.25
+      ],
+      "size_cm": [
+        3600.0,
+        1200,
+        12.5
+      ],
+      "rotation_deg": {
+        "pitch": 0,
+        "yaw": -0.0,
+        "roll": 0
+      }
+    },
+    {
+      "name": "Road_00031_n2_3_n3_3",
+      "kind": "road",
+      "source_id": [
+        "n2_3",
+        "n3_3"
+      ],
+      "location_cm": [
+        -14400.0,
+        12000.0,
+        -6.25
+      ],
+      "size_cm": [
+        3600.0,
+        1200,
+        12.5
+      ],
+      "rotation_deg": {
+        "pitch": 0,
+        "yaw": -90.0,
+        "roll": 0
+      }
+    },
+    {
+      "name": "Road_00032_n2_3_n2_4",
+      "kind": "road",
+      "source_id": [
+        "n2_3",
+        "n2_4"
+      ],
+      "location_cm": [
+        -16800.0,
+        9600.0,
+        -6.25
+      ],
+      "size_cm": [
+        3600.0,
+        1200,
+        12.5
+      ],
+      "rotation_deg": {
+        "pitch": 0,
+        "yaw": -0.0,
+        "roll": 0
+      }
+    },
+    {
+      "name": "Road_00033_n3_3_n4_3",
+      "kind": "road",
+      "source_id": [
+        "n3_3",
+        "n4_3"
+      ],
+      "location_cm": [
+        -14400.0,
+        16800.0,
+        -6.25
+      ],
+      "size_cm": [
+        3600.0,
+        1200,
+        12.5
+      ],
+      "rotation_deg": {
+        "pitch": 0,
+        "yaw": -90.0,
+        "roll": 0
+      }
+    },
+    {
+      "name": "Road_00034_n3_3_n3_4",
+      "kind": "road",
+      "source_id": [
+        "n3_3",
+        "n3_4"
+      ],
+      "location_cm": [
+        -16800.0,
+        14400.0,
+        -6.25
+      ],
+      "size_cm": [
+        3600.0,
+        1200,
+        12.5
+      ],
+      "rotation_deg": {
+        "pitch": 0,
+        "yaw": -0.0,
+        "roll": 0
+      }
+    },
+    {
+      "name": "Road_00035_n4_3_n4_4",
+      "kind": "road",
+      "source_id": [
+        "n4_3",
+        "n4_4"
+      ],
+      "location_cm": [
+        -16800.0,
+        19200.0,
+        -6.25
+      ],
+      "size_cm": [
+        3600.0,
+        1200,
+        12.5
+      ],
+      "rotation_deg": {
+        "pitch": 0,
+        "yaw": -0.0,
+        "roll": 0
+      }
+    },
+    {
+      "name": "Road_00036_n0_4_n1_4",
+      "kind": "road",
+      "source_id": [
+        "n0_4",
+        "n1_4"
+      ],
+      "location_cm": [
+        -19200.0,
+        2400.0,
+        -6.25
+      ],
+      "size_cm": [
+        3600.0,
+        1200,
+        12.5
+      ],
+      "rotation_deg": {
+        "pitch": 0,
+        "yaw": -90.0,
+        "roll": 0
+      }
+    },
+    {
+      "name": "Road_00037_n1_4_n2_4",
+      "kind": "road",
+      "source_id": [
+        "n1_4",
+        "n2_4"
+      ],
+      "location_cm": [
+        -19200.0,
+        7200.0,
+        -6.25
+      ],
+      "size_cm": [
+        3600.0,
+        1200,
+        12.5
+      ],
+      "rotation_deg": {
+        "pitch": 0,
+        "yaw": -90.0,
+        "roll": 0
+      }
+    },
+    {
+      "name": "Road_00038_n2_4_n3_4",
+      "kind": "road",
+      "source_id": [
+        "n2_4",
+        "n3_4"
+      ],
+      "location_cm": [
+        -19200.0,
+        12000.0,
+        -6.25
+      ],
+      "size_cm": [
+        3600.0,
+        1200,
+        12.5
+      ],
+      "rotation_deg": {
+        "pitch": 0,
+        "yaw": -90.0,
+        "roll": 0
+      }
+    },
+    {
+      "name": "Road_00039_n3_4_n4_4",
+      "kind": "road",
+      "source_id": [
+        "n3_4",
+        "n4_4"
+      ],
+      "location_cm": [
+        -19200.0,
+        16800.0,
+        -6.25
+      ],
+      "size_cm": [
+        3600.0,
+        1200,
+        12.5
+      ],
+      "rotation_deg": {
+        "pitch": 0,
+        "yaw": -90.0,
+        "roll": 0
+      }
+    },
+    {
+      "name": "Junction_00000_n0_0",
+      "kind": "junction",
+      "source_id": "n0_0",
+      "location_cm": [
+        0,
+        0,
+        -6.0
+      ],
+      "size_cm": [
+        1200,
+        1200,
+        13.0
+      ],
+      "rotation_deg": {
+        "pitch": 0,
+        "yaw": 0,
+        "roll": 0
+      }
+    },
+    {
+      "name": "Junction_00001_n1_0",
+      "kind": "junction",
+      "source_id": "n1_0",
+      "location_cm": [
+        0,
+        4800,
+        -6.0
+      ],
+      "size_cm": [
+        1200,
+        1200,
+        13.0
+      ],
+      "rotation_deg": {
+        "pitch": 0,
+        "yaw": 0,
+        "roll": 0
+      }
+    },
+    {
+      "name": "Junction_00002_n2_0",
+      "kind": "junction",
+      "source_id": "n2_0",
+      "location_cm": [
+        0,
+        9600,
+        -6.0
+      ],
+      "size_cm": [
+        1200,
+        1200,
+        13.0
+      ],
+      "rotation_deg": {
+        "pitch": 0,
+        "yaw": 0,
+        "roll": 0
+      }
+    },
+    {
+      "name": "Junction_00003_n3_0",
+      "kind": "junction",
+      "source_id": "n3_0",
+      "location_cm": [
+        0,
+        14400,
+        -6.0
+      ],
+      "size_cm": [
+        1200,
+        1200,
+        13.0
+      ],
+      "rotation_deg": {
+        "pitch": 0,
+        "yaw": 0,
+        "roll": 0
+      }
+    },
+    {
+      "name": "Junction_00004_n4_0",
+      "kind": "junction",
+      "source_id": "n4_0",
+      "location_cm": [
+        0,
+        19200,
+        -6.0
+      ],
+      "size_cm": [
+        1200,
+        1200,
+        13.0
+      ],
+      "rotation_deg": {
+        "pitch": 0,
+        "yaw": 0,
+        "roll": 0
+      }
+    },
+    {
+      "name": "Junction_00005_n0_1",
+      "kind": "junction",
+      "source_id": "n0_1",
+      "location_cm": [
+        -4800,
+        0,
+        -6.0
+      ],
+      "size_cm": [
+        1200,
+        1200,
+        13.0
+      ],
+      "rotation_deg": {
+        "pitch": 0,
+        "yaw": 0,
+        "roll": 0
+      }
+    },
+    {
+      "name": "Junction_00006_n1_1",
+      "kind": "junction",
+      "source_id": "n1_1",
+      "location_cm": [
+        -4800,
+        4800,
+        -6.0
+      ],
+      "size_cm": [
+        1200,
+        1200,
+        13.0
+      ],
+      "rotation_deg": {
+        "pitch": 0,
+        "yaw": 0,
+        "roll": 0
+      }
+    },
+    {
+      "name": "Junction_00007_n2_1",
+      "kind": "junction",
+      "source_id": "n2_1",
+      "location_cm": [
+        -4800,
+        9600,
+        -6.0
+      ],
+      "size_cm": [
+        1200,
+        1200,
+        13.0
+      ],
+      "rotation_deg": {
+        "pitch": 0,
+        "yaw": 0,
+        "roll": 0
+      }
+    },
+    {
+      "name": "Junction_00008_n3_1",
+      "kind": "junction",
+      "source_id": "n3_1",
+      "location_cm": [
+        -4800,
+        14400,
+        -6.0
+      ],
+      "size_cm": [
+        1200,
+        1200,
+        13.0
+      ],
+      "rotation_deg": {
+        "pitch": 0,
+        "yaw": 0,
+        "roll": 0
+      }
+    },
+    {
+      "name": "Junction_00009_n4_1",
+      "kind": "junction",
+      "source_id": "n4_1",
+      "location_cm": [
+        -4800,
+        19200,
+        -6.0
+      ],
+      "size_cm": [
+        1200,
+        1200,
+        13.0
+      ],
+      "rotation_deg": {
+        "pitch": 0,
+        "yaw": 0,
+        "roll": 0
+      }
+    },
+    {
+      "name": "Junction_00010_n0_2",
+      "kind": "junction",
+      "source_id": "n0_2",
+      "location_cm": [
+        -9600,
+        0,
+        -6.0
+      ],
+      "size_cm": [
+        1200,
+        1200,
+        13.0
+      ],
+      "rotation_deg": {
+        "pitch": 0,
+        "yaw": 0,
+        "roll": 0
+      }
+    },
+    {
+      "name": "Junction_00011_n1_2",
+      "kind": "junction",
+      "source_id": "n1_2",
+      "location_cm": [
+        -9600,
+        4800,
+        -6.0
+      ],
+      "size_cm": [
+        1200,
+        1200,
+        13.0
+      ],
+      "rotation_deg": {
+        "pitch": 0,
+        "yaw": 0,
+        "roll": 0
+      }
+    },
+    {
+      "name": "Junction_00012_n2_2",
+      "kind": "junction",
+      "source_id": "n2_2",
+      "location_cm": [
+        -9600,
+        9600,
+        -6.0
+      ],
+      "size_cm": [
+        1200,
+        1200,
+        13.0
+      ],
+      "rotation_deg": {
+        "pitch": 0,
+        "yaw": 0,
+        "roll": 0
+      }
+    },
+    {
+      "name": "Junction_00013_n3_2",
+      "kind": "junction",
+      "source_id": "n3_2",
+      "location_cm": [
+        -9600,
+        14400,
+        -6.0
+      ],
+      "size_cm": [
+        1200,
+        1200,
+        13.0
+      ],
+      "rotation_deg": {
+        "pitch": 0,
+        "yaw": 0,
+        "roll": 0
+      }
+    },
+    {
+      "name": "Junction_00014_n4_2",
+      "kind": "junction",
+      "source_id": "n4_2",
+      "location_cm": [
+        -9600,
+        19200,
+        -6.0
+      ],
+      "size_cm": [
+        1200,
+        1200,
+        13.0
+      ],
+      "rotation_deg": {
+        "pitch": 0,
+        "yaw": 0,
+        "roll": 0
+      }
+    },
+    {
+      "name": "Junction_00015_n0_3",
+      "kind": "junction",
+      "source_id": "n0_3",
+      "location_cm": [
+        -14400,
+        0,
+        -6.0
+      ],
+      "size_cm": [
+        1200,
+        1200,
+        13.0
+      ],
+      "rotation_deg": {
+        "pitch": 0,
+        "yaw": 0,
+        "roll": 0
+      }
+    },
+    {
+      "name": "Junction_00016_n1_3",
+      "kind": "junction",
+      "source_id": "n1_3",
+      "location_cm": [
+        -14400,
+        4800,
+        -6.0
+      ],
+      "size_cm": [
+        1200,
+        1200,
+        13.0
+      ],
+      "rotation_deg": {
+        "pitch": 0,
+        "yaw": 0,
+        "roll": 0
+      }
+    },
+    {
+      "name": "Junction_00017_n2_3",
+      "kind": "junction",
+      "source_id": "n2_3",
+      "location_cm": [
+        -14400,
+        9600,
+        -6.0
+      ],
+      "size_cm": [
+        1200,
+        1200,
+        13.0
+      ],
+      "rotation_deg": {
+        "pitch": 0,
+        "yaw": 0,
+        "roll": 0
+      }
+    },
+    {
+      "name": "Junction_00018_n3_3",
+      "kind": "junction",
+      "source_id": "n3_3",
+      "location_cm": [
+        -14400,
+        14400,
+        -6.0
+      ],
+      "size_cm": [
+        1200,
+        1200,
+        13.0
+      ],
+      "rotation_deg": {
+        "pitch": 0,
+        "yaw": 0,
+        "roll": 0
+      }
+    },
+    {
+      "name": "Junction_00019_n4_3",
+      "kind": "junction",
+      "source_id": "n4_3",
+      "location_cm": [
+        -14400,
+        19200,
+        -6.0
+      ],
+      "size_cm": [
+        1200,
+        1200,
+        13.0
+      ],
+      "rotation_deg": {
+        "pitch": 0,
+        "yaw": 0,
+        "roll": 0
+      }
+    },
+    {
+      "name": "Junction_00020_n0_4",
+      "kind": "junction",
+      "source_id": "n0_4",
+      "location_cm": [
+        -19200,
+        0,
+        -6.0
+      ],
+      "size_cm": [
+        1200,
+        1200,
+        13.0
+      ],
+      "rotation_deg": {
+        "pitch": 0,
+        "yaw": 0,
+        "roll": 0
+      }
+    },
+    {
+      "name": "Junction_00021_n1_4",
+      "kind": "junction",
+      "source_id": "n1_4",
+      "location_cm": [
+        -19200,
+        4800,
+        -6.0
+      ],
+      "size_cm": [
+        1200,
+        1200,
+        13.0
+      ],
+      "rotation_deg": {
+        "pitch": 0,
+        "yaw": 0,
+        "roll": 0
+      }
+    },
+    {
+      "name": "Junction_00022_n2_4",
+      "kind": "junction",
+      "source_id": "n2_4",
+      "location_cm": [
+        -19200,
+        9600,
+        -6.0
+      ],
+      "size_cm": [
+        1200,
+        1200,
+        13.0
+      ],
+      "rotation_deg": {
+        "pitch": 0,
+        "yaw": 0,
+        "roll": 0
+      }
+    },
+    {
+      "name": "Junction_00023_n3_4",
+      "kind": "junction",
+      "source_id": "n3_4",
+      "location_cm": [
+        -19200,
+        14400,
+        -6.0
+      ],
+      "size_cm": [
+        1200,
+        1200,
+        13.0
+      ],
+      "rotation_deg": {
+        "pitch": 0,
+        "yaw": 0,
+        "roll": 0
+      }
+    },
+    {
+      "name": "Junction_00024_n4_4",
+      "kind": "junction",
+      "source_id": "n4_4",
+      "location_cm": [
+        -19200,
+        19200,
+        -6.0
+      ],
+      "size_cm": [
+        1200,
+        1200,
+        13.0
+      ],
+      "rotation_deg": {
+        "pitch": 0,
+        "yaw": 0,
+        "roll": 0
+      }
+    }
+  ]
+}

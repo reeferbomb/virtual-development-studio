@@ -1,0 +1,32 @@
+socket(): Operation not permitted
+socket(): Operation not permitted
+Info: Saved as "industrial_barrel.blend"
+INFO Draco is available, use library at /workspace/blender-tools/blender-5.2.4-linux-x64/lib/libbf_intern_draco_bridge.so
+INFO MeshOptimizer is available, use library at /workspace/blender-tools/blender-5.2.4-linux-x64/lib/libbf_intern_meshopt_bridge.so
+02:02:56 | INFO: Starting glTF 2.0 export
+02:02:56 | INFO: Extracting primitive: industrial_barrel.band0
+02:02:57 | INFO: Primitives created: 1
+02:02:57 | INFO: Extracting primitive: industrial_barrel.band1
+02:02:57 | INFO: Primitives created: 1
+02:02:57 | INFO: Extracting primitive: industrial_barrel.bung
+02:02:57 | INFO: Primitives created: 1
+02:02:57 | INFO: Extracting primitive: industrial_barrel.bung-seat
+02:02:57 | INFO: Primitives created: 1
+02:02:57 | INFO: Extracting primitive: industrial_barrel.drum
+02:02:57 | INFO: Primitives created: 1
+02:02:57 | INFO: Extracting primitive: industrial_barrel.hoop0
+02:02:57 | INFO: Primitives created: 1
+02:02:57 | INFO: Extracting primitive: industrial_barrel.hoop1
+02:02:57 | INFO: Primitives created: 1
+02:02:57 | INFO: Extracting primitive: industrial_barrel.hoop2
+02:02:57 | INFO: Primitives created: 1
+02:02:57 | INFO: Extracting primitive: industrial_barrel.hoop3
+02:02:57 | INFO: Primitives created: 1
+02:02:57 | INFO: Extracting primitive: industrial_barrel.lid
+02:02:57 | INFO: Primitives created: 1
+02:02:57 | INFO: Finished glTF 2.0 export in 0.038045406341552734 s
+
+FACTORY_EXPORT_PASS industrial_barrel
+Blender 5.2.4 LTS (hash cd5dc428cce1 built 2026-11-10 01:31:47)
+
+Blender quit

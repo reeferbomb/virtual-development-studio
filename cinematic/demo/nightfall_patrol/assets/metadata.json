@@ -1,0 +1,33 @@
+{
+  "seed": 74119,
+  "sample_rate": 22050,
+  "channels": 1,
+  "format": "PCM_S16LE",
+  "provenance": "Original procedural synthesis. No external samples.",
+  "sounds": {
+    "ambience": {
+      "file": "ambience.wav",
+      "duration": 5.0,
+      "peak": 0.44512939453125,
+      "rms": 0.13507040428558414,
+      "loop": true,
+      "sha256": "05d686f0a75a74bbc39a6b5c67fe46856c626aefdb64e4937c81e70c545cdbe8"
+    },
+    "footstep": {
+      "file": "footstep.wav",
+      "duration": 0.42,
+      "peak": 0.634185791015625,
+      "rms": 0.08888026806645531,
+      "loop": false,
+      "sha256": "3f7ec76f3b891ad8061a93647aa5c5be72b78a6e1abdeb67ba89501f3774997c"
+    },
+    "thunder": {
+      "file": "thunder.wav",
+      "duration": 3.0,
+      "peak": 0.673004150390625,
+      "rms": 0.07841442138011308,
+      "loop": false,
+      "sha256": "9f3ce62602840e68641f47eeb8468fa24e22a1913076006251724819120d6cd9"
+    }
+  }
+}

@@ -1,0 +1,156 @@
+{
+  "asset_batch_sha256": "2beb265845d4d4c5f3b5a76bf82c18eaf2c3b40bee2cd4ae5a420fd447fa5cc8",
+  "date": "2026-11-20T08:09:03.492708+00:00",
+  "files": [
+    {
+      "bytes": 92416,
+      "path": "assets/industrial_barrel.glb",
+      "sha256": "881ae841211143ccfd00ce9d4586d32f748feb3d20a2794bb4cb7b5aaa84b3eb"
+    },
+    {
+      "bytes": 1173,
+      "path": "assets/industrial_barrel.glb.import",
+      "sha256": "c5abbd3f847a4c69ba7c8ac3af079a31e1e7a4e3e235072fec32387c79d11888"
+    },
+    {
+      "bytes": 695,
+      "path": "assets/provenance.json",
+      "sha256": "98ed643e59dcd935fa723cac59e716eddaa21b6312d5beac0b215fe0a330fe55"
+    },
+    {
+      "bytes": 63344,
+      "path": "assets/road_barricade.glb",
+      "sha256": "c89c9433e6fdfacf1137d960e19d527a0b0bf6ee51b4b12aed4fcbe7f4abe728"
+    },
+    {
+      "bytes": 1164,
+      "path": "assets/road_barricade.glb.import",
+      "sha256": "b17a8dcd8f88505490c0fc732d293f1520bd657827617dfdae92289bf9397cba"
+    },
+    {
+      "bytes": 70108,
+      "path": "assets/supply_crate.glb",
+      "sha256": "5c18d05fc15645860b9dedd1b43002af39882fcebb678af5d68d12adad7533f1"
+    },
+    {
+      "bytes": 1157,
+      "path": "assets/supply_crate.glb.import",
+      "sha256": "fa38eb31c22b50fa0289f2af5057d61cc939a1e3eed00c1e60f31dcb00a65013"
+    },
+    {
+      "bytes": 1072,
+      "path": "bake.gd",
+      "sha256": "a7dba8ab1ee732f02345ac0416418f7834725c686588ac4290e2296719d9b9c4"
+    },
+    {
+      "bytes": 20,
+      "path": "bake.gd.uid",
+      "sha256": "217eacd1ca5d3cfbbd7d9ee3bddd75dcdc70179a06b3ebedfb8570c6f41354a5"
+    },
+    {
+      "bytes": 7345,
+      "path": "level.json",
+      "sha256": "99b986c2b3a330a540235cea60bae6f97081c4bf7290226471a3398931bf69c6"
+    },
+    {
+      "bytes": 1741,
+      "path": "main.gd",
+      "sha256": "c38fc6930e7003a7575e842c09f3d995fd9d060e76c2502eb87178bb16f0f383"
+    },
+    {
+      "bytes": 19,
+      "path": "main.gd.uid",
+      "sha256": "476c8001b6d3ca267b65f04cdb3f88390d114b337a5ac2642bee6ff512ebcafc"
+    },
+    {
+      "bytes": 160,
+      "path": "main.tscn",
+      "sha256": "297f805a778b6d6a7bcd41fa7926a5d735e353abf5a85e7a62912f32841d7772"
+    },
+    {
+      "bytes": 2959,
+      "path": "player.gd",
+      "sha256": "8c472548f5ead42e6cc8bc5d79ddf4f441d98e831281d4aa323ed589e45b85b9"
+    },
+    {
+      "bytes": 19,
+      "path": "player.gd.uid",
+      "sha256": "4a59b3582df4dfc700f291ca2494c0f1ef6803e4164124803adeebeb5fadd00c"
+    },
+    {
+      "bytes": 296,
+      "path": "project.godot",
+      "sha256": "a19601da47ae6860da2db74567d49579ca553a8f4e24eb8caadbbfcbf8c56c7e"
+    },
+    {
+      "bytes": 7054,
+      "path": "qa.gd",
+      "sha256": "b7f80460e5083a0e72039b448114fd9de3ee3f2e2edb16725a153b7f7091b42a"
+    },
+    {
+      "bytes": 20,
+      "path": "qa.gd.uid",
+      "sha256": "5baf756d1489011911dd8ccf4871a5b64e5778b97e1f99cd93d82cc5aa0af5c5"
+    },
+    {
+      "bytes": 96,
+      "path": "reports/bake.log",
+      "sha256": "0ae29c940b2e8c446a8724b9b9a39c2c316e361fc61a3f633864ea74396600e7"
+    },
+    {
+      "bytes": 3657,
+      "path": "reports/import.log",
+      "sha256": "7e027a33818ba0246ae66b4837bd7407082e6199a5f51586c9457714a39ebbde"
+    },
+    {
+      "bytes": 92,
+      "path": "reports/launch.log",
+      "sha256": "866332eb79bed68bf725f4135cb8a599a6aad9188a64e01f213c013bce8955dc"
+    },
+    {
+      "bytes": 343,
+      "path": "reports/route-qa.json",
+      "sha256": "163b888a900b2af40472b29315663958f794ababc6335fc8c7bb3139f1793809"
+    },
+    {
+      "bytes": 410,
+      "path": "reports/route-qa.log",
+      "sha256": "5691df16bec877818a952731276047bbdaae22e82ef6a28ae6f80e614d3ece78"
+    },
+    {
+      "bytes": 193,
+      "path": "route.json",
+      "sha256": "49749fe4580aa9e909c0a1928204cddc3edf42646734500af075554db9680316"
+    },
+    {
+      "bytes": 2285,
+      "path": "route_qa.gd",
+      "sha256": "59845436e6b8e2fc8f4960a78b800d7bd456b909f77b58f4aa2e64f8069cee02"
+    },
+    {
+      "bytes": 20,
+      "path": "route_qa.gd.uid",
+      "sha256": "43f72367b54c71e02b461dd84d81b7d3275a998ab198446c2d611e5dd669d75b"
+    },
+    {
+      "bytes": 322257,
+      "path": "world.tscn",
+      "sha256": "ff710ae7ac7831aa1bbdd8fd201b57314834d6f4aa22883b44db1a6e9e378649"
+    },
+    {
+      "bytes": 5877,
+      "path": "world_builder.gd",
+      "sha256": "4d466b0e941cdf42aadea41db3e89944b713f1494b314bb25cea098177dff213"
+    },
+    {
+      "bytes": 20,
+      "path": "world_builder.gd.uid",
+      "sha256": "5e41a5891466b78173654a3be9157c30d6868888d9d291ab41added4b33c3a22"
+    }
+  ],
+  "gameplay_qa": null,
+  "level": "procedural_238",
+  "schema": 1,
+  "status": "passed",
+  "validation": "headless baked scene and launch + physical route QA"
+}

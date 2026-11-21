@@ -1,0 +1,21 @@
+{
+  "seed": 237,
+  "mesh_count": 17,
+  "materials": [
+    "Bronze",
+    "Canopy",
+    "Iron",
+    "Lane paint",
+    "Limestone",
+    "Oxide brick",
+    "Pavement",
+    "Petrol plaster",
+    "Porcelain",
+    "Slate blue",
+    "Wet asphalt",
+    "Window amber",
+    "Window dark",
+    "Window honey"
+  ],
+  "triangles": 9588
+}

@@ -1,0 +1,3 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+PASS street vehicle {"checkpoint_replay":true,"driver_sync":true,"reverse_and_braking":true,"safe_doors":true,"speed_peak":16.0,"swept_collision":true}

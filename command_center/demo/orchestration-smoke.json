@@ -1,0 +1,49 @@
+{
+  "status": "passed",
+  "portfolio": {
+    "winning_project": "portfolio-beta",
+    "roles_after_claim": [
+      "verification"
+    ],
+    "recovered_project": "portfolio-alpha",
+    "dispatch_identity_verified": true
+  },
+  "queue": {
+    "queued_priorities": [
+      5,
+      4,
+      1
+    ],
+    "completion_order": [
+      5,
+      4,
+      1
+    ],
+    "canceled": 1,
+    "passed": 4,
+    "retry_links_source": true,
+    "fixture": "Controlled lightweight builder"
+  },
+  "release": {
+    "job_id": "24fd99eab3f041f380ba0d19d830a541",
+    "job_status": "passed",
+    "priority": 5,
+    "commands": [
+      {
+        "stage": "build",
+        "exit_code": 0
+      },
+      {
+        "stage": "verify",
+        "exit_code": 0
+      }
+    ],
+    "release_id": "20560a34ca9561369beb1ca39efca3ef",
+    "manifest_sha256": "ae8d9ec5f3b37bb1c5c85054b5c2e0d9ac32bef01f7f1791e3a6d22460aa9d92",
+    "restored_release_state": "current",
+    "tampered_release_state": "invalid",
+    "edited_release_state": "stale",
+    "foreign_promotion_rejected": true,
+    "revision_conflict_rejected": true
+  }
+}

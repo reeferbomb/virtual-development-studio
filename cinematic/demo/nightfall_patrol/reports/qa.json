@@ -1,0 +1,60 @@
+{
+  "checks": [
+    {
+      "detail": "",
+      "name": "Imported city",
+      "status": "passed"
+    },
+    {
+      "detail": "16",
+      "name": "Imported skeleton",
+      "status": "passed"
+    },
+    {
+      "detail": "[\"Aim\", \"Crouch\", \"Idle\", \"Reload\", \"Run\", \"Walk\"]",
+      "name": "Animation library",
+      "status": "passed"
+    },
+    {
+      "detail": "",
+      "name": "Animated bone motion",
+      "status": "passed"
+    },
+    {
+      "detail": "",
+      "name": "Camera dolly",
+      "status": "passed"
+    },
+    {
+      "detail": "",
+      "name": "Actor blocking",
+      "status": "passed"
+    },
+    {
+      "detail": "",
+      "name": "Shot cut",
+      "status": "passed"
+    },
+    {
+      "detail": "",
+      "name": "Weather transition",
+      "status": "passed"
+    },
+    {
+      "detail": "",
+      "name": "Spatial sound",
+      "status": "passed"
+    },
+    {
+      "detail": "",
+      "name": "Timeline end",
+      "status": "passed"
+    },
+    {
+      "detail": "",
+      "name": "Timeline rewind",
+      "status": "passed"
+    }
+  ],
+  "pass": true
+}

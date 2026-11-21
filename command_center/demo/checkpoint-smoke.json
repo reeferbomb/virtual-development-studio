@@ -1,0 +1,18 @@
+{
+  "status": "passed",
+  "project_id": "checkpoint-smoke-yard",
+  "initial_state": "empty",
+  "saved_revision": 1,
+  "restored_revision": 1,
+  "recorded_active_seconds": 360,
+  "remaining_seconds_after_restart": 17640,
+  "revision_conflict_status": 409,
+  "changed_spec_state": "stale",
+  "remaining_seconds_for_changed_spec": null,
+  "stale_write_status": 409,
+  "reset_revision": 2,
+  "reset_remaining_seconds": 18000,
+  "completed_revision": 3,
+  "new_run_revision": 4,
+  "new_run_remaining_seconds": 18000
+}

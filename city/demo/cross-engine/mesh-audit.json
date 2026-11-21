@@ -1,0 +1,18 @@
+{
+  "passed": true,
+  "format": "glTF 2.0 binary",
+  "mesh_instances": 100,
+  "unique_meshes": 37,
+  "triangles": 1200,
+  "bytes": 54592,
+  "sha256": "a1275810c9865cced35272b0c8f970d5652f49a0786f72228edeed853912dbe8",
+  "checks": [
+    "scene membership",
+    "unique object names",
+    "placement transforms",
+    "triangle index bounds",
+    "closed mesh topology and winding",
+    "dimensions from binary vertices",
+    "centered pivots"
+  ]
+}

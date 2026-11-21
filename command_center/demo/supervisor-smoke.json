@@ -1,0 +1,22 @@
+{
+  "status": "passed",
+  "defects": {
+    "initial_status": "pending",
+    "blocked_status": "blocked",
+    "restored_status": "resolved",
+    "historical_resolved": 1,
+    "cas_conflict_rejected": true,
+    "historical_mutation_rejected": true
+  },
+  "verified_build": {
+    "job_id": "2dc0313ca12d4e9d9e0736aaef18753c",
+    "build_check": "pass",
+    "release_check": "pass",
+    "tampered_status": "blocked",
+    "edited_build_check": "pending",
+    "build_seconds": 5.734,
+    "verify_seconds": 0.068,
+    "queue_seconds": 0.001376,
+    "regression": null
+  }
+}

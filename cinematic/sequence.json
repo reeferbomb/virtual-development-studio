@@ -1,0 +1,9 @@
+{
+  "id":"nightfall_patrol",
+  "seed":237,
+  "shots":[
+    {"id":"establish", "duration":4, "camera_from":[2.5,3.8,12], "camera_to":[1.8,2.8,8], "look_from":[0,1,2], "look_to":[0,1,0], "actor_from":[0,0,4], "actor_to":[0,0,0], "clip":"Walk", "fov":65, "rain":0.0, "light":0.75},
+    {"id":"alert", "duration":3, "camera_from":[2.5,1.7,4], "camera_to":[1.6,1.7,3], "look_from":[0,1.1,0], "look_to":[0,1.25,0], "actor_from":[0,0,0], "actor_to":[0,0,0], "clip":"Aim", "fov":48, "rain":0.2, "light":0.5},
+    {"id":"storm", "duration":3, "camera_from":[-2.2,2.0,3], "camera_to":[-2.5,2.5,5], "look_from":[0,1.1,0], "look_to":[0,1.0,0], "actor_from":[0,0,0], "actor_to":[0,0,0], "clip":"Reload", "fov":52, "rain":1.0, "light":0.25}
+  ]
+}

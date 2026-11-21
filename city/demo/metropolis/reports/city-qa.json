@@ -1,0 +1,121 @@
+{
+  "checks": [
+    {
+      "detail": "Actual generated project",
+      "name": "Import city scene",
+      "status": "passed"
+    },
+    {
+      "detail": "All city modules ready; actual collision ground",
+      "name": "Initialize physical city",
+      "status": "passed"
+    },
+    {
+      "detail": "Four-by-four generated blocks",
+      "name": "Default city scale and occupancy",
+      "status": "passed"
+    },
+    {
+      "detail": "Exact configured active simulation counts",
+      "name": "Spawn traffic and population",
+      "status": "passed"
+    },
+    {
+      "detail": "Measured distance and signal stops",
+      "name": "Traffic progresses on lanes",
+      "status": "passed"
+    },
+    {
+      "detail": "Clock and actual pedestrian positions advance",
+      "name": "Civilian schedule advances",
+      "status": "passed"
+    },
+    {
+      "detail": "Each intersection has a controlled signal",
+      "name": "Traffic lights present",
+      "status": "passed"
+    },
+    {
+      "detail": "Traversed all district markers using connected roads",
+      "name": "Walk complete district tour",
+      "status": "passed"
+    },
+    {
+      "detail": "Physical route approaches building",
+      "name": "Reach facade from street",
+      "status": "passed"
+    },
+    {
+      "detail": "Actual physics ray hits facade",
+      "name": "Collision-backed building",
+      "status": "passed"
+    },
+    {
+      "detail": "Character body stops at solid geometry",
+      "name": "Player cannot walk through facade",
+      "status": "passed"
+    },
+    {
+      "detail": "Player can leave blocked route",
+      "name": "Return to public street",
+      "status": "passed"
+    },
+    {
+      "detail": "Checksummed state includes traffic, population and tour",
+      "name": "Save city checkpoint",
+      "status": "passed"
+    },
+    {
+      "detail": "Fresh scene restore: loaded=true traffic=true civilians=true position=true",
+      "name": "Restore city simulation",
+      "status": "passed"
+    },
+    {
+      "detail": "Invalid state leaves city unchanged",
+      "name": "Reject malformed city checkpoint",
+      "status": "passed"
+    },
+    {
+      "detail": "Real ENet host with ephemeral local port",
+      "name": "Host city on loopback",
+      "status": "passed"
+    },
+    {
+      "detail": "Second ENet endpoint",
+      "name": "Join host with independent peer",
+      "status": "passed"
+    },
+    {
+      "detail": "Peer snapshot creates visual representation",
+      "name": "Networked remote avatar visible",
+      "status": "passed"
+    },
+    {
+      "detail": "Both local player and remote endpoint move through server state",
+      "name": "Authoritative online movement",
+      "status": "passed"
+    },
+    {
+      "detail": "No unsynchronized local restore while connected",
+      "name": "Network mode blocks offline checkpoint",
+      "status": "passed"
+    },
+    {
+      "detail": "Disconnect reconciles scene replicas",
+      "name": "Remote leave removes avatar",
+      "status": "passed"
+    }
+  ],
+  "metrics": {
+    "buildings": 35,
+    "city_size_m": 192.0,
+    "civilian_count": 20,
+    "districts_visited": 3,
+    "network_peer_count": 1,
+    "physics_ticks": 4618,
+    "traffic_distance_m": 4479.86207773555,
+    "traffic_signal_stops": 54,
+    "walk_m": 418.446317541879
+  },
+  "pass": true
+}

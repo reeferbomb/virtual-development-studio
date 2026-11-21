@@ -1,0 +1,1812 @@
+{
+  "schema": 1,
+  "layout_sha256": "59aecca87a5df41b0de20649caa4b9eea5f99a317c6343d8d1c769574563df6f",
+  "layout": {
+    "seed": 237,
+    "blocks": 4,
+    "block_size": 48,
+    "road_width": 12,
+    "world_size": 192
+  },
+  "coordinates": "Right-handed meters; X right, Y up, -Z forward; yaw about +Y.",
+  "geometry": "Procedural solid box meshes; local sizes are full extents and positions are centered pivots.",
+  "source": "Original procedural geometry and materials generated from the supplied city layout.",
+  "artifacts": {
+    "blend": "city.blend",
+    "glb": "city.glb",
+    "unreal": "unreal-placements.json",
+    "audit": "mesh-audit.json"
+  },
+  "objects": [
+    {
+      "name": "Building_00000_b0_0_0",
+      "kind": "building",
+      "source_id": "b0_0_0",
+      "position_m": [
+        24.5,
+        7.0,
+        23.5
+      ],
+      "size_m": [
+        25,
+        14,
+        29
+      ],
+      "yaw_deg": 0,
+      "district": "downtown",
+      "style": "midrise"
+    },
+    {
+      "name": "Building_00001_b1_0_0",
+      "kind": "building",
+      "source_id": "b1_0_0",
+      "position_m": [
+        74.0,
+        4.0,
+        25.0
+      ],
+      "size_m": [
+        24,
+        8,
+        20
+      ],
+      "yaw_deg": 0,
+      "district": "industrial",
+      "style": "workshop"
+    },
+    {
+      "name": "Building_00002_b2_0_0",
+      "kind": "building",
+      "source_id": "b2_0_0",
+      "position_m": [
+        122.0,
+        3.5,
+        24.5
+      ],
+      "size_m": [
+        26,
+        7,
+        27
+      ],
+      "yaw_deg": 0,
+      "district": "industrial",
+      "style": "workshop"
+    },
+    {
+      "name": "Building_00003_b3_0_0",
+      "kind": "building",
+      "source_id": "b3_0_0",
+      "position_m": [
+        160.0,
+        2.5,
+        22.0
+      ],
+      "size_m": [
+        14,
+        5,
+        26
+      ],
+      "yaw_deg": 0,
+      "district": "industrial",
+      "style": "workshop"
+    },
+    {
+      "name": "Building_00004_b3_0_1",
+      "kind": "building",
+      "source_id": "b3_0_1",
+      "position_m": [
+        175.5,
+        5.0,
+        24.0
+      ],
+      "size_m": [
+        13,
+        10,
+        30
+      ],
+      "yaw_deg": 0,
+      "district": "industrial",
+      "style": "warehouse"
+    },
+    {
+      "name": "Building_00005_b0_1_0",
+      "kind": "building",
+      "source_id": "b0_1_0",
+      "position_m": [
+        15.5,
+        4.0,
+        74.0
+      ],
+      "size_m": [
+        13,
+        8,
+        26
+      ],
+      "yaw_deg": 0,
+      "district": "residential",
+      "style": "townhouse"
+    },
+    {
+      "name": "Building_00006_b0_1_1",
+      "kind": "building",
+      "source_id": "b0_1_1",
+      "position_m": [
+        33.5,
+        8.5,
+        72.0
+      ],
+      "size_m": [
+        9,
+        17,
+        30
+      ],
+      "yaw_deg": 0,
+      "district": "residential",
+      "style": "apartment"
+    },
+    {
+      "name": "Building_00007_b1_1_0",
+      "kind": "building",
+      "source_id": "b1_1_0",
+      "position_m": [
+        73.5,
+        12.5,
+        62.0
+      ],
+      "size_m": [
+        27,
+        25,
+        10
+      ],
+      "yaw_deg": 0,
+      "district": "downtown",
+      "style": "midrise"
+    },
+    {
+      "name": "Building_00008_b1_1_1",
+      "kind": "building",
+      "source_id": "b1_1_1",
+      "position_m": [
+        67.0,
+        9.0,
+        79.0
+      ],
+      "size_m": [
+        20,
+        18,
+        12
+      ],
+      "yaw_deg": 0,
+      "district": "downtown",
+      "style": "midrise"
+    },
+    {
+      "name": "Building_00009_b2_1_0",
+      "kind": "building",
+      "source_id": "b2_1_0",
+      "position_m": [
+        110.0,
+        7.5,
+        64.5
+      ],
+      "size_m": [
+        10,
+        15,
+        13
+      ],
+      "yaw_deg": 0,
+      "district": "downtown",
+      "style": "midrise"
+    },
+    {
+      "name": "Building_00010_b2_1_1",
+      "kind": "building",
+      "source_id": "b2_1_1",
+      "position_m": [
+        112.0,
+        7.0,
+        79.0
+      ],
+      "size_m": [
+        14,
+        14,
+        12
+      ],
+      "yaw_deg": 0,
+      "district": "downtown",
+      "style": "midrise"
+    },
+    {
+      "name": "Building_00011_b2_1_2",
+      "kind": "building",
+      "source_id": "b2_1_2",
+      "position_m": [
+        128.0,
+        12.5,
+        64.5
+      ],
+      "size_m": [
+        14,
+        25,
+        11
+      ],
+      "yaw_deg": 0,
+      "district": "downtown",
+      "style": "midrise"
+    },
+    {
+      "name": "Building_00012_b2_1_3",
+      "kind": "building",
+      "source_id": "b2_1_3",
+      "position_m": [
+        129.5,
+        17.5,
+        80.5
+      ],
+      "size_m": [
+        11,
+        35,
+        13
+      ],
+      "yaw_deg": 0,
+      "district": "downtown",
+      "style": "tower"
+    },
+    {
+      "name": "Building_00013_b3_1_0",
+      "kind": "building",
+      "source_id": "b3_1_0",
+      "position_m": [
+        167.0,
+        3.5,
+        72.0
+      ],
+      "size_m": [
+        28,
+        7,
+        30
+      ],
+      "yaw_deg": 0,
+      "district": "industrial",
+      "style": "warehouse"
+    },
+    {
+      "name": "Building_00014_b0_2_0",
+      "kind": "building",
+      "source_id": "b0_2_0",
+      "position_m": [
+        13.5,
+        2.5,
+        119.5
+      ],
+      "size_m": [
+        9,
+        5,
+        23
+      ],
+      "yaw_deg": 0,
+      "district": "residential",
+      "style": "townhouse"
+    },
+    {
+      "name": "Building_00015_b0_2_1",
+      "kind": "building",
+      "source_id": "b0_2_1",
+      "position_m": [
+        32.5,
+        4.5,
+        124.5
+      ],
+      "size_m": [
+        13,
+        9,
+        21
+      ],
+      "yaw_deg": 0,
+      "district": "residential",
+      "style": "townhouse"
+    },
+    {
+      "name": "Building_00016_b1_2_0",
+      "kind": "building",
+      "source_id": "b1_2_0",
+      "position_m": [
+        71.5,
+        15.5,
+        111.5
+      ],
+      "size_m": [
+        21,
+        31,
+        13
+      ],
+      "yaw_deg": 0,
+      "district": "downtown",
+      "style": "tower"
+    },
+    {
+      "name": "Building_00017_b1_2_1",
+      "kind": "building",
+      "source_id": "b1_2_1",
+      "position_m": [
+        72.5,
+        8.5,
+        128.0
+      ],
+      "size_m": [
+        23,
+        17,
+        10
+      ],
+      "yaw_deg": 0,
+      "district": "downtown",
+      "style": "midrise"
+    },
+    {
+      "name": "Building_00018_b2_2_0",
+      "kind": "building",
+      "source_id": "b2_2_0",
+      "position_m": [
+        113.5,
+        19.5,
+        120.0
+      ],
+      "size_m": [
+        11,
+        39,
+        30
+      ],
+      "yaw_deg": 0,
+      "district": "downtown",
+      "style": "tower"
+    },
+    {
+      "name": "Building_00019_b2_2_1",
+      "kind": "building",
+      "source_id": "b2_2_1",
+      "position_m": [
+        126.5,
+        10.0,
+        117.5
+      ],
+      "size_m": [
+        11,
+        20,
+        23
+      ],
+      "yaw_deg": 0,
+      "district": "downtown",
+      "style": "midrise"
+    },
+    {
+      "name": "Building_00020_b3_2_0",
+      "kind": "building",
+      "source_id": "b3_2_0",
+      "position_m": [
+        168.5,
+        12.0,
+        121.0
+      ],
+      "size_m": [
+        21,
+        24,
+        28
+      ],
+      "yaw_deg": 0,
+      "district": "downtown",
+      "style": "midrise"
+    },
+    {
+      "name": "Building_00021_b0_3_0",
+      "kind": "building",
+      "source_id": "b0_3_0",
+      "position_m": [
+        17.0,
+        2.5,
+        159.0
+      ],
+      "size_m": [
+        10,
+        5,
+        10
+      ],
+      "yaw_deg": 0,
+      "district": "residential",
+      "style": "townhouse"
+    },
+    {
+      "name": "Building_00022_b0_3_1",
+      "kind": "building",
+      "source_id": "b0_3_1",
+      "position_m": [
+        16.5,
+        4.5,
+        174.0
+      ],
+      "size_m": [
+        11,
+        9,
+        10
+      ],
+      "yaw_deg": 0,
+      "district": "residential",
+      "style": "apartment"
+    },
+    {
+      "name": "Building_00023_b0_3_2",
+      "kind": "building",
+      "source_id": "b0_3_2",
+      "position_m": [
+        30.5,
+        6.0,
+        161.5
+      ],
+      "size_m": [
+        11,
+        12,
+        11
+      ],
+      "yaw_deg": 0,
+      "district": "residential",
+      "style": "apartment"
+    },
+    {
+      "name": "Building_00024_b0_3_3",
+      "kind": "building",
+      "source_id": "b0_3_3",
+      "position_m": [
+        34.5,
+        6.0,
+        176.0
+      ],
+      "size_m": [
+        9,
+        12,
+        14
+      ],
+      "yaw_deg": 0,
+      "district": "residential",
+      "style": "apartment"
+    },
+    {
+      "name": "Building_00025_b1_3_0",
+      "kind": "building",
+      "source_id": "b1_3_0",
+      "position_m": [
+        64.0,
+        3.5,
+        159.5
+      ],
+      "size_m": [
+        14,
+        7,
+        9
+      ],
+      "yaw_deg": 0,
+      "district": "residential",
+      "style": "townhouse"
+    },
+    {
+      "name": "Building_00026_b1_3_1",
+      "kind": "building",
+      "source_id": "b1_3_1",
+      "position_m": [
+        65.5,
+        2.5,
+        176.5
+      ],
+      "size_m": [
+        11,
+        5,
+        13
+      ],
+      "yaw_deg": 0,
+      "district": "residential",
+      "style": "townhouse"
+    },
+    {
+      "name": "Building_00027_b1_3_2",
+      "kind": "building",
+      "source_id": "b1_3_2",
+      "position_m": [
+        81.0,
+        7.5,
+        162.5
+      ],
+      "size_m": [
+        10,
+        15,
+        9
+      ],
+      "yaw_deg": 0,
+      "district": "residential",
+      "style": "apartment"
+    },
+    {
+      "name": "Building_00028_b1_3_3",
+      "kind": "building",
+      "source_id": "b1_3_3",
+      "position_m": [
+        80.0,
+        6.5,
+        176.0
+      ],
+      "size_m": [
+        14,
+        13,
+        12
+      ],
+      "yaw_deg": 0,
+      "district": "residential",
+      "style": "apartment"
+    },
+    {
+      "name": "Building_00029_b2_3_0",
+      "kind": "building",
+      "source_id": "b2_3_0",
+      "position_m": [
+        121.0,
+        11.0,
+        160.0
+      ],
+      "size_m": [
+        20,
+        22,
+        14
+      ],
+      "yaw_deg": 0,
+      "district": "downtown",
+      "style": "midrise"
+    },
+    {
+      "name": "Building_00030_b2_3_1",
+      "kind": "building",
+      "source_id": "b2_3_1",
+      "position_m": [
+        115.5,
+        21.5,
+        176.5
+      ],
+      "size_m": [
+        21,
+        43,
+        11
+      ],
+      "yaw_deg": 0,
+      "district": "downtown",
+      "style": "tower"
+    },
+    {
+      "name": "Building_00031_b3_3_0",
+      "kind": "building",
+      "source_id": "b3_3_0",
+      "position_m": [
+        159.5,
+        12.0,
+        160.5
+      ],
+      "size_m": [
+        13,
+        24,
+        11
+      ],
+      "yaw_deg": 0,
+      "district": "downtown",
+      "style": "midrise"
+    },
+    {
+      "name": "Building_00032_b3_3_1",
+      "kind": "building",
+      "source_id": "b3_3_1",
+      "position_m": [
+        160.0,
+        9.0,
+        175.0
+      ],
+      "size_m": [
+        14,
+        18,
+        10
+      ],
+      "yaw_deg": 0,
+      "district": "downtown",
+      "style": "midrise"
+    },
+    {
+      "name": "Building_00033_b3_3_2",
+      "kind": "building",
+      "source_id": "b3_3_2",
+      "position_m": [
+        177.0,
+        12.5,
+        162.0
+      ],
+      "size_m": [
+        10,
+        25,
+        10
+      ],
+      "yaw_deg": 0,
+      "district": "downtown",
+      "style": "midrise"
+    },
+    {
+      "name": "Building_00034_b3_3_3",
+      "kind": "building",
+      "source_id": "b3_3_3",
+      "position_m": [
+        176.0,
+        15.0,
+        176.5
+      ],
+      "size_m": [
+        10,
+        30,
+        13
+      ],
+      "yaw_deg": 0,
+      "district": "downtown",
+      "style": "tower"
+    },
+    {
+      "name": "Road_00000_n0_0_n1_0",
+      "kind": "road",
+      "source_id": [
+        "n0_0",
+        "n1_0"
+      ],
+      "position_m": [
+        24.0,
+        -0.0625,
+        0.0
+      ],
+      "size_m": [
+        12,
+        0.125,
+        36.0
+      ],
+      "yaw_deg": 90.0
+    },
+    {
+      "name": "Road_00001_n0_0_n0_1",
+      "kind": "road",
+      "source_id": [
+        "n0_0",
+        "n0_1"
+      ],
+      "position_m": [
+        0.0,
+        -0.0625,
+        24.0
+      ],
+      "size_m": [
+        12,
+        0.125,
+        36.0
+      ],
+      "yaw_deg": 0.0
+    },
+    {
+      "name": "Road_00002_n1_0_n2_0",
+      "kind": "road",
+      "source_id": [
+        "n1_0",
+        "n2_0"
+      ],
+      "position_m": [
+        72.0,
+        -0.0625,
+        0.0
+      ],
+      "size_m": [
+        12,
+        0.125,
+        36.0
+      ],
+      "yaw_deg": 90.0
+    },
+    {
+      "name": "Road_00003_n1_0_n1_1",
+      "kind": "road",
+      "source_id": [
+        "n1_0",
+        "n1_1"
+      ],
+      "position_m": [
+        48.0,
+        -0.0625,
+        24.0
+      ],
+      "size_m": [
+        12,
+        0.125,
+        36.0
+      ],
+      "yaw_deg": 0.0
+    },
+    {
+      "name": "Road_00004_n2_0_n3_0",
+      "kind": "road",
+      "source_id": [
+        "n2_0",
+        "n3_0"
+      ],
+      "position_m": [
+        120.0,
+        -0.0625,
+        0.0
+      ],
+      "size_m": [
+        12,
+        0.125,
+        36.0
+      ],
+      "yaw_deg": 90.0
+    },
+    {
+      "name": "Road_00005_n2_0_n2_1",
+      "kind": "road",
+      "source_id": [
+        "n2_0",
+        "n2_1"
+      ],
+      "position_m": [
+        96.0,
+        -0.0625,
+        24.0
+      ],
+      "size_m": [
+        12,
+        0.125,
+        36.0
+      ],
+      "yaw_deg": 0.0
+    },
+    {
+      "name": "Road_00006_n3_0_n4_0",
+      "kind": "road",
+      "source_id": [
+        "n3_0",
+        "n4_0"
+      ],
+      "position_m": [
+        168.0,
+        -0.0625,
+        0.0
+      ],
+      "size_m": [
+        12,
+        0.125,
+        36.0
+      ],
+      "yaw_deg": 90.0
+    },
+    {
+      "name": "Road_00007_n3_0_n3_1",
+      "kind": "road",
+      "source_id": [
+        "n3_0",
+        "n3_1"
+      ],
+      "position_m": [
+        144.0,
+        -0.0625,
+        24.0
+      ],
+      "size_m": [
+        12,
+        0.125,
+        36.0
+      ],
+      "yaw_deg": 0.0
+    },
+    {
+      "name": "Road_00008_n4_0_n4_1",
+      "kind": "road",
+      "source_id": [
+        "n4_0",
+        "n4_1"
+      ],
+      "position_m": [
+        192.0,
+        -0.0625,
+        24.0
+      ],
+      "size_m": [
+        12,
+        0.125,
+        36.0
+      ],
+      "yaw_deg": 0.0
+    },
+    {
+      "name": "Road_00009_n0_1_n1_1",
+      "kind": "road",
+      "source_id": [
+        "n0_1",
+        "n1_1"
+      ],
+      "position_m": [
+        24.0,
+        -0.0625,
+        48.0
+      ],
+      "size_m": [
+        12,
+        0.125,
+        36.0
+      ],
+      "yaw_deg": 90.0
+    },
+    {
+      "name": "Road_00010_n0_1_n0_2",
+      "kind": "road",
+      "source_id": [
+        "n0_1",
+        "n0_2"
+      ],
+      "position_m": [
+        0.0,
+        -0.0625,
+        72.0
+      ],
+      "size_m": [
+        12,
+        0.125,
+        36.0
+      ],
+      "yaw_deg": 0.0
+    },
+    {
+      "name": "Road_00011_n1_1_n2_1",
+      "kind": "road",
+      "source_id": [
+        "n1_1",
+        "n2_1"
+      ],
+      "position_m": [
+        72.0,
+        -0.0625,
+        48.0
+      ],
+      "size_m": [
+        12,
+        0.125,
+        36.0
+      ],
+      "yaw_deg": 90.0
+    },
+    {
+      "name": "Road_00012_n1_1_n1_2",
+      "kind": "road",
+      "source_id": [
+        "n1_1",
+        "n1_2"
+      ],
+      "position_m": [
+        48.0,
+        -0.0625,
+        72.0
+      ],
+      "size_m": [
+        12,
+        0.125,
+        36.0
+      ],
+      "yaw_deg": 0.0
+    },
+    {
+      "name": "Road_00013_n2_1_n3_1",
+      "kind": "road",
+      "source_id": [
+        "n2_1",
+        "n3_1"
+      ],
+      "position_m": [
+        120.0,
+        -0.0625,
+        48.0
+      ],
+      "size_m": [
+        12,
+        0.125,
+        36.0
+      ],
+      "yaw_deg": 90.0
+    },
+    {
+      "name": "Road_00014_n2_1_n2_2",
+      "kind": "road",
+      "source_id": [
+        "n2_1",
+        "n2_2"
+      ],
+      "position_m": [
+        96.0,
+        -0.0625,
+        72.0
+      ],
+      "size_m": [
+        12,
+        0.125,
+        36.0
+      ],
+      "yaw_deg": 0.0
+    },
+    {
+      "name": "Road_00015_n3_1_n4_1",
+      "kind": "road",
+      "source_id": [
+        "n3_1",
+        "n4_1"
+      ],
+      "position_m": [
+        168.0,
+        -0.0625,
+        48.0
+      ],
+      "size_m": [
+        12,
+        0.125,
+        36.0
+      ],
+      "yaw_deg": 90.0
+    },
+    {
+      "name": "Road_00016_n3_1_n3_2",
+      "kind": "road",
+      "source_id": [
+        "n3_1",
+        "n3_2"
+      ],
+      "position_m": [
+        144.0,
+        -0.0625,
+        72.0
+      ],
+      "size_m": [
+        12,
+        0.125,
+        36.0
+      ],
+      "yaw_deg": 0.0
+    },
+    {
+      "name": "Road_00017_n4_1_n4_2",
+      "kind": "road",
+      "source_id": [
+        "n4_1",
+        "n4_2"
+      ],
+      "position_m": [
+        192.0,
+        -0.0625,
+        72.0
+      ],
+      "size_m": [
+        12,
+        0.125,
+        36.0
+      ],
+      "yaw_deg": 0.0
+    },
+    {
+      "name": "Road_00018_n0_2_n1_2",
+      "kind": "road",
+      "source_id": [
+        "n0_2",
+        "n1_2"
+      ],
+      "position_m": [
+        24.0,
+        -0.0625,
+        96.0
+      ],
+      "size_m": [
+        12,
+        0.125,
+        36.0
+      ],
+      "yaw_deg": 90.0
+    },
+    {
+      "name": "Road_00019_n0_2_n0_3",
+      "kind": "road",
+      "source_id": [
+        "n0_2",
+        "n0_3"
+      ],
+      "position_m": [
+        0.0,
+        -0.0625,
+        120.0
+      ],
+      "size_m": [
+        12,
+        0.125,
+        36.0
+      ],
+      "yaw_deg": 0.0
+    },
+    {
+      "name": "Road_00020_n1_2_n2_2",
+      "kind": "road",
+      "source_id": [
+        "n1_2",
+        "n2_2"
+      ],
+      "position_m": [
+        72.0,
+        -0.0625,
+        96.0
+      ],
+      "size_m": [
+        12,
+        0.125,
+        36.0
+      ],
+      "yaw_deg": 90.0
+    },
+    {
+      "name": "Road_00021_n1_2_n1_3",
+      "kind": "road",
+      "source_id": [
+        "n1_2",
+        "n1_3"
+      ],
+      "position_m": [
+        48.0,
+        -0.0625,
+        120.0
+      ],
+      "size_m": [
+        12,
+        0.125,
+        36.0
+      ],
+      "yaw_deg": 0.0
+    },
+    {
+      "name": "Road_00022_n2_2_n3_2",
+      "kind": "road",
+      "source_id": [
+        "n2_2",
+        "n3_2"
+      ],
+      "position_m": [
+        120.0,
+        -0.0625,
+        96.0
+      ],
+      "size_m": [
+        12,
+        0.125,
+        36.0
+      ],
+      "yaw_deg": 90.0
+    },
+    {
+      "name": "Road_00023_n2_2_n2_3",
+      "kind": "road",
+      "source_id": [
+        "n2_2",
+        "n2_3"
+      ],
+      "position_m": [
+        96.0,
+        -0.0625,
+        120.0
+      ],
+      "size_m": [
+        12,
+        0.125,
+        36.0
+      ],
+      "yaw_deg": 0.0
+    },
+    {
+      "name": "Road_00024_n3_2_n4_2",
+      "kind": "road",
+      "source_id": [
+        "n3_2",
+        "n4_2"
+      ],
+      "position_m": [
+        168.0,
+        -0.0625,
+        96.0
+      ],
+      "size_m": [
+        12,
+        0.125,
+        36.0
+      ],
+      "yaw_deg": 90.0
+    },
+    {
+      "name": "Road_00025_n3_2_n3_3",
+      "kind": "road",
+      "source_id": [
+        "n3_2",
+        "n3_3"
+      ],
+      "position_m": [
+        144.0,
+        -0.0625,
+        120.0
+      ],
+      "size_m": [
+        12,
+        0.125,
+        36.0
+      ],
+      "yaw_deg": 0.0
+    },
+    {
+      "name": "Road_00026_n4_2_n4_3",
+      "kind": "road",
+      "source_id": [
+        "n4_2",
+        "n4_3"
+      ],
+      "position_m": [
+        192.0,
+        -0.0625,
+        120.0
+      ],
+      "size_m": [
+        12,
+        0.125,
+        36.0
+      ],
+      "yaw_deg": 0.0
+    },
+    {
+      "name": "Road_00027_n0_3_n1_3",
+      "kind": "road",
+      "source_id": [
+        "n0_3",
+        "n1_3"
+      ],
+      "position_m": [
+        24.0,
+        -0.0625,
+        144.0
+      ],
+      "size_m": [
+        12,
+        0.125,
+        36.0
+      ],
+      "yaw_deg": 90.0
+    },
+    {
+      "name": "Road_00028_n0_3_n0_4",
+      "kind": "road",
+      "source_id": [
+        "n0_3",
+        "n0_4"
+      ],
+      "position_m": [
+        0.0,
+        -0.0625,
+        168.0
+      ],
+      "size_m": [
+        12,
+        0.125,
+        36.0
+      ],
+      "yaw_deg": 0.0
+    },
+    {
+      "name": "Road_00029_n1_3_n2_3",
+      "kind": "road",
+      "source_id": [
+        "n1_3",
+        "n2_3"
+      ],
+      "position_m": [
+        72.0,
+        -0.0625,
+        144.0
+      ],
+      "size_m": [
+        12,
+        0.125,
+        36.0
+      ],
+      "yaw_deg": 90.0
+    },
+    {
+      "name": "Road_00030_n1_3_n1_4",
+      "kind": "road",
+      "source_id": [
+        "n1_3",
+        "n1_4"
+      ],
+      "position_m": [
+        48.0,
+        -0.0625,
+        168.0
+      ],
+      "size_m": [
+        12,
+        0.125,
+        36.0
+      ],
+      "yaw_deg": 0.0
+    },
+    {
+      "name": "Road_00031_n2_3_n3_3",
+      "kind": "road",
+      "source_id": [
+        "n2_3",
+        "n3_3"
+      ],
+      "position_m": [
+        120.0,
+        -0.0625,
+        144.0
+      ],
+      "size_m": [
+        12,
+        0.125,
+        36.0
+      ],
+      "yaw_deg": 90.0
+    },
+    {
+      "name": "Road_00032_n2_3_n2_4",
+      "kind": "road",
+      "source_id": [
+        "n2_3",
+        "n2_4"
+      ],
+      "position_m": [
+        96.0,
+        -0.0625,
+        168.0
+      ],
+      "size_m": [
+        12,
+        0.125,
+        36.0
+      ],
+      "yaw_deg": 0.0
+    },
+    {
+      "name": "Road_00033_n3_3_n4_3",
+      "kind": "road",
+      "source_id": [
+        "n3_3",
+        "n4_3"
+      ],
+      "position_m": [
+        168.0,
+        -0.0625,
+        144.0
+      ],
+      "size_m": [
+        12,
+        0.125,
+        36.0
+      ],
+      "yaw_deg": 90.0
+    },
+    {
+      "name": "Road_00034_n3_3_n3_4",
+      "kind": "road",
+      "source_id": [
+        "n3_3",
+        "n3_4"
+      ],
+      "position_m": [
+        144.0,
+        -0.0625,
+        168.0
+      ],
+      "size_m": [
+        12,
+        0.125,
+        36.0
+      ],
+      "yaw_deg": 0.0
+    },
+    {
+      "name": "Road_00035_n4_3_n4_4",
+      "kind": "road",
+      "source_id": [
+        "n4_3",
+        "n4_4"
+      ],
+      "position_m": [
+        192.0,
+        -0.0625,
+        168.0
+      ],
+      "size_m": [
+        12,
+        0.125,
+        36.0
+      ],
+      "yaw_deg": 0.0
+    },
+    {
+      "name": "Road_00036_n0_4_n1_4",
+      "kind": "road",
+      "source_id": [
+        "n0_4",
+        "n1_4"
+      ],
+      "position_m": [
+        24.0,
+        -0.0625,
+        192.0
+      ],
+      "size_m": [
+        12,
+        0.125,
+        36.0
+      ],
+      "yaw_deg": 90.0
+    },
+    {
+      "name": "Road_00037_n1_4_n2_4",
+      "kind": "road",
+      "source_id": [
+        "n1_4",
+        "n2_4"
+      ],
+      "position_m": [
+        72.0,
+        -0.0625,
+        192.0
+      ],
+      "size_m": [
+        12,
+        0.125,
+        36.0
+      ],
+      "yaw_deg": 90.0
+    },
+    {
+      "name": "Road_00038_n2_4_n3_4",
+      "kind": "road",
+      "source_id": [
+        "n2_4",
+        "n3_4"
+      ],
+      "position_m": [
+        120.0,
+        -0.0625,
+        192.0
+      ],
+      "size_m": [
+        12,
+        0.125,
+        36.0
+      ],
+      "yaw_deg": 90.0
+    },
+    {
+      "name": "Road_00039_n3_4_n4_4",
+      "kind": "road",
+      "source_id": [
+        "n3_4",
+        "n4_4"
+      ],
+      "position_m": [
+        168.0,
+        -0.0625,
+        192.0
+      ],
+      "size_m": [
+        12,
+        0.125,
+        36.0
+      ],
+      "yaw_deg": 90.0
+    },
+    {
+      "name": "Junction_00000_n0_0",
+      "kind": "junction",
+      "source_id": "n0_0",
+      "position_m": [
+        0,
+        -0.06,
+        0
+      ],
+      "size_m": [
+        12,
+        0.13,
+        12
+      ],
+      "yaw_deg": 0
+    },
+    {
+      "name": "Junction_00001_n1_0",
+      "kind": "junction",
+      "source_id": "n1_0",
+      "position_m": [
+        48,
+        -0.06,
+        0
+      ],
+      "size_m": [
+        12,
+        0.13,
+        12
+      ],
+      "yaw_deg": 0
+    },
+    {
+      "name": "Junction_00002_n2_0",
+      "kind": "junction",
+      "source_id": "n2_0",
+      "position_m": [
+        96,
+        -0.06,
+        0
+      ],
+      "size_m": [
+        12,
+        0.13,
+        12
+      ],
+      "yaw_deg": 0
+    },
+    {
+      "name": "Junction_00003_n3_0",
+      "kind": "junction",
+      "source_id": "n3_0",
+      "position_m": [
+        144,
+        -0.06,
+        0
+      ],
+      "size_m": [
+        12,
+        0.13,
+        12
+      ],
+      "yaw_deg": 0
+    },
+    {
+      "name": "Junction_00004_n4_0",
+      "kind": "junction",
+      "source_id": "n4_0",
+      "position_m": [
+        192,
+        -0.06,
+        0
+      ],
+      "size_m": [
+        12,
+        0.13,
+        12
+      ],
+      "yaw_deg": 0
+    },
+    {
+      "name": "Junction_00005_n0_1",
+      "kind": "junction",
+      "source_id": "n0_1",
+      "position_m": [
+        0,
+        -0.06,
+        48
+      ],
+      "size_m": [
+        12,
+        0.13,
+        12
+      ],
+      "yaw_deg": 0
+    },
+    {
+      "name": "Junction_00006_n1_1",
+      "kind": "junction",
+      "source_id": "n1_1",
+      "position_m": [
+        48,
+        -0.06,
+        48
+      ],
+      "size_m": [
+        12,
+        0.13,
+        12
+      ],
+      "yaw_deg": 0
+    },
+    {
+      "name": "Junction_00007_n2_1",
+      "kind": "junction",
+      "source_id": "n2_1",
+      "position_m": [
+        96,
+        -0.06,
+        48
+      ],
+      "size_m": [
+        12,
+        0.13,
+        12
+      ],
+      "yaw_deg": 0
+    },
+    {
+      "name": "Junction_00008_n3_1",
+      "kind": "junction",
+      "source_id": "n3_1",
+      "position_m": [
+        144,
+        -0.06,
+        48
+      ],
+      "size_m": [
+        12,
+        0.13,
+        12
+      ],
+      "yaw_deg": 0
+    },
+    {
+      "name": "Junction_00009_n4_1",
+      "kind": "junction",
+      "source_id": "n4_1",
+      "position_m": [
+        192,
+        -0.06,
+        48
+      ],
+      "size_m": [
+        12,
+        0.13,
+        12
+      ],
+      "yaw_deg": 0
+    },
+    {
+      "name": "Junction_00010_n0_2",
+      "kind": "junction",
+      "source_id": "n0_2",
+      "position_m": [
+        0,
+        -0.06,
+        96
+      ],
+      "size_m": [
+        12,
+        0.13,
+        12
+      ],
+      "yaw_deg": 0
+    },
+    {
+      "name": "Junction_00011_n1_2",
+      "kind": "junction",
+      "source_id": "n1_2",
+      "position_m": [
+        48,
+        -0.06,
+        96
+      ],
+      "size_m": [
+        12,
+        0.13,
+        12
+      ],
+      "yaw_deg": 0
+    },
+    {
+      "name": "Junction_00012_n2_2",
+      "kind": "junction",
+      "source_id": "n2_2",
+      "position_m": [
+        96,
+        -0.06,
+        96
+      ],
+      "size_m": [
+        12,
+        0.13,
+        12
+      ],
+      "yaw_deg": 0
+    },
+    {
+      "name": "Junction_00013_n3_2",
+      "kind": "junction",
+      "source_id": "n3_2",
+      "position_m": [
+        144,
+        -0.06,
+        96
+      ],
+      "size_m": [
+        12,
+        0.13,
+        12
+      ],
+      "yaw_deg": 0
+    },
+    {
+      "name": "Junction_00014_n4_2",
+      "kind": "junction",
+      "source_id": "n4_2",
+      "position_m": [
+        192,
+        -0.06,
+        96
+      ],
+      "size_m": [
+        12,
+        0.13,
+        12
+      ],
+      "yaw_deg": 0
+    },
+    {
+      "name": "Junction_00015_n0_3",
+      "kind": "junction",
+      "source_id": "n0_3",
+      "position_m": [
+        0,
+        -0.06,
+        144
+      ],
+      "size_m": [
+        12,
+        0.13,
+        12
+      ],
+      "yaw_deg": 0
+    },
+    {
+      "name": "Junction_00016_n1_3",
+      "kind": "junction",
+      "source_id": "n1_3",
+      "position_m": [
+        48,
+        -0.06,
+        144
+      ],
+      "size_m": [
+        12,
+        0.13,
+        12
+      ],
+      "yaw_deg": 0
+    },
+    {
+      "name": "Junction_00017_n2_3",
+      "kind": "junction",
+      "source_id": "n2_3",
+      "position_m": [
+        96,
+        -0.06,
+        144
+      ],
+      "size_m": [
+        12,
+        0.13,
+        12
+      ],
+      "yaw_deg": 0
+    },
+    {
+      "name": "Junction_00018_n3_3",
+      "kind": "junction",
+      "source_id": "n3_3",
+      "position_m": [
+        144,
+        -0.06,
+        144
+      ],
+      "size_m": [
+        12,
+        0.13,
+        12
+      ],
+      "yaw_deg": 0
+    },
+    {
+      "name": "Junction_00019_n4_3",
+      "kind": "junction",
+      "source_id": "n4_3",
+      "position_m": [
+        192,
+        -0.06,
+        144
+      ],
+      "size_m": [
+        12,
+        0.13,
+        12
+      ],
+      "yaw_deg": 0
+    },
+    {
+      "name": "Junction_00020_n0_4",
+      "kind": "junction",
+      "source_id": "n0_4",
+      "position_m": [
+        0,
+        -0.06,
+        192
+      ],
+      "size_m": [
+        12,
+        0.13,
+        12
+      ],
+      "yaw_deg": 0
+    },
+    {
+      "name": "Junction_00021_n1_4",
+      "kind": "junction",
+      "source_id": "n1_4",
+      "position_m": [
+        48,
+        -0.06,
+        192
+      ],
+      "size_m": [
+        12,
+        0.13,
+        12
+      ],
+      "yaw_deg": 0
+    },
+    {
+      "name": "Junction_00022_n2_4",
+      "kind": "junction",
+      "source_id": "n2_4",
+      "position_m": [
+        96,
+        -0.06,
+        192
+      ],
+      "size_m": [
+        12,
+        0.13,
+        12
+      ],
+      "yaw_deg": 0
+    },
+    {
+      "name": "Junction_00023_n3_4",
+      "kind": "junction",
+      "source_id": "n3_4",
+      "position_m": [
+        144,
+        -0.06,
+        192
+      ],
+      "size_m": [
+        12,
+        0.13,
+        12
+      ],
+      "yaw_deg": 0
+    },
+    {
+      "name": "Junction_00024_n4_4",
+      "kind": "junction",
+      "source_id": "n4_4",
+      "position_m": [
+        192,
+        -0.06,
+        192
+      ],
+      "size_m": [
+        12,
+        0.13,
+        12
+      ],
+      "yaw_deg": 0
+    }
+  ]
+}

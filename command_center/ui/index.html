@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Studio Command Center</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="editor.css">
+  <script src="editor.js" defer></script>
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <div class="shell">
+    <aside class="sidebar" aria-label="Studio">
+      <a class="brand" href="#projects"><span class="mark" aria-hidden="true">S</span><span>Virtual Studio<small>Development workstation</small></span></a>
+      <nav class="nav" aria-label="Command center">
+        <a href="#projects" data-page="projects"><span aria-hidden="true">◫</span>Projects</a>
+        <a href="#workspace" data-page="workspace"><span aria-hidden="true">⌘</span>Workspace</a>
+        <a href="#catalog" data-page="catalog"><span aria-hidden="true">◇</span>Asset catalog</a>
+        <a href="#builds" data-page="builds"><span aria-hidden="true">▤</span>Build queue</a>
+        <a href="#releases" data-page="releases"><span aria-hidden="true">⬡</span>Releases</a>
+        <a href="#supervisor" data-page="supervisor"><span aria-hidden="true">◉</span>Supervisor</a>
+        <a href="#sprint" data-page="sprint"><span aria-hidden="true">▥</span>Sprint</a>
+        <a href="#operations" data-page="operations"><span aria-hidden="true">⇄</span>Operations</a>
+        <a href="#team" data-page="team"><span aria-hidden="true">◎</span>Team</a>
+        <a href="#portfolio" data-page="portfolio"><span aria-hidden="true">▦</span>Portfolio</a>
+      </nav>
+      <div class="sidebar-foot"><span class="indicator"></span> Local workstation <span id="version"></span></div>
+    </aside>
+    <main id="main" tabindex="-1">
+      <header class="topbar">
+        <div class="breadcrumb"><span>Studio</span><span aria-hidden="true">/</span><strong id="location">Projects</strong></div>
+        <div id="tool-status" class="tools" aria-label="Workstation status"></div>
+      </header>
+      <section class="content" id="view" aria-labelledby="page-title"></section>
+      <div id="notice" class="notice" role="status" hidden></div>
+    </main>
+  </div>
+  <dialog id="new-project">
+    <form id="create-project">
+      <div class="dialog-top"><h2>New project</h2><button type="button" class="close" aria-label="Close dialog">×</button></div>
+      <label for="project-name">Project name</label>
+      <input id="project-name" name="name" required maxlength="80" autocomplete="off" autofocus>
+      <label for="project-kind">Project type</label>
+      <select id="project-kind" name="kind"></select>
+      <p id="create-error" role="alert" class="error" hidden></p>
+      <div class="actions"><button type="button" class="cancel">Cancel</button><button type="submit" class="primary">Create project</button></div>
+    </form>
+  </dialog>
+</body>
+</html>

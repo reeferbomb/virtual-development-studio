@@ -1,0 +1,3 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+PASS city network {"accepted_inputs":302,"address":"127.0.0.1","bounds":true,"building_collision":true,"client_snapshots":[77,76],"clients":2,"disconnect":true,"rejected_inputs":3,"transport":"ENet"}

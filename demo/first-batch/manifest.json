@@ -1,0 +1,255 @@
+{
+  "assets": [
+    {
+      "id": "supply_crate",
+      "kind": "prop",
+      "qa": {
+        "animation_names": [],
+        "bones": 0,
+        "bounds": {
+          "position": [
+            -0.550000011920929,
+            0.0,
+            -0.522994995117188
+          ],
+          "size": [
+            1.10000002384186,
+            1.10770010948181,
+            1.04598999023438
+          ]
+        },
+        "errors": [],
+        "materials": 3,
+        "mesh_count": 18,
+        "pass": true,
+        "skeleton_count": 0,
+        "skinned_meshes": 0,
+        "triangles": 792
+      }
+    },
+    {
+      "id": "industrial_barrel",
+      "kind": "prop",
+      "qa": {
+        "animation_names": [],
+        "bones": 0,
+        "bounds": {
+          "position": [
+            -0.337500005960464,
+            0.0,
+            -0.337500005960464
+          ],
+          "size": [
+            0.675000011920929,
+            0.931950092315674,
+            0.675000011920929
+          ]
+        },
+        "errors": [],
+        "materials": 3,
+        "mesh_count": 10,
+        "pass": true,
+        "skeleton_count": 0,
+        "skinned_meshes": 0,
+        "triangles": 1408
+      }
+    },
+    {
+      "id": "road_barricade",
+      "kind": "prop",
+      "qa": {
+        "animation_names": [],
+        "bones": 0,
+        "bounds": {
+          "position": [
+            -0.924000024795532,
+            0.0,
+            -0.372000008821487
+          ],
+          "size": [
+            1.84800004959106,
+            1.07999992370605,
+            0.744000017642975
+          ]
+        },
+        "errors": [],
+        "materials": 3,
+        "mesh_count": 16,
+        "pass": true,
+        "skeleton_count": 0,
+        "skinned_meshes": 0,
+        "triangles": 704
+      }
+    },
+    {
+      "id": "training_mannequin",
+      "kind": "character",
+      "qa": {
+        "animation_names": [
+          "Idle"
+        ],
+        "bones": 16,
+        "bounds": {
+          "position": [
+            -0.483881562948227,
+            0.0,
+            -0.142800003290176
+          ],
+          "size": [
+            0.967763125896454,
+            1.70000004768372,
+            0.328100025653839
+          ]
+        },
+        "errors": [],
+        "materials": 2,
+        "mesh_count": 1,
+        "pass": true,
+        "skeleton_count": 1,
+        "skinned_meshes": 1,
+        "triangles": 3096
+      }
+    }
+  ],
+  "date": "2026-11-20T07:03:13.401275+00:00",
+  "files": [
+    {
+      "bytes": 104726,
+      "path": "assets/industrial_barrel.blend",
+      "sha256": "3215f29c06579cce4a13b73e98a08b610f504302812c7d34fffdff0e17445895"
+    },
+    {
+      "bytes": 92416,
+      "path": "assets/industrial_barrel.glb",
+      "sha256": "881ae841211143ccfd00ce9d4586d32f748feb3d20a2794bb4cb7b5aaa84b3eb"
+    },
+    {
+      "bytes": 1871,
+      "path": "assets/provenance.json",
+      "sha256": "a6b4bc9eccdd98603ac0d5dd5bde04bb80208d7d7e98ee7c74b53f4b73f76e9f"
+    },
+    {
+      "bytes": 105462,
+      "path": "assets/road_barricade.blend",
+      "sha256": "e7fdbf1f5d3944a4138ae7d4c480914f9e77fae3e6a695f007c7b5bf8ff45439"
+    },
+    {
+      "bytes": 63344,
+      "path": "assets/road_barricade.glb",
+      "sha256": "c89c9433e6fdfacf1137d960e19d527a0b0bf6ee51b4b12aed4fcbe7f4abe728"
+    },
+    {
+      "bytes": 106446,
+      "path": "assets/supply_crate.blend",
+      "sha256": "e0dbfec3fffd28fd816c6bdfcf384bf892a73d765b946f3b2d7cbd194cd35271"
+    },
+    {
+      "bytes": 70108,
+      "path": "assets/supply_crate.glb",
+      "sha256": "5c18d05fc15645860b9dedd1b43002af39882fcebb678af5d68d12adad7533f1"
+    },
+    {
+      "bytes": 143721,
+      "path": "assets/training_mannequin.blend",
+      "sha256": "5eded2bfeab8f8fb9b8493920267d49aef29eee562677f90bca5b84e46d796a1"
+    },
+    {
+      "bytes": 290844,
+      "path": "assets/training_mannequin.glb",
+      "sha256": "b32e7a8aca9b9abc80a7f4690c7e7cf49da446581dcc116c0056f5335f10598b"
+    },
+    {
+      "bytes": 882,
+      "path": "reports/asset_audit.json",
+      "sha256": "035194b285d04d8979648ac8aec1c129c0bdf46a16e1944f463f14e258cd758a"
+    },
+    {
+      "bytes": 1610,
+      "path": "reports/industrial_barrel.blender.log",
+      "sha256": "1ac0b1bcba19bf51368cffaa42ef641a9ef1d36c391203dd67778840f4148186"
+    },
+    {
+      "bytes": 1914,
+      "path": "reports/industrial_barrel.import.log",
+      "sha256": "e8123c5286a9c01c5b80c3b169c5a15865cc0e91fe81aa8d785b8fa7b62c5ee6"
+    },
+    {
+      "bytes": 379,
+      "path": "reports/industrial_barrel.qa.json",
+      "sha256": "6f631ee8d4341909f3390149be3ddd1eb45123267a54a72a30dd3356e05b718d"
+    },
+    {
+      "bytes": 365,
+      "path": "reports/industrial_barrel.qa.log",
+      "sha256": "e021309e0b8b149fe7775bf0c942cdd80cd77f2bc98d57d5909cb64cb2406c4d"
+    },
+    {
+      "bytes": 2208,
+      "path": "reports/road_barricade.blender.log",
+      "sha256": "ed8b2ba6dfbebda7f8cc5ac0c7c5af7f36f8387215af7ebc13a58dbe9410dd87"
+    },
+    {
+      "bytes": 1914,
+      "path": "reports/road_barricade.import.log",
+      "sha256": "e8123c5286a9c01c5b80c3b169c5a15865cc0e91fe81aa8d785b8fa7b62c5ee6"
+    },
+    {
+      "bytes": 376,
+      "path": "reports/road_barricade.qa.json",
+      "sha256": "8b4d5836988030ac42ed3fa59b0662ea6a14b950b5b6a3248ebdc7b846bbf014"
+    },
+    {
+      "bytes": 362,
+      "path": "reports/road_barricade.qa.log",
+      "sha256": "9c7392e80934c9a3ab4dd39a00e9cbd7479320a47fbfbb701279c3a7065ea520"
+    },
+    {
+      "bytes": 2327,
+      "path": "reports/supply_crate.blender.log",
+      "sha256": "d45a5c39de42cddc0d5f75cb4816adc9f1cb3c20b308ce2daccd4b539e97857f"
+    },
+    {
+      "bytes": 1914,
+      "path": "reports/supply_crate.import.log",
+      "sha256": "e8123c5286a9c01c5b80c3b169c5a15865cc0e91fe81aa8d785b8fa7b62c5ee6"
+    },
+    {
+      "bytes": 375,
+      "path": "reports/supply_crate.qa.json",
+      "sha256": "2dcd70666871f07daeec7724d3ff94e570c3eb27bdd62d1c0e12ca60805abcee"
+    },
+    {
+      "bytes": 361,
+      "path": "reports/supply_crate.qa.log",
+      "sha256": "babfc2e3539683ab7fe28377fa1f4c20984608143d0d3e925ce041c7b468bec4"
+    },
+    {
+      "bytes": 697,
+      "path": "reports/training_mannequin.blender.log",
+      "sha256": "d900532f20f9c7e65dc472622014c5b18b15dbda7ddb4641bef7749c1dea575c"
+    },
+    {
+      "bytes": 1914,
+      "path": "reports/training_mannequin.import.log",
+      "sha256": "e8123c5286a9c01c5b80c3b169c5a15865cc0e91fe81aa8d785b8fa7b62c5ee6"
+    },
+    {
+      "bytes": 392,
+      "path": "reports/training_mannequin.qa.json",
+      "sha256": "b81587dd2565cb557e865fbd7e086bfac9fba145a22620dec3cc39f4e746686d"
+    },
+    {
+      "bytes": 370,
+      "path": "reports/training_mannequin.qa.log",
+      "sha256": "9b5020aa1c3022567565e3b699d0ddf8713f1ebdc4c4b9b8a80964c2c98a1a92"
+    },
+    {
+      "bytes": 1078,
+      "path": "spec.json",
+      "sha256": "c593f6789ff3880d8b203826e2c57b9837c3860a129ecb12d0c7e7718d6359ad"
+    }
+  ],
+  "schema": 1,
+  "status": "passed",
+  "validation": "headless Godot, not visual/device acceptance"
+}

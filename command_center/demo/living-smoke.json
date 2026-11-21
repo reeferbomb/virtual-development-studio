@@ -1,0 +1,248 @@
+{
+  "version": "14.0",
+  "verified": true,
+  "dispatch_profile": {
+    "id": "studio-fast",
+    "mode": "fast",
+    "service_tier": "priority",
+    "max_parallel": 6,
+    "roles": [
+      {
+        "id": "architecture",
+        "name": "Architecture",
+        "model": "GPT-6.2 Astra Ultra",
+        "model_id": "gpt-6.2-astra",
+        "reasoning_effort": "ultra"
+      },
+      {
+        "id": "gameplay",
+        "name": "Gameplay",
+        "model": "GPT-6.2 Astra Ultra",
+        "model_id": "gpt-6.2-astra",
+        "reasoning_effort": "ultra"
+      },
+      {
+        "id": "verification",
+        "name": "Verification",
+        "model": "GPT-6.2 Astra Ultra",
+        "model_id": "gpt-6.2-astra",
+        "reasoning_effort": "ultra"
+      },
+      {
+        "id": "ui",
+        "name": "UI",
+        "model": "GPT-6.2 Astra Ultra",
+        "model_id": "gpt-6.2-astra",
+        "reasoning_effort": "ultra"
+      },
+      {
+        "id": "content",
+        "name": "Content",
+        "model": "GPT-6.2 Astra Ultra",
+        "model_id": "gpt-6.2-astra",
+        "reasoning_effort": "ultra"
+      },
+      {
+        "id": "build_operations",
+        "name": "Build operations",
+        "model": "GPT-6.2 Sol Max",
+        "model_id": "gpt-6.2-sol",
+        "reasoning_effort": "max"
+      }
+    ]
+  },
+  "execution_mode": "export_only",
+  "living_qa": {
+    "checks": [
+      {
+        "detail": "Imports new project",
+        "name": "Load living scene",
+        "status": "passed"
+      },
+      {
+        "detail": "Integrated inherited world and all four new modules",
+        "name": "Living world initialization",
+        "status": "passed"
+      },
+      {
+        "detail": "Distinct board options",
+        "name": "Three seeded contract offers",
+        "status": "passed"
+      },
+      {
+        "detail": "One active contract at a time",
+        "name": "Accept contract",
+        "status": "passed"
+      },
+      {
+        "detail": "Real resource nodes feed the generated objective",
+        "name": "Physical gathering advances contract",
+        "status": "passed"
+      },
+      {
+        "detail": "Wallet and procedural board progress together",
+        "name": "Claim reward and rotate board",
+        "status": "passed"
+      },
+      {
+        "detail": "No duplicate reward",
+        "name": "Duplicate claim rejected",
+        "status": "passed"
+      },
+      {
+        "detail": "New generation playable",
+        "name": "Accept new generated contract",
+        "status": "passed"
+      },
+      {
+        "detail": "Base plus contracts, diplomacy and encounters",
+        "name": "Atomic living checkpoint",
+        "status": "passed"
+      },
+      {
+        "detail": "New scene restores generated progress and state",
+        "name": "Restore all living modules",
+        "status": "passed"
+      },
+      {
+        "detail": "Checksummed invalid data cannot mutate world",
+        "name": "Reject malformed advanced checkpoint",
+        "status": "passed"
+      },
+      {
+        "detail": "Procedural character driven by actual patrol velocity",
+        "name": "Animated scout moves",
+        "status": "passed"
+      },
+      {
+        "detail": "Real resource and crafting gate preserved",
+        "name": "Training remains playable",
+        "status": "passed"
+      },
+      {
+        "detail": "Actual proximity boarding",
+        "name": "Board integrated vehicle",
+        "status": "passed"
+      },
+      {
+        "detail": "Driving traverses chunks",
+        "name": "Physical streamed drive",
+        "status": "passed"
+      },
+      {
+        "detail": "Near-stopped exit and physical movement",
+        "name": "Exit and visit outpost",
+        "status": "passed"
+      },
+      {
+        "detail": "Actual trade event affects reputation",
+        "name": "Trade changes diplomacy",
+        "status": "passed"
+      },
+      {
+        "detail": "Purchase a bandage, full-health use rejected",
+        "name": "Buy medical supply",
+        "status": "passed"
+      },
+      {
+        "detail": "Two real drone hits unlock hostile territory",
+        "name": "Complete training range",
+        "status": "passed"
+      },
+      {
+        "detail": "Physics time advances diplomacy events",
+        "name": "Autonomous faction simulation",
+        "status": "passed"
+      },
+      {
+        "detail": "Walk through newly streamed terrain",
+        "name": "Reach encounter zone",
+        "status": "passed"
+      },
+      {
+        "detail": "Proximity activates bounded enemy AI",
+        "name": "Hostile encounters activate",
+        "status": "passed"
+      },
+      {
+        "detail": "Physics ray hits reduce hostile HP and defeat an enemy",
+        "name": "Live hostile collision combat",
+        "status": "passed"
+      },
+      {
+        "detail": "Hostile shots consume inherited weapon ammunition",
+        "name": "Encounters use shared ammunition",
+        "status": "passed"
+      },
+      {
+        "detail": "Live attack modifies player health",
+        "name": "Hostiles deal real proximity damage",
+        "status": "passed"
+      },
+      {
+        "detail": "Health and inventory update together",
+        "name": "Bandage consumes supply and heals",
+        "status": "passed"
+      },
+      {
+        "detail": "Checkpoint persists actual post-combat progress",
+        "name": "Save combat and medical progress",
+        "status": "passed"
+      },
+      {
+        "detail": "No respawn or lost health on reload",
+        "name": "Restore defeated enemies and health",
+        "status": "passed"
+      }
+    ],
+    "metrics": {
+      "contract_generation": 1,
+      "credits": 68,
+      "drive_m": 47.2584522743709,
+      "faction_ticks": 2,
+      "health": 100,
+      "hostile_hits": 2,
+      "physics_ticks": 1154,
+      "walk_m": 72.0087415799499
+    },
+    "pass": true
+  },
+  "gates": [
+    {
+      "name": "Build",
+      "status": "passed"
+    },
+    {
+      "name": "Verification",
+      "status": "passed"
+    },
+    {
+      "name": "Living World scenario QA",
+      "status": "passed"
+    },
+    {
+      "name": "Human render review",
+      "status": "pending"
+    },
+    {
+      "name": "Device review",
+      "status": "pending"
+    }
+  ],
+  "edited_gate": "stale",
+  "edited_build_gate": "pending",
+  "commands": [
+    {
+      "stage": "build",
+      "exit_code": 0,
+      "duration_seconds": 19.195,
+      "timed_out": false
+    },
+    {
+      "stage": "verify",
+      "exit_code": 0,
+      "duration_seconds": 0.169,
+      "timed_out": false
+    }
+  ]
+}

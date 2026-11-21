@@ -1,0 +1,40 @@
+# Local credentials and account configuration
+.env
+.env.*
+*.pem
+*.key
+*.p12
+*.pfx
+*.jks
+*.keystore
+id_rsa*
+id_ed25519*
+credentials.json
+secrets.json
+*.secret
+*.token
+
+# User workspaces and locally generated exports
+/studio-workspace/
+/studio-v24-active/
+/workspaces/
+/workspace/
+/private/
+/projects/
+/jobs/
+/imports/
+/example/
+**/studio-dashboard-v*.html
+**/studio-validation.json
+*-recovery.json
+*-dossier.json
+
+# Tool caches and local build state
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.godot/
+.venv/
+venv/
+node_modules/
+.DS_Store

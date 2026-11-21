@@ -1,0 +1,11 @@
+{
+  "status": "passed",
+  "build_verified": true,
+  "stale_order_rejected": true,
+  "handoff_did_not_complete_task": true,
+  "recovery_verified": true,
+  "historical_review_rejected": true,
+  "dossier_status": "pending",
+  "dossier_sha256": "e988e9bb72d54d0902003a3211d81d85fe269e4b739fe94793e0a75afba7b0e4",
+  "handoff_count": 2
+}

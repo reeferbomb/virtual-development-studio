@@ -1,0 +1,47 @@
+{
+  "pass": true,
+  "errors": [],
+  "port": 50696,
+  "expected_clients": 2,
+  "host": {
+    "accepted": 460,
+    "damage_events": 8,
+    "disconnected": 2,
+    "joined": 2,
+    "movement_m": 4.79999852180481,
+    "npc_attack_events": 2,
+    "npc_damage_events": 6,
+    "pass": true,
+    "peak_members": 3,
+    "pvp_damage_events": 6,
+    "rejected": 2,
+    "started": true
+  },
+  "clients": {
+    "client-1": {
+      "max_members": 3,
+      "min_npc_health": 0,
+      "own_movement_m": 1.60195207595825,
+      "pass": true,
+      "peer_id": 870820606,
+      "saw_player_damage": true,
+      "saw_started": true,
+      "snapshots": 77
+    },
+    "client-2": {
+      "max_members": 3,
+      "min_npc_health": 0,
+      "own_movement_m": 1.60195124149323,
+      "pass": true,
+      "peer_id": 1002573352,
+      "saw_player_damage": true,
+      "saw_started": true,
+      "snapshots": 77
+    }
+  },
+  "exit_codes": {
+    "host": 0,
+    "client-1": 0,
+    "client-2": 0
+  }
+}

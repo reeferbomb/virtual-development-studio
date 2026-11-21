@@ -1,0 +1,120 @@
+{
+  "id": "nightfall_patrol",
+  "seed": 237,
+  "shots": [
+    {
+      "actor_from": [
+        0.0,
+        0.0,
+        4.0
+      ],
+      "actor_to": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "camera_from": [
+        2.5,
+        3.8,
+        12.0
+      ],
+      "camera_to": [
+        1.8,
+        2.8,
+        8.0
+      ],
+      "clip": "Walk",
+      "duration": 4.0,
+      "fov": 65.0,
+      "id": "establish",
+      "light": 0.75,
+      "look_from": [
+        0.0,
+        1.0,
+        2.0
+      ],
+      "look_to": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "rain": 0.0
+    },
+    {
+      "actor_from": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "actor_to": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "camera_from": [
+        2.5,
+        1.7,
+        4.0
+      ],
+      "camera_to": [
+        1.6,
+        1.7,
+        3.0
+      ],
+      "clip": "Aim",
+      "duration": 3.0,
+      "fov": 48.0,
+      "id": "alert",
+      "light": 0.5,
+      "look_from": [
+        0.0,
+        1.1,
+        0.0
+      ],
+      "look_to": [
+        0.0,
+        1.25,
+        0.0
+      ],
+      "rain": 0.2
+    },
+    {
+      "actor_from": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "actor_to": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "camera_from": [
+        -2.2,
+        2.0,
+        3.0
+      ],
+      "camera_to": [
+        -2.5,
+        2.5,
+        5.0
+      ],
+      "clip": "Reload",
+      "duration": 3.0,
+      "fov": 52.0,
+      "id": "storm",
+      "light": 0.25,
+      "look_from": [
+        0.0,
+        1.1,
+        0.0
+      ],
+      "look_to": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "rain": 1.0
+    }
+  ]
+}

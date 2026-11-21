@@ -1,0 +1,13 @@
+{
+  "status": "passed",
+  "planned_tasks": 6,
+  "plan_id": "69735fe17c345766a2911dd7599336194409fb95695562b4880266ee3a9e8431",
+  "stale_preview_rejected": true,
+  "old_snapshot_status": "pending",
+  "blocked_snapshot_status": "blocked",
+  "build_verified": true,
+  "build_job_id": "0757447e77674883806d51f649def504",
+  "historical_snapshots": 2,
+  "historical_capture_rejected": true,
+  "board_revision": 1
+}

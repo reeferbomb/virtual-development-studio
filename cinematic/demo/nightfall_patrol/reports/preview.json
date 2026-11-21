@@ -1,0 +1,10 @@
+{
+  "dimensions": [
+    960,
+    540
+  ],
+  "luminance_mean": 122.16602816358025,
+  "luminance_stddev": 53.3364345004415,
+  "renderer": "Blender Cycles CPU",
+  "scope": "Raster sanity, not live Godot appearance"
+}

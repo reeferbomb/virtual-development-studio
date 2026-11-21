@@ -1,0 +1,494 @@
+{
+  "files": [
+    {
+      "bytes": 3412,
+      "path": "economy.gd",
+      "sha256": "0a2fc6b16650cc6c9527277984f8c30fa172519583bf22d4ef6be2134e6383b7"
+    },
+    {
+      "bytes": 19,
+      "path": "economy.gd.uid",
+      "sha256": "8843edaa3e685b4eda56fdedf89958da23f910bd59641aa36c9c8d6c1ea9ecba"
+    },
+    {
+      "bytes": 1662,
+      "path": "factions.gd",
+      "sha256": "8675b48eef50257af09d1e2cd4bc0c868f9f28892961c1edd0c81ee34a6844f0"
+    },
+    {
+      "bytes": 20,
+      "path": "factions.gd.uid",
+      "sha256": "225862f537713262475192f575d247708f908211655a68d05c7163ac48fc7bcd"
+    },
+    {
+      "bytes": 2555,
+      "path": "inventory.gd",
+      "sha256": "e363f9ff4b6066abe06e52713d6027c8965675e1939797d56ed7aef0721a2791"
+    },
+    {
+      "bytes": 20,
+      "path": "inventory.gd.uid",
+      "sha256": "78d1734c5e98a0e7919dc7d06b9362900249b380f3c1c28b8dc11656c26e7dc0"
+    },
+    {
+      "bytes": 10329,
+      "path": "openworld.gd",
+      "sha256": "20d391261729f827d55f5973545e0e8982306b6f3f5d32f40987e233c037cf88"
+    },
+    {
+      "bytes": 19,
+      "path": "openworld.gd.uid",
+      "sha256": "7f2d86f32c39ba431e498777aa122f8a08860ce4629809e80ad08d7782118514"
+    },
+    {
+      "bytes": 71,
+      "path": "openworld.json",
+      "sha256": "0b1774b643439eff7b623e6415ed1062f26da7911aeadc967c0a8362c33e0090"
+    },
+    {
+      "bytes": 4183,
+      "path": "persistence.gd",
+      "sha256": "347a94744e21a3cd370cb139317188a4ce3686afa6938d054c58a8b9f36e5889"
+    },
+    {
+      "bytes": 20,
+      "path": "persistence.gd.uid",
+      "sha256": "15740d8e60aaf6264bbdb62f3834f6dfc0b545316e192798f9efc78c325d5b2d"
+    },
+    {
+      "bytes": 2959,
+      "path": "player.gd",
+      "sha256": "8c472548f5ead42e6cc8bc5d79ddf4f441d98e831281d4aa323ed589e45b85b9"
+    },
+    {
+      "bytes": 19,
+      "path": "player.gd.uid",
+      "sha256": "073b1f5e3b28bd7ed7e14c55e9a7d290ad96d3b21176d18746551483b59f4f6f"
+    },
+    {
+      "bytes": 5989,
+      "path": "population.gd",
+      "sha256": "e5df262e7f374b8203e955298e0194e4602eda9f4ee2f3348d2050741b78d6a1"
+    },
+    {
+      "bytes": 19,
+      "path": "population.gd.uid",
+      "sha256": "c8063d17eefdb99be227bf226d06b8ba4eb7f5b062651b097046c084d838fd15"
+    },
+    {
+      "bytes": 354,
+      "path": "project.godot",
+      "sha256": "45d53302f2ba6de64b21afb5328eda3eff8834868ab38072db4337618909789b"
+    },
+    {
+      "bytes": 1895,
+      "path": "quests.gd",
+      "sha256": "7b17e29fd5952fa0a23d4fecf40fb884c7a205e6d2ec6a89fe13133f192df1c8"
+    },
+    {
+      "bytes": 20,
+      "path": "quests.gd.uid",
+      "sha256": "1184e3af35ef9b982bdc2211cf1da324676bfda13570340d09f961d646cc4d89"
+    },
+    {
+      "bytes": 6228,
+      "path": "range_combat.gd",
+      "sha256": "e3abd977aa5b9b441f37b2c969304564c4e525c283792474a3004a11ca1e10d7"
+    },
+    {
+      "bytes": 20,
+      "path": "range_combat.gd.uid",
+      "sha256": "e56a0eabc3447bdcf1231d25885be24158a356456002e283509e97b46fee53a6"
+    },
+    {
+      "bytes": 2629,
+      "path": "reports/import.log",
+      "sha256": "7dd0558f7c0456a82c8f0163d188dbba9cb1ae4896e5186c9241e1676171b5b5"
+    },
+    {
+      "bytes": 117,
+      "path": "reports/launch.log",
+      "sha256": "f5d94698af95196785187f8bfb2c9a9d5e3010f8f405de6ac12436a9c9bef12d"
+    },
+    {
+      "bytes": 113,
+      "path": "reports/test_economy.log",
+      "sha256": "21cd533f38e9473a48f9a8320f385a7b0db4b0f4bcf404b924e985a1973dc7c3"
+    },
+    {
+      "bytes": 113,
+      "path": "reports/test_factions.log",
+      "sha256": "ec2bd05a02d3951c4811f9a23071b4a65d54b398c90d29b6c85be89392d01af3"
+    },
+    {
+      "bytes": 115,
+      "path": "reports/test_inventory.log",
+      "sha256": "7554e3267eff732422a0b8325a040ca2f8c1e0370d913bb50474072fb695c956"
+    },
+    {
+      "bytes": 174,
+      "path": "reports/test_persistence.log",
+      "sha256": "8ef044b80286a6d2622a11cc08057396e0a94c30440950ab66297e0d5e9c9664"
+    },
+    {
+      "bytes": 188,
+      "path": "reports/test_population.log",
+      "sha256": "ccf9bf5605ef76298fa23fb7cd4e2880d4db8ee275300f4c3a4409c9cb57e4ed"
+    },
+    {
+      "bytes": 111,
+      "path": "reports/test_quests.log",
+      "sha256": "53843c45ab14884e0fbdfcdcba7c9ed8b0747b264b631fc143b97782f9b0cb76"
+    },
+    {
+      "bytes": 99,
+      "path": "reports/test_range_combat.log",
+      "sha256": "ecd3d2894b177558e43f8fcffd6d243399a97e7a8be23e7c78a4f5fb40ddf755"
+    },
+    {
+      "bytes": 104,
+      "path": "reports/test_scheduled_population.log",
+      "sha256": "a703cdc48149f640304fd3210ee79e61c6253caad546af38d6c0031181d5a33e"
+    },
+    {
+      "bytes": 93,
+      "path": "reports/test_streaming.log",
+      "sha256": "07a072b963c8f993c79d0921c13d45d56f16523742cdf46ca38c39e8e67c98dd"
+    },
+    {
+      "bytes": 168,
+      "path": "reports/test_transport.log",
+      "sha256": "a0e3a1be91146adae9332899e654e0efff94c012f8ef84e2c91c6bd575bac2b1"
+    },
+    {
+      "bytes": 3902,
+      "path": "reports/unified-qa.json",
+      "sha256": "8c75d48d01d90af4a4e4fc70a7e52897ba4eda23cc8d3408c6165c34ca6fe221"
+    },
+    {
+      "bytes": 3129,
+      "path": "reports/unified-qa.log",
+      "sha256": "ed63a3f85ccbe86b29aadade1a3316e9bd3c8d13bcc1de707c40d7dea02ceb9c"
+    },
+    {
+      "bytes": 3838,
+      "path": "scheduled_population.gd",
+      "sha256": "4c2fb0e88071c7a6b68ae571565503d0bb63f8c22c1403482c7d4692f65f255d"
+    },
+    {
+      "bytes": 20,
+      "path": "scheduled_population.gd.uid",
+      "sha256": "cf7c436c6b01868ddd551471a4bd6ede91760361de79465e5eee29ef13c9032b"
+    },
+    {
+      "bytes": 5444,
+      "path": "streaming.gd",
+      "sha256": "a69a04c35458f87e329a45ca45b195fdb6d257c02c47091f6fdbe6acbd212a65"
+    },
+    {
+      "bytes": 20,
+      "path": "streaming.gd.uid",
+      "sha256": "4bc810777acdc7f197e8aaebcdc8fdc453790b37e8059d9c2b2c8bb0bd5f4a6a"
+    },
+    {
+      "bytes": 6533,
+      "path": "tests/test_economy.gd",
+      "sha256": "27f769d26533d5c1024ec7ba2417c2a403be4459ee5c77aabe7b3f1c3265e55a"
+    },
+    {
+      "bytes": 19,
+      "path": "tests/test_economy.gd.uid",
+      "sha256": "fe2214745f7e629782c4f5dd2075549a646538318a7b479a0e59153ae5988ae2"
+    },
+    {
+      "bytes": 2707,
+      "path": "tests/test_factions.gd",
+      "sha256": "fd25e192e45c50ba47067adb1b18ef5d91b24b4d982129831136225c3705227c"
+    },
+    {
+      "bytes": 20,
+      "path": "tests/test_factions.gd.uid",
+      "sha256": "773a84e44457af6878add2d2faebcddb219c798a7a897ba90de0898de7556073"
+    },
+    {
+      "bytes": 3702,
+      "path": "tests/test_inventory.gd",
+      "sha256": "f722382c5c0792eab4bbc4817fbf84c094fe263b0eb9b91ba0296830a6ecb497"
+    },
+    {
+      "bytes": 20,
+      "path": "tests/test_inventory.gd.uid",
+      "sha256": "44d68b8280f07ec0a140244dda0476401601c56936f733b3316424741b4d1ee5"
+    },
+    {
+      "bytes": 4068,
+      "path": "tests/test_persistence.gd",
+      "sha256": "4d618f35ebb6760d41ac040105a0b9195e76a4fbf35b6c1d5c5c65c333e234f8"
+    },
+    {
+      "bytes": 20,
+      "path": "tests/test_persistence.gd.uid",
+      "sha256": "27e2c4fdd0b966719ffec2749d66cfa54d4dafac0d6b1b1f75496494ab1780cf"
+    },
+    {
+      "bytes": 4899,
+      "path": "tests/test_population.gd",
+      "sha256": "003f2e74142178eb2059b9fb40e4b1448ccbee230373555cdba23f0d7a2e85dc"
+    },
+    {
+      "bytes": 20,
+      "path": "tests/test_population.gd.uid",
+      "sha256": "a24eb8871d87021c98367efca39d2e04207b74e67d7de75f7e09b01f6fc1ecd6"
+    },
+    {
+      "bytes": 3652,
+      "path": "tests/test_quests.gd",
+      "sha256": "82218d5c029491e50b2576b815974ac33364ba0324a2a6d46a45985ac1be12d1"
+    },
+    {
+      "bytes": 20,
+      "path": "tests/test_quests.gd.uid",
+      "sha256": "c3bb4e882b9d47b63670595722c64dd6fe9b487681623c231c9e7d19a20a9049"
+    },
+    {
+      "bytes": 5562,
+      "path": "tests/test_range_combat.gd",
+      "sha256": "a5f21b14e363ee8f31aa638d6014bbbd12b9542dfe84db4cfcce39daf79ca86c"
+    },
+    {
+      "bytes": 19,
+      "path": "tests/test_range_combat.gd.uid",
+      "sha256": "ee556e6e189ab2f3206596dbe14c58195c8821e8457e4334d31c91865df13753"
+    },
+    {
+      "bytes": 4852,
+      "path": "tests/test_scheduled_population.gd",
+      "sha256": "d5fd69da7d4e0198802c8ce34a8a349ea45d0fca84410758226a3416c06afaf2"
+    },
+    {
+      "bytes": 20,
+      "path": "tests/test_scheduled_population.gd.uid",
+      "sha256": "ec933100629d81e8c195d0f38408effe13985c03e1a598b5cd7a1c4cbc3dac2c"
+    },
+    {
+      "bytes": 4850,
+      "path": "tests/test_streaming.gd",
+      "sha256": "1ff34011d8873c12d54cfef65f861755b39c843408a0391b6fdd38430aa4d9b6"
+    },
+    {
+      "bytes": 20,
+      "path": "tests/test_streaming.gd.uid",
+      "sha256": "a83f25ee869ee792b62783ba42709d6f3f2488c371b518ba5d1ef728718f8983"
+    },
+    {
+      "bytes": 5784,
+      "path": "tests/test_transport.gd",
+      "sha256": "d8466e4e01f43efa4694dcca89db301327aa66f59392cf9e471b68d56d607789"
+    },
+    {
+      "bytes": 20,
+      "path": "tests/test_transport.gd.uid",
+      "sha256": "1cd5c966b9f3ca859f2673620b4269bec01f194c89777dd811ef32822aebcd8b"
+    },
+    {
+      "bytes": 6425,
+      "path": "transport.gd",
+      "sha256": "dad39fee7b860064b723f6bb9754daf2afdd3e2a43be31fac7b1bc1072753b29"
+    },
+    {
+      "bytes": 20,
+      "path": "transport.gd.uid",
+      "sha256": "1c965de90929717b4879af27c5df10d753ee7aa4ffa9df0ee38698d469ee0339"
+    },
+    {
+      "bytes": 8372,
+      "path": "unified.gd",
+      "sha256": "e130415864c66824196de128c689340f375bf7cd6d640cc83c2b3bfe8de6c141"
+    },
+    {
+      "bytes": 20,
+      "path": "unified.gd.uid",
+      "sha256": "6263a7b0fb0475b5a365a1105499d2e34fd2582d148f84e076ddc91df159b629"
+    },
+    {
+      "bytes": 162,
+      "path": "unified.tscn",
+      "sha256": "02715f52b8fde16e76b635a683d7c5a5695ce5a68ad8eae2ebfe54a086ded8db"
+    },
+    {
+      "bytes": 8849,
+      "path": "unified_qa.gd",
+      "sha256": "bd42ee2d269e9b35336585ae1a934ff9e2ee07678287f3369022b7b2f9abbd4b"
+    },
+    {
+      "bytes": 20,
+      "path": "unified_qa.gd.uid",
+      "sha256": "41c3bfbca9771a1a486fae161107ce7a5fbe1ed0d2e06e975d55fa62125eb9fb"
+    },
+    {
+      "bytes": 5004,
+      "path": "vehicle.gd",
+      "sha256": "b44b9e3ed4d0b7faa0315dc68291a12a24b96a42f8ecbaeb4eaa5c239ebd4bfa"
+    },
+    {
+      "bytes": 20,
+      "path": "vehicle.gd.uid",
+      "sha256": "899871354569d78447b7d821e442238c9299fbaad24ed55bdd1dbc6d3ca2bf62"
+    }
+  ],
+  "kind": "unified",
+  "schema": 1,
+  "spec": {
+    "capacity": 40,
+    "chunk_size": 32,
+    "radius": 1,
+    "seed": 237
+  },
+  "status": "passed",
+  "unified_qa": {
+    "checks": [
+      {
+        "detail": "Imported scene",
+        "name": "Load unified scene",
+        "status": "passed"
+      },
+      {
+        "detail": "All modules ready and physical ground",
+        "name": "Initialize integrated world",
+        "status": "passed"
+      },
+      {
+        "detail": "Crafting is the first required objective",
+        "name": "Initial quest and bounded streaming",
+        "status": "passed"
+      },
+      {
+        "detail": "Physical proximity required",
+        "name": "Reject remote boarding and trading",
+        "status": "passed"
+      },
+      {
+        "detail": "Quest prevents irreversible early defeat",
+        "name": "Reject early combat",
+        "status": "passed"
+      },
+      {
+        "detail": "Missing materials cannot advance quest",
+        "name": "Reject early craft",
+        "status": "passed"
+      },
+      {
+        "detail": "Walked to three distinct resource nodes",
+        "name": "Collect actual materials",
+        "status": "passed"
+      },
+      {
+        "detail": "Atomic recipe and quest event",
+        "name": "Craft and advance quest",
+        "status": "passed"
+      },
+      {
+        "detail": "Approach and enter existing arcade vehicle",
+        "name": "Physically board vehicle",
+        "status": "passed"
+      },
+      {
+        "detail": "No airborne/unsafe dismount",
+        "name": "Moving exit rejected",
+        "status": "passed"
+      },
+      {
+        "detail": "Measured physical driving, terrain follows vehicle",
+        "name": "Vehicle traverses streamed chunks",
+        "status": "passed"
+      },
+      {
+        "detail": "Crossed the destination radius in vehicle",
+        "name": "Drive objective advances",
+        "status": "passed"
+      },
+      {
+        "detail": "Foot controller restored",
+        "name": "Brake and dismount",
+        "status": "passed"
+      },
+      {
+        "detail": "Physical movement after exiting vehicle",
+        "name": "Approach trading outpost",
+        "status": "passed"
+      },
+      {
+        "detail": "Inventory and wallet changed together",
+        "name": "Sell crafted tool",
+        "status": "passed"
+      },
+      {
+        "detail": "No free credits",
+        "name": "Reject duplicate sale",
+        "status": "passed"
+      },
+      {
+        "detail": "Actual collision target and damage state",
+        "name": "Raycast hits range drone",
+        "status": "passed"
+      },
+      {
+        "detail": "Weapon timing enforced",
+        "name": "Cooldown blocks rapid second shot",
+        "status": "passed"
+      },
+      {
+        "detail": "Ordered quest completed, reward paid exactly once",
+        "name": "Defeat and reward",
+        "status": "passed"
+      },
+      {
+        "detail": "Completed quest cannot pay again",
+        "name": "Reject duplicate reward",
+        "status": "passed"
+      },
+      {
+        "detail": "Simulation clock advanced by actual physics frames",
+        "name": "NPC clock advances through schedules",
+        "status": "passed"
+      },
+      {
+        "detail": "Atomic checksummed whole-world checkpoint",
+        "name": "Save integrated state",
+        "status": "passed"
+      },
+      {
+        "detail": "New scene before load",
+        "name": "Fresh world has initial quest and credits",
+        "status": "passed"
+      },
+      {
+        "detail": "Economy, quests, combat, player, inventory and schedule clock restored",
+        "name": "Restore integrated checkpoint",
+        "status": "passed"
+      },
+      {
+        "detail": "Parked vehicle position restored",
+        "name": "Restore parked vehicle",
+        "status": "passed"
+      },
+      {
+        "detail": "Valid checksum cannot bypass schema validation",
+        "name": "Reject malformed checkpoint atomically",
+        "status": "passed"
+      }
+    ],
+    "metrics": {
+      "active_hour": 7.8833334,
+      "drive_m": 46.849711574614,
+      "final_credits": 62,
+      "loaded_chunks": 9,
+      "loaded_npcs": 13,
+      "max_drive_step_m": 0.160023003816605,
+      "physics_ticks": 2381,
+      "quest_completed": true,
+      "walk_m": 11.8999880328774
+    },
+    "pass": true
+  }
+}

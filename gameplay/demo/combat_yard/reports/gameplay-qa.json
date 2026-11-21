@@ -1,0 +1,60 @@
+{
+  "checks": [
+    {
+      "detail": "",
+      "name": "Spawned opponents",
+      "status": "passed"
+    },
+    {
+      "detail": "",
+      "name": "Extraction locked",
+      "status": "passed"
+    },
+    {
+      "detail": "(7.960255, 0.000844, -6.424519)",
+      "name": "Autonomous patrol",
+      "status": "passed"
+    },
+    {
+      "detail": "88",
+      "name": "NPC detects and attacks",
+      "status": "passed"
+    },
+    {
+      "detail": "",
+      "name": "Cover blocks fire",
+      "status": "passed"
+    },
+    {
+      "detail": "",
+      "name": "Hitscan damage",
+      "status": "passed"
+    },
+    {
+      "detail": "",
+      "name": "Elimination advances mission",
+      "status": "passed"
+    },
+    {
+      "detail": "",
+      "name": "Checkpoint write",
+      "status": "passed"
+    },
+    {
+      "detail": "",
+      "name": "Checkpoint restores state",
+      "status": "passed"
+    },
+    {
+      "detail": "",
+      "name": "All objectives defeated",
+      "status": "passed"
+    },
+    {
+      "detail": "(6.150009, 0.000391, 0.0)",
+      "name": "Physical extraction",
+      "status": "passed"
+    }
+  ],
+  "pass": true
+}

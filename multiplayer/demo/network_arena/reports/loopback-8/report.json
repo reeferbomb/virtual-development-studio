@@ -1,0 +1,113 @@
+{
+  "pass": true,
+  "errors": [],
+  "port": 60399,
+  "expected_clients": 8,
+  "host": {
+    "accepted": 1329,
+    "damage_events": 30,
+    "disconnected": 8,
+    "joined": 8,
+    "movement_m": 14.6666580438614,
+    "npc_attack_events": 1,
+    "npc_damage_events": 6,
+    "pass": true,
+    "peak_members": 9,
+    "pvp_damage_events": 29,
+    "rejected": 8,
+    "started": true
+  },
+  "clients": {
+    "client-1": {
+      "max_members": 9,
+      "min_npc_health": 0,
+      "own_movement_m": 1.70183622837067,
+      "pass": true,
+      "peer_id": 520840447,
+      "saw_player_damage": true,
+      "saw_started": true,
+      "snapshots": 68
+    },
+    "client-2": {
+      "max_members": 9,
+      "min_npc_health": 0,
+      "own_movement_m": 1.63524556159973,
+      "pass": true,
+      "peer_id": 1257093565,
+      "saw_player_damage": true,
+      "saw_started": true,
+      "snapshots": 77
+    },
+    "client-3": {
+      "max_members": 9,
+      "min_npc_health": 0,
+      "own_movement_m": 1.60194909572601,
+      "pass": true,
+      "peer_id": 1927691465,
+      "saw_player_damage": true,
+      "saw_started": true,
+      "snapshots": 77
+    },
+    "client-4": {
+      "max_members": 9,
+      "min_npc_health": 0,
+      "own_movement_m": 1.63524448871613,
+      "pass": true,
+      "peer_id": 1176218442,
+      "saw_player_damage": true,
+      "saw_started": true,
+      "snapshots": 78
+    },
+    "client-5": {
+      "max_members": 9,
+      "min_npc_health": 0,
+      "own_movement_m": 1.60195171833038,
+      "pass": true,
+      "peer_id": 1841331813,
+      "saw_player_damage": true,
+      "saw_started": true,
+      "snapshots": 78
+    },
+    "client-6": {
+      "max_members": 9,
+      "min_npc_health": 0,
+      "own_movement_m": 1.70183706283569,
+      "pass": true,
+      "peer_id": 266515816,
+      "saw_player_damage": true,
+      "saw_started": true,
+      "snapshots": 78
+    },
+    "client-7": {
+      "max_members": 9,
+      "min_npc_health": 0,
+      "own_movement_m": 1.60195207595825,
+      "pass": true,
+      "peer_id": 539700175,
+      "saw_player_damage": true,
+      "saw_started": true,
+      "snapshots": 77
+    },
+    "client-8": {
+      "max_members": 9,
+      "min_npc_health": 0,
+      "own_movement_m": 1.60195076465607,
+      "pass": true,
+      "peer_id": 71502918,
+      "saw_player_damage": true,
+      "saw_started": true,
+      "snapshots": 78
+    }
+  },
+  "exit_codes": {
+    "host": 0,
+    "client-1": 0,
+    "client-2": 0,
+    "client-3": 0,
+    "client-4": 0,
+    "client-5": 0,
+    "client-6": 0,
+    "client-7": 0,
+    "client-8": 0
+  }
+}

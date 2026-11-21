@@ -1,0 +1,62 @@
+{
+  "status": "passed",
+  "workflow": {
+    "project_id": "scheduler-workflow",
+    "spec_sha256": "b71a2a8a2a93eecbaccb67f3072c3b824d4b6db6b60181c939e9fba3072b216e",
+    "ready_before_prerequisite": [
+      "layout",
+      "terrain"
+    ],
+    "ready_after_prerequisite": [
+      "review"
+    ],
+    "dependency_rejection": "A started task requires completed dependencies",
+    "busy_role_rejection": "Role already has a running task",
+    "empty_evidence_rejection": "Completed tasks require evidence, and only completed tasks carry it",
+    "reassigned_role": "gameplay",
+    "running_at_restart": 2,
+    "restored_revision": 9,
+    "completed_revision": 13,
+    "completed_tasks": 3,
+    "revision_conflict_status": 409,
+    "stale_state": "stale",
+    "reset_revision": 15,
+    "reset_spec_sha256": "60e7a241000a41aa64ce2b711915395598696623ecf2caf0f2575d01f5af7490"
+  },
+  "build_gate": {
+    "project_id": "scheduler-build-gate",
+    "job_id": "c0ce9c77d3ca43c69d463a7bbc6c2393",
+    "spec_sha256": "b71a2a8a2a93eecbaccb67f3072c3b824d4b6db6b60181c939e9fba3072b216e",
+    "job_status": "passed",
+    "verified": true,
+    "completed_task": "release",
+    "commands": [
+      {
+        "stage": "build",
+        "exit_code": 0
+      },
+      {
+        "stage": "verify",
+        "exit_code": 0
+      }
+    ],
+    "route_qa": {
+      "metrics": {
+        "goal_error_m": 0.0666742324829102,
+        "goal_triggered": true,
+        "headless_wall_seconds": 0.104723,
+        "horizontal_collision_contacts": 0,
+        "physics_ticks": 209,
+        "simulation_seconds": 3.48333333333333,
+        "travel_m": 13.9333257675171,
+        "waypoints_reached": 2,
+        "waypoints_total": 2
+      },
+      "pass": true
+    },
+    "missing_reference_rejection": "Build completion requires a verified job",
+    "unknown_job_rejection": "Build completion requires a verified job",
+    "foreign_project_rejection": "Build completion requires a verified job",
+    "obsolete_spec_rejection": "Build completion requires a verified job"
+  }
+}

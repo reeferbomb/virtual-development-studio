@@ -1,0 +1,24 @@
+{
+  "ok": true,
+  "schema_version": 1,
+  "transport": "loopback TCP",
+  "simultaneous_clients": 2,
+  "tick_hz": 30,
+  "ticks_observed": [
+    0,
+    1,
+    2
+  ],
+  "displacement_per_tick": 0.2,
+  "observed_remote_state": {
+    "id": "p1",
+    "x": 0.1414213562373095,
+    "z": 0.1414213562373095,
+    "applied": 1
+  },
+  "resume_restored_position": true,
+  "resume_rotated_token": true,
+  "duplicate_input_rejected": true,
+  "leave_observed": true,
+  "interest_filtered": true
+}

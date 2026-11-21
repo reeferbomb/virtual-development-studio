@@ -1,0 +1,480 @@
+{
+  "files": [
+    {
+      "bytes": 15445,
+      "path": "city.gd",
+      "sha256": "227dafb957c8665928edffc5ac1cf363c1f26f6de401f0e8f103547940ec3adc"
+    },
+    {
+      "bytes": 20,
+      "path": "city.gd.uid",
+      "sha256": "ffd1d950783c392a47af46e60e4a8b34215e64d0a51e80c9f8a1d4f2d21e1e6a"
+    },
+    {
+      "bytes": 14396,
+      "path": "city.json",
+      "sha256": "59aecca87a5df41b0de20649caa4b9eea5f99a317c6343d8d1c769574563df6f"
+    },
+    {
+      "bytes": 157,
+      "path": "city.tscn",
+      "sha256": "48e955e51cc4fb72a6726b33b85991bd3c88b83edcc71444016070e71e35a166"
+    },
+    {
+      "bytes": 9353,
+      "path": "city_network.gd",
+      "sha256": "b883f05c348150776764eefa53a5b9120eb0ab6bd6ba2785278db53f58786eac"
+    },
+    {
+      "bytes": 20,
+      "path": "city_network.gd.uid",
+      "sha256": "df8f0c0091455e22dc1316e826b70cbb7bd8e86a088ce6134ec535a088047d72"
+    },
+    {
+      "bytes": 1440,
+      "path": "city_profile.gd",
+      "sha256": "6729201573afe88e0290d5a1dd13538bb74b345a5a630d6047bfca78da23a64d"
+    },
+    {
+      "bytes": 20,
+      "path": "city_profile.gd.uid",
+      "sha256": "fe42e078ff974bd91c829dc20f31aa9302e733ed1a57195608fd92c879c8989c"
+    },
+    {
+      "bytes": 9632,
+      "path": "city_qa.gd",
+      "sha256": "a5b9714a3c220813a80e16e4f63772e5bd10a10c5243f09684cbf8664ddfb424"
+    },
+    {
+      "bytes": 19,
+      "path": "city_qa.gd.uid",
+      "sha256": "879abdd936930b62a6735b775a06090d406ec3139295a5b99ca18ef10e86cb5d"
+    },
+    {
+      "bytes": 9460,
+      "path": "civilians.gd",
+      "sha256": "268c71cc76899aa2c4af7e682cd0826ec1d3455ac1cb23e0b6abf56ea8742923"
+    },
+    {
+      "bytes": 19,
+      "path": "civilians.gd.uid",
+      "sha256": "67e8f4cc27f07ebf97da81138992f350e51d0b3ddd86bb0c64d251ee79747f61"
+    },
+    {
+      "bytes": 7231,
+      "path": "demolition.gd",
+      "sha256": "a7b3344565105b35eba11b77e6dff3b333f2e2a0bdc96901870edd179a5c4c65"
+    },
+    {
+      "bytes": 19,
+      "path": "demolition.gd.uid",
+      "sha256": "1d7adfaab25d6373fa653b2bb853eb13200037d0f3c1f8a92c600cc6e9a99e9a"
+    },
+    {
+      "bytes": 10956,
+      "path": "interiors.gd",
+      "sha256": "c80e326dc6506a2436c0728924136a6f03285ea4e0d21327273be516478cc3b6"
+    },
+    {
+      "bytes": 20,
+      "path": "interiors.gd.uid",
+      "sha256": "082d6b234b0c97eacdbcdef045901dc2979fb02b9a74438ce27314a68214a56f"
+    },
+    {
+      "bytes": 4183,
+      "path": "persistence.gd",
+      "sha256": "347a94744e21a3cd370cb139317188a4ce3686afa6938d054c58a8b9f36e5889"
+    },
+    {
+      "bytes": 19,
+      "path": "persistence.gd.uid",
+      "sha256": "2d95cffd717ac7d24f034895c61155103f591baa7bffdbcb4bffc5e3e3219ac9"
+    },
+    {
+      "bytes": 2959,
+      "path": "player.gd",
+      "sha256": "8c472548f5ead42e6cc8bc5d79ddf4f441d98e831281d4aa323ed589e45b85b9"
+    },
+    {
+      "bytes": 20,
+      "path": "player.gd.uid",
+      "sha256": "3dc4f5ba7e3eb8cd9295d142c2eac75bd65f8a83455d608a8365fbad32bf1983"
+    },
+    {
+      "bytes": 350,
+      "path": "project.godot",
+      "sha256": "12c55b91019a6b54686f1274707a7b4259c65c63dad40181836b317483aa0bcc"
+    },
+    {
+      "bytes": 2397,
+      "path": "reports/import.log",
+      "sha256": "36590fa190a90ac02d3537067b7143c88108367caccf2b42a17d01c2f8ce1bd5"
+    },
+    {
+      "bytes": 113,
+      "path": "reports/launch.log",
+      "sha256": "451378786437e5d44980d132b9a344de37cd8ac8534f87fc4bf648c1e6ccb8e1"
+    },
+    {
+      "bytes": 273,
+      "path": "reports/test_city_network.log",
+      "sha256": "8053b58d5c2730ab15d731bfc409699ed0861079e5e356b7d5e42d2fdeae2735"
+    },
+    {
+      "bytes": 93,
+      "path": "reports/test_civilians.log",
+      "sha256": "cebde6f88653a578a7e5697d9eafaf0b2d6fd3769dcbbb69730489348fe3e596"
+    },
+    {
+      "bytes": 197,
+      "path": "reports/test_demolition.log",
+      "sha256": "71dc581406e27c8336636a1de01ab43bcc3fc1a4717f1dc90df543739ea0399e"
+    },
+    {
+      "bytes": 97,
+      "path": "reports/test_interiors.log",
+      "sha256": "b36d8746807279a3833712d394f5869e1fe2af8402fadf8ae7345ad647729e21"
+    },
+    {
+      "bytes": 173,
+      "path": "reports/test_traffic.log",
+      "sha256": "e5c6e40609cbf4ed9683f7db27049d8186dbad50e81ccd104996f2c5abaa079d"
+    },
+    {
+      "bytes": 188,
+      "path": "reports/test_transit.log",
+      "sha256": "bf8a0be77110b93f43f062d9b948d77a3d3fe593292742dad08fbc16ddc39458"
+    },
+    {
+      "bytes": 276,
+      "path": "reports/test_world_sync.log",
+      "sha256": "4b087ea19bf511347e4335d4c4275b096638d4b6e209b6c108e4d31477bba94d"
+    },
+    {
+      "bytes": 4735,
+      "path": "reports/vertical-qa.json",
+      "sha256": "01adceff91ab9faf0fc80b15da514fdee47e86cc3725ae14775704ca022c1afa"
+    },
+    {
+      "bytes": 3757,
+      "path": "reports/vertical-qa.log",
+      "sha256": "f1a8dc7d0e40934931278e82521225c62606afe3be26b5f4a96869121c80bf13"
+    },
+    {
+      "bytes": 5124,
+      "path": "tests/test_city_network.gd",
+      "sha256": "daf342382bde8c0fdc4bc95f9eb15d24386b0048b9b608b3bb689589d17a872a"
+    },
+    {
+      "bytes": 20,
+      "path": "tests/test_city_network.gd.uid",
+      "sha256": "a0f39d95144406a96e8b9b0a703a3b83a8654b063873002f6bf4a9c95abdb120"
+    },
+    {
+      "bytes": 5902,
+      "path": "tests/test_civilians.gd",
+      "sha256": "aeb3112158725e1a6a39e9255b02cbecd6cc27f2812af911d8f7e5915b500d4a"
+    },
+    {
+      "bytes": 20,
+      "path": "tests/test_civilians.gd.uid",
+      "sha256": "40ae9c6c66e03911381bcd52fbde8cfb1bcba9325fb67204bcc68508c09ad4f6"
+    },
+    {
+      "bytes": 6959,
+      "path": "tests/test_demolition.gd",
+      "sha256": "e2e937650e7795a7730e07e8bb3f5ee9fdba660dd118d97808d6f17560178455"
+    },
+    {
+      "bytes": 20,
+      "path": "tests/test_demolition.gd.uid",
+      "sha256": "89f9b07aa9ec40900f0ff799aa54119387947c6315f2889c3daa94aceccfa6e2"
+    },
+    {
+      "bytes": 6132,
+      "path": "tests/test_interiors.gd",
+      "sha256": "526f2e4a2b6e66f335ab94b2be874c94301e0d2887208274e0a51993fb79bd4a"
+    },
+    {
+      "bytes": 20,
+      "path": "tests/test_interiors.gd.uid",
+      "sha256": "5b6146a9777a597ce6bb9326a3322c117844e64bc477c2f701682b3f2658e65f"
+    },
+    {
+      "bytes": 6779,
+      "path": "tests/test_traffic.gd",
+      "sha256": "2192af101a7ce3efddf4d0136c7d608c79b22e5bcd284b83e0f6382824d5e3ff"
+    },
+    {
+      "bytes": 20,
+      "path": "tests/test_traffic.gd.uid",
+      "sha256": "7b48a8e8838c17185112fe874facc43f75aa4433830b867f367e52c706578421"
+    },
+    {
+      "bytes": 6651,
+      "path": "tests/test_transit.gd",
+      "sha256": "55462126fa8b9f1e2d172b43a01f15ec8d64687c0e7f1bda18e0b70e3c271052"
+    },
+    {
+      "bytes": 20,
+      "path": "tests/test_transit.gd.uid",
+      "sha256": "b9d8b3b7a6260bc82a399e5c738764b8fdd4931beef9cb860fe43422e9a1619c"
+    },
+    {
+      "bytes": 6860,
+      "path": "tests/test_world_sync.gd",
+      "sha256": "74b8369e966052889bf82d8f1c50cddc8f2828709c0fe134fd019a520c3d982d"
+    },
+    {
+      "bytes": 19,
+      "path": "tests/test_world_sync.gd.uid",
+      "sha256": "5dc577473d4a3bfb131b0d3ad63e52d9381d1ae878846fecc8a257be254f9904"
+    },
+    {
+      "bytes": 11239,
+      "path": "traffic.gd",
+      "sha256": "657ac9fd785233ef6f4d60231266e8f6f8dbf7d07c7971bcd824a41a2af7ca01"
+    },
+    {
+      "bytes": 20,
+      "path": "traffic.gd.uid",
+      "sha256": "1b4b7de5b89d5e7f8712e5a91c581cbe986050ea2d1527eb5fb6a3504d329429"
+    },
+    {
+      "bytes": 13974,
+      "path": "transit.gd",
+      "sha256": "ebf53ae25abe2b373183fea3b61ffd05d2587c89332f90bbc3b8415a20b24c6e"
+    },
+    {
+      "bytes": 20,
+      "path": "transit.gd.uid",
+      "sha256": "08d65ed3db28f91c5da1540a8eae3763eff49e58c3cc5f8b3826305f0fb1a5c1"
+    },
+    {
+      "bytes": 8291,
+      "path": "vertical.gd",
+      "sha256": "1cc40bab8f6b5d821b91bcd34f273f8bd3c138e9800b5da15eff215aefa319e3"
+    },
+    {
+      "bytes": 20,
+      "path": "vertical.gd.uid",
+      "sha256": "f23e5688e695b2f2f0196c5bf71dd4d5d14791e5aa54a975fddcecbb00187eb9"
+    },
+    {
+      "bytes": 164,
+      "path": "vertical.tscn",
+      "sha256": "43e28f528831068793bf7f8b54e9a310ff587c1b8e763d5c48658ca8be60b18d"
+    },
+    {
+      "bytes": 9757,
+      "path": "vertical_qa.gd",
+      "sha256": "79471090fbb544e6a1414afa5908b8e7956b64d24f6982ebc25d0e013e3524d8"
+    },
+    {
+      "bytes": 20,
+      "path": "vertical_qa.gd.uid",
+      "sha256": "63dc2ae24b3584aaa4f06f7e6463ee66e137adbf3283e1f7d6b85b9bd1707d40"
+    },
+    {
+      "bytes": 8480,
+      "path": "world_sync.gd",
+      "sha256": "f3df4828e5b955f986b3aae70cd0ee315ae5631ebba9359ec4fedde2a8a4da1c"
+    },
+    {
+      "bytes": 20,
+      "path": "world_sync.gd.uid",
+      "sha256": "e9031865b99f016bdc44f516d2ab3cfbdb72e1a248a25adf2eb1fde89c209692"
+    }
+  ],
+  "kind": "vertical",
+  "schema": 1,
+  "spec": {
+    "block_size": 48,
+    "blocks": 4,
+    "civilians": 20,
+    "seed": 237,
+    "traffic": 12
+  },
+  "status": "passed",
+  "vertical_qa": {
+    "checks": [
+      {
+        "detail": "Generated project scene",
+        "name": "Load vertical city",
+        "status": "passed"
+      },
+      {
+        "detail": "City, interior, underground transit and destruction all constructed",
+        "name": "Combined world initialized",
+        "status": "passed"
+      },
+      {
+        "detail": "Walk the road grid to the entrance",
+        "name": "Approach building",
+        "status": "passed"
+      },
+      {
+        "detail": "Character collision with closed door",
+        "name": "Closed door stops player",
+        "status": "passed"
+      },
+      {
+        "detail": "Actual door moves from threshold",
+        "name": "Open door by interaction",
+        "status": "passed"
+      },
+      {
+        "detail": "Collision-backed entry through door and partition",
+        "name": "Walk into rear room",
+        "status": "passed"
+      },
+      {
+        "detail": "Physical interior discovery",
+        "name": "Explore furnished interior",
+        "status": "passed"
+      },
+      {
+        "detail": "Save only from accessible exterior",
+        "name": "Interior checkpoint constrained",
+        "status": "passed"
+      },
+      {
+        "detail": "Walk out of same entry",
+        "name": "Return outside",
+        "status": "passed"
+      },
+      {
+        "detail": "Approach from road shoulder, not along the panel row: (71.68214, 0.000108, 92.00336)",
+        "name": "Reach cover lab",
+        "status": "passed"
+      },
+      {
+        "detail": "Camera ray damages center panel",
+        "name": "Shoot actual cover",
+        "status": "passed"
+      },
+      {
+        "detail": "Immediate extra shot refused",
+        "name": "Enforce fire cooldown",
+        "status": "passed"
+      },
+      {
+        "detail": "Three accepted shots remove collision",
+        "name": "Break panel",
+        "status": "passed"
+      },
+      {
+        "detail": "Player crosses previously blocked segment",
+        "name": "Traverse destroyed cover",
+        "status": "passed"
+      },
+      {
+        "detail": "Walk around surviving cover to underground access: (43.80898, 0.000108, 54.36817)",
+        "name": "Reach west metro",
+        "status": "passed"
+      },
+      {
+        "detail": "Lift transition into physical station",
+        "name": "Descend below streets",
+        "status": "passed"
+      },
+      {
+        "detail": "Station floor supports moving player",
+        "name": "Walk underground platform",
+        "status": "passed"
+      },
+      {
+        "detail": "Board open carriage",
+        "name": "Board west station train",
+        "status": "passed"
+      },
+      {
+        "detail": "Cannot disembark in tunnel",
+        "name": "Moving train locks exit",
+        "status": "passed"
+      },
+      {
+        "detail": "Passenger carried through tunnel",
+        "name": "Ride to east station",
+        "status": "passed"
+      },
+      {
+        "detail": "Open doors permit exit",
+        "name": "Disembark at east station",
+        "status": "passed"
+      },
+      {
+        "detail": "Completed one distinct station trip",
+        "name": "Metro trip recorded",
+        "status": "passed"
+      },
+      {
+        "detail": "Walk underground to lift",
+        "name": "Walk to east lift",
+        "status": "passed"
+      },
+      {
+        "detail": "Ascend to surface",
+        "name": "Return to street",
+        "status": "passed"
+      },
+      {
+        "detail": "Persist city plus interior, train and cover",
+        "name": "Save combined checkpoint",
+        "status": "passed"
+      },
+      {
+        "detail": "Fresh scene restores exact feature state",
+        "name": "Restore combined checkpoint",
+        "status": "passed"
+      },
+      {
+        "detail": "Invalid state rejected before mutation",
+        "name": "Reject malformed checkpoint",
+        "status": "passed"
+      },
+      {
+        "detail": "Real loopback ENet server",
+        "name": "Host shared city",
+        "status": "passed"
+      },
+      {
+        "detail": "Independent ENet client and simulation",
+        "name": "Join second city scene",
+        "status": "passed"
+      },
+      {
+        "detail": "Client applies exact host traffic and resident snapshots",
+        "name": "Receive authoritative population",
+        "status": "passed"
+      },
+      {
+        "detail": "Subsequent server ticks and visible peer",
+        "name": "Live shared updates",
+        "status": "passed"
+      },
+      {
+        "detail": "Offline-only special interactions cannot diverge online",
+        "name": "Online local edits blocked",
+        "status": "passed"
+      },
+      {
+        "detail": "Server reconciles disconnect",
+        "name": "Remove departing peer",
+        "status": "passed"
+      }
+    ],
+    "metrics": {
+      "buildings": 35,
+      "cover_destroyed": 1,
+      "interior_rooms": 2,
+      "metro_trips": 1,
+      "network_peers": 1,
+      "physics_ticks": 5663,
+      "shared_world_tick": 121,
+      "stations": 2,
+      "walk_m": 461.282590076327
+    },
+    "pass": true
+  }
+}

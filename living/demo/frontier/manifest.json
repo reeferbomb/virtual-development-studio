@@ -1,0 +1,628 @@
+{
+  "files": [
+    {
+      "bytes": 8993,
+      "path": "character_animator.gd",
+      "sha256": "22b4edc2d599ba26a7be78fdd83d3ac48fac3b62649b52a230fdde4e78789f97"
+    },
+    {
+      "bytes": 19,
+      "path": "character_animator.gd.uid",
+      "sha256": "eeda47acfcbe87e43ce2aa499dff647840571baec84af8c69adaaafa87285eeb"
+    },
+    {
+      "bytes": 5747,
+      "path": "contracts.gd",
+      "sha256": "6da928bb9c827c4f3b722458ff1a45741bbd4f862601e427638821e6a8b7fbe5"
+    },
+    {
+      "bytes": 19,
+      "path": "contracts.gd.uid",
+      "sha256": "99879987032503c4d99d1d16e5baf3048f9fb6d8157eb5ac4e2a8ecd7d7f8cfa"
+    },
+    {
+      "bytes": 10177,
+      "path": "diplomacy.gd",
+      "sha256": "9727764932dfc073df3e8592f24be07e84b8e5a6a268d73b77feba3d0cb8d404"
+    },
+    {
+      "bytes": 20,
+      "path": "diplomacy.gd.uid",
+      "sha256": "9249902a477acd70760e86589474d2a69ae4c2601553581ccd9922f6bc16d692"
+    },
+    {
+      "bytes": 3412,
+      "path": "economy.gd",
+      "sha256": "0a2fc6b16650cc6c9527277984f8c30fa172519583bf22d4ef6be2134e6383b7"
+    },
+    {
+      "bytes": 20,
+      "path": "economy.gd.uid",
+      "sha256": "8d9562a7931c03d498e1544eb501c1a015ffbb7fda6fd0cfc7b2af904a354ca8"
+    },
+    {
+      "bytes": 14737,
+      "path": "encounters.gd",
+      "sha256": "c96de2c00cccb296ef471009e84fc87a6a172a89704287c3d3aa70da371bc89d"
+    },
+    {
+      "bytes": 20,
+      "path": "encounters.gd.uid",
+      "sha256": "420176265480871ddcc8b8ab6f2b67f5bdf7123dcfcfc7ad517b710dbf724e14"
+    },
+    {
+      "bytes": 1662,
+      "path": "factions.gd",
+      "sha256": "8675b48eef50257af09d1e2cd4bc0c868f9f28892961c1edd0c81ee34a6844f0"
+    },
+    {
+      "bytes": 19,
+      "path": "factions.gd.uid",
+      "sha256": "f36857141a1621abf8bb234c23995b0581d57d171905020959f7474dda8074a0"
+    },
+    {
+      "bytes": 2555,
+      "path": "inventory.gd",
+      "sha256": "e363f9ff4b6066abe06e52713d6027c8965675e1939797d56ed7aef0721a2791"
+    },
+    {
+      "bytes": 20,
+      "path": "inventory.gd.uid",
+      "sha256": "21dc3b57cf6d7587ccff40361498b47420b15676c39c06890028f6bc11b4dbaa"
+    },
+    {
+      "bytes": 8198,
+      "path": "living.gd",
+      "sha256": "8d42431b3cbeeed63a05ec5fed02af651743f847626e37cbda43643e5edf5b2a"
+    },
+    {
+      "bytes": 20,
+      "path": "living.gd.uid",
+      "sha256": "3fd46b012ea98d1a1efeae39217d7802abad56d4f8ce695b11072695ed0d3985"
+    },
+    {
+      "bytes": 160,
+      "path": "living.tscn",
+      "sha256": "b93b51f08dc231e173e26a066af617167a4a89b8905ca1e2f36d33d20f9b4a03"
+    },
+    {
+      "bytes": 10352,
+      "path": "living_qa.gd",
+      "sha256": "da5ab640c0ffa386a56c23a088cf7d99f0e9ec63a702d4715623f312f8f7e153"
+    },
+    {
+      "bytes": 19,
+      "path": "living_qa.gd.uid",
+      "sha256": "ef10cfd484cf7f85bb1f5af0143aaca5a3e0c31fab75fa55a0dbdcee42396479"
+    },
+    {
+      "bytes": 10329,
+      "path": "openworld.gd",
+      "sha256": "20d391261729f827d55f5973545e0e8982306b6f3f5d32f40987e233c037cf88"
+    },
+    {
+      "bytes": 20,
+      "path": "openworld.gd.uid",
+      "sha256": "94ce9a6257d4207329e13386ecf8c0b3d3e8bc76aa2d030b3bd7462afc0266ab"
+    },
+    {
+      "bytes": 71,
+      "path": "openworld.json",
+      "sha256": "0b1774b643439eff7b623e6415ed1062f26da7911aeadc967c0a8362c33e0090"
+    },
+    {
+      "bytes": 4183,
+      "path": "persistence.gd",
+      "sha256": "347a94744e21a3cd370cb139317188a4ce3686afa6938d054c58a8b9f36e5889"
+    },
+    {
+      "bytes": 19,
+      "path": "persistence.gd.uid",
+      "sha256": "eebe74e6f2350c8ce247c8a48d86310ccd1ff7fa044ad15d713f65b6052217bd"
+    },
+    {
+      "bytes": 2959,
+      "path": "player.gd",
+      "sha256": "8c472548f5ead42e6cc8bc5d79ddf4f441d98e831281d4aa323ed589e45b85b9"
+    },
+    {
+      "bytes": 20,
+      "path": "player.gd.uid",
+      "sha256": "186666daf51b99320623b83eb0d8927549f901a6e2505c510691612f5eb47d5e"
+    },
+    {
+      "bytes": 5989,
+      "path": "population.gd",
+      "sha256": "e5df262e7f374b8203e955298e0194e4602eda9f4ee2f3348d2050741b78d6a1"
+    },
+    {
+      "bytes": 20,
+      "path": "population.gd.uid",
+      "sha256": "8f87da65044ae1673f6b2f39732cc2d626d7d4ba83303c14e3575d0a32be939d"
+    },
+    {
+      "bytes": 347,
+      "path": "project.godot",
+      "sha256": "f7ebab6475585c922b00bc9b5596a459d2d2825b515d4a35e807977ea96ce068"
+    },
+    {
+      "bytes": 1895,
+      "path": "quests.gd",
+      "sha256": "7b17e29fd5952fa0a23d4fecf40fb884c7a205e6d2ec6a89fe13133f192df1c8"
+    },
+    {
+      "bytes": 19,
+      "path": "quests.gd.uid",
+      "sha256": "76194bab1749ba8bb6e48d2e197a7843c4ecfde2042f5c708d710bd82adc3b6b"
+    },
+    {
+      "bytes": 6273,
+      "path": "range_combat.gd",
+      "sha256": "8cc09bbd2692b2b1fbf277d7f9627fb8d4065a051afb235cf966e54719e74b82"
+    },
+    {
+      "bytes": 20,
+      "path": "range_combat.gd.uid",
+      "sha256": "9ec3a1cfb0037e2441a3e235c3419295b964f74c71e1a1ab110dd2f55d8996fd"
+    },
+    {
+      "bytes": 3209,
+      "path": "reports/import.log",
+      "sha256": "736f9b869a0d7ce485e91c6c8426696d13db8ee2907729b7eda0c7886437d8af"
+    },
+    {
+      "bytes": 137,
+      "path": "reports/launch.log",
+      "sha256": "156926a9353cc0b3137615aa36e967cd407bcb31c063747182b60a47e7cf5b44"
+    },
+    {
+      "bytes": 4195,
+      "path": "reports/living-qa.json",
+      "sha256": "20a7eaf98d0b696898620173412d1a340d0b6ea000f5ffe2846422043c19d434"
+    },
+    {
+      "bytes": 3463,
+      "path": "reports/living-qa.log",
+      "sha256": "6ed9c487dfb21cf0404364636862adf37a01f8b759bbb21e34c5d56239a7f99e"
+    },
+    {
+      "bytes": 104,
+      "path": "reports/test_character_animator.log",
+      "sha256": "808b67ec2ce9f3e9f6ecdaaf8f172d683aac774b4306ea667a26eebd00a7a647"
+    },
+    {
+      "bytes": 120,
+      "path": "reports/test_contracts.log",
+      "sha256": "603d8902049a5d6c2429d623c0e160f97ba011b06d4681dfcc484cc6c77fd7e3"
+    },
+    {
+      "bytes": 93,
+      "path": "reports/test_diplomacy.log",
+      "sha256": "77781ccbd8e2cf1cbd689359038be00beccd21180f308e5b1d84994b6d7ceefe"
+    },
+    {
+      "bytes": 113,
+      "path": "reports/test_economy.log",
+      "sha256": "21cd533f38e9473a48f9a8320f385a7b0db4b0f4bcf404b924e985a1973dc7c3"
+    },
+    {
+      "bytes": 96,
+      "path": "reports/test_encounters.log",
+      "sha256": "4fd006f431e7471d230d8ca5bcc94acc2ebe7f52438a71abec0a8b253ee0ae7e"
+    },
+    {
+      "bytes": 113,
+      "path": "reports/test_factions.log",
+      "sha256": "ec2bd05a02d3951c4811f9a23071b4a65d54b398c90d29b6c85be89392d01af3"
+    },
+    {
+      "bytes": 115,
+      "path": "reports/test_inventory.log",
+      "sha256": "7554e3267eff732422a0b8325a040ca2f8c1e0370d913bb50474072fb695c956"
+    },
+    {
+      "bytes": 174,
+      "path": "reports/test_persistence.log",
+      "sha256": "8ef044b80286a6d2622a11cc08057396e0a94c30440950ab66297e0d5e9c9664"
+    },
+    {
+      "bytes": 188,
+      "path": "reports/test_population.log",
+      "sha256": "ccf9bf5605ef76298fa23fb7cd4e2880d4db8ee275300f4c3a4409c9cb57e4ed"
+    },
+    {
+      "bytes": 111,
+      "path": "reports/test_quests.log",
+      "sha256": "53843c45ab14884e0fbdfcdcba7c9ed8b0747b264b631fc143b97782f9b0cb76"
+    },
+    {
+      "bytes": 99,
+      "path": "reports/test_range_combat.log",
+      "sha256": "ecd3d2894b177558e43f8fcffd6d243399a97e7a8be23e7c78a4f5fb40ddf755"
+    },
+    {
+      "bytes": 104,
+      "path": "reports/test_scheduled_population.log",
+      "sha256": "a703cdc48149f640304fd3210ee79e61c6253caad546af38d6c0031181d5a33e"
+    },
+    {
+      "bytes": 93,
+      "path": "reports/test_streaming.log",
+      "sha256": "07a072b963c8f993c79d0921c13d45d56f16523742cdf46ca38c39e8e67c98dd"
+    },
+    {
+      "bytes": 168,
+      "path": "reports/test_transport.log",
+      "sha256": "a0e3a1be91146adae9332899e654e0efff94c012f8ef84e2c91c6bd575bac2b1"
+    },
+    {
+      "bytes": 3838,
+      "path": "scheduled_population.gd",
+      "sha256": "4c2fb0e88071c7a6b68ae571565503d0bb63f8c22c1403482c7d4692f65f255d"
+    },
+    {
+      "bytes": 20,
+      "path": "scheduled_population.gd.uid",
+      "sha256": "e4ce97b88d68c7c6396c0c2272dcdc7cc60ef2f77e1451dec9ff00a01222641b"
+    },
+    {
+      "bytes": 5444,
+      "path": "streaming.gd",
+      "sha256": "a69a04c35458f87e329a45ca45b195fdb6d257c02c47091f6fdbe6acbd212a65"
+    },
+    {
+      "bytes": 20,
+      "path": "streaming.gd.uid",
+      "sha256": "242bdd35a3fa8b6ae4c91989eee826bef72faa07c22159b59c0acf23e4ef068f"
+    },
+    {
+      "bytes": 5422,
+      "path": "tests/test_character_animator.gd",
+      "sha256": "a573dd9392f6051e39bf221e54b5c1daa47ebf094e14398c604c6fd52fd86e9d"
+    },
+    {
+      "bytes": 20,
+      "path": "tests/test_character_animator.gd.uid",
+      "sha256": "f025d6fd3520e8f8718d3bcafae01b0c7aa8deb569d7f18a2acdf89eae762c26"
+    },
+    {
+      "bytes": 7245,
+      "path": "tests/test_contracts.gd",
+      "sha256": "6d4eed45c2a2fdf57b2c6eaf0cb3f3d7495cfb2c340a070b55a23ff9b2677767"
+    },
+    {
+      "bytes": 19,
+      "path": "tests/test_contracts.gd.uid",
+      "sha256": "401de2eafc5582885800e7042252e7940b9ea83d856d8776eac40d94faff7a3c"
+    },
+    {
+      "bytes": 6455,
+      "path": "tests/test_diplomacy.gd",
+      "sha256": "65bad36b45dda0960c6e13e7658f500908217f3c70f54c5ec893d94b0d0bf62e"
+    },
+    {
+      "bytes": 20,
+      "path": "tests/test_diplomacy.gd.uid",
+      "sha256": "eef844e98b78004f59c2da962ebd38fbe63e668aaf54a7518b107bb657eed6c3"
+    },
+    {
+      "bytes": 6533,
+      "path": "tests/test_economy.gd",
+      "sha256": "27f769d26533d5c1024ec7ba2417c2a403be4459ee5c77aabe7b3f1c3265e55a"
+    },
+    {
+      "bytes": 20,
+      "path": "tests/test_economy.gd.uid",
+      "sha256": "8398fb92b2d29a190a5f6106b14e176b9e69888c26dba28d875c46aec7a39327"
+    },
+    {
+      "bytes": 7406,
+      "path": "tests/test_encounters.gd",
+      "sha256": "58383b33d404bd2e0c540ca078a87361de2b96e8c827c6f51885d73fc533b3bb"
+    },
+    {
+      "bytes": 20,
+      "path": "tests/test_encounters.gd.uid",
+      "sha256": "ba2dc48c7a205b16eb127f018eaa0c8d095f56902687713eca9989845da2c6fe"
+    },
+    {
+      "bytes": 2707,
+      "path": "tests/test_factions.gd",
+      "sha256": "fd25e192e45c50ba47067adb1b18ef5d91b24b4d982129831136225c3705227c"
+    },
+    {
+      "bytes": 20,
+      "path": "tests/test_factions.gd.uid",
+      "sha256": "7d1228891ecbfb5430dee2fe82a49d9d69c9e67cc4a5e143d41d6b75f55b3252"
+    },
+    {
+      "bytes": 3702,
+      "path": "tests/test_inventory.gd",
+      "sha256": "f722382c5c0792eab4bbc4817fbf84c094fe263b0eb9b91ba0296830a6ecb497"
+    },
+    {
+      "bytes": 20,
+      "path": "tests/test_inventory.gd.uid",
+      "sha256": "db1fe322dbc176a5c61fc296aefa5c85041caed52c92ca3a5f626d88a0dd8101"
+    },
+    {
+      "bytes": 4068,
+      "path": "tests/test_persistence.gd",
+      "sha256": "4d618f35ebb6760d41ac040105a0b9195e76a4fbf35b6c1d5c5c65c333e234f8"
+    },
+    {
+      "bytes": 20,
+      "path": "tests/test_persistence.gd.uid",
+      "sha256": "6a45524f8c97bef5ae9a9f688c4486ab0ba089f20e17c875a7d9727ad77ce149"
+    },
+    {
+      "bytes": 4899,
+      "path": "tests/test_population.gd",
+      "sha256": "003f2e74142178eb2059b9fb40e4b1448ccbee230373555cdba23f0d7a2e85dc"
+    },
+    {
+      "bytes": 19,
+      "path": "tests/test_population.gd.uid",
+      "sha256": "9458b3abe2d70ee9026cfa6fa296da131b38e2cf4945f2de6d18a5e00d2b15c3"
+    },
+    {
+      "bytes": 3652,
+      "path": "tests/test_quests.gd",
+      "sha256": "82218d5c029491e50b2576b815974ac33364ba0324a2a6d46a45985ac1be12d1"
+    },
+    {
+      "bytes": 20,
+      "path": "tests/test_quests.gd.uid",
+      "sha256": "709f8cd526aba6fc7deeea890922439e5ec278e799237188f23ac76bfff3b7ae"
+    },
+    {
+      "bytes": 5562,
+      "path": "tests/test_range_combat.gd",
+      "sha256": "a5f21b14e363ee8f31aa638d6014bbbd12b9542dfe84db4cfcce39daf79ca86c"
+    },
+    {
+      "bytes": 20,
+      "path": "tests/test_range_combat.gd.uid",
+      "sha256": "6a72fcd52878e072be4a3078f7526431a5703d7b4f132f6c465529848e697935"
+    },
+    {
+      "bytes": 4852,
+      "path": "tests/test_scheduled_population.gd",
+      "sha256": "d5fd69da7d4e0198802c8ce34a8a349ea45d0fca84410758226a3416c06afaf2"
+    },
+    {
+      "bytes": 20,
+      "path": "tests/test_scheduled_population.gd.uid",
+      "sha256": "9a1c476f53c5a40dd0efb4b767356656002c552e0d808c39b349e6a39b8bae8a"
+    },
+    {
+      "bytes": 4850,
+      "path": "tests/test_streaming.gd",
+      "sha256": "1ff34011d8873c12d54cfef65f861755b39c843408a0391b6fdd38430aa4d9b6"
+    },
+    {
+      "bytes": 20,
+      "path": "tests/test_streaming.gd.uid",
+      "sha256": "99446647701fd5121c09aa8b0f20efc4ca244d308d0802da1610944eb2fc9401"
+    },
+    {
+      "bytes": 5784,
+      "path": "tests/test_transport.gd",
+      "sha256": "d8466e4e01f43efa4694dcca89db301327aa66f59392cf9e471b68d56d607789"
+    },
+    {
+      "bytes": 20,
+      "path": "tests/test_transport.gd.uid",
+      "sha256": "b031b85eccff0896e8c63a168a72bf43a9848289e29cbafcb3b747b3f410f9a8"
+    },
+    {
+      "bytes": 6425,
+      "path": "transport.gd",
+      "sha256": "dad39fee7b860064b723f6bb9754daf2afdd3e2a43be31fac7b1bc1072753b29"
+    },
+    {
+      "bytes": 20,
+      "path": "transport.gd.uid",
+      "sha256": "3c87ea7f6ec4bc0e5fa325083d4ac33ecbae08d8a073ad473a6d9473df9c99f9"
+    },
+    {
+      "bytes": 8526,
+      "path": "unified.gd",
+      "sha256": "e49347116ad96d08a45aa7874dba283ddb8e3ab7d7807b054a88f4a6b6b41ae9"
+    },
+    {
+      "bytes": 20,
+      "path": "unified.gd.uid",
+      "sha256": "cb3358feda91d59da92690860b7506e0ce3c213347794cda7749be321981c8f5"
+    },
+    {
+      "bytes": 162,
+      "path": "unified.tscn",
+      "sha256": "02715f52b8fde16e76b635a683d7c5a5695ce5a68ad8eae2ebfe54a086ded8db"
+    },
+    {
+      "bytes": 8849,
+      "path": "unified_qa.gd",
+      "sha256": "bd42ee2d269e9b35336585ae1a934ff9e2ee07678287f3369022b7b2f9abbd4b"
+    },
+    {
+      "bytes": 20,
+      "path": "unified_qa.gd.uid",
+      "sha256": "e471b4b4a80d9f2cea12dea93b1007b4afdb4f047d6e86347b7ec26f2ee4eecf"
+    },
+    {
+      "bytes": 5004,
+      "path": "vehicle.gd",
+      "sha256": "b44b9e3ed4d0b7faa0315dc68291a12a24b96a42f8ecbaeb4eaa5c239ebd4bfa"
+    },
+    {
+      "bytes": 20,
+      "path": "vehicle.gd.uid",
+      "sha256": "08fa2f62975d48742ed48711e78ba8e46fff864eeacfd97e1d0c6052ea2ecda9"
+    }
+  ],
+  "kind": "living",
+  "living_qa": {
+    "checks": [
+      {
+        "detail": "Imports new project",
+        "name": "Load living scene",
+        "status": "passed"
+      },
+      {
+        "detail": "Integrated inherited world and all four new modules",
+        "name": "Living world initialization",
+        "status": "passed"
+      },
+      {
+        "detail": "Distinct board options",
+        "name": "Three seeded contract offers",
+        "status": "passed"
+      },
+      {
+        "detail": "One active contract at a time",
+        "name": "Accept contract",
+        "status": "passed"
+      },
+      {
+        "detail": "Real resource nodes feed the generated objective",
+        "name": "Physical gathering advances contract",
+        "status": "passed"
+      },
+      {
+        "detail": "Wallet and procedural board progress together",
+        "name": "Claim reward and rotate board",
+        "status": "passed"
+      },
+      {
+        "detail": "No duplicate reward",
+        "name": "Duplicate claim rejected",
+        "status": "passed"
+      },
+      {
+        "detail": "New generation playable",
+        "name": "Accept new generated contract",
+        "status": "passed"
+      },
+      {
+        "detail": "Base plus contracts, diplomacy and encounters",
+        "name": "Atomic living checkpoint",
+        "status": "passed"
+      },
+      {
+        "detail": "New scene restores generated progress and state",
+        "name": "Restore all living modules",
+        "status": "passed"
+      },
+      {
+        "detail": "Checksummed invalid data cannot mutate world",
+        "name": "Reject malformed advanced checkpoint",
+        "status": "passed"
+      },
+      {
+        "detail": "Procedural character driven by actual patrol velocity",
+        "name": "Animated scout moves",
+        "status": "passed"
+      },
+      {
+        "detail": "Real resource and crafting gate preserved",
+        "name": "Training remains playable",
+        "status": "passed"
+      },
+      {
+        "detail": "Actual proximity boarding",
+        "name": "Board integrated vehicle",
+        "status": "passed"
+      },
+      {
+        "detail": "Driving traverses chunks",
+        "name": "Physical streamed drive",
+        "status": "passed"
+      },
+      {
+        "detail": "Near-stopped exit and physical movement",
+        "name": "Exit and visit outpost",
+        "status": "passed"
+      },
+      {
+        "detail": "Actual trade event affects reputation",
+        "name": "Trade changes diplomacy",
+        "status": "passed"
+      },
+      {
+        "detail": "Purchase a bandage, full-health use rejected",
+        "name": "Buy medical supply",
+        "status": "passed"
+      },
+      {
+        "detail": "Two real drone hits unlock hostile territory",
+        "name": "Complete training range",
+        "status": "passed"
+      },
+      {
+        "detail": "Physics time advances diplomacy events",
+        "name": "Autonomous faction simulation",
+        "status": "passed"
+      },
+      {
+        "detail": "Walk through newly streamed terrain",
+        "name": "Reach encounter zone",
+        "status": "passed"
+      },
+      {
+        "detail": "Proximity activates bounded enemy AI",
+        "name": "Hostile encounters activate",
+        "status": "passed"
+      },
+      {
+        "detail": "Physics ray hits reduce hostile HP and defeat an enemy",
+        "name": "Live hostile collision combat",
+        "status": "passed"
+      },
+      {
+        "detail": "Hostile shots consume inherited weapon ammunition",
+        "name": "Encounters use shared ammunition",
+        "status": "passed"
+      },
+      {
+        "detail": "Live attack modifies player health",
+        "name": "Hostiles deal real proximity damage",
+        "status": "passed"
+      },
+      {
+        "detail": "Health and inventory update together",
+        "name": "Bandage consumes supply and heals",
+        "status": "passed"
+      },
+      {
+        "detail": "Checkpoint persists actual post-combat progress",
+        "name": "Save combat and medical progress",
+        "status": "passed"
+      },
+      {
+        "detail": "No respawn or lost health on reload",
+        "name": "Restore defeated enemies and health",
+        "status": "passed"
+      }
+    ],
+    "metrics": {
+      "contract_generation": 1,
+      "credits": 68,
+      "drive_m": 47.2584522743709,
+      "faction_ticks": 2,
+      "health": 100,
+      "hostile_hits": 2,
+      "physics_ticks": 1154,
+      "walk_m": 72.0087415799499
+    },
+    "pass": true
+  },
+  "schema": 1,
+  "spec": {
+    "capacity": 40,
+    "chunk_size": 32,
+    "radius": 1,
+    "seed": 237
+  },
+  "status": "passed"
+}

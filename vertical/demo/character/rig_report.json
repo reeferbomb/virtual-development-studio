@@ -1,0 +1,171 @@
+{
+  "character": "Switchyard Courier",
+  "source": "Original procedural geometry and animation",
+  "rest_height_m": 1.79,
+  "forward_gltf": "+Z",
+  "native": {
+    "blender": "5.2.4 LTS",
+    "bones": 19,
+    "vertices": 1504,
+    "multi_weight_vertices": 324,
+    "peak_vertex_motion_m": {
+      "idle": 0.024063,
+      "walk": 0.687962,
+      "run": 1.033778,
+      "crouch": 0.017343,
+      "aim": 0.013135,
+      "reload": 0.125919,
+      "jump": 0.17879,
+      "death": 0.471457
+    }
+  },
+  "glb": {
+    "joints": [
+      "Hips",
+      "Spine",
+      "Chest",
+      "Clavicle.L",
+      "UpperArm.L",
+      "Forearm.L",
+      "Hand.L",
+      "Clavicle.R",
+      "UpperArm.R",
+      "Forearm.R",
+      "Hand.R",
+      "Neck",
+      "Head",
+      "Thigh.L",
+      "Shin.L",
+      "Foot.L",
+      "Thigh.R",
+      "Shin.R",
+      "Foot.R"
+    ],
+    "triangles": 2856,
+    "exported_vertices": 5208,
+    "multi_weight_vertices": 1152,
+    "materials": 6,
+    "clips": {
+      "aim": {
+        "seconds": 1.5,
+        "moving_joints": [
+          "Chest",
+          "Forearm.L"
+        ]
+      },
+      "crouch": {
+        "seconds": 1.75,
+        "moving_joints": [
+          "Chest",
+          "Foot.L",
+          "Foot.R",
+          "Forearm.L",
+          "Forearm.R",
+          "Head",
+          "Hips",
+          "Shin.L",
+          "Shin.R",
+          "Thigh.L",
+          "Thigh.R"
+        ]
+      },
+      "death": {
+        "seconds": 1.5,
+        "moving_joints": [
+          "Chest",
+          "Head",
+          "Hips",
+          "Shin.L",
+          "Shin.R",
+          "Thigh.L",
+          "Thigh.R",
+          "UpperArm.L",
+          "UpperArm.R"
+        ]
+      },
+      "idle": {
+        "seconds": 2.0,
+        "moving_joints": [
+          "Head",
+          "Hips",
+          "Spine"
+        ]
+      },
+      "jump": {
+        "seconds": 1.3333,
+        "moving_joints": [
+          "Chest",
+          "Foot.L",
+          "Foot.R",
+          "Hips",
+          "Shin.L",
+          "Shin.R",
+          "Thigh.L",
+          "Thigh.R",
+          "UpperArm.L",
+          "UpperArm.R"
+        ]
+      },
+      "reload": {
+        "seconds": 1.6667,
+        "moving_joints": [
+          "Chest",
+          "Forearm.L",
+          "Forearm.R",
+          "Head",
+          "UpperArm.L",
+          "UpperArm.R"
+        ]
+      },
+      "run": {
+        "seconds": 0.75,
+        "moving_joints": [
+          "Chest",
+          "Foot.L",
+          "Foot.R",
+          "Forearm.L",
+          "Forearm.R",
+          "Hips",
+          "Shin.L",
+          "Shin.R",
+          "Thigh.L",
+          "Thigh.R",
+          "UpperArm.L",
+          "UpperArm.R"
+        ]
+      },
+      "walk": {
+        "seconds": 1.1667,
+        "moving_joints": [
+          "Chest",
+          "Foot.L",
+          "Foot.R",
+          "Forearm.L",
+          "Forearm.R",
+          "Hips",
+          "Shin.L",
+          "Shin.R",
+          "Thigh.L",
+          "Thigh.R",
+          "UpperArm.L",
+          "UpperArm.R"
+        ]
+      }
+    }
+  },
+  "godot": {
+    "bones": 19,
+    "godot": "4.7.2-stable (official)",
+    "moving_bones": {
+      "aim": 2,
+      "crouch": 10,
+      "death": 9,
+      "idle": 2,
+      "jump": 9,
+      "reload": 6,
+      "run": 10,
+      "walk": 10
+    },
+    "skin_binds": 19
+  }
+}

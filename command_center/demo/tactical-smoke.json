@@ -1,0 +1,132 @@
+{
+  "version": "10.0",
+  "verified": true,
+  "tactical_qa": {
+    "checks": [
+      {
+        "detail": "Seed 237.0, cover health 50",
+        "name": "Load tactical training fixture",
+        "status": "passed"
+      },
+      {
+        "detail": "Player placed at the extraction beacon with both guards alive",
+        "name": "Extraction locked with live guards",
+        "status": "passed"
+      },
+      {
+        "detail": "Independent physics rays clear guard A and hit the wall for guard B",
+        "name": "Single observer shares real sighting",
+        "status": "passed"
+      },
+      {
+        "detail": "Autonomous guard B moved 0.60 m in state investigate",
+        "name": "Occluded flanker investigates",
+        "status": "passed"
+      },
+      {
+        "detail": "Both independent rays hit the wall after the player was repositioned",
+        "name": "Hidden movement preserves last sighting",
+        "status": "passed"
+      },
+      {
+        "detail": "Both guards returned to patrol after 5.00 simulated seconds",
+        "name": "Unrefreshed sighting expires",
+        "status": "passed"
+      },
+      {
+        "detail": "Real weapon ray spent one round; cover 25, guard 50",
+        "name": "First shot damages only cover",
+        "status": "passed"
+      },
+      {
+        "detail": "The next independent physics ray reaches the guard",
+        "name": "Second shot opens the breach",
+        "status": "passed"
+      },
+      {
+        "detail": "Route shortened from 11.0 m to 5.0 m",
+        "name": "Navigation takes the opened lane",
+        "status": "passed"
+      },
+      {
+        "detail": "Guard health changed from 50 to 25",
+        "name": "Third shot crosses the breach",
+        "status": "passed"
+      },
+      {
+        "detail": "Reloaded cover health, mesh, ray obstruction, detour and guard health",
+        "name": "Checkpoint restores damaged cover",
+        "status": "passed"
+      },
+      {
+        "detail": "Reloaded breach visibility, ray access, direct route and guard health",
+        "name": "Checkpoint restores open breach",
+        "status": "passed"
+      },
+      {
+        "detail": "Both mission targets removed before extraction; 6 accepted shots",
+        "name": "Weapon eliminates both guards",
+        "status": "passed"
+      },
+      {
+        "detail": "Controller moved 11.32 m across the former wall over 97 physics frames",
+        "name": "Physical traversal through breach to extraction",
+        "status": "passed"
+      }
+    ],
+    "metrics": {
+      "accepted_shots": 6,
+      "blocked_route_m": 11.0,
+      "breached_route_m": 5.0,
+      "cover_hp_after_first_shot": 25,
+      "cover_hp_after_second_shot": 0,
+      "extraction_actor_repositions": 0,
+      "extraction_frames": 97,
+      "extraction_max_step_m": 0.116667732596397,
+      "extraction_travel_m": 11.3166675716639,
+      "fixture_actor_repositions": 9,
+      "flanker_travel_m": 0.5999995470047,
+      "initial_cover_hp": 50,
+      "memory_decay_frames": 300,
+      "physics_ticks_per_second": 60
+    },
+    "pass": true
+  },
+  "gates": [
+    {
+      "name": "Build",
+      "status": "passed"
+    },
+    {
+      "name": "Verification",
+      "status": "passed"
+    },
+    {
+      "name": "Tactical scenario QA",
+      "status": "passed"
+    },
+    {
+      "name": "Human render review",
+      "status": "pending"
+    },
+    {
+      "name": "Device review",
+      "status": "pending"
+    }
+  ],
+  "edited_gate": "stale",
+  "commands": [
+    {
+      "stage": "build",
+      "exit_code": 0,
+      "duration_seconds": 8.571,
+      "timed_out": false
+    },
+    {
+      "stage": "verify",
+      "exit_code": 0,
+      "duration_seconds": 0.066,
+      "timed_out": false
+    }
+  ]
+}

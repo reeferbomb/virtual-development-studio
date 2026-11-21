@@ -1,0 +1,48 @@
+socket(): Operation not permitted
+socket(): Operation not permitted
+Info: Saved as "supply_crate.blend"
+INFO Draco is available, use library at /workspace/blender-tools/blender-5.2.4-linux-x64/lib/libbf_intern_draco_bridge.so
+INFO MeshOptimizer is available, use library at /workspace/blender-tools/blender-5.2.4-linux-x64/lib/libbf_intern_meshopt_bridge.so
+02:02:50 | INFO: Starting glTF 2.0 export
+02:02:50 | INFO: Extracting primitive: supply_crate.latch0
+02:02:50 | INFO: Primitives created: 1
+02:02:50 | INFO: Extracting primitive: supply_crate.latch1
+02:02:50 | INFO: Primitives created: 1
+02:02:50 | INFO: Extracting primitive: supply_crate.lid0
+02:02:50 | INFO: Primitives created: 1
+02:02:50 | INFO: Extracting primitive: supply_crate.lid1
+02:02:50 | INFO: Primitives created: 1
+02:02:50 | INFO: Extracting primitive: supply_crate.lid2
+02:02:50 | INFO: Primitives created: 1
+02:02:50 | INFO: Extracting primitive: supply_crate.post00
+02:02:50 | INFO: Primitives created: 1
+02:02:50 | INFO: Extracting primitive: supply_crate.post01
+02:02:50 | INFO: Primitives created: 1
+02:02:50 | INFO: Extracting primitive: supply_crate.post10
+02:02:50 | INFO: Primitives created: 1
+02:02:50 | INFO: Extracting primitive: supply_crate.post11
+02:02:50 | INFO: Primitives created: 1
+02:02:50 | INFO: Extracting primitive: supply_crate.rib00
+02:02:50 | INFO: Primitives created: 1
+02:02:50 | INFO: Extracting primitive: supply_crate.rib01
+02:02:50 | INFO: Primitives created: 1
+02:02:50 | INFO: Extracting primitive: supply_crate.rib02
+02:02:50 | INFO: Primitives created: 1
+02:02:50 | INFO: Extracting primitive: supply_crate.rib10
+02:02:50 | INFO: Primitives created: 1
+02:02:50 | INFO: Extracting primitive: supply_crate.rib11
+02:02:50 | INFO: Primitives created: 1
+02:02:50 | INFO: Extracting primitive: supply_crate.rib12
+02:02:50 | INFO: Primitives created: 1
+02:02:50 | INFO: Extracting primitive: supply_crate.rim0
+02:02:50 | INFO: Primitives created: 1
+02:02:50 | INFO: Extracting primitive: supply_crate.rim1
+02:02:50 | INFO: Primitives created: 1
+02:02:50 | INFO: Extracting primitive: supply_crate.shell
+02:02:50 | INFO: Primitives created: 1
+02:02:50 | INFO: Finished glTF 2.0 export in 0.046715736389160156 s
+
+FACTORY_EXPORT_PASS supply_crate
+Blender 5.2.4 LTS (hash cd5dc428cce1 built 2026-11-10 01:31:47)
+
+Blender quit

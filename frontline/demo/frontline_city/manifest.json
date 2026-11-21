@@ -1,0 +1,807 @@
+{
+  "files": [
+    {
+      "bytes": 13279,
+      "path": "advanced.gd",
+      "sha256": "01e9cffe2126cb6e57c8edec7fce2328fa82a7ba26bd8c87dcf6f42b7efbe229"
+    },
+    {
+      "bytes": 20,
+      "path": "advanced.gd.uid",
+      "sha256": "1cd527ae572da01abbae3ee4da27d33d133ef2c1939f16928d7fd80387fb4eee"
+    },
+    {
+      "bytes": 163,
+      "path": "advanced.tscn",
+      "sha256": "142151fd750c5aa6dc2795e2721f4c75b8db0436e775088de37856a480d58ade"
+    },
+    {
+      "bytes": 12201,
+      "path": "advanced_qa.gd",
+      "sha256": "3a438f27a3d77806768ca81e338222fdb8cdbc54e582c6dada8b00eee9d34a5f"
+    },
+    {
+      "bytes": 20,
+      "path": "advanced_qa.gd.uid",
+      "sha256": "c3e2aa46fb47335a9de79f75783b22bfebd5d14091732ddbf74174d3655ad43f"
+    },
+    {
+      "bytes": 15522,
+      "path": "city.gd",
+      "sha256": "7d19fcd867010976e28bf89bd131d2b9cb1310a65026ca47ceac1c66dd3bd533"
+    },
+    {
+      "bytes": 20,
+      "path": "city.gd.uid",
+      "sha256": "47b71e4949a14ecd984b5f16646eed72ae08dbe18e2ae303739c5fce869bb91a"
+    },
+    {
+      "bytes": 14396,
+      "path": "city.json",
+      "sha256": "59aecca87a5df41b0de20649caa4b9eea5f99a317c6343d8d1c769574563df6f"
+    },
+    {
+      "bytes": 157,
+      "path": "city.tscn",
+      "sha256": "48e955e51cc4fb72a6726b33b85991bd3c88b83edcc71444016070e71e35a166"
+    },
+    {
+      "bytes": 9512,
+      "path": "city_network.gd",
+      "sha256": "55fe54246d49be61ab218b86264fb510e8c19161837a4020057905b1ca70cb79"
+    },
+    {
+      "bytes": 20,
+      "path": "city_network.gd.uid",
+      "sha256": "99d5eab96b9d0a3f2216a1d73c8126be85b6614660333e241f0e62d97407b536"
+    },
+    {
+      "bytes": 1440,
+      "path": "city_profile.gd",
+      "sha256": "6729201573afe88e0290d5a1dd13538bb74b345a5a630d6047bfca78da23a64d"
+    },
+    {
+      "bytes": 20,
+      "path": "city_profile.gd.uid",
+      "sha256": "9a496c2313d6147cf30a7fe2ba6baf9bced8fafff1d047dc558bc7b8462bf71e"
+    },
+    {
+      "bytes": 9632,
+      "path": "city_qa.gd",
+      "sha256": "a5b9714a3c220813a80e16e4f63772e5bd10a10c5243f09684cbf8664ddfb424"
+    },
+    {
+      "bytes": 19,
+      "path": "city_qa.gd.uid",
+      "sha256": "f63afeec2ab858a0e74725366738757e38f47344ed97b56489c446eda3ee9db1"
+    },
+    {
+      "bytes": 9460,
+      "path": "civilians.gd",
+      "sha256": "268c71cc76899aa2c4af7e682cd0826ec1d3455ac1cb23e0b6abf56ea8742923"
+    },
+    {
+      "bytes": 20,
+      "path": "civilians.gd.uid",
+      "sha256": "e4157f5d076cc55b682de51a997147d0bb6b4be771e37a2f63e567970bf5ea7d"
+    },
+    {
+      "bytes": 7231,
+      "path": "demolition.gd",
+      "sha256": "a7b3344565105b35eba11b77e6dff3b333f2e2a0bdc96901870edd179a5c4c65"
+    },
+    {
+      "bytes": 19,
+      "path": "demolition.gd.uid",
+      "sha256": "1edc34bf76770a46a695237d2f7d895795d64fd77f976e5cb4c8bd66c76b3766"
+    },
+    {
+      "bytes": 5513,
+      "path": "frontline.gd",
+      "sha256": "3be13ee58514daf356d9efccbab4b9802aa48beada922334e40e512a32745d93"
+    },
+    {
+      "bytes": 20,
+      "path": "frontline.gd.uid",
+      "sha256": "c35b728eee185fe8d440f47aeaf8bb12fe608d00b2af740808e54067a51160a2"
+    },
+    {
+      "bytes": 165,
+      "path": "frontline.tscn",
+      "sha256": "61b58e3c0219d79e3bff8fbc553b6da5e0cbcc75c499752892e91840a72014bd"
+    },
+    {
+      "bytes": 6567,
+      "path": "frontline_network.gd",
+      "sha256": "1d6584a7a6e1d6199b322f32369ec295ff75640d6e08ec3c8b62101b93e67102"
+    },
+    {
+      "bytes": 20,
+      "path": "frontline_network.gd.uid",
+      "sha256": "ad32aa36a69eac04427965d8880c9849eaac3f523749b939e403088ebe739fe0"
+    },
+    {
+      "bytes": 10275,
+      "path": "frontline_qa.gd",
+      "sha256": "a56931b4a897a1afdbbfa7be47579e3ca48a1224997f352300eb7af938589c3b"
+    },
+    {
+      "bytes": 20,
+      "path": "frontline_qa.gd.uid",
+      "sha256": "e8f7565476c0c4cdb19e6e31d457234c2e629d544248a200997b11ab253e9e40"
+    },
+    {
+      "bytes": 10956,
+      "path": "interiors.gd",
+      "sha256": "c80e326dc6506a2436c0728924136a6f03285ea4e0d21327273be516478cc3b6"
+    },
+    {
+      "bytes": 20,
+      "path": "interiors.gd.uid",
+      "sha256": "c774023905a32086da38363ec2d08528fe40f283cb97bcd217efb58f09507fbb"
+    },
+    {
+      "bytes": 8132,
+      "path": "mission_director.gd",
+      "sha256": "a63c46710d654fe62aab9e3053683d411c83b541d4dd8c4a61f635ecdbd8c47c"
+    },
+    {
+      "bytes": 19,
+      "path": "mission_director.gd.uid",
+      "sha256": "f74da7878c4ac9cc68d977579bb129e1c5d888247357e9f5cb940cfef502726f"
+    },
+    {
+      "bytes": 7139,
+      "path": "npc_interactions.gd",
+      "sha256": "d38d33af90cbe4b7dab1b1afb68f9ef366e2a020ce161514302b69748679a51d"
+    },
+    {
+      "bytes": 20,
+      "path": "npc_interactions.gd.uid",
+      "sha256": "82940ea4dee27c4099bcbe4bff8bf75b5505128c512caf0808cc2bb745ee57c4"
+    },
+    {
+      "bytes": 4183,
+      "path": "persistence.gd",
+      "sha256": "347a94744e21a3cd370cb139317188a4ce3686afa6938d054c58a8b9f36e5889"
+    },
+    {
+      "bytes": 19,
+      "path": "persistence.gd.uid",
+      "sha256": "1be24d7a1b76f59fc565876448b2bd679426264649adbdc13e31282689b6fc1e"
+    },
+    {
+      "bytes": 2959,
+      "path": "player.gd",
+      "sha256": "8c472548f5ead42e6cc8bc5d79ddf4f441d98e831281d4aa323ed589e45b85b9"
+    },
+    {
+      "bytes": 20,
+      "path": "player.gd.uid",
+      "sha256": "4d05a6c6f06e58e6e2aa161b1d8ee75d79e1b72362842d51dc4b2e337535c3be"
+    },
+    {
+      "bytes": 352,
+      "path": "project.godot",
+      "sha256": "2510d243490773cb4aacfce755d50106e894556a458644bde7ac071395a01057"
+    },
+    {
+      "bytes": 5157,
+      "path": "reports/frontline-qa.json",
+      "sha256": "87805daacc846fd9eda92b80edf77464fe90b549031676b14350fe32ed52682f"
+    },
+    {
+      "bytes": 4199,
+      "path": "reports/frontline-qa.log",
+      "sha256": "8996c46c6a32cd92ca4485e0fd0755d3c9eefd8099b84be466c199d1d0278ae3"
+    },
+    {
+      "bytes": 3847,
+      "path": "reports/import.log",
+      "sha256": "1c1318867ee1ae4bd0d6a56e87c337b2ae0fc20cdb31977729dc74170705b750"
+    },
+    {
+      "bytes": 158,
+      "path": "reports/launch.log",
+      "sha256": "9e81aa17d5f7b456329cd87764a3799383c069af7a8d9b11b3e7c9927037929f"
+    },
+    {
+      "bytes": 273,
+      "path": "reports/test_city_network.log",
+      "sha256": "8053b58d5c2730ab15d731bfc409699ed0861079e5e356b7d5e42d2fdeae2735"
+    },
+    {
+      "bytes": 93,
+      "path": "reports/test_civilians.log",
+      "sha256": "cebde6f88653a578a7e5697d9eafaf0b2d6fd3769dcbbb69730489348fe3e596"
+    },
+    {
+      "bytes": 197,
+      "path": "reports/test_demolition.log",
+      "sha256": "71dc581406e27c8336636a1de01ab43bcc3fc1a4717f1dc90df543739ea0399e"
+    },
+    {
+      "bytes": 97,
+      "path": "reports/test_interiors.log",
+      "sha256": "b36d8746807279a3833712d394f5869e1fe2af8402fadf8ae7345ad647729e21"
+    },
+    {
+      "bytes": 173,
+      "path": "reports/test_mission_director.log",
+      "sha256": "8e59ea59611769645049bb09e25ece6cd4a88152c11dc52d217e4303c45e4908"
+    },
+    {
+      "bytes": 202,
+      "path": "reports/test_npc_interactions.log",
+      "sha256": "8639a587d2af8c64c25152fa65e4ea940d828ed1e37cc197e46ea81b56c7cd6a"
+    },
+    {
+      "bytes": 313,
+      "path": "reports/test_session_network.log",
+      "sha256": "f6be3f01fa480cfd862adbe1f122141c1e3b059a7e4c416792ecd20ba440d79f"
+    },
+    {
+      "bytes": 205,
+      "path": "reports/test_session_store.log",
+      "sha256": "e03e65b3a4cd1ba5bcf33edd978dae0dc22e6873637bf643f9d3b2501994f4c7"
+    },
+    {
+      "bytes": 178,
+      "path": "reports/test_shared_cover.log",
+      "sha256": "9bf742ca448b25891f09f5d0adc7f117bb20c7b8fc5c7d83183daf06c6b51b2f"
+    },
+    {
+      "bytes": 102,
+      "path": "reports/test_shared_lift.log",
+      "sha256": "974939016703b07529db1d0b7c645aa0f70cb887969069634006cf7b3e24fbbf"
+    },
+    {
+      "bytes": 182,
+      "path": "reports/test_shared_vehicle.log",
+      "sha256": "c887dc14fc8bea907d0d56efa2c3e306577a0a5e4e9c1dd15d39b56b081dd952"
+    },
+    {
+      "bytes": 129,
+      "path": "reports/test_squad_ai.log",
+      "sha256": "9c4db14beb15ea6e1797a209686c65fbb166f061164f389529e8166741ab7000"
+    },
+    {
+      "bytes": 93,
+      "path": "reports/test_tower.log",
+      "sha256": "c47668ff35b8d6cb24a25f70f0f8b50fce604d05acbe15963d3728740a02f2f5"
+    },
+    {
+      "bytes": 173,
+      "path": "reports/test_traffic.log",
+      "sha256": "e5c6e40609cbf4ed9683f7db27049d8186dbad50e81ccd104996f2c5abaa079d"
+    },
+    {
+      "bytes": 188,
+      "path": "reports/test_transit.log",
+      "sha256": "bf8a0be77110b93f43f062d9b948d77a3d3fe593292742dad08fbc16ddc39458"
+    },
+    {
+      "bytes": 225,
+      "path": "reports/test_vehicle.log",
+      "sha256": "9dc07b3089186b847c830a43eba686a5af8f1578838eeaf496cdc450eab2a5c2"
+    },
+    {
+      "bytes": 276,
+      "path": "reports/test_world_sync.log",
+      "sha256": "4b087ea19bf511347e4335d4c4275b096638d4b6e209b6c108e4d31477bba94d"
+    },
+    {
+      "bytes": 6234,
+      "path": "session_network.gd",
+      "sha256": "0084ac0ed62460e31f766b863e5ffc461357bf800193d8fae45835bf15393399"
+    },
+    {
+      "bytes": 20,
+      "path": "session_network.gd.uid",
+      "sha256": "d8dc280c7123b30407ad518e5dedd8cbc61a1cea5eeef90c7246c390cfa75b20"
+    },
+    {
+      "bytes": 7080,
+      "path": "session_store.gd",
+      "sha256": "055c4332a86d33ac3eeebdeebc66621bbc0fa7511acce7ed5e9a0ae28eab186d"
+    },
+    {
+      "bytes": 19,
+      "path": "session_store.gd.uid",
+      "sha256": "55fd5cbc84338b008c06ceabd7eb53a47a4091fe69e04e288d76895e1d3d462a"
+    },
+    {
+      "bytes": 5331,
+      "path": "shared_cover.gd",
+      "sha256": "3fa0928f58cd142411339c89d019600d9638632d46323bda9b08848b996a3d9f"
+    },
+    {
+      "bytes": 20,
+      "path": "shared_cover.gd.uid",
+      "sha256": "e41556cd98aaad65d85350eb47d2babc42a12ab6e8caad6393e5c7d5ec7f234c"
+    },
+    {
+      "bytes": 5367,
+      "path": "shared_lift.gd",
+      "sha256": "cb203f305e161dcc99667a1e942c8061a484f85d94c1d06f1714ef7d2063d3cb"
+    },
+    {
+      "bytes": 20,
+      "path": "shared_lift.gd.uid",
+      "sha256": "5c4dac8f82bcfb0cd3c19316c19d3b9d0b31366db6cd6f3026242275a6e328d2"
+    },
+    {
+      "bytes": 10034,
+      "path": "shared_vehicle.gd",
+      "sha256": "ca361e041cc73536c0c44ced7e102ef9cadcc5ef42f48fd9d92875004efdf1fa"
+    },
+    {
+      "bytes": 20,
+      "path": "shared_vehicle.gd.uid",
+      "sha256": "381226891addab5f1f1bf1c6327f8bed99ec295468ca3adc34b71e1801d366c9"
+    },
+    {
+      "bytes": 11177,
+      "path": "squad_ai.gd",
+      "sha256": "ebd08f0032b435675c05aa8e140e0f465282943665e000f97c43204aa1f6c00d"
+    },
+    {
+      "bytes": 20,
+      "path": "squad_ai.gd.uid",
+      "sha256": "f73af33c1f66e1b6219a9f4f0afb54fcf06cc4d8f2c94fe85fd834e5b079802f"
+    },
+    {
+      "bytes": 5124,
+      "path": "tests/test_city_network.gd",
+      "sha256": "daf342382bde8c0fdc4bc95f9eb15d24386b0048b9b608b3bb689589d17a872a"
+    },
+    {
+      "bytes": 20,
+      "path": "tests/test_city_network.gd.uid",
+      "sha256": "6d3ba0049ff4dadfce7a845b62a802d757ee5c73ba6f1bc1a2b8c23bca0e936c"
+    },
+    {
+      "bytes": 5902,
+      "path": "tests/test_civilians.gd",
+      "sha256": "aeb3112158725e1a6a39e9255b02cbecd6cc27f2812af911d8f7e5915b500d4a"
+    },
+    {
+      "bytes": 19,
+      "path": "tests/test_civilians.gd.uid",
+      "sha256": "f163311206e2f727513fe24669082a2ddb755ded6d3874a248124a2085ab3815"
+    },
+    {
+      "bytes": 6959,
+      "path": "tests/test_demolition.gd",
+      "sha256": "e2e937650e7795a7730e07e8bb3f5ee9fdba660dd118d97808d6f17560178455"
+    },
+    {
+      "bytes": 20,
+      "path": "tests/test_demolition.gd.uid",
+      "sha256": "ac6c6299cfe5dd704d3a946f4e28e7f80d376599bb39c338f022ba3df729c9bd"
+    },
+    {
+      "bytes": 6132,
+      "path": "tests/test_interiors.gd",
+      "sha256": "526f2e4a2b6e66f335ab94b2be874c94301e0d2887208274e0a51993fb79bd4a"
+    },
+    {
+      "bytes": 20,
+      "path": "tests/test_interiors.gd.uid",
+      "sha256": "67ed28ea823ae616814cd32e067734eb4789cf5a1657577f1c1141c67b0d8215"
+    },
+    {
+      "bytes": 5143,
+      "path": "tests/test_mission_director.gd",
+      "sha256": "375eb5a84d62b278f0f7823336bd19a7622da9096ca5b1ebc72ebaee9a23f161"
+    },
+    {
+      "bytes": 20,
+      "path": "tests/test_mission_director.gd.uid",
+      "sha256": "f4527073f0a65bbd5a2958022f8ba11f10a10d3a20736a025461a9b0699d196c"
+    },
+    {
+      "bytes": 7940,
+      "path": "tests/test_npc_interactions.gd",
+      "sha256": "54480411f2832fa1bf2f8e10098049f30d19d2df25137f841526382852a30056"
+    },
+    {
+      "bytes": 19,
+      "path": "tests/test_npc_interactions.gd.uid",
+      "sha256": "db004c94a98698e4bcc9fb766a7c7c77b1cf2bd5aac6c939975fd6cc024a4f72"
+    },
+    {
+      "bytes": 10473,
+      "path": "tests/test_session_network.gd",
+      "sha256": "a6fca8834d5cc65322db372a1c11d448047215a1bfe34a28a17ec9a887549033"
+    },
+    {
+      "bytes": 20,
+      "path": "tests/test_session_network.gd.uid",
+      "sha256": "e3cff341c559999d3aab86787bd1d84c570b63ffb634275e90e88a28f2c7bdca"
+    },
+    {
+      "bytes": 6646,
+      "path": "tests/test_session_store.gd",
+      "sha256": "1536700547cebb1fc7b69d52dc0fb6018567904bf25bc74fa01f3bdab8f2f57f"
+    },
+    {
+      "bytes": 20,
+      "path": "tests/test_session_store.gd.uid",
+      "sha256": "f60d6094baa86ffca969c0e81be2f9ce6e3ca215bc8c63724b1abaff37b81000"
+    },
+    {
+      "bytes": 7666,
+      "path": "tests/test_shared_cover.gd",
+      "sha256": "138ba2098c756c638a1f08542fc555abcca4cda29ce91a2cbe95fe63cbfd77fa"
+    },
+    {
+      "bytes": 20,
+      "path": "tests/test_shared_cover.gd.uid",
+      "sha256": "018206c86eb3242de50c3ad48114c533f2a26f4dec490bb8a74f18a13d432382"
+    },
+    {
+      "bytes": 5719,
+      "path": "tests/test_shared_lift.gd",
+      "sha256": "46a474c9a4da743957fddd673e022dd7d93499560a42a952266ef4bb937458d1"
+    },
+    {
+      "bytes": 19,
+      "path": "tests/test_shared_lift.gd.uid",
+      "sha256": "4a1a34d6f5c01404f8f6a3abc81ae3c35fa8ac2f6284c3751b606357b50eacf9"
+    },
+    {
+      "bytes": 4827,
+      "path": "tests/test_shared_vehicle.gd",
+      "sha256": "c9f4a4f81dbbc3f03b905873a5b94711a732bb9f06a5293bb7677caee4ee1962"
+    },
+    {
+      "bytes": 20,
+      "path": "tests/test_shared_vehicle.gd.uid",
+      "sha256": "b38e3db0c606a9abad89671fcce9725121add0aa25bb906ff38f28a231da169c"
+    },
+    {
+      "bytes": 5509,
+      "path": "tests/test_squad_ai.gd",
+      "sha256": "fac29fca281eef392f671d5acaf921a14ebf029a970208cefb812b5ddbebb60c"
+    },
+    {
+      "bytes": 20,
+      "path": "tests/test_squad_ai.gd.uid",
+      "sha256": "e5773640bf1b4bb11c8a66e7c959dc561245f26ab38c94dee891f1b4f27f8358"
+    },
+    {
+      "bytes": 7773,
+      "path": "tests/test_tower.gd",
+      "sha256": "5775d363f4b8347f2aaeabba70297d0804f5f6a1c640e4e475a5e5a0e5980d62"
+    },
+    {
+      "bytes": 19,
+      "path": "tests/test_tower.gd.uid",
+      "sha256": "0f952b1a291ded87f9b23020dc53d037e594a9693b30b038ea4a042584d464da"
+    },
+    {
+      "bytes": 6779,
+      "path": "tests/test_traffic.gd",
+      "sha256": "2192af101a7ce3efddf4d0136c7d608c79b22e5bcd284b83e0f6382824d5e3ff"
+    },
+    {
+      "bytes": 20,
+      "path": "tests/test_traffic.gd.uid",
+      "sha256": "c679068e61936e40f8896a5bdf3d231091365e07e22f7e660504af8749d5deab"
+    },
+    {
+      "bytes": 6651,
+      "path": "tests/test_transit.gd",
+      "sha256": "55462126fa8b9f1e2d172b43a01f15ec8d64687c0e7f1bda18e0b70e3c271052"
+    },
+    {
+      "bytes": 20,
+      "path": "tests/test_transit.gd.uid",
+      "sha256": "eef83cd277612458292a5b5faab09b9d7094cccf8a0e3ece1ed5ad5b8d60e792"
+    },
+    {
+      "bytes": 7395,
+      "path": "tests/test_vehicle.gd",
+      "sha256": "8b5f9a8fb6235790eb5e212cd2a0f8aecf404bd7595b1745d7a5d26044242dde"
+    },
+    {
+      "bytes": 20,
+      "path": "tests/test_vehicle.gd.uid",
+      "sha256": "bc057359215ede69095e0a1eb4ca15eb571039282ea1aea33321a8de45175576"
+    },
+    {
+      "bytes": 6860,
+      "path": "tests/test_world_sync.gd",
+      "sha256": "74b8369e966052889bf82d8f1c50cddc8f2828709c0fe134fd019a520c3d982d"
+    },
+    {
+      "bytes": 20,
+      "path": "tests/test_world_sync.gd.uid",
+      "sha256": "1eea486a93ac2b78c7986f5ea33ddf5614471110ea15c7392def9a8a4fbe35f2"
+    },
+    {
+      "bytes": 17528,
+      "path": "tower.gd",
+      "sha256": "5d85ef33198e0f32addaf8eeb736b5a83e519f61c61c18d306e511da1f449c1f"
+    },
+    {
+      "bytes": 19,
+      "path": "tower.gd.uid",
+      "sha256": "a7b922ad7d83cbe17c0574af2d5b9db72dc475f5fc616ffd60d1110b8b8f3204"
+    },
+    {
+      "bytes": 11239,
+      "path": "traffic.gd",
+      "sha256": "657ac9fd785233ef6f4d60231266e8f6f8dbf7d07c7971bcd824a41a2af7ca01"
+    },
+    {
+      "bytes": 20,
+      "path": "traffic.gd.uid",
+      "sha256": "b2eeda39d7f5c592a6f9b9e106a1d05191a705949c57b008be1e173c5485feee"
+    },
+    {
+      "bytes": 13974,
+      "path": "transit.gd",
+      "sha256": "ebf53ae25abe2b373183fea3b61ffd05d2587c89332f90bbc3b8415a20b24c6e"
+    },
+    {
+      "bytes": 19,
+      "path": "transit.gd.uid",
+      "sha256": "aa21060bb4eb7226d224113c02da204fadcf70c93baa245d1891e5c405979604"
+    },
+    {
+      "bytes": 15222,
+      "path": "vehicle.gd",
+      "sha256": "0111137d7c99a93a4c440baecd14ddc71dd688dcc22317d52d36b813b892cf5a"
+    },
+    {
+      "bytes": 20,
+      "path": "vehicle.gd.uid",
+      "sha256": "d002e3f2847b3b29c619124a6f5669eefb6dc9675a4279a9112cb8d6e635c934"
+    },
+    {
+      "bytes": 8499,
+      "path": "vertical.gd",
+      "sha256": "4fa54ee5047dbfd69d70c421e71f4ef6fe520055007dfe8eab12138d10d21138"
+    },
+    {
+      "bytes": 20,
+      "path": "vertical.gd.uid",
+      "sha256": "86cb0aeb7b6ad53ccdf262c86ec86babaeb646cb7cb3e1e3c5f0b1d62ba2cac3"
+    },
+    {
+      "bytes": 164,
+      "path": "vertical.tscn",
+      "sha256": "43e28f528831068793bf7f8b54e9a310ff587c1b8e763d5c48658ca8be60b18d"
+    },
+    {
+      "bytes": 9757,
+      "path": "vertical_qa.gd",
+      "sha256": "79471090fbb544e6a1414afa5908b8e7956b64d24f6982ebc25d0e013e3524d8"
+    },
+    {
+      "bytes": 20,
+      "path": "vertical_qa.gd.uid",
+      "sha256": "6b239bc6863e773ec11cbfb18dcf30dd40ebfa2dfa6932065cd70c3b3bfd6293"
+    },
+    {
+      "bytes": 8480,
+      "path": "world_sync.gd",
+      "sha256": "f3df4828e5b955f986b3aae70cd0ee315ae5631ebba9359ec4fedde2a8a4da1c"
+    },
+    {
+      "bytes": 20,
+      "path": "world_sync.gd.uid",
+      "sha256": "adccf05a124d91cc500b82a9cfef7a681f5af9a6f18be2befd8e5a9f46c58854"
+    }
+  ],
+  "frontline_qa": {
+    "checks": [
+      {
+        "detail": "Full generated project scene",
+        "name": "Load Frontline City",
+        "status": "passed"
+      },
+      {
+        "detail": "All five new and inherited systems configured",
+        "name": "Initialize shared features",
+        "status": "passed"
+      },
+      {
+        "detail": "Preserve ordinary Advanced City offline",
+        "name": "Offline simulation features concealed",
+        "status": "passed"
+      },
+      {
+        "detail": "ENet local authority with session checkpoint",
+        "name": "Start host",
+        "status": "passed"
+      },
+      {
+        "detail": "Real ENet client with independent scene",
+        "name": "Join a second city",
+        "status": "passed"
+      },
+      {
+        "detail": "Car, lift, cover, mission and AI replicate",
+        "name": "Receive feature snapshots",
+        "status": "passed"
+      },
+      {
+        "detail": "Host validates authoritative distance",
+        "name": "Reject distant lift request",
+        "status": "passed"
+      },
+      {
+        "detail": "Client requests but server decides",
+        "name": "Remote requests cannot bypass proximity",
+        "status": "passed"
+      },
+      {
+        "detail": "Remote position checked by host",
+        "name": "Reject malicious out-of-range remote action",
+        "status": "passed"
+      },
+      {
+        "detail": "Extra bytes refused by fixed-length decoder",
+        "name": "Reject malformed action packet",
+        "status": "passed"
+      },
+      {
+        "detail": "Validate complete state before applying any feature",
+        "name": "Reject malformed aggregate snapshot",
+        "status": "passed"
+      },
+      {
+        "detail": "Server accepts nearby panel hit",
+        "name": "Damage shared cover",
+        "status": "passed"
+      },
+      {
+        "detail": "Request cooldown",
+        "name": "Reject repeated rapid hit",
+        "status": "passed"
+      },
+      {
+        "detail": "Host and client see identical destroyed panel",
+        "name": "Replicate destroyed cover",
+        "status": "passed"
+      },
+      {
+        "detail": "Actual server-authoritative movement",
+        "name": "Client approaches car",
+        "status": "passed"
+      },
+      {
+        "detail": "Client requests board",
+        "name": "Remote vehicle entry request",
+        "status": "passed"
+      },
+      {
+        "detail": "Single driver replicated",
+        "name": "Host grants driver ownership",
+        "status": "passed"
+      },
+      {
+        "detail": "Occupied car cannot be stolen",
+        "name": "Second driver refused",
+        "status": "passed"
+      },
+      {
+        "detail": "Host authoritative steering and driving",
+        "name": "Remote driver moves real shared car",
+        "status": "passed"
+      },
+      {
+        "detail": "Client sees drive state and follows car",
+        "name": "Replicate car transform and seated avatar",
+        "status": "passed"
+      },
+      {
+        "detail": "Only owner may release",
+        "name": "Driver requests exit",
+        "status": "passed"
+      },
+      {
+        "detail": "Ownership released",
+        "name": "Driver exit replicated",
+        "status": "passed"
+      },
+      {
+        "detail": "Walk to observation lift",
+        "name": "Host approaches lift",
+        "status": "passed"
+      },
+      {
+        "detail": "Ground proximity and empty cabin validated",
+        "name": "Lift boarding accepted",
+        "status": "passed"
+      },
+      {
+        "detail": "Begin moving platform",
+        "name": "Lift travel requested",
+        "status": "passed"
+      },
+      {
+        "detail": "Travel interlock",
+        "name": "Moving lift rejects control",
+        "status": "passed"
+      },
+      {
+        "detail": "Host raises rider, client receives lift state",
+        "name": "Replicate upper lift and rider",
+        "status": "passed"
+      },
+      {
+        "detail": "Return to street",
+        "name": "Lift descends",
+        "status": "passed"
+      },
+      {
+        "detail": "Release only at ground",
+        "name": "Exit grounded lift",
+        "status": "passed"
+      },
+      {
+        "detail": "Grounded network avatar",
+        "name": "Return to normal walking",
+        "status": "passed"
+      },
+      {
+        "detail": "Three proximity-authorized stages",
+        "name": "Complete dynamic contract",
+        "status": "passed"
+      },
+      {
+        "detail": "Shared reward and mission phase",
+        "name": "Replicate completed mission",
+        "status": "passed"
+      },
+      {
+        "detail": "Host squad agents engage without player inputs",
+        "name": "Autonomous AI engagement",
+        "status": "passed"
+      },
+      {
+        "detail": "Client renders replicated AI state",
+        "name": "Replicate squad simulation",
+        "status": "passed"
+      },
+      {
+        "detail": "New scene, no prior local feature state",
+        "name": "Late client joins",
+        "status": "passed"
+      },
+      {
+        "detail": "Full snapshots recover current world without event history",
+        "name": "Late join receives destruction and mission",
+        "status": "passed"
+      }
+    ],
+    "metrics": {
+      "ai_shots": 45,
+      "car_distance_m": 8.31243133544922,
+      "cover_health": [
+        3,
+        0,
+        0
+      ],
+      "feature_snapshot_bytes": 1045,
+      "feature_updates": 191,
+      "mission_score": 400,
+      "physics_ticks": 1582
+    },
+    "pass": true
+  },
+  "kind": "frontline",
+  "schema": 1,
+  "spec": {
+    "block_size": 48,
+    "blocks": 4,
+    "civilians": 20,
+    "seed": 237,
+    "traffic": 12
+  },
+  "status": "passed"
+}

@@ -1,0 +1,3 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+PASS session network {"authority_position":true,"clients":2,"concurrent_claim":true,"disk_restart":true,"late_join":true,"reconnect":true,"request_bytes":35,"shared_claims":3,"snapshot_bytes":38,"transport":"ENet","world_and_avatars":true}

@@ -1,0 +1,291 @@
+{
+  "version": "18.0",
+  "verified": true,
+  "dispatch_profile": {
+    "id": "studio-fast",
+    "mode": "fast",
+    "service_tier": "priority",
+    "max_parallel": 6,
+    "roles": [
+      {
+        "id": "architecture",
+        "name": "Architecture",
+        "model": "GPT-6.2 Astra Ultra",
+        "model_id": "gpt-6.2-astra",
+        "reasoning_effort": "ultra"
+      },
+      {
+        "id": "gameplay",
+        "name": "Gameplay",
+        "model": "GPT-6.2 Astra Ultra",
+        "model_id": "gpt-6.2-astra",
+        "reasoning_effort": "ultra"
+      },
+      {
+        "id": "verification",
+        "name": "Verification",
+        "model": "GPT-6.2 Astra Ultra",
+        "model_id": "gpt-6.2-astra",
+        "reasoning_effort": "ultra"
+      },
+      {
+        "id": "ui",
+        "name": "UI",
+        "model": "GPT-6.2 Astra Ultra",
+        "model_id": "gpt-6.2-astra",
+        "reasoning_effort": "ultra"
+      },
+      {
+        "id": "content",
+        "name": "Content",
+        "model": "GPT-6.2 Astra Ultra",
+        "model_id": "gpt-6.2-astra",
+        "reasoning_effort": "ultra"
+      },
+      {
+        "id": "build_operations",
+        "name": "Build operations",
+        "model": "GPT-6.2 Sol Max",
+        "model_id": "gpt-6.2-sol",
+        "reasoning_effort": "max"
+      }
+    ]
+  },
+  "execution_mode": "export_only",
+  "frontline_qa": {
+    "checks": [
+      {
+        "detail": "Full generated project scene",
+        "name": "Load Frontline City",
+        "status": "passed"
+      },
+      {
+        "detail": "All five new and inherited systems configured",
+        "name": "Initialize shared features",
+        "status": "passed"
+      },
+      {
+        "detail": "Preserve ordinary Advanced City offline",
+        "name": "Offline simulation features concealed",
+        "status": "passed"
+      },
+      {
+        "detail": "ENet local authority with session checkpoint",
+        "name": "Start host",
+        "status": "passed"
+      },
+      {
+        "detail": "Real ENet client with independent scene",
+        "name": "Join a second city",
+        "status": "passed"
+      },
+      {
+        "detail": "Car, lift, cover, mission and AI replicate",
+        "name": "Receive feature snapshots",
+        "status": "passed"
+      },
+      {
+        "detail": "Host validates authoritative distance",
+        "name": "Reject distant lift request",
+        "status": "passed"
+      },
+      {
+        "detail": "Client requests but server decides",
+        "name": "Remote requests cannot bypass proximity",
+        "status": "passed"
+      },
+      {
+        "detail": "Remote position checked by host",
+        "name": "Reject malicious out-of-range remote action",
+        "status": "passed"
+      },
+      {
+        "detail": "Extra bytes refused by fixed-length decoder",
+        "name": "Reject malformed action packet",
+        "status": "passed"
+      },
+      {
+        "detail": "Validate complete state before applying any feature",
+        "name": "Reject malformed aggregate snapshot",
+        "status": "passed"
+      },
+      {
+        "detail": "Server accepts nearby panel hit",
+        "name": "Damage shared cover",
+        "status": "passed"
+      },
+      {
+        "detail": "Request cooldown",
+        "name": "Reject repeated rapid hit",
+        "status": "passed"
+      },
+      {
+        "detail": "Host and client see identical destroyed panel",
+        "name": "Replicate destroyed cover",
+        "status": "passed"
+      },
+      {
+        "detail": "Actual server-authoritative movement",
+        "name": "Client approaches car",
+        "status": "passed"
+      },
+      {
+        "detail": "Client requests board",
+        "name": "Remote vehicle entry request",
+        "status": "passed"
+      },
+      {
+        "detail": "Single driver replicated",
+        "name": "Host grants driver ownership",
+        "status": "passed"
+      },
+      {
+        "detail": "Occupied car cannot be stolen",
+        "name": "Second driver refused",
+        "status": "passed"
+      },
+      {
+        "detail": "Host authoritative steering and driving",
+        "name": "Remote driver moves real shared car",
+        "status": "passed"
+      },
+      {
+        "detail": "Client sees drive state and follows car",
+        "name": "Replicate car transform and seated avatar",
+        "status": "passed"
+      },
+      {
+        "detail": "Only owner may release",
+        "name": "Driver requests exit",
+        "status": "passed"
+      },
+      {
+        "detail": "Ownership released",
+        "name": "Driver exit replicated",
+        "status": "passed"
+      },
+      {
+        "detail": "Walk to observation lift",
+        "name": "Host approaches lift",
+        "status": "passed"
+      },
+      {
+        "detail": "Ground proximity and empty cabin validated",
+        "name": "Lift boarding accepted",
+        "status": "passed"
+      },
+      {
+        "detail": "Begin moving platform",
+        "name": "Lift travel requested",
+        "status": "passed"
+      },
+      {
+        "detail": "Travel interlock",
+        "name": "Moving lift rejects control",
+        "status": "passed"
+      },
+      {
+        "detail": "Host raises rider, client receives lift state",
+        "name": "Replicate upper lift and rider",
+        "status": "passed"
+      },
+      {
+        "detail": "Return to street",
+        "name": "Lift descends",
+        "status": "passed"
+      },
+      {
+        "detail": "Release only at ground",
+        "name": "Exit grounded lift",
+        "status": "passed"
+      },
+      {
+        "detail": "Grounded network avatar",
+        "name": "Return to normal walking",
+        "status": "passed"
+      },
+      {
+        "detail": "Three proximity-authorized stages",
+        "name": "Complete dynamic contract",
+        "status": "passed"
+      },
+      {
+        "detail": "Shared reward and mission phase",
+        "name": "Replicate completed mission",
+        "status": "passed"
+      },
+      {
+        "detail": "Host squad agents engage without player inputs",
+        "name": "Autonomous AI engagement",
+        "status": "passed"
+      },
+      {
+        "detail": "Client renders replicated AI state",
+        "name": "Replicate squad simulation",
+        "status": "passed"
+      },
+      {
+        "detail": "New scene, no prior local feature state",
+        "name": "Late client joins",
+        "status": "passed"
+      },
+      {
+        "detail": "Full snapshots recover current world without event history",
+        "name": "Late join receives destruction and mission",
+        "status": "passed"
+      }
+    ],
+    "metrics": {
+      "ai_shots": 45,
+      "car_distance_m": 8.31243133544922,
+      "cover_health": [
+        3,
+        0,
+        0
+      ],
+      "feature_snapshot_bytes": 1045,
+      "feature_updates": 215,
+      "mission_score": 400,
+      "physics_ticks": 1589
+    },
+    "pass": true
+  },
+  "gates": [
+    {
+      "name": "Build",
+      "status": "passed"
+    },
+    {
+      "name": "Verification",
+      "status": "passed"
+    },
+    {
+      "name": "Frontline City scenario QA",
+      "status": "passed"
+    },
+    {
+      "name": "Human render review",
+      "status": "pending"
+    },
+    {
+      "name": "Device review",
+      "status": "pending"
+    }
+  ],
+  "edited_gate": "stale",
+  "edited_build_gate": "pending",
+  "commands": [
+    {
+      "stage": "build",
+      "exit_code": 0,
+      "duration_seconds": 51.236,
+      "timed_out": false
+    },
+    {
+      "stage": "verify",
+      "exit_code": 0,
+      "duration_seconds": 0.118,
+      "timed_out": false
+    }
+  ]
+}

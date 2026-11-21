@@ -1,0 +1,52 @@
+{
+  "profiles": [
+    {
+      "buildings": 35,
+      "civilians": 20,
+      "elapsed_ms": 778.061,
+      "max_ms": 18.534,
+      "mean_ms": 0.481118333333333,
+      "p50_ms": 0.398,
+      "p95_ms": 0.711,
+      "p99_ms": 1.566,
+      "road_mark_instances": 600,
+      "samples": 600,
+      "scene_nodes": 686,
+      "scope": "Headless CPU wall time of city simulation callback only; excludes rendering, GPU, and target hardware validation.",
+      "spec": {
+        "block_size": 48.0,
+        "blocks": 4.0,
+        "civilians": 20.0,
+        "seed": 237.0,
+        "traffic": 12.0
+      },
+      "traffic": 12,
+      "window_instances": 3228
+    },
+    {
+      "buildings": 154,
+      "civilians": 40,
+      "elapsed_ms": 737.449,
+      "max_ms": 6.859,
+      "mean_ms": 0.571438333333333,
+      "p50_ms": 0.527,
+      "p95_ms": 0.849,
+      "p99_ms": 1.446,
+      "road_mark_instances": 2448,
+      "samples": 600,
+      "scene_nodes": 1894,
+      "scope": "Headless CPU wall time of city simulation callback only; excludes rendering, GPU, and target hardware validation.",
+      "spec": {
+        "block_size": 64.0,
+        "blocks": 8.0,
+        "civilians": 40.0,
+        "seed": 239.0,
+        "traffic": 24.0
+      },
+      "traffic": 24,
+      "window_instances": 29496
+    }
+  ],
+  "scope": "Local headless CPU callback measurements only, not GPU or device benchmarks.",
+  "version": 1
+}

@@ -1,0 +1,162 @@
+{
+  "version": "11.0",
+  "verified": true,
+  "simulation_qa": {
+    "checks": [
+      {
+        "detail": "res://simulation.tscn",
+        "name": "Load simulation scene",
+        "status": "passed"
+      },
+      {
+        "detail": "World, player, vehicle and simulation components",
+        "name": "Initialize simulation",
+        "status": "passed"
+      },
+      {
+        "detail": "Player and vehicle have physics floor contacts",
+        "name": "Settle on terrain",
+        "status": "passed"
+      },
+      {
+        "detail": "9.0633 to 9.2633 in 60 physics ticks (expected 9.2633)",
+        "name": "Advance clock and sun",
+        "status": "passed"
+      },
+      {
+        "detail": "Rain mesh, environment fog and visibility respond to all three modes",
+        "name": "Switch clear, rain and fog in the world",
+        "status": "passed"
+      },
+      {
+        "detail": "Starting objective is to activate relay",
+        "name": "Start ordered mission",
+        "status": "passed"
+      },
+      {
+        "detail": "Vehicle is 4.00 m away",
+        "name": "Reject distant vehicle entry",
+        "status": "passed"
+      },
+      {
+        "detail": "Attempted activation from 2.60 m",
+        "name": "Reject distant relay activation",
+        "status": "passed"
+      },
+      {
+        "detail": "Relay activation advances exactly one stage",
+        "name": "Activate nearby relay once",
+        "status": "passed"
+      },
+      {
+        "detail": "Player reached the goal before delivering the vehicle",
+        "name": "Reject early goal arrival",
+        "status": "passed"
+      },
+      {
+        "detail": "Player crossed the checkpoint on foot",
+        "name": "Require vehicle at checkpoint",
+        "status": "passed"
+      },
+      {
+        "detail": "Player boarded from 1.35 m",
+        "name": "Enter nearby vehicle",
+        "status": "passed"
+      },
+      {
+        "detail": "Attempted to exit at 2.10 m/s",
+        "name": "Reject exit while moving",
+        "status": "passed"
+      },
+      {
+        "detail": "Drove 19.31 m over 208 ticks, 0.69 m from checkpoint",
+        "name": "Drive to checkpoint under physics",
+        "status": "passed"
+      },
+      {
+        "detail": "6.15 to 0.00 m/s in 21 ticks, 17.57 m/s\u00b2 braking vs 2.50 coasting",
+        "name": "Brake to a stop",
+        "status": "passed"
+      },
+      {
+        "detail": "On-foot controller restored beside the vehicle",
+        "name": "Exit stopped vehicle",
+        "status": "passed"
+      },
+      {
+        "detail": "Walked the final 2.87 m, finishing 0.09 m from the goal",
+        "name": "Walk to goal and complete mission",
+        "status": "passed"
+      }
+    ],
+    "metrics": {
+      "boarding_distance_m": 1.34747195243835,
+      "brake_deceleration_mps2": 17.5714315686907,
+      "brake_final_mps": 0.0,
+      "brake_initial_mps": 6.15000104904175,
+      "brake_ticks": 21,
+      "clock_after_one_second": 9.26333333333337,
+      "clock_start_hour": 9.06333333333334,
+      "coast_deceleration_mps2": 2.49999046325684,
+      "drive_checkpoint_error_m": 0.68584156036377,
+      "drive_distance_m": 19.3141584396362,
+      "drive_max_step_m": 0.106666803359985,
+      "drive_peak_mps": 6.40000009536743,
+      "drive_ticks": 208,
+      "exit_separation_m": 2.20000004768372,
+      "final_walk_m": 2.86666642129421,
+      "fog_density": 0.0850000008940697,
+      "goal_error_m": 0.086772695183754,
+      "initial_vehicle_distance_m": 4.0,
+      "physics_ticks": 1149,
+      "physics_ticks_per_second": 60,
+      "rain_fog_density": 0.0240000002086163,
+      "remote_interaction_distance_m": 2.59999942779541,
+      "walk_distance_m": 54.7999380156398,
+      "walk_max_step_m": 0.0666723251342773,
+      "weather_visibility": {
+        "clear": 0.966699452783355,
+        "fog": 0.386679781113342,
+        "rain": 0.676689616948348
+      }
+    },
+    "pass": true
+  },
+  "gates": [
+    {
+      "name": "Build",
+      "status": "passed"
+    },
+    {
+      "name": "Verification",
+      "status": "passed"
+    },
+    {
+      "name": "Simulation scenario QA",
+      "status": "passed"
+    },
+    {
+      "name": "Human render review",
+      "status": "pending"
+    },
+    {
+      "name": "Device review",
+      "status": "pending"
+    }
+  ],
+  "edited_gate": "stale",
+  "commands": [
+    {
+      "stage": "build",
+      "exit_code": 0,
+      "duration_seconds": 7.753,
+      "timed_out": false
+    },
+    {
+      "stage": "verify",
+      "exit_code": 0,
+      "duration_seconds": 0.064,
+      "timed_out": false
+    }
+  ]
+}

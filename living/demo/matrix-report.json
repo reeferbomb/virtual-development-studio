@@ -1,0 +1,50 @@
+{
+  "pass": true,
+  "scope": "Headless import, launch, component suites and package integrity; exact fixture only runs scenario QA.",
+  "version": 1,
+  "workers": 2,
+  "worlds": [
+    {
+      "artifact": "00-seed-237/project",
+      "component_suites": 14,
+      "scenario": "passed",
+      "scenario_checks": 28,
+      "seconds": 13.183,
+      "spec": {
+        "capacity": 40,
+        "chunk_size": 32,
+        "radius": 1,
+        "seed": 237
+      },
+      "status": "passed"
+    },
+    {
+      "artifact": "01-seed-238/project",
+      "component_suites": 14,
+      "scenario": "not_run",
+      "scenario_checks": 0,
+      "seconds": 10.355,
+      "spec": {
+        "capacity": 40,
+        "chunk_size": 32,
+        "radius": 1,
+        "seed": 238
+      },
+      "status": "passed"
+    },
+    {
+      "artifact": "02-seed-239/project",
+      "component_suites": 14,
+      "scenario": "not_run",
+      "scenario_checks": 0,
+      "seconds": 16.207,
+      "spec": {
+        "capacity": 40,
+        "chunk_size": 32,
+        "radius": 1,
+        "seed": 239
+      },
+      "status": "passed"
+    }
+  ]
+}

@@ -1,0 +1,40 @@
+{
+  "checkpoint": [
+    0.0,
+    0.0,
+    -10.0
+  ],
+  "cycle_seconds": 120.0,
+  "interactables": [
+    {
+      "id": "relay",
+      "kind": "beacon",
+      "position": [
+        -4.0,
+        0.0,
+        10.0
+      ]
+    }
+  ],
+  "stages": [
+    {
+      "action": "interact",
+      "target": "relay"
+    },
+    {
+      "action": "drive",
+      "target": "checkpoint"
+    },
+    {
+      "action": "visit",
+      "target": "goal"
+    }
+  ],
+  "start_hour": 9.0,
+  "vehicle_spawn": [
+    0.0,
+    0.0,
+    10.0
+  ],
+  "weather": "clear"
+}

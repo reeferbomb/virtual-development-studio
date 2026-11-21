@@ -1,0 +1,650 @@
+{
+  "advanced_qa": {
+    "checks": [
+      {
+        "detail": "Generated Godot project",
+        "name": "Load advanced city",
+        "status": "passed"
+      },
+      {
+        "detail": "Inherited interior and metro plus new tower and vehicle",
+        "name": "Complete city initialized",
+        "status": "passed"
+      },
+      {
+        "detail": "Tower generated within its lot",
+        "name": "Three physical floors",
+        "status": "passed"
+      },
+      {
+        "detail": "Vehicle near spawn takes driver",
+        "name": "Enter drivable car",
+        "status": "passed"
+      },
+      {
+        "detail": "Real physics movement from driver throttle",
+        "name": "Accelerate down the street",
+        "status": "passed"
+      },
+      {
+        "detail": "Camera actor follows moving vehicle",
+        "name": "Passenger follows driver seat",
+        "status": "passed"
+      },
+      {
+        "detail": "Do not checkpoint while driving",
+        "name": "Driving blocks offline saves",
+        "status": "passed"
+      },
+      {
+        "detail": "Brake decelerates before exit",
+        "name": "Brake to a halt",
+        "status": "passed"
+      },
+      {
+        "detail": "Clear exit position restores walker",
+        "name": "Exit parked car",
+        "status": "passed"
+      },
+      {
+        "detail": "Normal walking restored",
+        "name": "Player grounded after exit",
+        "status": "passed"
+      },
+      {
+        "detail": "Physical road-grid traversal to tower",
+        "name": "Walk to tower facade",
+        "status": "passed"
+      },
+      {
+        "detail": "E operates the tower door",
+        "name": "Open tower entrance",
+        "status": "passed"
+      },
+      {
+        "detail": "Real collision-backed lobby",
+        "name": "Walk ground floor lobby",
+        "status": "passed"
+      },
+      {
+        "detail": "Cabin moves with passenger, opens at floor 1",
+        "name": "Ride first upper floor",
+        "status": "passed"
+      },
+      {
+        "detail": "Walk out, reboard and travel to floor 2",
+        "name": "Ride second upper floor",
+        "status": "passed"
+      },
+      {
+        "detail": "Checkpoint only from accessible street",
+        "name": "Elevated checkpoint blocked",
+        "status": "passed"
+      },
+      {
+        "detail": "Third continuous elevator trip returns to ground",
+        "name": "Return elevator to ground",
+        "status": "passed"
+      },
+      {
+        "detail": "Leave through ground-floor entrance",
+        "name": "Walk out to street",
+        "status": "passed"
+      },
+      {
+        "detail": "Talk to the actual giver resident",
+        "name": "Start resident quest",
+        "status": "passed"
+      },
+      {
+        "detail": "Distinct resident advances the errand",
+        "name": "Deliver to second resident",
+        "status": "passed"
+      },
+      {
+        "detail": "Return to giver and finish",
+        "name": "Complete resident quest",
+        "status": "passed"
+      },
+      {
+        "detail": "Do not create a save that depends on a changed door or panel collider",
+        "name": "Guard checkpoint parking clearance",
+        "status": "passed"
+      },
+      {
+        "detail": "Tower, vehicle and quest alongside Vertical City",
+        "name": "Save combined advanced checkpoint",
+        "status": "passed"
+      },
+      {
+        "detail": "Fresh-scene snapshots restore exact state",
+        "name": "Restore three new systems",
+        "status": "passed"
+      },
+      {
+        "detail": "Preflight rejects malformed data",
+        "name": "Reject corrupt feature checkpoint",
+        "status": "passed"
+      },
+      {
+        "detail": "Real ENet loopback session with journal",
+        "name": "Start authoritative host",
+        "status": "passed"
+      },
+      {
+        "detail": "Host position out of range",
+        "name": "Reject distant objective",
+        "status": "passed"
+      },
+      {
+        "detail": "Server accepts one validated claim",
+        "name": "Claim spawn objective",
+        "status": "passed"
+      },
+      {
+        "detail": "One-shot objective state",
+        "name": "Prevent duplicate reward",
+        "status": "passed"
+      },
+      {
+        "detail": "Independent networked scene",
+        "name": "Join actual client city",
+        "status": "passed"
+      },
+      {
+        "detail": "Progress and authoritative population arrive together",
+        "name": "Late join receives objective and environment",
+        "status": "passed"
+      },
+      {
+        "detail": "Actual server-authoritative avatar movement",
+        "name": "Client walks to second objective",
+        "status": "passed"
+      },
+      {
+        "detail": "Network request is queued to authority",
+        "name": "Submit remote objective claim",
+        "status": "passed"
+      },
+      {
+        "detail": "Host applies and persists client claim",
+        "name": "Persist shared remote claim",
+        "status": "passed"
+      },
+      {
+        "detail": "No unsynchronized local mutations",
+        "name": "Offline gameplay constrained while online",
+        "status": "passed"
+      },
+      {
+        "detail": "Fresh scene loads saved claims before accepting players",
+        "name": "Restart host from durable progress",
+        "status": "passed"
+      },
+      {
+        "detail": "Remaining objective can be completed after restart",
+        "name": "Complete final persistent objective",
+        "status": "passed"
+      }
+    ],
+    "metrics": {
+      "elevator_trips": 3,
+      "floors": 3,
+      "network_peers": 1,
+      "persisted_revision": 3,
+      "physics_ticks": 2950,
+      "quest_stage": "complete",
+      "session_revision": 3,
+      "vehicle_distance_m": 28.1142044067383,
+      "walk_m": 220.851217746735
+    },
+    "pass": true
+  },
+  "files": [
+    {
+      "bytes": 13279,
+      "path": "advanced.gd",
+      "sha256": "01e9cffe2126cb6e57c8edec7fce2328fa82a7ba26bd8c87dcf6f42b7efbe229"
+    },
+    {
+      "bytes": 19,
+      "path": "advanced.gd.uid",
+      "sha256": "fdad3951cb7fadc03e9075dd6271343dc60e51993101d05e36f5415ecaf6213f"
+    },
+    {
+      "bytes": 163,
+      "path": "advanced.tscn",
+      "sha256": "142151fd750c5aa6dc2795e2721f4c75b8db0436e775088de37856a480d58ade"
+    },
+    {
+      "bytes": 12201,
+      "path": "advanced_qa.gd",
+      "sha256": "3a438f27a3d77806768ca81e338222fdb8cdbc54e582c6dada8b00eee9d34a5f"
+    },
+    {
+      "bytes": 19,
+      "path": "advanced_qa.gd.uid",
+      "sha256": "f4874d0d27b48d92aae2430a8019eb5f8c6b7d29b32993f058dde9ee6e4c45d1"
+    },
+    {
+      "bytes": 15445,
+      "path": "city.gd",
+      "sha256": "227dafb957c8665928edffc5ac1cf363c1f26f6de401f0e8f103547940ec3adc"
+    },
+    {
+      "bytes": 19,
+      "path": "city.gd.uid",
+      "sha256": "56447d637f3ee013e7e1cdcd5d14ab6dcfe6947c3ed9b1cc1a60fbef835064f8"
+    },
+    {
+      "bytes": 14396,
+      "path": "city.json",
+      "sha256": "59aecca87a5df41b0de20649caa4b9eea5f99a317c6343d8d1c769574563df6f"
+    },
+    {
+      "bytes": 157,
+      "path": "city.tscn",
+      "sha256": "48e955e51cc4fb72a6726b33b85991bd3c88b83edcc71444016070e71e35a166"
+    },
+    {
+      "bytes": 9353,
+      "path": "city_network.gd",
+      "sha256": "b883f05c348150776764eefa53a5b9120eb0ab6bd6ba2785278db53f58786eac"
+    },
+    {
+      "bytes": 19,
+      "path": "city_network.gd.uid",
+      "sha256": "aca5de41fd76afc4e539201c150eaabe05859a1ad120e17ffea7d077acf83e9b"
+    },
+    {
+      "bytes": 1440,
+      "path": "city_profile.gd",
+      "sha256": "6729201573afe88e0290d5a1dd13538bb74b345a5a630d6047bfca78da23a64d"
+    },
+    {
+      "bytes": 20,
+      "path": "city_profile.gd.uid",
+      "sha256": "5140357e44d46ec757b60724c8fe98ef46ee183dd2dd16c48bc102eca81c14cb"
+    },
+    {
+      "bytes": 9632,
+      "path": "city_qa.gd",
+      "sha256": "a5b9714a3c220813a80e16e4f63772e5bd10a10c5243f09684cbf8664ddfb424"
+    },
+    {
+      "bytes": 20,
+      "path": "city_qa.gd.uid",
+      "sha256": "cf2d0e3139d142883a5ea13a8b7cfec9729e745b4019d7497efe029b21fe4cde"
+    },
+    {
+      "bytes": 9460,
+      "path": "civilians.gd",
+      "sha256": "268c71cc76899aa2c4af7e682cd0826ec1d3455ac1cb23e0b6abf56ea8742923"
+    },
+    {
+      "bytes": 20,
+      "path": "civilians.gd.uid",
+      "sha256": "df2fd6d94c6d6a43669535dd4f1a8323683f81f7bccf36469bea1238e0779114"
+    },
+    {
+      "bytes": 7231,
+      "path": "demolition.gd",
+      "sha256": "a7b3344565105b35eba11b77e6dff3b333f2e2a0bdc96901870edd179a5c4c65"
+    },
+    {
+      "bytes": 20,
+      "path": "demolition.gd.uid",
+      "sha256": "c4e743b8b188dfa351ec390aa97d560daf29c3078bdea57681069ca56262f7b2"
+    },
+    {
+      "bytes": 10956,
+      "path": "interiors.gd",
+      "sha256": "c80e326dc6506a2436c0728924136a6f03285ea4e0d21327273be516478cc3b6"
+    },
+    {
+      "bytes": 20,
+      "path": "interiors.gd.uid",
+      "sha256": "6a031ec9de1a7a025595692fcc923fa572bc1ed85b4b9fb1d2b13a799ff0521d"
+    },
+    {
+      "bytes": 7139,
+      "path": "npc_interactions.gd",
+      "sha256": "d38d33af90cbe4b7dab1b1afb68f9ef366e2a020ce161514302b69748679a51d"
+    },
+    {
+      "bytes": 20,
+      "path": "npc_interactions.gd.uid",
+      "sha256": "1bd26b5f078b5ba3fdc601010074fef9d1375314bf8887f7335cf6e274202f76"
+    },
+    {
+      "bytes": 4183,
+      "path": "persistence.gd",
+      "sha256": "347a94744e21a3cd370cb139317188a4ce3686afa6938d054c58a8b9f36e5889"
+    },
+    {
+      "bytes": 20,
+      "path": "persistence.gd.uid",
+      "sha256": "3f0475633a5c34890ecef08563650b423fec71de88237b8d725b221159acaa2e"
+    },
+    {
+      "bytes": 2959,
+      "path": "player.gd",
+      "sha256": "8c472548f5ead42e6cc8bc5d79ddf4f441d98e831281d4aa323ed589e45b85b9"
+    },
+    {
+      "bytes": 20,
+      "path": "player.gd.uid",
+      "sha256": "0066aba64bc644150dcd8d8677eec2e881b92ec6eeb7605b10d8a444ee6a5b00"
+    },
+    {
+      "bytes": 350,
+      "path": "project.godot",
+      "sha256": "109664fb231a9feca4da71bd079e8cfd2b1d119c2315e23b338f08149a3df697"
+    },
+    {
+      "bytes": 5447,
+      "path": "reports/advanced-qa.json",
+      "sha256": "d010651fe3e7786f5f5f1fdc42a008fa5f5de6b1a956bd31e3748fedfd220c78"
+    },
+    {
+      "bytes": 4461,
+      "path": "reports/advanced-qa.log",
+      "sha256": "5fc075e1e5cb76e8ef45d53676882d4e18d3956d926dbcc2c1ffc412dee5e5f5"
+    },
+    {
+      "bytes": 3093,
+      "path": "reports/import.log",
+      "sha256": "4937e80358aa14a03e5c42f478b9bbe73239902202a64bb78e4461afe0d28c2f"
+    },
+    {
+      "bytes": 135,
+      "path": "reports/launch.log",
+      "sha256": "c7fd06cc0fe6b3a7ccb1c004b6a6c62a075121f6e14d114330780309d8643eaf"
+    },
+    {
+      "bytes": 273,
+      "path": "reports/test_city_network.log",
+      "sha256": "8053b58d5c2730ab15d731bfc409699ed0861079e5e356b7d5e42d2fdeae2735"
+    },
+    {
+      "bytes": 93,
+      "path": "reports/test_civilians.log",
+      "sha256": "cebde6f88653a578a7e5697d9eafaf0b2d6fd3769dcbbb69730489348fe3e596"
+    },
+    {
+      "bytes": 197,
+      "path": "reports/test_demolition.log",
+      "sha256": "71dc581406e27c8336636a1de01ab43bcc3fc1a4717f1dc90df543739ea0399e"
+    },
+    {
+      "bytes": 97,
+      "path": "reports/test_interiors.log",
+      "sha256": "b36d8746807279a3833712d394f5869e1fe2af8402fadf8ae7345ad647729e21"
+    },
+    {
+      "bytes": 202,
+      "path": "reports/test_npc_interactions.log",
+      "sha256": "8639a587d2af8c64c25152fa65e4ea940d828ed1e37cc197e46ea81b56c7cd6a"
+    },
+    {
+      "bytes": 313,
+      "path": "reports/test_session_network.log",
+      "sha256": "f6be3f01fa480cfd862adbe1f122141c1e3b059a7e4c416792ecd20ba440d79f"
+    },
+    {
+      "bytes": 205,
+      "path": "reports/test_session_store.log",
+      "sha256": "e03e65b3a4cd1ba5bcf33edd978dae0dc22e6873637bf643f9d3b2501994f4c7"
+    },
+    {
+      "bytes": 93,
+      "path": "reports/test_tower.log",
+      "sha256": "c47668ff35b8d6cb24a25f70f0f8b50fce604d05acbe15963d3728740a02f2f5"
+    },
+    {
+      "bytes": 173,
+      "path": "reports/test_traffic.log",
+      "sha256": "e5c6e40609cbf4ed9683f7db27049d8186dbad50e81ccd104996f2c5abaa079d"
+    },
+    {
+      "bytes": 188,
+      "path": "reports/test_transit.log",
+      "sha256": "bf8a0be77110b93f43f062d9b948d77a3d3fe593292742dad08fbc16ddc39458"
+    },
+    {
+      "bytes": 225,
+      "path": "reports/test_vehicle.log",
+      "sha256": "9dc07b3089186b847c830a43eba686a5af8f1578838eeaf496cdc450eab2a5c2"
+    },
+    {
+      "bytes": 276,
+      "path": "reports/test_world_sync.log",
+      "sha256": "4b087ea19bf511347e4335d4c4275b096638d4b6e209b6c108e4d31477bba94d"
+    },
+    {
+      "bytes": 6234,
+      "path": "session_network.gd",
+      "sha256": "0084ac0ed62460e31f766b863e5ffc461357bf800193d8fae45835bf15393399"
+    },
+    {
+      "bytes": 20,
+      "path": "session_network.gd.uid",
+      "sha256": "5492411e6f04af9f84d6a920180aabe8fef36fc23acfd47253d2d454cacf3a9d"
+    },
+    {
+      "bytes": 7080,
+      "path": "session_store.gd",
+      "sha256": "055c4332a86d33ac3eeebdeebc66621bbc0fa7511acce7ed5e9a0ae28eab186d"
+    },
+    {
+      "bytes": 20,
+      "path": "session_store.gd.uid",
+      "sha256": "d9cf8905885f56752f78e849affd26de900a58031a0bebc10c6d05730d6cb4ee"
+    },
+    {
+      "bytes": 5124,
+      "path": "tests/test_city_network.gd",
+      "sha256": "daf342382bde8c0fdc4bc95f9eb15d24386b0048b9b608b3bb689589d17a872a"
+    },
+    {
+      "bytes": 20,
+      "path": "tests/test_city_network.gd.uid",
+      "sha256": "9001f4ea0e70b7869f65a3029c8b622c5910c28ffa19262d2b132fcce20d965a"
+    },
+    {
+      "bytes": 5902,
+      "path": "tests/test_civilians.gd",
+      "sha256": "aeb3112158725e1a6a39e9255b02cbecd6cc27f2812af911d8f7e5915b500d4a"
+    },
+    {
+      "bytes": 19,
+      "path": "tests/test_civilians.gd.uid",
+      "sha256": "b1869d41a78e678790b33822102fb7a379687a878b10128aebf7f04900f3e344"
+    },
+    {
+      "bytes": 6959,
+      "path": "tests/test_demolition.gd",
+      "sha256": "e2e937650e7795a7730e07e8bb3f5ee9fdba660dd118d97808d6f17560178455"
+    },
+    {
+      "bytes": 19,
+      "path": "tests/test_demolition.gd.uid",
+      "sha256": "450be12a35eb8aeab5fa67a881462720da7500f396ba16603aea08e9ee315150"
+    },
+    {
+      "bytes": 6132,
+      "path": "tests/test_interiors.gd",
+      "sha256": "526f2e4a2b6e66f335ab94b2be874c94301e0d2887208274e0a51993fb79bd4a"
+    },
+    {
+      "bytes": 19,
+      "path": "tests/test_interiors.gd.uid",
+      "sha256": "0834161d9161b71cd721636937c9e541e4594745e11df974350722dd3960ae48"
+    },
+    {
+      "bytes": 7940,
+      "path": "tests/test_npc_interactions.gd",
+      "sha256": "54480411f2832fa1bf2f8e10098049f30d19d2df25137f841526382852a30056"
+    },
+    {
+      "bytes": 19,
+      "path": "tests/test_npc_interactions.gd.uid",
+      "sha256": "355fb404d7b95ea1020f786452d91354b09c1ff5a94c93e0db7800366d25e96b"
+    },
+    {
+      "bytes": 10473,
+      "path": "tests/test_session_network.gd",
+      "sha256": "a6fca8834d5cc65322db372a1c11d448047215a1bfe34a28a17ec9a887549033"
+    },
+    {
+      "bytes": 20,
+      "path": "tests/test_session_network.gd.uid",
+      "sha256": "a0c37e31b19d46bb76552c3c95d624897768be01d21b4ea2b6859ef35ae7ce8c"
+    },
+    {
+      "bytes": 6646,
+      "path": "tests/test_session_store.gd",
+      "sha256": "1536700547cebb1fc7b69d52dc0fb6018567904bf25bc74fa01f3bdab8f2f57f"
+    },
+    {
+      "bytes": 20,
+      "path": "tests/test_session_store.gd.uid",
+      "sha256": "484505035c6dd6d6ee3ed77c699862301ff07498573cfdad102d96acbc742cd2"
+    },
+    {
+      "bytes": 7773,
+      "path": "tests/test_tower.gd",
+      "sha256": "5775d363f4b8347f2aaeabba70297d0804f5f6a1c640e4e475a5e5a0e5980d62"
+    },
+    {
+      "bytes": 20,
+      "path": "tests/test_tower.gd.uid",
+      "sha256": "79b54c44d803f7bcedef1d00102b3d3db9492932decda311e794835d56085d47"
+    },
+    {
+      "bytes": 6779,
+      "path": "tests/test_traffic.gd",
+      "sha256": "2192af101a7ce3efddf4d0136c7d608c79b22e5bcd284b83e0f6382824d5e3ff"
+    },
+    {
+      "bytes": 20,
+      "path": "tests/test_traffic.gd.uid",
+      "sha256": "9fc56b3ddbec03217569f98a169cef3f89d079e94a0ab0044b3c09a16ff4312d"
+    },
+    {
+      "bytes": 6651,
+      "path": "tests/test_transit.gd",
+      "sha256": "55462126fa8b9f1e2d172b43a01f15ec8d64687c0e7f1bda18e0b70e3c271052"
+    },
+    {
+      "bytes": 19,
+      "path": "tests/test_transit.gd.uid",
+      "sha256": "fb70927b274bc0edf89bc1a2605d129859ac4c0ee8f282ab6db0b136fd4d4aa5"
+    },
+    {
+      "bytes": 7395,
+      "path": "tests/test_vehicle.gd",
+      "sha256": "8b5f9a8fb6235790eb5e212cd2a0f8aecf404bd7595b1745d7a5d26044242dde"
+    },
+    {
+      "bytes": 20,
+      "path": "tests/test_vehicle.gd.uid",
+      "sha256": "0c15139711ccbf8929af871fdd1a39d24ca4bcc77457eddfaf0c4153a4f7ad3f"
+    },
+    {
+      "bytes": 6860,
+      "path": "tests/test_world_sync.gd",
+      "sha256": "74b8369e966052889bf82d8f1c50cddc8f2828709c0fe134fd019a520c3d982d"
+    },
+    {
+      "bytes": 20,
+      "path": "tests/test_world_sync.gd.uid",
+      "sha256": "51fd0a81ec6f5b5c86b78f2af858da67ce4d66be317f75065856341aa4e7bcd8"
+    },
+    {
+      "bytes": 17528,
+      "path": "tower.gd",
+      "sha256": "5d85ef33198e0f32addaf8eeb736b5a83e519f61c61c18d306e511da1f449c1f"
+    },
+    {
+      "bytes": 20,
+      "path": "tower.gd.uid",
+      "sha256": "f0fe937b1e29f556aaa85236a19550afdefaddcf86e61e376c7514b81b7b257a"
+    },
+    {
+      "bytes": 11239,
+      "path": "traffic.gd",
+      "sha256": "657ac9fd785233ef6f4d60231266e8f6f8dbf7d07c7971bcd824a41a2af7ca01"
+    },
+    {
+      "bytes": 18,
+      "path": "traffic.gd.uid",
+      "sha256": "13372c1994792d1a9a98e9b9a2825b0cbf884392d4689f13cc143e3986c192d8"
+    },
+    {
+      "bytes": 13974,
+      "path": "transit.gd",
+      "sha256": "ebf53ae25abe2b373183fea3b61ffd05d2587c89332f90bbc3b8415a20b24c6e"
+    },
+    {
+      "bytes": 20,
+      "path": "transit.gd.uid",
+      "sha256": "cba13480b6b5d162f9207e84537a4acca6970eb23444e4df101dc9245d92a7ca"
+    },
+    {
+      "bytes": 15222,
+      "path": "vehicle.gd",
+      "sha256": "0111137d7c99a93a4c440baecd14ddc71dd688dcc22317d52d36b813b892cf5a"
+    },
+    {
+      "bytes": 19,
+      "path": "vehicle.gd.uid",
+      "sha256": "4fb7ba26a8cbb0a7259cfc46e8007170af1473b26222d96b27cc470a6d8627e3"
+    },
+    {
+      "bytes": 8499,
+      "path": "vertical.gd",
+      "sha256": "4fa54ee5047dbfd69d70c421e71f4ef6fe520055007dfe8eab12138d10d21138"
+    },
+    {
+      "bytes": 19,
+      "path": "vertical.gd.uid",
+      "sha256": "f6cc5dde97bb7becebe3f70ed9a00c83d6a87714d9c824f3c7b5c1e327334f20"
+    },
+    {
+      "bytes": 164,
+      "path": "vertical.tscn",
+      "sha256": "43e28f528831068793bf7f8b54e9a310ff587c1b8e763d5c48658ca8be60b18d"
+    },
+    {
+      "bytes": 9757,
+      "path": "vertical_qa.gd",
+      "sha256": "79471090fbb544e6a1414afa5908b8e7956b64d24f6982ebc25d0e013e3524d8"
+    },
+    {
+      "bytes": 20,
+      "path": "vertical_qa.gd.uid",
+      "sha256": "243ebd5a30f52c0ae92659a69637827c0540e2d232f9b52e6d4505bce4b67689"
+    },
+    {
+      "bytes": 8480,
+      "path": "world_sync.gd",
+      "sha256": "f3df4828e5b955f986b3aae70cd0ee315ae5631ebba9359ec4fedde2a8a4da1c"
+    },
+    {
+      "bytes": 20,
+      "path": "world_sync.gd.uid",
+      "sha256": "d7178687135986187ad52fcd20cbe5872e800b7cba7352c786573847ebcf5572"
+    }
+  ],
+  "kind": "advanced",
+  "schema": 1,
+  "spec": {
+    "block_size": 48,
+    "blocks": 4,
+    "civilians": 20,
+    "seed": 237,
+    "traffic": 12
+  },
+  "status": "passed"
+}

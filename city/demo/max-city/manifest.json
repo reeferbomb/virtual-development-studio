@@ -1,0 +1,165 @@
+{
+  "city_qa": null,
+  "files": [
+    {
+      "bytes": 15117,
+      "path": "city.gd",
+      "sha256": "e772deeae96311b8b7a5e708b887cc53226eee74bb33e9993e8f28caaaef2274"
+    },
+    {
+      "bytes": 20,
+      "path": "city.gd.uid",
+      "sha256": "987433a2f589230f3d3f30cd135c4aea6ac939207532286ea0589be6982277b6"
+    },
+    {
+      "bytes": 56439,
+      "path": "city.json",
+      "sha256": "a2eb3928f889d210eb1f88c43a89e5443c89830af62c98b71a8f9cc991a21cd6"
+    },
+    {
+      "bytes": 157,
+      "path": "city.tscn",
+      "sha256": "48e955e51cc4fb72a6726b33b85991bd3c88b83edcc71444016070e71e35a166"
+    },
+    {
+      "bytes": 9353,
+      "path": "city_network.gd",
+      "sha256": "b883f05c348150776764eefa53a5b9120eb0ab6bd6ba2785278db53f58786eac"
+    },
+    {
+      "bytes": 20,
+      "path": "city_network.gd.uid",
+      "sha256": "baa94adfe99e4d80ddbd1e1345eb80118da7ba575ddf0a72859f45d2249a8b69"
+    },
+    {
+      "bytes": 1440,
+      "path": "city_profile.gd",
+      "sha256": "6729201573afe88e0290d5a1dd13538bb74b345a5a630d6047bfca78da23a64d"
+    },
+    {
+      "bytes": 19,
+      "path": "city_profile.gd.uid",
+      "sha256": "af7becf28f41ac9c223c4308f83ffe7544170246030c28a0db22cf8728f8f0ba"
+    },
+    {
+      "bytes": 9632,
+      "path": "city_qa.gd",
+      "sha256": "a5b9714a3c220813a80e16e4f63772e5bd10a10c5243f09684cbf8664ddfb424"
+    },
+    {
+      "bytes": 20,
+      "path": "city_qa.gd.uid",
+      "sha256": "ca86de70a59b9b70bcf22fbac5e1ca36767222dc113f55799e21afbc1d2ffc36"
+    },
+    {
+      "bytes": 9460,
+      "path": "civilians.gd",
+      "sha256": "268c71cc76899aa2c4af7e682cd0826ec1d3455ac1cb23e0b6abf56ea8742923"
+    },
+    {
+      "bytes": 20,
+      "path": "civilians.gd.uid",
+      "sha256": "3d590631a946c379c3b73352a3df7b359b580314430f78f00d462c3bff027b57"
+    },
+    {
+      "bytes": 4183,
+      "path": "persistence.gd",
+      "sha256": "347a94744e21a3cd370cb139317188a4ce3686afa6938d054c58a8b9f36e5889"
+    },
+    {
+      "bytes": 20,
+      "path": "persistence.gd.uid",
+      "sha256": "a776785f581e7d2676e81d68234c19d7288e8eaed57a6afd6b7283ed061658ba"
+    },
+    {
+      "bytes": 2959,
+      "path": "player.gd",
+      "sha256": "8c472548f5ead42e6cc8bc5d79ddf4f441d98e831281d4aa323ed589e45b85b9"
+    },
+    {
+      "bytes": 20,
+      "path": "player.gd.uid",
+      "sha256": "60565568f2a3bb663dc21d91adfba00fb245774a411755029df62fa1079c8424"
+    },
+    {
+      "bytes": 343,
+      "path": "project.godot",
+      "sha256": "66b07d95073e59b689dad4ea5bc02496f79215f161c94a5edbef47614a7b64c6"
+    },
+    {
+      "bytes": 1817,
+      "path": "reports/import.log",
+      "sha256": "3c9c7abcb9793fc8cf359fa6c5831620887a61482c2ce40a6e2804c5d4aef06c"
+    },
+    {
+      "bytes": 91,
+      "path": "reports/launch.log",
+      "sha256": "2eaf4bcd2687686b55d1955d97cc87a130b21b10ee9063f874340b52b9c415a7"
+    },
+    {
+      "bytes": 273,
+      "path": "reports/test_city_network.log",
+      "sha256": "8053b58d5c2730ab15d731bfc409699ed0861079e5e356b7d5e42d2fdeae2735"
+    },
+    {
+      "bytes": 93,
+      "path": "reports/test_civilians.log",
+      "sha256": "cebde6f88653a578a7e5697d9eafaf0b2d6fd3769dcbbb69730489348fe3e596"
+    },
+    {
+      "bytes": 173,
+      "path": "reports/test_traffic.log",
+      "sha256": "e5c6e40609cbf4ed9683f7db27049d8186dbad50e81ccd104996f2c5abaa079d"
+    },
+    {
+      "bytes": 5124,
+      "path": "tests/test_city_network.gd",
+      "sha256": "daf342382bde8c0fdc4bc95f9eb15d24386b0048b9b608b3bb689589d17a872a"
+    },
+    {
+      "bytes": 20,
+      "path": "tests/test_city_network.gd.uid",
+      "sha256": "feb7a8936255b55b413151f6085a69ff033f060efc1b1e2b27be78ce4ce92ed7"
+    },
+    {
+      "bytes": 5902,
+      "path": "tests/test_civilians.gd",
+      "sha256": "aeb3112158725e1a6a39e9255b02cbecd6cc27f2812af911d8f7e5915b500d4a"
+    },
+    {
+      "bytes": 20,
+      "path": "tests/test_civilians.gd.uid",
+      "sha256": "741b509bb72c313bf48da6cd1ed01684e6b010538e761d4f67d35218337a7b09"
+    },
+    {
+      "bytes": 6779,
+      "path": "tests/test_traffic.gd",
+      "sha256": "2192af101a7ce3efddf4d0136c7d608c79b22e5bcd284b83e0f6382824d5e3ff"
+    },
+    {
+      "bytes": 20,
+      "path": "tests/test_traffic.gd.uid",
+      "sha256": "1ea3a123bbe0d97d47ec06e4f09c0f37bdbbc546997f1b39380f45d88f8a3df7"
+    },
+    {
+      "bytes": 11239,
+      "path": "traffic.gd",
+      "sha256": "657ac9fd785233ef6f4d60231266e8f6f8dbf7d07c7971bcd824a41a2af7ca01"
+    },
+    {
+      "bytes": 20,
+      "path": "traffic.gd.uid",
+      "sha256": "a2799ed91f1b7d9af9e27f9ccd545ac2cda560736fe459e38a2475776de25849"
+    }
+  ],
+  "kind": "city",
+  "schema": 1,
+  "spec": {
+    "block_size": 64,
+    "blocks": 8,
+    "civilians": 40,
+    "seed": 239,
+    "traffic": 24
+  },
+  "status": "passed"
+}

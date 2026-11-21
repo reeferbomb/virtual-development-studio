@@ -1,0 +1,31 @@
+socket(): Operation not permitted
+socket(): Operation not permitted
+02:36:00 | INFO: Data are loaded, start creating Blender stuff
+02:36:00 | INFO: Blender create Mesh node Facade +1 0
+02:36:00 | INFO: Blender create Mesh node Facade +1 1
+02:36:00 | INFO: Blender create Mesh node Facade +1 2
+02:36:00 | INFO: Blender create Mesh node Facade -1 0
+02:36:00 | INFO: Blender create Mesh node Facade -1 1
+02:36:00 | INFO: Blender create Mesh node Facade -1 2
+02:36:00 | INFO: Blender create Mesh node Lantern +1 0
+02:36:00 | INFO: Blender create Mesh node Lantern +1 1
+02:36:00 | INFO: Blender create Mesh node Lantern +1 2
+02:36:00 | INFO: Blender create Mesh node Lantern +1 3
+02:36:00 | INFO: Blender create Mesh node Lantern -1 0
+02:36:00 | INFO: Blender create Mesh node Lantern -1 1
+02:36:00 | INFO: Blender create Mesh node Lantern -1 2
+02:36:00 | INFO: Blender create Mesh node Lantern -1 3
+02:36:00 | INFO: Blender create Mesh node Sidewalk +1
+02:36:00 | INFO: Blender create Mesh node Sidewalk -1
+02:36:00 | INFO: Blender create Mesh node Street
+02:36:00 | INFO: glTF import finished in 0.08s
+02:36:00 | INFO: Data are loaded, start creating Blender stuff
+02:36:00 | INFO: Blender create Mesh node CinematicActor_Geometry
+02:36:00 | INFO: glTF import finished in 0.06s
+/workspace/scratch/4ad81efaddcc/studio-v7/cinematic/art/render_preview.py:32: DeprecationWarning: 'World.use_nodes' is expected to be removed in Blender 6.0
+  scene.world.use_nodes=True
+00:09.027  render           | Saved: '/workspace/scratch/4ad81efaddcc/studio-v7/cinematic/demo/nightfall_patrol.staging-v7s4tflb/preview.png'
+STUDIO_CINEMATIC_RENDER_PASS
+Blender 5.2.4 LTS (hash cd5dc428cce1 built 2026-11-10 01:31:47)
+
+Blender quit

@@ -1,0 +1,47 @@
+{
+  "files": [
+    {
+      "path": "industrial_barrel.blend",
+      "bytes": 104726,
+      "category": "source"
+    },
+    {
+      "path": "industrial_barrel.glb",
+      "bytes": 92416,
+      "category": "scene"
+    },
+    {
+      "path": "road_barricade.blend",
+      "bytes": 105462,
+      "category": "source"
+    },
+    {
+      "path": "road_barricade.glb",
+      "bytes": 63344,
+      "category": "scene"
+    },
+    {
+      "path": "supply_crate.blend",
+      "bytes": 106446,
+      "category": "source"
+    },
+    {
+      "path": "supply_crate.glb",
+      "bytes": 70108,
+      "category": "scene"
+    },
+    {
+      "path": "training_mannequin.blend",
+      "bytes": 143721,
+      "category": "source"
+    },
+    {
+      "path": "training_mannequin.glb",
+      "bytes": 290844,
+      "category": "scene"
+    }
+  ],
+  "total_bytes": 977067,
+  "errors": [],
+  "warnings": []
+}

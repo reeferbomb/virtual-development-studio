@@ -1,0 +1,80 @@
+{
+  "results": [
+    {
+      "cover": 24,
+      "enemies": 4,
+      "gameplay": "seed-237/gameplay",
+      "gameplay_build_seconds": 5.758,
+      "props": 6,
+      "route_qa": {
+        "metrics": {
+          "goal_error_m": 0.0568477101624012,
+          "goal_triggered": true,
+          "headless_wall_seconds": 0.478395,
+          "horizontal_collision_contacts": 0,
+          "physics_ticks": 566,
+          "simulation_seconds": 9.43333333333333,
+          "travel_m": 37.7334073930979,
+          "waypoints_reached": 4,
+          "waypoints_total": 4
+        },
+        "pass": true
+      },
+      "seed": 237,
+      "verified": true,
+      "world": "seed-237/world",
+      "world_build_seconds": 9.411
+    },
+    {
+      "cover": 24,
+      "enemies": 4,
+      "gameplay": "seed-238/gameplay",
+      "gameplay_build_seconds": 10.483,
+      "props": 6,
+      "route_qa": {
+        "metrics": {
+          "goal_error_m": 0.0157258603721857,
+          "goal_triggered": true,
+          "headless_wall_seconds": 0.375585,
+          "horizontal_collision_contacts": 0,
+          "physics_ticks": 686,
+          "simulation_seconds": 11.4333333333333,
+          "travel_m": 45.7332981675863,
+          "waypoints_reached": 6,
+          "waypoints_total": 6
+        },
+        "pass": true
+      },
+      "seed": 238,
+      "verified": true,
+      "world": "seed-238/world",
+      "world_build_seconds": 6.482
+    },
+    {
+      "cover": 24,
+      "enemies": 4,
+      "gameplay": "seed-239/gameplay",
+      "gameplay_build_seconds": 4.988,
+      "props": 6,
+      "route_qa": {
+        "metrics": {
+          "goal_error_m": 0.0530210137367249,
+          "goal_triggered": true,
+          "headless_wall_seconds": 0.406423,
+          "horizontal_collision_contacts": 0,
+          "physics_ticks": 630,
+          "simulation_seconds": 10.5,
+          "travel_m": 42.0000728145242,
+          "waypoints_reached": 8,
+          "waypoints_total": 8
+        },
+        "pass": true
+      },
+      "seed": 239,
+      "verified": true,
+      "world": "seed-239/world",
+      "world_build_seconds": 7.568
+    }
+  ],
+  "scope": "headless world route QA; gameplay import, launch and module tests; not combat encounter completion or GPU performance"
+}

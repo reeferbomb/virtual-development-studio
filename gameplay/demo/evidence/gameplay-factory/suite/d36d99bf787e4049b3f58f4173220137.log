@@ -1,0 +1,35 @@
+test_collision_budget_and_metadata (test_asset_audit.AssetAuditTests.test_collision_budget_and_metadata) ... ok
+test_external_links (test_asset_audit.AssetAuditTests.test_external_links) ... ok
+test_valid_inventory_and_limit_boundary (test_asset_audit.AssetAuditTests.test_valid_inventory_and_limit_boundary) ... ok
+test_manifest_detects_tampered_bytes (test_factory.FactoryTests.test_manifest_detects_tampered_bytes) ... ok
+test_manifest_rejects_unexpected_file_and_symlink (test_factory.FactoryTests.test_manifest_rejects_unexpected_file_and_symlink) ... ok
+test_normalizes_a_valid_spec (test_factory.FactoryTests.test_normalizes_a_valid_spec) ... ok
+test_output_collision_is_non_destructive (test_factory.FactoryTests.test_output_collision_is_non_destructive) ... ok
+test_rejects_bad_geometry_budget_and_recipe (test_factory.FactoryTests.test_rejects_bad_geometry_budget_and_recipe) ... ok
+test_rejects_path_traversal_and_duplicate_ids (test_factory.FactoryTests.test_rejects_path_traversal_and_duplicate_ids) ... ok
+test_invalid_duplicate_enemy (test_gameplay.GameplaySpecTests.test_invalid_duplicate_enemy) ... ok
+test_invalid_patrol_inside_cover (test_gameplay.GameplaySpecTests.test_invalid_patrol_inside_cover) ... ok
+test_reject_point_outside_flat_zone (test_gameplay.GameplaySpecTests.test_reject_point_outside_flat_zone) ... ok
+test_seeded_encounters_replay_and_vary (test_gameplay.GameplaySpecTests.test_seeded_encounters_replay_and_vary) ... ok
+test_valid_configuration (test_gameplay.GameplaySpecTests.test_valid_configuration) ... ok
+test_brief_and_report_do_not_claim_unknown_acceptance (test_studio.StudioTests.test_brief_and_report_do_not_claim_unknown_acceptance) ... ok
+test_dependency_is_not_runnable_until_passed (test_studio.StudioTests.test_dependency_is_not_runnable_until_passed) ... ok
+test_failure_is_not_pass (test_studio.StudioTests.test_failure_is_not_pass) ... ok
+test_invalid_id_does_not_change_state (test_studio.StudioTests.test_invalid_id_does_not_change_state) ... ok
+test_pass_records_verifiable_evidence_and_unblocks (test_studio.StudioTests.test_pass_records_verifiable_evidence_and_unblocks) ... ok
+test_registration_preserves_existing_project (test_studio.StudioTests.test_registration_preserves_existing_project) ... ok
+test_rerun_invalidates_downstream_pass (test_studio.StudioTests.test_rerun_invalidates_downstream_pass) ... ok
+test_tampered_evidence_blocks_gate (test_studio.StudioTests.test_tampered_evidence_blocks_gate) ... ok
+test_unlinked_gate_is_never_passed (test_studio.StudioTests.test_unlinked_gate_is_never_passed) ... ok
+test_unsafe_or_missing_dependency_rejected (test_studio.StudioTests.test_unsafe_or_missing_dependency_rejected) ... ok
+test_rejects_bad_resolution (test_world.LevelSpecTests.test_rejects_bad_resolution) ... ok
+test_rejects_duplicate_node_names (test_world.LevelSpecTests.test_rejects_duplicate_node_names) ... ok
+test_rejects_goal_beyond_flat_spawn_area (test_world.LevelSpecTests.test_rejects_goal_beyond_flat_spawn_area) ... ok
+test_rejects_spawn_inside_wall (test_world.LevelSpecTests.test_rejects_spawn_inside_wall) ... ok
+test_rejects_unsafe_asset_identifier (test_world.LevelSpecTests.test_rejects_unsafe_asset_identifier) ... ok
+test_valid_design_is_normalized (test_world.LevelSpecTests.test_valid_design_is_normalized) ... ok
+
+----------------------------------------------------------------------
+Ran 30 tests in 1.965s
+
+OK

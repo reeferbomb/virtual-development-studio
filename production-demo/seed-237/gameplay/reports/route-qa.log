@@ -1,0 +1,5 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+STUDIO_WORLD_READY
+STUDIO_GOAL_REACHED
+STUDIO_ROUTE_QA_JSON {"metrics":{"goal_error_m":0.0568477101624012,"goal_triggered":true,"headless_wall_seconds":0.478395,"horizontal_collision_contacts":0,"physics_ticks":566,"simulation_seconds":9.43333333333333,"travel_m":37.7334073930979,"waypoints_reached":4,"waypoints_total":4},"pass":true}
