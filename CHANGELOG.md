@@ -1,5 +1,23 @@
 # Changelog
 
+## 28.0 — Practical Production Lab
+
+### Added
+
+- Ten rubric-driven, curriculum-linked practice exercises with bounded data-only assessment.
+- Project-independent Lab workspace, reference examples, explicit assessment and result identities.
+- Offline lab catalog, reference-run and submission assessment CLI.
+
+### Fixed
+
+- Recognize validated Godot import metadata without dropping it from asset inventories or budgets.
+- Record existing MIT license attribution on original cinematic fixture assets and future generator outputs.
+
+### Preserved
+
+- Explicit task claims, actual evidence requirements, six-role dispatch and local-only operations.
+- Practice reports are advisory and stateless; no AI-model retraining or certification is claimed.
+
 ## 27.0 — Game Production Academy
 
 ### Added

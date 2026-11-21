@@ -113,7 +113,12 @@ def training_instruction(role):
              'claimed task only; do not broaden scope or run practice exercises unless assigned.']
     for track in tracks:
         parts.append(f"{track['title']}: {' '.join(track['workflow'])} "
+                     f"Deliverables: {' '.join(track['deliverables'])} "
                      f"Evidence targets: {' '.join(track['verification'])}")
     parts.append('Return the applicable deliverables and actual verification observations to the lead; '
                  'do not treat training material or planned tests as completion evidence.')
+    parts.append('If the lead assigns practice, review /api/training-lab for the applicable exercise and assess a '
+                 'new structured submission with POST /api/training-lab/assess or the offline training_lab_cli. '
+                 'Reference examples are instructional and do not establish independent competency. '
+                 'Never run unrelated exercises or treat structural checks as visual or release approval.')
     return ' '.join(parts) + ' '

@@ -33,8 +33,11 @@ class CurriculumTests(unittest.TestCase):
             instruction = training_instruction(role['id'])
             self.assertIn(instruction, item['message'])
             self.assertIn('applicable', instruction)
+            self.assertIn('/api/training-lab/assess', instruction)
             for track in curriculum()['tracks']:
                 if role['id'] in track['roles']:
                     self.assertIn(track['title'], instruction)
+                    for deliverable in track['deliverables']:
+                        self.assertIn(deliverable, instruction)
         with self.assertRaises(ValueError):
             training_instruction('unrecognized')

@@ -44,11 +44,12 @@ from .studio_curriculum import curriculum
 from .supervisor import audit_project
 from .task_store import TaskStore, _valid_digest
 from .team import team_plan, release_summary
+from .training_lab import assess_submission, lab_catalog, reject_duplicate_keys
 from .work_orders import work_orders
 from world.procedural import generate, plan_route
 
 ROOT = Path(__file__).resolve().parents[1]
-VERSION = '27.0'
+VERSION = '28.0'
 LIMIT = 1024 * 1024
 STATIC = {'/': 'index.html', '/index.html': 'index.html', '/app.js': 'app.js',
           '/editor.js': 'editor.js', '/style.css': 'style.css', '/editor.css': 'editor.css'}
@@ -342,13 +343,13 @@ def create_server(service, port=8765):
         def file_response(self, path):
             self.response(path.read_bytes(), mimetypes.guess_type(path.name)[0] or 'application/octet-stream')
 
-        def body(self):
+        def body(self, *, object_pairs_hook=None):
             if self.headers.get_content_type() != 'application/json':
                 raise ValueError('Expected application/json')
             length = int(self.headers.get('Content-Length', '0'))
             if not 0 < length <= LIMIT:
                 raise ValueError('Invalid request length')
-            result = json.loads(self.rfile.read(length))
+            result = json.loads(self.rfile.read(length), object_pairs_hook=object_pairs_hook)
             if not isinstance(result, dict):
                 raise ValueError('Expected JSON object')
             return result
@@ -372,6 +373,8 @@ def create_server(service, port=8765):
                     if path == '/api/status': return self.json_response(service.status())
                     if path == '/api/catalog': return self.json_response(catalog(service.root))
                     if path == '/api/training': return self.json_response(curriculum())
+                    if path == '/api/training-lab':
+                        return self.json_response(lab_catalog())
                     if path == '/api/projects': return self.json_response(service.projects.list())
                     if path == '/api/jobs': return self.json_response(service.pipeline.list())
                     if path == '/api/queue': return self.json_response(service.pipeline.queue())
@@ -435,6 +438,11 @@ def create_server(service, port=8765):
                     if len(parts) == 3 and parts[:2] == ['api', 'release']:
                         return self.json_response(release_summary(service.projects.get(parts[2]), service.pipeline.list()))
                 elif self.command in ('POST', 'PUT'):
+                    if self.command == 'POST' and path == '/api/training-lab/assess':
+                        data = self.body(object_pairs_hook=reject_duplicate_keys)
+                        if set(data) != {'exercise_id', 'submission'}:
+                            raise ValueError('Expected exercise_id and submission')
+                        return self.json_response(assess_submission(data['exercise_id'], data['submission']))
                     data = self.body()
                     with service.lock:
                         if self.command == 'POST' and path == '/api/projects' and set(data) == {'name', 'kind'}:

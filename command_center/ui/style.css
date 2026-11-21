@@ -220,3 +220,7 @@ dialog .actions { justify-content: end; margin-top: .65rem; }
 .training-lesson > h3 { margin-block: .8rem .35rem; }
 .training-identity { margin-top: 1rem; overflow-wrap: anywhere; }
 .training-identity > summary { cursor: pointer; }
+.lab-workspace { margin-bottom: 1rem; }
+.lab-example { margin: .4rem 0 0; }
+.lab-form textarea { width: 100%; resize: vertical; font: .88rem/1.55 ui-monospace, monospace; }
+.lab-form textarea[aria-invalid="true"] { border-color: var(--danger); }

@@ -1,4 +1,4 @@
-# Graveforge Studios — Game Production Academy v27.0
+# Graveforge Studios — Practical Production Lab v28.0
 
 Graveforge Studios (formerly Virtual Development Studio) is a local, evidence-oriented game development
 toolkit with procedural factories, a loopback Command Center, build queues,
@@ -21,6 +21,50 @@ Open `http://127.0.0.1:8765`. The local application has no API-key requirement
 and does not call a model API. A compatible external host is required to
 launch the optional exported specialist assignments. Keep the workspace and
 all user-created project data outside the public repository. See `SECURITY.md`.
+
+## New in v28 — practical production lab
+
+Open **Lab** for ten structured practice exercises, one per Academy curriculum
+track. Each has a brief, rubric, role coverage and editable reference example.
+Submit a JSON artifact explicitly to compute pass/fail observations against
+the rubric. The labs inspect actual proposed data (such as mesh topology,
+UV coordinates, quest connections, traversal routes, gameplay traces, HUD
+geometry and measurement samples), rather than accepting a checklist of
+self-reported completions.
+
+The assessment is deterministic and read-only with respect to the workspace.
+The catalog, submission and result have SHA-256 identities. Reports describe
+only the measured criteria. They are not persisted, signed, a human playtest,
+model fine-tuning, a certification of specialist ability, or release approval.
+The reference examples are teaching fixtures; customize a new submission to
+practice independently. No arbitrary code, file paths or commands are executed
+by the HTTP assessment endpoint.
+
+| Endpoint | Purpose |
+| --- | --- |
+| `GET /api/training-lab` | Versioned lab catalog and reference submissions |
+| `POST /api/training-lab/assess` | Assess `{exercise_id, submission}` against a named bounded rubric |
+
+The CLI runs the same checks offline:
+
+```bash
+python3 -m command_center.training_lab_cli catalog
+python3 -m command_center.training_lab_cli examples
+python3 -m command_center.training_lab_cli assess interface submission.json
+```
+
+Exit 0 means all selected checks pass; 1 means at least one criterion failed;
+2 means the submission could not be assessed. The caller must explicitly save
+any desired results outside the public source checkout. The CLI and HTTP
+interface use the same evaluator. Assessing a reference example does not
+constitute completed training.
+
+Asset auditing now recognizes validated Godot 4 GLB/WAV import sidecars
+only when they reference a real, provenance-recorded source and the expected
+cache destination. Sidecars still count toward asset budgets; malformed,
+orphaned or unrecognized imports still require explicit provenance. The
+original Nightfall Patrol asset provenance and package manifest also carry
+the existing MIT-license and attribution records.
 
 ## New in v27 — game production academy and quality engineering
 

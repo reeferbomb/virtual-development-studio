@@ -14,6 +14,22 @@ world=importlib.util.module_from_spec(loader);loader.loader.exec_module(world)
 factory=world.factory
 CLIPS={'Idle','Walk','Run','Aim','Crouch','Reload'}
 
+def original_asset_provenance(assets):
+    """Record the known original outputs of the city, actor and audio generators."""
+    names = {"city.glb", "city.json", "animated_actor.glb", "ambience.wav",
+             "footstep.wav", "thunder.wav", "metadata.json"}
+    files = sorted(assets.iterdir())
+    if {p.name for p in files} != names or any(p.is_symlink() or not p.is_file() for p in files):
+        raise ValueError("Cinematic asset directory differs from the original generator outputs")
+    return [{
+        "path": p.name,
+        "source": "Studio original procedural generation",
+        "license": "MIT",
+        "attribution": "Copyright (c) 2026 Virtual Development Studio contributors. "
+                       "Retain the copyright and permission notices in LICENSE.",
+        "sha256": factory.hash_file(p),
+    } for p in files]
+
 def validate(data):
     if not isinstance(data,dict) or not isinstance(data.get('shots'),list) or not 1<=len(data['shots'])<=12:
         raise ValueError('Specify 1–12 shots')
@@ -59,7 +75,7 @@ def build(spec_path,dest,blender,godot,demo_qa):
         factory.invoke([sys.executable,str(HERE/'audio.py'),str(assets)],reports/'audio-build.log')
         source=stage/'source';source.mkdir();(source/'.gdignore').touch()
         for path in assets.glob('*.blend'): path.rename(source/path.name)
-        factory.write_json(assets/'provenance.json', [{'path':p.name,'source':'Studio original procedural generation','sha256':factory.hash_file(p)} for p in sorted(assets.iterdir()) if p.is_file()])
+        factory.write_json(assets/'provenance.json', original_asset_provenance(assets))
         cmd=[godot,'--headless','--path',str(stage)]
         imported=world.run_stage(cmd+['--editor','--import'],reports/'import.log')
         launched=world.run_stage(cmd+['--quit-after','10'],reports/'launch.log','STUDIO_CINEMATIC_READY')

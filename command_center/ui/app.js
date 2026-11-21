@@ -3,7 +3,7 @@
 const titles = {
   projects: "Projects", workspace: "Workspace", catalog: "Asset catalog",
   builds: "Build queue", releases: "Releases", supervisor: "Supervisor", sprint: "Sprint",
-  planning: "Planning", operations: "Operations", coordination: "Coordination", quality: "Quality", training: "Training", team: "Team", portfolio: "Portfolio"
+  planning: "Planning", operations: "Operations", coordination: "Coordination", quality: "Quality", training: "Training", lab: "Lab", team: "Team", portfolio: "Portfolio"
 };
 const kinds = {
   assets: "Asset factory", world: "World", gameplay: "Gameplay",
@@ -73,10 +73,15 @@ function notify(message, error = false) {
 }
 
 async function api(path, method = "GET", data, keepJsonText = false) {
+  const body = method === "GET" ? undefined : JSON.stringify(data);
+  return apiWithJsonBody(path, method, body, keepJsonText);
+}
+
+async function apiWithJsonBody(path, method, body, keepJsonText) {
   const options = { method, cache: "no-store" };
   if (method !== "GET") {
     options.headers = { "Content-Type": "application/json", "X-Studio-Request": "1" };
-    options.body = JSON.stringify(data);
+    options.body = body;
   }
   const response = await fetch(`/api${path}`, options);
   const raw = keepJsonText ? await response.text() : null;
@@ -2684,6 +2689,175 @@ function renderTraining(data) {
   view.replaceChildren(heading("Training", data.note), controls, count, tracks, identity);
 }
 
+function labObject(value) {
+  return value !== null && typeof value === "object" && !Array.isArray(value);
+}
+
+function validLab(data) {
+  if (data?.version !== 1 || !isDigest(data.lab_sha256) || !coordinationText(data.note)
+    || !Array.isArray(data.exercises) || !data.exercises.length) return false;
+  const uniqueIds = rows => new Set(rows.map(row => row?.id)).size === rows.length;
+  return uniqueIds(data.exercises) && data.exercises.every(exercise =>
+    coordinationText(exercise?.id) && coordinationText(exercise.title) && coordinationText(exercise.brief)
+    && labObject(exercise.example) && Array.isArray(exercise.roles) && exercise.roles.length > 0
+    && exercise.roles.every(coordinationRole) && Array.isArray(exercise.criteria) && exercise.criteria.length > 0
+    && uniqueIds(exercise.criteria) && exercise.criteria.every(row => coordinationText(row?.id) && coordinationText(row.label)));
+}
+
+function validLabAssessment(report, lab, exercise) {
+  if (report?.version !== lab.version || report.lab_sha256 !== lab.lab_sha256 || report.exercise_id !== exercise.id
+    || !isDigest(report.submission_sha256) || !isDigest(report.assessment_sha256) || !coordinationText(report.note)
+    || !Array.isArray(report.checks) || report.checks.length !== exercise.criteria.length) return false;
+  const labels = new Map(exercise.criteria.map(row => [row.id, row.label]));
+  let passed = 0;
+  for (const check of report.checks) {
+    if (!check || !labels.has(check.id) || labels.get(check.id) !== check.label || !coordinationText(check.detail)
+      || !["pass", "fail"].includes(check.status)) return false;
+    labels.delete(check.id);
+    if (check.status === "pass") passed++;
+  }
+  const failed = report.checks.length - passed;
+  return report.summary?.pass === passed && report.summary.fail === failed && report.status === (failed ? "fail" : "pass");
+}
+
+function labAssessmentPanel(report, download) {
+  const panel = supervisorPanel("Assessment results");
+  panel.append(auditBadge(report.status), element("p", null, report.note));
+  for (const check of report.checks) {
+    const row = element("div", "task-row"), title = element("div", "task-heading");
+    title.append(element("h3", null, check.label), auditBadge(check.status));
+    row.append(title, element("p", null, check.detail));
+    panel.append(row);
+  }
+  const identity = element("details");
+  identity.append(element("summary", null, "Assessment identity"), element("p", "dim", "Lab SHA-256 · " + report.lab_sha256),
+    element("p", "dim", "Submission SHA-256 · " + report.submission_sha256),
+    element("p", "dim", "Assessment SHA-256 · " + report.assessment_sha256));
+  panel.append(identity, button("Download assessment JSON", download));
+  return panel;
+}
+
+function renderLab(lab, routeId) {
+  if (!validLab(lab)) {
+    view.replaceChildren(heading("Lab", "Practice game production exercises."),
+      box("Lab unavailable", "The exercise catalog could not be verified.", button("Reload lab", route)));
+    return;
+  }
+  const active = () => state.route === routeId && state.page === "lab" && location.hash === "#lab";
+  const controls = element("div", "workspace-tools"), selector = element("select");
+  const label = element("label", null, "Exercise");
+  selector.id = "lab-exercise";
+  label.htmlFor = selector.id;
+  for (const exercise of lab.exercises) {
+    const option = element("option", null, exercise.title);
+    option.value = exercise.id;
+    selector.append(option);
+  }
+  controls.append(label, selector);
+  const workspace = element("div", "operations-grid lab-workspace");
+  const status = element("p", "sprint-message"), result = element("div");
+  status.setAttribute("role", "status");
+  const drafts = new Map();
+  let revision = 0;
+
+  function showExercise() {
+    const exercise = lab.exercises.find(item => item.id === selector.value);
+    if (!exercise || !active()) return;
+    revision++;
+    status.textContent = "";
+    result.replaceChildren();
+    const brief = supervisorPanel(exercise.title), roles = element("div", "actions");
+    for (const role of exercise.roles) roles.append(badge(taskRoles[role]));
+    const example = JSON.stringify(exercise.example, null, 2), preview = element("details");
+    preview.append(element("summary", null, "Example JSON"), element("pre", "log lab-example", example));
+    brief.append(element("p", null, exercise.brief), roles, element("h3", null, "Criteria"),
+      evidenceList(exercise.criteria.map(row => row.label)), preview);
+
+    const form = element("form", "panel team-brief orchestration lab-form");
+    const input = element("textarea"), inputLabel = element("label", null, "Submission JSON");
+    input.id = "lab-submission";
+    inputLabel.htmlFor = input.id;
+    input.rows = 12;
+    input.required = true;
+    input.spellcheck = false;
+    input.value = drafts.get(exercise.id) || "";
+    const error = element("p", "error");
+    error.id = "lab-error";
+    error.setAttribute("role", "alert");
+    input.setAttribute("aria-describedby", error.id);
+    const assess = element("button", "primary", "Assess submission");
+    assess.type = "submit";
+    const selected = () => active() && selector.value === exercise.id;
+    function edited() {
+      if (!selected()) return;
+      drafts.set(exercise.id, input.value);
+      revision++;
+      assess.disabled = false;
+      status.textContent = "";
+      error.textContent = "";
+      input.removeAttribute("aria-invalid");
+      result.replaceChildren();
+    }
+    input.addEventListener("input", edited);
+    const useExample = button("Use example", () => {
+      if (!selected()) return;
+      input.value = example;
+      edited();
+      input.focus();
+    });
+    const actions = element("div", "actions");
+    actions.append(useExample, assess);
+    form.append(element("h2", null, "Your submission"), inputLabel, input, error, actions);
+    form.addEventListener("submit", async event => {
+      event.preventDefault();
+      if (!selected() || assess.disabled) return;
+      const source = input.value;
+      try {
+        const submission = JSON.parse(source, (key, value) => {
+          if (typeof value === "number" && !Number.isFinite(value)) throw new RangeError("Non-finite number");
+          return value;
+        });
+        if (!labObject(submission)) throw new TypeError("Expected an object");
+      } catch {
+        error.textContent = "Enter a JSON object with valid syntax and finite numbers.";
+        input.setAttribute("aria-invalid", "true");
+        input.focus();
+        return;
+      }
+      const requestId = ++revision;
+      const current = () => selected() && requestId === revision;
+      assess.disabled = true;
+      error.textContent = "";
+      input.removeAttribute("aria-invalid");
+      status.textContent = "Checking submission…";
+      result.replaceChildren();
+      try {
+        // Keep repeated keys and numeric literals intact for the server's JSON validator.
+        const body = '{"exercise_id":' + JSON.stringify(exercise.id) + ',"submission":' + source + '}';
+        const {data: report, raw} = await apiWithJsonBody("/training-lab/assess", "POST", body, true);
+        if (!current()) return;
+        if (!validLabAssessment(report, lab, exercise)) throw new Error("The assessment could not be matched to this exercise.");
+        result.replaceChildren(labAssessmentPanel(report, () => {
+          if (current()) downloadJson(raw, "assessment-" + report.assessment_sha256 + ".json");
+        }));
+        status.textContent = report.summary.pass + " passed · " + report.summary.fail + " failed";
+      } catch (failure) {
+        if (!current()) return;
+        status.textContent = "";
+        error.textContent = failure.message;
+        if (failure.status === 400) input.setAttribute("aria-invalid", "true");
+      } finally {
+        if (current()) assess.disabled = false;
+      }
+    });
+    workspace.replaceChildren(brief, form);
+  }
+  selector.value = lab.exercises[0].id;
+  selector.addEventListener("change", showExercise);
+  view.replaceChildren(heading("Lab", lab.note), controls, workspace, status, result);
+  showExercise();
+}
+
 function renderPortfolio(portfolio) {
   view.replaceChildren(heading("Portfolio", "Review task boards and available specialist roles across projects.",
     button("Refresh portfolio", route)));
@@ -2822,6 +2996,11 @@ async function route() {
   view.replaceChildren(heading(titles[page], "Loading workstation data…"));
   view.setAttribute("aria-busy", "true");
   try {
+    if (page === "lab") {
+      const lab = await api("/training-lab");
+      if (routeId === state.route && location.hash === "#lab") renderLab(lab, routeId);
+      return;
+    }
     if (page === "training") {
       const curriculum = await api("/training");
       if (routeId === state.route) renderTraining(curriculum);

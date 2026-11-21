@@ -1,5 +1,16 @@
 # Graveforge Studios agent deployment policy
 
+## Practical academy lab (v28)
+
+Use `GET /api/training-lab` for the versioned practice catalog. When the
+lead explicitly assigns an exercise, prepare a new bounded structured JSON
+submission and evaluate it using `POST /api/training-lab/assess` or
+`python3 -m command_center.training_lab_cli assess EXERCISE_ID submission.json`.
+Practice checks measure the declared artifact or simulation, not actual
+art quality, engine playability, or specialist competency. Do not use the
+bundled examples as evidence of independent completion or broad release approval.
+Keep any submissions and saved assessment reports outside the public checkout.
+
 For an authorized Studio activation or substantive parallel development sprint,
 use the following default specialist team. This is the owner's chosen profile.
 
