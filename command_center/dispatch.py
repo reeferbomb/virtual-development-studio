@@ -63,6 +63,9 @@ def production_instruction(project_id: str) -> str:
     return (
         f"Inspect {prefix}/supervisor and {prefix}/acceptance for current evidence; "
         f"these are advisory, not proof of game quality or permission to publish. "
+        f"For a fresh project the lead can review {prefix}/blueprint before atomically applying its milestone tasks. "
+        f"Inspect {prefix}/forecast for hypothetical role-capacity waves and {prefix}/dependency-impact for blocked downstream tasks. "
+        f"Review {prefix}/preflight before considering release; it is advisory and never auto-promotes or publishes. "
         f"The lead reviews proposed tasks at {prefix}/sprint and explicitly applies the matching preview "
         f"before claiming work. The lead captures milestone audit observations at {prefix}/evidence-history. "
         "Historical snapshots cannot establish current acceptance. Report evidence to the lead; "

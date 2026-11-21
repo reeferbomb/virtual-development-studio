@@ -96,6 +96,9 @@ class WorkOrdersTests(unittest.TestCase):
                          'completed', 'blocked', 'progress', 'summary', 'evidence', 'changed_paths',
                          'next_action', 'Do not write'):
                 self.assertIn(text, args['message'])
+            for endpoint in ('forecast', 'dependency-impact', 'preflight'):
+                self.assertIn(f'/api/projects/{self.pid}/{endpoint}', args['message'])
+            self.assertIn('not release authorization', args['message'])
 
     def test_revision_attempt_reassignment_and_completion(self):
         self.apply('add', task=definition())

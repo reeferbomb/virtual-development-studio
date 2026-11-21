@@ -3,7 +3,7 @@
 const titles = {
   projects: "Projects", workspace: "Workspace", catalog: "Asset catalog",
   builds: "Build queue", releases: "Releases", supervisor: "Supervisor", sprint: "Sprint",
-  operations: "Operations", team: "Team", portfolio: "Portfolio"
+  planning: "Planning", operations: "Operations", team: "Team", portfolio: "Portfolio"
 };
 const kinds = {
   assets: "Asset factory", world: "World", gameplay: "Gameplay",
@@ -1612,34 +1612,34 @@ async function renderSprint(id, routeId) {
 const operationTitles = {
   "work-orders": "Claimed work orders", handoffs: "Handoff ledger", dossier: "Release dossier"
 };
-const operationDigest = value => typeof value === "string" && /^[0-9a-f]{64}$/.test(value);
-const operationRevision = value => Number.isSafeInteger(value) && value >= 0;
+const isDigest = value => typeof value === "string" && /^[0-9a-f]{64}$/.test(value);
+const isRevision = value => Number.isSafeInteger(value) && value >= 0;
 const operationOutcomes = {progress: "In progress", completed: "Completed", blocked: "Blocked"};
 const operationReviews = {pending: "Awaiting review", accepted: "Accepted", rejected: "Rejected"};
 
 function checkOperationResponse(source, data, id) {
-  if (data?.project_id !== id || !operationDigest(data.spec_sha256)) {
+  if (data?.project_id !== id || !isDigest(data.spec_sha256)) {
     throw new Error("The response does not identify this project and its specification.");
   }
   let valid;
   if (source === "work-orders") {
     valid = ["current", "empty", "stale", "unavailable"].includes(data.state)
-      && (operationRevision(data.board_revision) || (data.state === "unavailable" && data.board_revision === null))
+      && (isRevision(data.board_revision) || (data.state === "unavailable" && data.board_revision === null))
       && Array.isArray(data.orders) && (data.state === "current" || !data.orders.length)
-      && data.orders.every(order => operationDigest(order?.order_id) && order.task_id && order.title
+      && data.orders.every(order => isDigest(order?.order_id) && order.task_id && order.title
         && order.board_revision === data.board_revision && Number.isSafeInteger(order.attempt) && order.attempt > 0
         && Object.hasOwn(taskRoles, order.role) && Array.isArray(order.depends_on) && order.spawn_args?.message
         && order.spawn_args.task_name && order.spawn_args.model && order.spawn_args.reasoning_effort);
   } else if (source === "handoffs") {
-    valid = operationRevision(data.revision) && Array.isArray(data.items) && data.items.every(item =>
-      item?.id && item.task_id && operationDigest(item.spec_sha256) && operationDigest(item.order_id)
+    valid = isRevision(data.revision) && Array.isArray(data.items) && data.items.every(item =>
+      item?.id && item.task_id && isDigest(item.spec_sha256) && isDigest(item.order_id)
       && Object.hasOwn(operationReviews, item.review) && Object.hasOwn(operationOutcomes, item.outcome)
       && Array.isArray(item.changed_paths) && Array.isArray(item.evidence));
   } else if (source === "dossier") {
-    valid = ["ready", "pending", "blocked"].includes(data.status) && operationDigest(data.report_sha256)
+    valid = ["ready", "pending", "blocked"].includes(data.status) && isDigest(data.report_sha256)
       && data.report?.project_id === id && data.report.spec_sha256 === data.spec_sha256 && data.report.status === data.status;
   } else {
-    valid = data.format === "studio-project-recovery-v1" && operationDigest(data.bundle_sha256)
+    valid = data.format === "studio-project-recovery-v1" && isDigest(data.bundle_sha256)
       && data.records?.["project.json"] && data.records["spec.json"]?.sha256 === data.spec_sha256;
   }
   if (!valid) throw new Error("The server returned an incomplete " + (operationTitles[source] || "recovery bundle").toLowerCase() + " response.");
@@ -1946,6 +1946,264 @@ async function renderOperations(id, routeId) {
   await load();
 }
 
+const planningTitles = {
+  blueprint: "Production blueprint", forecast: "Capacity forecast",
+  "dependency-impact": "Dependency impact", preflight: "Delivery preflight"
+};
+const boardStates = {
+  current: ["Current board", ""], empty: ["Empty board", ""],
+  stale: ["Earlier specification", "progress"], unavailable: ["Unavailable", "bad"]
+};
+const textList = values => Array.isArray(values) && values.every(value => typeof value === "string" && value.length > 0);
+
+function checkPlanningResponse(source, data, projectId) {
+  if (data?.project_id !== projectId || !isDigest(data.spec_sha256)) {
+    throw new Error("The response could not be matched to this project and its specification.");
+  }
+  let valid;
+  if (source === "blueprint") {
+    const tasks = data.tasks;
+    valid = ["ready", "applied", "blocked"].includes(data.status) && Array.isArray(tasks)
+      && typeof data.title === "string" && typeof data.reason === "string" && typeof data.template_id === "string"
+      && tasks.every(task => task?.id && task.title && Object.hasOwn(taskRoles, task.role)
+        && Object.hasOwn(taskGates, task.gate) && Number.isInteger(task.priority)
+        && task.priority >= 1 && task.priority <= 5 && textList(task.depends_on))
+      && (data.status === "blocked" ? tasks.length === 0 : tasks.length > 0 && isRevision(data.board_revision))
+      && (data.status !== "ready" || isDigest(data.plan_id));
+  } else if (source === "preflight") {
+    const report = data.report;
+    const statuses = new Set(Array.isArray(data.checks) ? data.checks.map(check => check?.status) : []);
+    const expected = statuses.has("fail") ? "blocked" : statuses.has("pending") ? "pending" : "ready";
+    valid = ["ready", "pending", "blocked"].includes(data.status) && isDigest(data.report_sha256)
+      && report?.project_id === projectId && report.spec_sha256 === data.spec_sha256 && report.status === data.status
+      && data.status === expected && (isRevision(report.board_revision) || report.board_revision === null)
+      && (isDigest(report.dossier_sha256) || report.dossier_sha256 === null)
+      && (data.status === "blocked" || isRevision(report.board_revision) && isDigest(report.dossier_sha256))
+      && Array.isArray(data.checks) && data.checks.length > 0 && Array.isArray(report.checks)
+      && data.checks.length === report.checks.length && data.checks.every((check, i) =>
+        check?.id && check.label && typeof check.detail === "string" && ["pass", "fail", "pending"].includes(check.status)
+        && ["id", "label", "detail", "status"].every(key => check[key] === report.checks[i]?.[key]));
+  } else {
+    valid = Object.hasOwn(boardStates, data.status) && typeof data.note === "string"
+      && (isRevision(data.board_revision) || data.status === "unavailable" && data.board_revision === null);
+    if (source === "forecast") {
+      valid = valid && isRevision(data.remaining_tasks) && (data.minimum_dependency_waves === null || isRevision(data.minimum_dependency_waves))
+        && Array.isArray(data.waves) && textList(data.unscheduled) && data.waves.every((wave, index) =>
+          wave?.wave === index + 1 && textList(wave.task_ids) && wave.task_ids.length > 0);
+    } else {
+      valid = valid && Array.isArray(data.blocked) && textList(data.affected_task_ids) && textList(data.critical_chain)
+        && data.blocked.every(blocker => blocker?.task_id && Object.hasOwn(taskRoles, blocker.role)
+          && typeof blocker.reason === "string" && textList(blocker.affected_task_ids)
+          && blocker.affected_count === blocker.affected_task_ids.length);
+    }
+  }
+  if (!valid) throw new Error("The server returned an incomplete " + planningTitles[source].toLowerCase() + " response.");
+}
+
+function planningBlueprint(plan, apply, current) {
+  const panel = supervisorPanel(planningTitles.blueprint);
+  const labels = {ready: ["Ready to review", ""], applied: ["Already on task board", "good"], blocked: ["Blocked", "bad"]};
+  const head = element("div", "task-heading");
+  head.append(element("h3", null, plan.title), badge(...labels[plan.status]));
+  const identity = element("details");
+  identity.append(element("summary", null, "Blueprint identity"),
+    element("p", "dim", "Specification · " + plan.spec_sha256),
+    element("p", "dim", "Board revision · " + (plan.board_revision ?? "Unavailable")));
+  if (plan.template_id) identity.append(element("p", "dim", "Template · " + plan.template_id));
+  if (plan.plan_id) identity.append(element("p", "dim", "Plan ID · " + plan.plan_id));
+  panel.append(head, element("p", null, plan.reason), identity);
+
+  if (plan.tasks.length) {
+    const tasks = element("div", "planning-tasks");
+    for (const task of plan.tasks) {
+      const item = element("article", "task-row");
+      item.append(element("h4", null, task.title), element("p", null, taskRoles[task.role]),
+        element("p", "dim", task.id + " · Priority " + task.priority + " · " + taskGates[task.gate]),
+        element("p", "dim", task.depends_on.length ? "Depends on " + task.depends_on.join(", ") : "No dependencies"));
+      tasks.append(item);
+    }
+    if (plan.status === "applied") {
+      const details = element("details");
+      details.append(element("summary", null, "View milestone tasks (" + plan.tasks.length + ")"), tasks);
+      panel.append(details);
+    } else panel.append(tasks);
+  }
+
+  if (apply && plan.status === "ready") {
+    const controls = element("div", "planning-confirm");
+    let confirmation;
+    const review = button("Apply blueprint…", () => {
+      if (!current()) return;
+      const group = element("div", "actions");
+      const confirm = button("Confirm and add " + plan.tasks.length + " tasks", () => {
+        if (current() && confirm === confirmation) return apply(plan);
+      }, "primary");
+      const cancel = button("Cancel", () => {
+        if (!current() || confirm !== confirmation) return;
+        confirmation = null;
+        controls.replaceChildren(review);
+        review.focus();
+      });
+      confirmation = confirm;
+      group.append(confirm, cancel);
+      controls.replaceChildren(element("p", null, "Add the reviewed tasks to board revision " + plan.board_revision
+        + "? They will be available to claim on the Team tab."), group);
+      cancel.focus();
+    }, "primary");
+    controls.append(review);
+    panel.append(controls);
+  }
+  return panel;
+}
+
+function planningBoardHeader(source, data) {
+  const panel = supervisorPanel(planningTitles[source]);
+  const head = element("div", "task-heading");
+  head.append(badge(...boardStates[data.status]));
+  if (isRevision(data.board_revision)) head.append(element("p", "dim", "Board revision " + data.board_revision));
+  panel.append(head, element("p", "dim", data.note));
+  return panel;
+}
+
+function planningForecast(data) {
+  const panel = planningBoardHeader("forecast", data);
+  if (!["current", "empty"].includes(data.status)) return panel;
+  panel.append(metricList([["Remaining tasks", data.remaining_tasks], ["Scheduled waves", data.waves.length],
+    ["Dependency minimum (waves)", data.minimum_dependency_waves ?? "Unavailable"]]));
+  if (data.waves.length) {
+    const list = element("ol", "planning-waves");
+    for (const wave of data.waves) {
+      const item = element("li");
+      item.append(element("strong", null, "Wave " + wave.wave), element("span", null, wave.task_ids.join(", ")));
+      list.append(item);
+    }
+    panel.append(list);
+  }
+  if (data.unscheduled.length) panel.append(element("h3", null, "Unscheduled tasks"), evidenceList(data.unscheduled));
+  return panel;
+}
+
+function planningImpact(data) {
+  const panel = planningBoardHeader("dependency-impact", data);
+  if (data.status !== "current") return panel;
+  panel.append(metricList([["Blockers", data.blocked.length], ["Affected tasks", data.affected_task_ids.length]]));
+  if (data.critical_chain.length) panel.append(element("h3", null, "Longest remaining dependency chain"),
+    element("p", null, data.critical_chain.join(" → ")));
+  if (data.affected_task_ids.length) panel.append(element("h3", null, "All affected tasks"), evidenceList(data.affected_task_ids));
+  for (const blocker of data.blocked) {
+    const item = element("article", "task-row");
+    item.append(element("h3", null, blocker.task_id), element("p", "dim", taskRoles[blocker.role]),
+      element("p", null, blocker.reason), element("p", "dim", "Affected downstream tasks · " + blocker.affected_count));
+    if (blocker.affected_task_ids.length) item.append(evidenceList(blocker.affected_task_ids));
+    panel.append(item);
+  }
+  return panel;
+}
+
+function planningPreflight(data, download) {
+  const panel = supervisorPanel(planningTitles.preflight);
+  const labels = {ready: ["Preflight checks passed", "good"], pending: ["Evidence pending", "progress"], blocked: ["Blocked", "bad"]};
+  panel.append(badge(...labels[data.status]), element("p", "dim", data.report.advisory || "Advisory checks for the saved project."));
+  for (const check of data.checks) {
+    const item = element("article", "task-row");
+    const head = element("div", "task-heading");
+    head.append(element("h3", null, check.label), auditBadge(check.status));
+    item.append(head, element("p", null, check.detail));
+    panel.append(item);
+  }
+  const identity = element("details");
+  identity.append(element("summary", null, "Report identity"), element("p", "dim", "Report SHA-256 · " + data.report_sha256),
+    element("p", "dim", "Specification · " + data.spec_sha256),
+    element("p", "dim", "Board revision · " + (data.report.board_revision ?? "Unavailable")));
+  if (data.report.dossier_sha256) identity.append(element("p", "dim", "Dossier SHA-256 · " + data.report.dossier_sha256));
+  panel.append(identity);
+  if (download) panel.append(button("Download preflight JSON", download));
+  return panel;
+}
+
+async function renderPlanning(id, routeId) {
+  const active = () => state.page === "planning" && location.hash === "#planning" && state.route === routeId && state.selected === id;
+  let generation = 0, busy = false;
+  const refresh = button("Refresh planning", () => { if (active() && !busy) return load(); });
+  const message = element("p", "sprint-message");
+  message.setAttribute("role", "status");
+  const panels = element("div", "planning-grid operations-grid");
+  view.replaceChildren(heading("Planning", "Review the first milestone, task dependencies and delivery checks for this project.", refresh),
+    projectPicker(route), message, panels);
+
+  function lock(value) {
+    busy = value;
+    refresh.disabled = value;
+    panels.setAttribute("aria-busy", String(value));
+    for (const control of panels.querySelectorAll("button")) control.disabled = value;
+  }
+
+  async function apply(plan) {
+    lock(true);
+    message.textContent = "Adding blueprint tasks…";
+    let announcement;
+    try {
+      const board = await api(projectPath(id, "/blueprint"), "POST", {
+        expected_revision: plan.board_revision, spec_sha256: plan.spec_sha256, plan_id: plan.plan_id
+      });
+      if (!active()) return;
+      const verified = board?.project_id === id && board.spec_sha256 === plan.spec_sha256
+        && board.revision === plan.board_revision + 1 && Array.isArray(board.tasks) && plan.tasks.every(draft =>
+          board.tasks.some(task => task?.id === draft.id && task.title === draft.title && task.priority === draft.priority
+            && task.role === draft.role && task.gate === draft.gate && textList(task.depends_on)
+            && task.depends_on.length === draft.depends_on.length && draft.depends_on.every((parent, i) => parent === task.depends_on[i])));
+      announcement = verified ? "Blueprint added to task board revision " + board.revision + "."
+        : "The save response could not be verified. Review the refreshed blueprint.";
+    } catch (error) {
+      if (!active()) return;
+      announcement = error.message + " Review the refreshed blueprint before applying.";
+    }
+    await load(announcement);
+    if (active()) refresh.focus();
+  }
+
+  async function load(announcement = "") {
+    const version = ++generation;
+    lock(true);
+    message.textContent = "Loading planning reports…";
+    const current = () => active() && !busy && generation === version;
+    const sources = Object.keys(planningTitles);
+    const results = await Promise.allSettled(sources.map(async source => {
+      const path = projectPath(id, "/" + source);
+      const snapshot = source === "preflight" ? await api(path, "GET", undefined, true) : {data: await api(path)};
+      checkPlanningResponse(source, snapshot.data, id);
+      return snapshot;
+    }));
+    if (!active() || generation !== version) return;
+    const data = results.filter(result => result.status === "fulfilled").map(result => result.value.data);
+    const specs = new Set(data.map(snapshot => snapshot.spec_sha256));
+    const revisions = new Set(data.map(snapshot => snapshot.report?.board_revision ?? snapshot.board_revision).filter(isRevision));
+    const coherent = specs.size <= 1 && revisions.size <= 1;
+    panels.replaceChildren();
+    results.forEach((result, i) => {
+      const source = sources[i];
+      if (result.status === "rejected") {
+        panels.append(box(planningTitles[source] + " unavailable", result.reason.message, null, "panel team-brief orchestration"));
+        return;
+      }
+      const {data, raw} = result.value;
+      if (source === "blueprint") panels.append(planningBlueprint(data, coherent && apply, current));
+      if (source === "forecast") panels.append(planningForecast(data));
+      if (source === "dependency-impact") panels.append(planningImpact(data));
+      if (source === "preflight") panels.append(planningPreflight(data, coherent && (() => {
+        if (current()) downloadJson(raw, id + "-preflight.json");
+      })));
+    });
+    if (!coherent) {
+      const warning = "Project data changed while loading. Refresh planning to review a consistent snapshot.";
+      announcement = announcement ? announcement + " " + warning : warning;
+    }
+    message.textContent = announcement;
+    lock(false);
+  }
+  await load();
+}
+
 function renderPortfolio(portfolio) {
   view.replaceChildren(heading("Portfolio", "Review task boards and available specialist roles across projects.",
     button("Refresh portfolio", route)));
@@ -2142,6 +2400,8 @@ async function route() {
       renderWorkspace(project);
     } else if (page === "supervisor") {
       await renderSupervisor(id, routeId);
+    } else if (page === "planning") {
+      await renderPlanning(id, routeId);
     } else if (page === "sprint") {
       await renderSprint(id, routeId);
     } else if (page === "operations") {

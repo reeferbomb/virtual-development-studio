@@ -44,6 +44,17 @@ missing or contradictory evidence. Capture integrity-checked recovery records
 at verified milestones when appropriate; they are not a full workspace backup.
 Keep all project recovery exports, credentials and application keys private.
 
+## Production planning (v25)
+
+For a fresh project, inspect `GET /api/projects/{id}/blueprint` and review
+the six specialist tasks before explicitly applying the matching plan. The
+lead alone applies plans, claims and completes tasks; never replace an
+existing board to force a blueprint. A conflict requires a fresh preview.
+Inspect `/forecast` and `/dependency-impact` for hypothetical waves, structural
+dependencies and blockers. Neither is an elapsed-time estimate or permission
+to claim work. Review `/preflight` against current release evidence before
+concluding the milestone. It is advisory and does not authorize publication.
+
 The profile is a deployment default, not an authorization to launch agents for
 unrelated tasks. Preserve the user's current project scope and never exceed the
 available concurrency or initiate paid external API usage without authorization.

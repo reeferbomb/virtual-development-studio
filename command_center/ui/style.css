@@ -199,3 +199,8 @@ dialog .actions { justify-content: end; margin-top: .65rem; }
   .sprint .actions button, .sprint-capture button { width: 100%; }
   .operations-grid .actions button, .operations-grid .panel > button, .operations-form form button { width: 100%; }
 }
+.planning-grid > :first-child, .planning-grid > :last-child { grid-column: 1 / -1; }
+.planning-tasks { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 17rem), 1fr)); gap: .75rem 1.25rem; }
+.planning-confirm { display: grid; justify-items: start; gap: .65rem; }
+.planning-waves { list-style: none; padding: 0; margin: 0; }
+.planning-waves li { display: grid; grid-template-columns: 5rem minmax(0, 1fr); gap: .75rem; padding: .6rem 0; border-top: 1px solid var(--edge); }

@@ -13,16 +13,20 @@ from pathlib import Path
 from urllib.parse import parse_qs, unquote, urlsplit
 
 from .acceptance import assess_acceptance
+from .blueprints import blueprint
 from .catalog import catalog
 from .checkpoints import CheckpointStore, _locked_directory
 from .defect_store import DefectStore
+from .dependency_impact import dependency_impact
 from .dispatch import scheduled_dispatch_plan
 from .dossier import build_dossier
 from .evidence_history import EvidenceHistory
+from .forecast import forecast
 from .handoff_store import HandoffStore
 from .performance import profile_jobs
 from .pipeline import Pipeline
 from .portfolio import portfolio_plan
+from .preflight import preflight
 from .projects import ProjectStore
 from .provenance import spec_digest
 from .recovery import capture_recovery
@@ -35,10 +39,12 @@ from .work_orders import work_orders
 from world.procedural import generate, plan_route
 
 ROOT = Path(__file__).resolve().parents[1]
-VERSION = '24.0'
+VERSION = '25.0'
 LIMIT = 1024 * 1024
 STATIC = {'/': 'index.html', '/index.html': 'index.html', '/app.js': 'app.js',
           '/editor.js': 'editor.js', '/style.css': 'style.css', '/editor.css': 'editor.css'}
+_BLUEPRINT_FILES = ('project.json', 'spec.json', 'task-board.json')
+_AUDIT_FILES = _BLUEPRINT_FILES + ('defects.json', 'releases.json')
 
 
 def _audit_source(read, *args):
@@ -49,10 +55,10 @@ def _audit_source(read, *args):
         return None
 
 
-def _project_source_stamp(directory):
-    """Identify the project files used by the audit while holding its directory lock."""
+def _project_source_stamp(directory, names):
+    """Identify the source files while holding the project directory lock."""
     stamp = []
-    for name in ('project.json', 'spec.json', 'task-board.json', 'defects.json', 'releases.json'):
+    for name in names:
         try:
             info = os.stat(name, dir_fd=directory, follow_symlinks=False)
             stamp.append((name, info.st_dev, info.st_ino, info.st_mode, info.st_size,
@@ -64,6 +70,29 @@ def _project_source_stamp(directory):
 
 def _job_stamp(project_id, jobs):
     return spec_digest([job for job in jobs if job['project_id'] == project_id]) if jobs is not None else None
+
+
+def _validate_plan_approval(data):
+    if not isinstance(data, dict) or set(data) != {'expected_revision', 'spec_sha256', 'plan_id'}:
+        raise ValueError('Expected expected_revision, spec_sha256 and plan_id')
+    if type(data['expected_revision']) is not int or data['expected_revision'] < 0:
+        raise ValueError('expected_revision must be a nonnegative integer')
+    if not _valid_digest(data['spec_sha256']) or not _valid_digest(data['plan_id']):
+        raise ValueError('spec_sha256 and plan_id must be lowercase SHA-256 digests')
+
+
+def _approved_plan_action(data, preview, name):
+    refresh = f'Refresh the {name} preview.'
+    if preview['status'] != 'ready' or not preview['tasks']:
+        raise FileExistsError(preview['reason'] or f'The {name} preview has no tasks to apply.')
+    if data['expected_revision'] != preview['board_revision']:
+        raise FileExistsError(f'Task board revision changed. {refresh}')
+    if data['spec_sha256'] != preview['spec_sha256']:
+        raise FileExistsError(f'Project specification changed. {refresh}')
+    if data['plan_id'] != preview['plan_id']:
+        raise FileExistsError(f'{name.capitalize()} preview changed. {refresh}')
+    return {'expected_revision': data['expected_revision'], 'spec_sha256': data['spec_sha256'],
+            'action': {'op': 'add_batch', 'tasks': preview['tasks']}}
 
 
 class StudioService:
@@ -155,49 +184,63 @@ class StudioService:
             project, audit, board, *_ = self._audit_snapshot(project_id)
             return plan_sprint(project, audit, board)
 
+    def _project_board(self, project_id):
+        return self.projects.get(project_id), _audit_source(self.tasks.get, project_id)
+
+    def blueprint(self, project_id):
+        with self.lock, _locked_directory(self.projects.directory(project_id), fcntl.LOCK_SH):
+            return blueprint(*self._project_board(project_id))
+
+    def apply_blueprint(self, project_id, data):
+        _validate_plan_approval(data)
+        with self.lock:
+            with _locked_directory(self.projects.directory(project_id), fcntl.LOCK_SH) as directory:
+                file_stamp = _project_source_stamp(directory, _BLUEPRINT_FILES)
+                preview = blueprint(*self._project_board(project_id))
+            action = _approved_plan_action(data, preview, 'blueprint')
+
+            def verify(directory):
+                if _project_source_stamp(directory, _BLUEPRINT_FILES) != file_stamp:
+                    raise FileExistsError('Blueprint sources changed. Refresh the blueprint preview.')
+
+            # Release the shared lock before TaskStore acquires its exclusive lock.
+            return self.tasks.apply(project_id, action, assert_snapshot=verify)
+
+    def forecast(self, project_id):
+        with self.lock, _locked_directory(self.projects.directory(project_id), fcntl.LOCK_SH):
+            return forecast(*self._project_board(project_id))
+
+    def dependency_impact(self, project_id):
+        with self.lock, _locked_directory(self.projects.directory(project_id), fcntl.LOCK_SH):
+            return dependency_impact(*self._project_board(project_id))
+
     def _snapshot_guard(self, project_id, file_stamp, jobs):
         job_stamp = _job_stamp(project_id, jobs)
 
         def verify(directory):
             # The store has acquired its exclusive project lock. A different
             # service instance may have changed evidence after our shared read.
-            if (_project_source_stamp(directory) != file_stamp or
+            if (_project_source_stamp(directory, _AUDIT_FILES) != file_stamp or
                     _job_stamp(project_id, _audit_source(self._evidence_jobs)) != job_stamp):
                 raise FileExistsError('Project evidence changed. Refresh the sprint or audit and retry.')
         return verify
 
     def apply_sprint(self, project_id, data):
-        if set(data) != {'expected_revision', 'spec_sha256', 'plan_id'}:
-            raise ValueError('Expected expected_revision, spec_sha256 and plan_id')
-        if type(data['expected_revision']) is not int or data['expected_revision'] < 0:
-            raise ValueError('expected_revision must be a nonnegative integer')
-        if not _valid_digest(data['spec_sha256']) or not _valid_digest(data['plan_id']):
-            raise ValueError('spec_sha256 and plan_id must be lowercase SHA-256 digests')
+        _validate_plan_approval(data)
         with self.lock:
             with _locked_directory(self.projects.directory(project_id), fcntl.LOCK_SH) as directory:
-                file_stamp = _project_source_stamp(directory)
+                file_stamp = _project_source_stamp(directory, _AUDIT_FILES)
                 project, audit, board, _, jobs, _ = self._audit_snapshot(project_id)
                 preview = plan_sprint(project, audit, board)
                 verify = self._snapshot_guard(project_id, file_stamp, jobs)
-            if preview['status'] != 'ready' or not preview['tasks']:
-                raise FileExistsError(preview['reason'] or 'The sprint preview has no tasks to apply.')
-            if data['expected_revision'] != preview['board_revision']:
-                raise FileExistsError('Task board revision changed. Refresh the sprint preview.')
-            if data['spec_sha256'] != preview['spec_sha256']:
-                raise FileExistsError('Project specification changed. Refresh the sprint preview.')
-            if data['plan_id'] != preview['plan_id']:
-                raise FileExistsError('Sprint preview changed. Refresh the sprint preview.')
             # The preview's shared directory lock is released before the store takes its write lock.
-            return self.tasks.apply(project_id, {
-                'expected_revision': data['expected_revision'],
-                'spec_sha256': data['spec_sha256'],
-                'action': {'op': 'add_batch', 'tasks': preview['tasks']},
-            }, assert_snapshot=verify)
+            return self.tasks.apply(project_id, _approved_plan_action(data, preview, 'sprint'),
+                                    assert_snapshot=verify)
 
     def capture_evidence(self, project_id, data):
         with self.lock:
             with _locked_directory(self.projects.directory(project_id), fcntl.LOCK_SH) as directory:
-                file_stamp = _project_source_stamp(directory)
+                file_stamp = _project_source_stamp(directory, _AUDIT_FILES)
                 _, audit, _, _, jobs, _ = self._audit_snapshot(project_id)
                 verify = self._snapshot_guard(project_id, file_stamp, jobs)
             return self.evidence_history.capture(project_id, data, audit, assert_snapshot=verify)
@@ -208,13 +251,21 @@ class StudioService:
             history = _audit_source(self.evidence_history.get, project_id)
             return assess_acceptance(project, audit, board, defects, history)
 
+    def _dossier_snapshot(self, project_id):
+        project, audit, board, defects, jobs, registry = self._audit_snapshot(project_id)
+        history = _audit_source(self.evidence_history.get, project_id)
+        acceptance = assess_acceptance(project, audit, board, defects, history)
+        handoffs = _audit_source(self.handoffs.get, project_id)
+        return project, board, build_dossier(project, audit, acceptance, board, registry, jobs, handoffs)
+
     def dossier(self, project_id):
         with self.lock, _locked_directory(self.projects.directory(project_id), fcntl.LOCK_SH):
-            project, audit, board, defects, jobs, registry = self._audit_snapshot(project_id)
-            history = _audit_source(self.evidence_history.get, project_id)
-            acceptance = assess_acceptance(project, audit, board, defects, history)
-            handoffs = _audit_source(self.handoffs.get, project_id)
-            return build_dossier(project, audit, acceptance, board, registry, jobs, handoffs)
+            return self._dossier_snapshot(project_id)[2]
+
+    def preflight(self, project_id):
+        with self.lock, _locked_directory(self.projects.directory(project_id), fcntl.LOCK_SH):
+            project, board, dossier = self._dossier_snapshot(project_id)
+            return preflight(project, dossier, forecast(project, board))
 
 
 def create_server(service, port=8765):
@@ -292,12 +343,20 @@ def create_server(service, port=8765):
                             return self.json_response(service.performance(parts[2]))
                         if parts[3] == 'sprint':
                             return self.json_response(service.sprint(parts[2]))
+                        if parts[3] == 'blueprint':
+                            return self.json_response(service.blueprint(parts[2]))
+                        if parts[3] == 'forecast':
+                            return self.json_response(service.forecast(parts[2]))
+                        if parts[3] == 'dependency-impact':
+                            return self.json_response(service.dependency_impact(parts[2]))
                         if parts[3] == 'acceptance':
                             return self.json_response(service.acceptance(parts[2]))
                         if parts[3] == 'work-orders':
                             return self.json_response(service.work_orders(parts[2]))
                         if parts[3] == 'dossier':
                             return self.json_response(service.dossier(parts[2]))
+                        if parts[3] == 'preflight':
+                            return self.json_response(service.preflight(parts[2]))
                         if parts[3] == 'recovery':
                             return self.json_response(capture_recovery(service.projects, parts[2]))
                     if len(parts) == 3 and parts[:2] == ['api', 'jobs']:
@@ -331,6 +390,8 @@ def create_server(service, port=8765):
                                 return self.json_response(service.defects.apply(parts[2], data))
                             if self.command == 'POST' and parts[3] == 'sprint':
                                 return self.json_response(service.apply_sprint(parts[2], data))
+                            if self.command == 'POST' and parts[3] == 'blueprint':
+                                return self.json_response(service.apply_blueprint(parts[2], data))
                             if self.command == 'POST' and parts[3] == 'evidence-history':
                                 return self.json_response(service.capture_evidence(parts[2], data))
                             if self.command == 'POST' and parts[3] == 'handoffs':

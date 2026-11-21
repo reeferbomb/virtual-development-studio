@@ -1,4 +1,4 @@
-# Virtual Development Studio — Production Operations v24.0
+# Virtual Development Studio — Production Planning v25.0
 
 Virtual Development Studio is a local, evidence-oriented game development
 toolkit with procedural factories, a loopback Command Center, build queues,
@@ -21,6 +21,43 @@ Open `http://127.0.0.1:8765`. The local application has no API-key requirement
 and does not call a model API. A compatible external host is required to
 launch the optional exported specialist assignments. Keep the workspace and
 all user-created project data outside the public repository. See `SECURITY.md`.
+
+## New in v25 — milestone planning, dependency analysis and release preflight
+
+Open **Planning** and select a project. The project-type-specific milestone
+blueprint proposes an initial six-specialist dependency graph. Review the
+exact task titles, roles, gates and prerequisites before applying it. This
+adds the full batch of pending tasks atomically. Existing unrelated or
+conflicting plans are not replaced; a stale board must be explicitly reset.
+Applying a blueprint neither claims work nor launches agents.
+
+The project-local forecast estimates hypothetical execution waves under the existing
+one-running-task-per-role rule. Each wave assumes its selected tasks finish
+successfully; wave count is not elapsed time, cost or a release promise.
+It does not reserve the shared portfolio team or model cross-project contention.
+Dependency impact reports the current blocked tasks and transitive downstream
+work, along with the longest remaining dependency chain. Neither analysis
+changes the task board. Resolve the underlying blockers using the Team tab.
+
+Release preflight checks that the current evidence dossier is intact and
+locally ready, with no unfinished or unschedulable work. It is a point-in-time
+advisory, not a publication mechanism, external deployment or human playtest.
+
+| Endpoint | Purpose |
+| --- | --- |
+| `GET /api/projects/{id}/blueprint` | Review a spec- and revision-bound milestone plan |
+| `POST /api/projects/{id}/blueprint` | Apply the exact reviewed plan using `expected_revision`, `spec_sha256`, `plan_id` |
+| `GET /api/projects/{id}/forecast` | Hypothetical specialist execution waves |
+| `GET /api/projects/{id}/dependency-impact` | Blocked task impact and remaining dependency chain |
+| `GET /api/projects/{id}/preflight` | SHA-256-bound local release readiness preflight |
+
+Refresh the preview after any 409 conflict. A blueprint is not a replacement
+for the project's design or acceptance criteria. Verify the integrated
+workflow in a disposable workspace with a real Godot build:
+
+```bash
+python3 -m command_center.planning_smoke
+```
 
 ## New in v24 — production operations and evidence custody
 

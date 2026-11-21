@@ -47,6 +47,8 @@ def _order(project_id, digest, revision, task, role):
         f"attempt {task['attempts']}. Task definition: {json.dumps(definition, sort_keys=True)}. "
         f"Completion gate: {gate} Check GET /api/projects/{project_id}/work-orders before acting. "
         "If this order ID is absent, ask the lead for a fresh work order. "
+        f"Read /api/projects/{project_id}/forecast and /api/projects/{project_id}/dependency-impact for planning context. "
+        f"The current /api/projects/{project_id}/preflight is advisory, not release authorization. "
         f"Return one JSON object to the lead with op=\"submit\", task_id=\"{task['id']}\", "
         f"order_id=\"{identifier}\", outcome (\"completed\", \"blocked\", or \"progress\"), "
         "summary, evidence (1–8 concrete observations), changed_paths (0–16 project-relative paths), "
