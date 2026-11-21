@@ -13,6 +13,7 @@ from pathlib import Path
 from urllib.parse import parse_qs, unquote, urlsplit
 
 from .acceptance import assess_acceptance
+from .allocation import allocation
 from .blueprints import blueprint
 from .catalog import catalog
 from .checkpoints import CheckpointStore, _locked_directory
@@ -27,10 +28,13 @@ from .performance import profile_jobs
 from .pipeline import Pipeline
 from .portfolio import portfolio_plan
 from .preflight import preflight
+from .priorities import rank_tasks
 from .projects import ProjectStore
 from .provenance import spec_digest
 from .recovery import capture_recovery
+from .recovery_advice import recovery_advice
 from .release_store import ReleaseStore
+from .specialist_memory import specialist_memory
 from .sprint_planner import plan_sprint
 from .supervisor import audit_project
 from .task_store import TaskStore, _valid_digest
@@ -39,7 +43,7 @@ from .work_orders import work_orders
 from world.procedural import generate, plan_route
 
 ROOT = Path(__file__).resolve().parents[1]
-VERSION = '25.0'
+VERSION = '26.0'
 LIMIT = 1024 * 1024
 STATIC = {'/': 'index.html', '/index.html': 'index.html', '/app.js': 'app.js',
           '/editor.js': 'editor.js', '/style.css': 'style.css', '/editor.css': 'editor.css'}
@@ -164,6 +168,16 @@ class StudioService:
             board = _audit_source(self.tasks.get, project_id)
             return work_orders(project, board)
 
+    def specialist_memory(self, project_id):
+        with self.lock, _locked_directory(self.projects.directory(project_id), fcntl.LOCK_SH):
+            project = self.projects.get(project_id)
+            history = _audit_source(self.handoffs.get, project_id)
+            return specialist_memory(project, history)
+
+    def allocation(self):
+        with self.lock:
+            return allocation(_audit_source(portfolio_plan, self.projects, self.tasks))
+
     def _audit_snapshot(self, project_id):
         project = self.projects.get(project_id)
         jobs = _audit_source(self._evidence_jobs)
@@ -213,6 +227,16 @@ class StudioService:
     def dependency_impact(self, project_id):
         with self.lock, _locked_directory(self.projects.directory(project_id), fcntl.LOCK_SH):
             return dependency_impact(*self._project_board(project_id))
+
+    def priorities(self, project_id):
+        with self.lock, _locked_directory(self.projects.directory(project_id), fcntl.LOCK_SH):
+            return rank_tasks(*self._project_board(project_id))
+
+    def recovery_advice(self, project_id):
+        with self.lock, _locked_directory(self.projects.directory(project_id), fcntl.LOCK_SH):
+            project, board = self._project_board(project_id)
+            history = _audit_source(self.handoffs.get, project_id)
+            return recovery_advice(project, board, history)
 
     def _snapshot_guard(self, project_id, file_stamp, jobs):
         job_stamp = _job_stamp(project_id, jobs)
@@ -326,6 +350,7 @@ def create_server(service, port=8765):
                         with service.lock:
                             portfolio = portfolio_plan(service.projects, service.tasks)
                         return self.json_response(portfolio)
+                    if path == '/api/allocation': return self.json_response(service.allocation())
                     if path == '/api/file': return self.file_response(service.media(parse_qs(url.query).get('path', [''])[0]))
                     if len(parts) == 3 and parts[:2] == ['api', 'projects']:
                         return self.json_response(service.projects.get(parts[2]))
@@ -349,10 +374,16 @@ def create_server(service, port=8765):
                             return self.json_response(service.forecast(parts[2]))
                         if parts[3] == 'dependency-impact':
                             return self.json_response(service.dependency_impact(parts[2]))
+                        if parts[3] == 'priorities':
+                            return self.json_response(service.priorities(parts[2]))
+                        if parts[3] == 'recovery-advice':
+                            return self.json_response(service.recovery_advice(parts[2]))
                         if parts[3] == 'acceptance':
                             return self.json_response(service.acceptance(parts[2]))
                         if parts[3] == 'work-orders':
                             return self.json_response(service.work_orders(parts[2]))
+                        if parts[3] == 'specialist-memory':
+                            return self.json_response(service.specialist_memory(parts[2]))
                         if parts[3] == 'dossier':
                             return self.json_response(service.dossier(parts[2]))
                         if parts[3] == 'preflight':

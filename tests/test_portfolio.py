@@ -1,7 +1,12 @@
+import fcntl
+import os
 import tempfile
 import unittest
+from contextlib import contextmanager
 from pathlib import Path
+from unittest.mock import patch
 
+from command_center import portfolio
 from command_center.dispatch import default_profile
 from command_center.portfolio import portfolio_plan
 from command_center.projects import ProjectStore
@@ -36,7 +41,7 @@ class PortfolioTests(unittest.TestCase):
 
     def test_empty_workspace_and_unsaved_board(self):
         plan = self.plan()
-        self.assertEqual(plan, {'projects': [], 'occupied_roles': [], 'conflicts': [], 'assignments': [],
+        self.assertEqual(plan, {'projects': [], 'occupied_roles': [], 'role_occupancy': {}, 'conflicts': [], 'assignments': [],
                                 'dispatch_plan': {'execution_mode': 'export_only',
                                                   'host_tool': 'collaboration.spawn_agent',
                                                   'profile': default_profile(), 'assignments': [], 'spawn_args': []},
@@ -52,6 +57,47 @@ class PortfolioTests(unittest.TestCase):
         self.assertEqual(plan['assignments'], [])
         self.assertEqual(plan['dispatch_plan']['spawn_args'], [])
         self.assertFalse((self.projects.directory(project_id) / BOARD).exists())
+
+    def test_role_transfer_cannot_mix_two_board_generations(self):
+        alpha, beta = [self.create(name) for name in ('Alpha', 'Beta')]
+        for pid in (alpha, beta):
+            self.add(pid, 'draw', 'ui')
+        self.apply(alpha, dict(op='start', task_id='draw'))
+
+        def transfer():
+            self.apply(alpha, dict(op='requeue', task_id='draw'))
+            self.apply(beta, dict(op='start', task_id='draw'))
+
+        def writer_can_enter(path):
+            directory = os.open(path, os.O_DIRECTORY | os.O_NOFOLLOW)
+            try:
+                fcntl.flock(directory, fcntl.LOCK_EX | fcntl.LOCK_NB)
+                return True
+            except BlockingIOError:
+                return False
+            finally:
+                os.close(directory)
+
+        original = portfolio._locked_directory
+        checked = []
+
+        @contextmanager
+        def interleave(path, mode):
+            if path == self.projects.directory(beta):
+                checked.append((writer_can_enter(self.projects.projects),
+                                writer_can_enter(self.projects.directory(alpha))))
+                if checked[-1][1]:
+                    transfer()
+            with original(path, mode) as directory:
+                yield directory
+
+        with patch.object(portfolio, '_locked_directory', interleave):
+            snapshot = self.plan()
+        self.assertEqual(snapshot['role_occupancy'], {'ui': [alpha]})
+        self.assertEqual(snapshot['conflicts'], [])
+        self.assertEqual(checked, [(False, False)])
+        transfer()
+        self.assertEqual(self.plan()['role_occupancy'], {'ui': [beta]})
 
     def test_global_priority_tiebreaks_dependencies_and_snapshot_identity(self):
         zulu = self.create('Zulu')
@@ -82,6 +128,20 @@ class PortfolioTests(unittest.TestCase):
                          [('gpt-6.2-astra', 'ultra'), ('gpt-6.2-astra', 'ultra'), ('gpt-6.2-sol', 'max')])
         for pid, original in before.items():
             self.assertEqual((self.projects.directory(pid) / BOARD).read_bytes(), original)
+
+    def test_equal_priority_critical_work_wins_across_projects_and_within_role(self):
+        alpha, zulu = [self.create(name) for name in ('Alpha', 'Zulu')]
+        self.add(alpha, 'aaa', 'architecture', 4)
+        self.add(zulu, 'aaa', 'architecture', 4)
+        self.add(zulu, 'critical', 'architecture', 4)
+        self.add(zulu, 'followup', 'gameplay', 3, depends_on=['critical'])
+        self.add(zulu, 'check', 'verification', 3, depends_on=['followup'])
+        plan = self.plan()
+        self.assertEqual([(a['project_id'], a['task_id']) for a in plan['assignments']], [(zulu, 'critical')])
+        self.apply(zulu, {'op': 'start', 'task_id': 'critical'})
+        plan = self.plan()
+        self.assertEqual(plan['role_occupancy'], {'architecture': [zulu]})
+        self.assertEqual(plan['assignments'], [])
 
     def test_dispatch_arguments_match_eligible_tasks_and_contain_the_host_handoff(self):
         project_id = self.create('Joint Build')
@@ -126,6 +186,7 @@ class PortfolioTests(unittest.TestCase):
         self.assertEqual(plan['summary'], dict(projects=3, current=2, stale=1, empty=0, unavailable=0,
                                                running=3, ready=3))
         self.assertEqual(plan['occupied_roles'], ['architecture', 'gameplay'])
+        self.assertEqual(plan['role_occupancy'], {'architecture': [alpha, beta], 'gameplay': [alpha]})
         self.assertEqual(plan['conflicts'], [{'role': 'architecture', 'project_ids': [alpha, beta]}])
         self.assertEqual([a['task_id'] for a in plan['assignments']], ['compose'])
         self.assertEqual(plan['dispatch_plan']['assignments'], plan['assignments'])

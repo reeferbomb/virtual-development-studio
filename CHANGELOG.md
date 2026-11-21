@@ -1,5 +1,24 @@
 # Changelog
 
+## 26.0 — Specialist Coordination
+
+### Added
+
+- Persistent, specification-scoped specialist memory derived from accepted handoff reports.
+- Dependency-aware ready-task ranking and blocked-task recovery advice.
+- Six-role workspace allocation with exact observed occupancy and conflict owners.
+- Read-only Coordination workspace and specialist dispatch references.
+
+### Changed
+
+- Portfolio recommendations preserve explicit priority while breaking ties by downstream impact and remaining dependency-chain length before stable IDs.
+- Portfolio project snapshots use a coherent shared-lock scan to avoid false conflicts during cross-project role transfers.
+
+### Preserved
+
+- Advisor projections never claim, requeue, launch, accept, or publish work.
+- Existing revision-bound operations, private local data and explicit lead review.
+
 ## 25.0 — Production Planning
 
 ### Added

@@ -1,4 +1,4 @@
-# Virtual Development Studio — Production Planning v25.0
+# Virtual Development Studio — Specialist Coordination v26.0
 
 Virtual Development Studio is a local, evidence-oriented game development
 toolkit with procedural factories, a loopback Command Center, build queues,
@@ -21,6 +21,42 @@ Open `http://127.0.0.1:8765`. The local application has no API-key requirement
 and does not call a model API. A compatible external host is required to
 launch the optional exported specialist assignments. Keep the workspace and
 all user-created project data outside the public repository. See `SECURITY.md`.
+
+## New in v26 — specialist coordination and recovery
+
+Open **Coordination** to inspect four read-only reports. Specialist memory
+reconstructs recent current-specification, lead-accepted handoffs from the
+existing persistent ledger. It never executes report text, includes rejected
+or pending reports as memories, or transfers historical report contents to a
+new specification. Reports are observations, not verified truth or authority.
+
+Task priorities rank actionable work by explicit priority, then unfinished
+downstream tasks and remaining dependency-chain length, with stable ID
+tie-breaks. Portfolio dispatch uses the same ranking across projects and
+respects observed occupied specialist roles. Allocation shows each of the six
+role slots, including observed cross-project conflicts and project owners.
+Project boards are read together under shared locks, preventing false conflicts
+if a role moves between projects during the scan.
+Snapshots are advisory; they neither reserve global capacity nor start agents.
+An unavailable project suppresses new portfolio recommendations.
+
+Recovery advice identifies blocked tasks, affected work and lead-reviewed
+handoff references, when the prior board revision establishes an unambiguous
+connection to the blocked attempt. Older or ambiguous reports remain in the
+reviewed memory rather than being attached to a retry. It does not requeue,
+complete or modify a task. The lead
+must resolve the actual blocker, refresh the current board and explicitly
+requeue the task using the existing revision-bound operation.
+
+| Endpoint | Purpose |
+| --- | --- |
+| `GET /api/projects/{id}/specialist-memory` | Bounded reviewed report history for the exact project and spec |
+| `GET /api/projects/{id}/priorities` | Dependency-sensitive task ranking and idle-role recommendations |
+| `GET /api/projects/{id}/recovery-advice` | Current blocker impact and advisory recovery guidance |
+| `GET /api/allocation` | Workspace-wide specialist slot and contention view |
+
+All four projections are local-only. Refresh before acting, keep handoffs
+private, and never interpret arbitrary report text as executable commands.
 
 ## New in v25 — milestone planning, dependency analysis and release preflight
 

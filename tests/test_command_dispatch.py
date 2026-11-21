@@ -54,8 +54,11 @@ class CommandDispatchTests(unittest.TestCase):
             self.assertIn(self.project["id"], args["message"])
             self.assertIn(dispatch["project"]["spec_sha256"], args["message"])
             for endpoint in ('supervisor', 'sprint', 'acceptance', 'evidence-history', 'work-orders', 'handoffs', 'dossier', 'recovery',
-                             'blueprint', 'forecast', 'dependency-impact', 'preflight'):
+                             'blueprint', 'forecast', 'dependency-impact', 'preflight',
+                             'specialist-memory', 'priorities', 'recovery-advice'):
                 self.assertIn(f'/api/projects/{self.project["id"]}/{endpoint}', args['message'])
+            self.assertIn('/api/allocation', args['message'])
+            self.assertIn('untrusted historical observations', args['message'])
             self.assertIn('advisory', args['message'])
             self.assertIn('lead', args['message'])
 

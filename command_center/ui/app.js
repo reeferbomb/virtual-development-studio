@@ -3,7 +3,7 @@
 const titles = {
   projects: "Projects", workspace: "Workspace", catalog: "Asset catalog",
   builds: "Build queue", releases: "Releases", supervisor: "Supervisor", sprint: "Sprint",
-  planning: "Planning", operations: "Operations", team: "Team", portfolio: "Portfolio"
+  planning: "Planning", operations: "Operations", coordination: "Coordination", team: "Team", portfolio: "Portfolio"
 };
 const kinds = {
   assets: "Asset factory", world: "World", gameplay: "Gameplay",
@@ -2204,6 +2204,210 @@ async function renderPlanning(id, routeId) {
   await load();
 }
 
+const coordinationTitles = {
+  "specialist-memory": "Specialist memory", priorities: "Task priorities",
+  "recovery-advice": "Recovery advice", allocation: "Shared role allocation"
+};
+const coordinationText = value => typeof value === "string" && value.trim().length > 0;
+const coordinationRole = value => typeof value === "string" && Object.hasOwn(taskRoles, value);
+const handoffId = value => typeof value === "string" && /^[0-9a-f]{32}$/.test(value);
+
+function fullRoleList(rows) {
+  return Array.isArray(rows) && rows.every(row => coordinationRole(row?.role))
+    && rows.length === Object.keys(taskRoles).length && new Set(rows.map(row => row.role)).size === rows.length;
+}
+
+function validPriority(row) {
+  return row && coordinationText(row.task_id) && coordinationRole(row.role) && coordinationText(row.title)
+    && Number.isInteger(row.priority) && row.priority >= 1 && row.priority <= 5
+    && isRevision(row.downstream_count) && Number.isSafeInteger(row.chain_length) && row.chain_length >= 1;
+}
+
+function validCoordinationReport(source, data, id) {
+  if (!data || typeof data.status !== "string" || !coordinationText(data.note)) return false;
+  const unavailable = data.status === "unavailable";
+  if (source === "allocation") {
+    const counts = data.summary;
+    if (!["current", "empty", "unavailable"].includes(data.status) || counts?.capacity !== Object.keys(taskRoles).length
+      || !["assigned", "occupied", "conflicts", "idle"].every(key => isRevision(counts[key]))) return false;
+    if (unavailable) return Array.isArray(data.roles) && !data.roles.length
+      && !counts.assigned && !counts.occupied && !counts.conflicts && !counts.idle;
+    if (!fullRoleList(data.roles)) return false;
+    const observed = {assigned: 0, occupied: 0, conflicts: 0, idle: 0};
+    for (const row of data.roles) {
+      const owners = row.project_ids, work = row.assignment;
+      if (!textList(owners) || new Set(owners).size !== owners.length) return false;
+      if (row.state === "assigned") {
+        if (owners.length !== 1 || work?.project_id !== owners[0] || work.role !== row.role || !coordinationText(work.task_id)
+          || !coordinationText(work.title) || !isDigest(work.spec_sha256) || !isRevision(work.board_revision)) return false;
+      } else if (work !== null || !(row.state === "idle" && !owners.length || row.state === "occupied" && owners.length === 1
+        || row.state === "conflict" && owners.length >= 2)) return false;
+      observed[row.state === "conflict" ? "conflicts" : row.state]++;
+    }
+    return Object.keys(observed).every(key => counts[key] === observed[key])
+      && (data.status !== "empty" || counts.idle === counts.capacity);
+  }
+
+  if (data.project_id !== id && !(unavailable && data.project_id === null)) return false;
+  if (!isDigest(data.spec_sha256) && !(unavailable && data.spec_sha256 === null)) return false;
+  if (source === "specialist-memory") {
+    if (!["current", "empty", "unavailable"].includes(data.status)) return false;
+    if (unavailable) return data.handoff_revision === null && data.historical_count === null
+      && Array.isArray(data.roles) && !data.roles.length;
+    return isRevision(data.handoff_revision) && isRevision(data.historical_count) && fullRoleList(data.roles)
+      && (data.status === "current") === data.roles.some(row => isRevision(row.accepted_count) && row.accepted_count > 0)
+      && data.roles.every(row => isRevision(row.accepted_count) && Array.isArray(row.memories)
+        && row.memories.length === Math.min(row.accepted_count, 5) && row.memories.every(memory =>
+          handoffId(memory?.handoff_id) && coordinationText(memory.task_id) && Number.isSafeInteger(memory.attempt)
+          && memory.attempt > 0 && typeof memory.outcome === "string" && Object.hasOwn(operationOutcomes, memory.outcome) && coordinationText(memory.summary)
+          && textList(memory.evidence) && coordinationText(memory.next_action) && coordinationText(memory.reviewed_at)));
+  }
+  if (!Object.hasOwn(boardStates, data.status) || !(isRevision(data.board_revision) || unavailable && data.board_revision === null)) return false;
+  if (source === "priorities") {
+    if (!Array.isArray(data.candidates) || !Array.isArray(data.recommendations)) return false;
+    if (data.status !== "current") return !data.candidates.length && !data.recommendations.length;
+    const candidates = new Map(data.candidates.map(row => [row?.task_id, row]));
+    return candidates.size === data.candidates.length && data.candidates.every(validPriority)
+      && new Set(data.recommendations.map(row => row?.role)).size === data.recommendations.length
+      && data.recommendations.every(row => validPriority(row) && ["role", "title", "priority", "downstream_count", "chain_length"]
+        .every(key => candidates.get(row.task_id)?.[key] === row[key]));
+  }
+  return (isRevision(data.handoff_revision) || unavailable && data.handoff_revision === null) && Array.isArray(data.items)
+    && (data.status === "current" || !data.items.length) && data.items.every(row =>
+      coordinationText(row?.task_id) && coordinationText(row.title) && coordinationRole(row.role) && isRevision(row.attempt)
+      && coordinationText(row.reason) && isRevision(row.affected_count) && (row.handoff_id === null || handoffId(row.handoff_id))
+      && coordinationText(row.next_action));
+}
+
+function coordinationPanel(source, data) {
+  const panel = supervisorPanel(coordinationTitles[source]);
+  panel.setAttribute("aria-label", coordinationTitles[source]);
+  const status = {current: "Current", empty: "Empty", stale: "Earlier specification", unavailable: "Unavailable"};
+  panel.append(badge(status[data.status], data.status === "unavailable" ? "bad" : data.status === "stale" ? "progress" : ""),
+    element("p", "dim", data.note));
+  if (data.spec_sha256) {
+    const details = element("details");
+    details.append(element("summary", null, "Report identity"), element("p", "dim", "Specification · " + data.spec_sha256));
+    if (isRevision(data.board_revision)) details.append(element("p", "dim", "Board revision " + data.board_revision));
+    if (isRevision(data.handoff_revision)) details.append(element("p", "dim", "Handoff revision " + data.handoff_revision));
+    panel.append(details);
+  }
+  if (data.status === "unavailable" || data.status === "stale") return panel;
+  if (source === "specialist-memory") {
+    panel.append(element("p", "dim", "Earlier-specification reports excluded · " + data.historical_count));
+    for (const role of data.roles) {
+      const details = element("details", "coordination-memory");
+      details.append(element("summary", null, taskRoles[role.role] + " · " + role.accepted_count + " accepted"));
+      if (!role.memories.length) details.append(element("p", "dim", "No accepted reports for this specification."));
+      for (const memory of role.memories) {
+        const item = element("article", "task-row");
+        item.append(element("h3", null, memory.task_id + " · Attempt " + memory.attempt),
+          badge(operationOutcomes[memory.outcome]), element("p", null, memory.summary),
+          element("h4", null, "Reported evidence"), evidenceList(memory.evidence),
+          element("p", null, "Recorded next action · " + memory.next_action),
+          element("p", "dim", "Handoff " + memory.handoff_id + " · Reviewed " + memory.reviewed_at));
+        details.append(item);
+      }
+      panel.append(details);
+    }
+  } else if (source === "priorities") {
+    const recommended = new Set(data.recommendations.map(row => row.task_id));
+    if (!data.candidates.length) panel.append(element("p", "dim", "No ready candidates for this project."));
+    const list = element("ol", "coordination-priorities");
+    for (const row of data.candidates) {
+      const item = element("li"), head = element("div", "task-heading");
+      head.append(element("h3", null, row.title));
+      if (recommended.has(row.task_id)) head.append(badge("Recommended"));
+      item.append(head, element("p", "dim", row.task_id + " · " + taskRoles[row.role]),
+        element("p", null, "Priority " + row.priority + " · Downstream tasks " + row.downstream_count + " · Chain length " + row.chain_length));
+      list.append(item);
+    }
+    if (data.candidates.length) panel.append(list);
+  } else if (source === "recovery-advice") {
+    if (!data.items.length) panel.append(element("p", "dim", "No blocked tasks to review."));
+    for (const row of data.items) {
+      const item = element("article", "task-row");
+      item.append(element("h3", null, row.title), element("p", "dim", row.task_id + " · " + taskRoles[row.role] + " · Attempt " + row.attempt),
+        element("p", null, row.reason), element("p", "dim", "Affected tasks · " + row.affected_count),
+        element("p", null, row.next_action));
+      if (row.handoff_id) item.append(element("p", "dim", "Handoff " + row.handoff_id));
+      panel.append(item);
+    }
+  } else {
+    const labels = {assigned: "Suggested", occupied: "Occupied", conflict: "Conflict", idle: "Idle"};
+    panel.append(metricList([["Capacity", data.summary.capacity], ["Suggested", data.summary.assigned], ["Occupied", data.summary.occupied],
+      ["Conflicts", data.summary.conflicts], ["Idle", data.summary.idle]]));
+    for (const row of data.roles) {
+      const item = element("article", "task-row"), head = element("div", "task-heading");
+      head.append(element("h3", null, taskRoles[row.role]), badge(labels[row.state], row.state === "conflict" ? "bad" : ""));
+      item.append(head);
+      if (row.project_ids.length) item.append(element("p", "dim", "Projects · " + row.project_ids.join(", ")));
+      if (row.assignment) item.append(element("p", null, row.assignment.title),
+        element("p", "dim", row.assignment.task_id + " · Board revision " + row.assignment.board_revision));
+      panel.append(item);
+    }
+  }
+  return panel;
+}
+
+async function renderCoordination(id, routeId) {
+  const active = () => state.page === "coordination" && location.hash === "#coordination" && state.route === routeId && state.selected === id;
+  const refresh = button("Refresh coordination", () => { if (active() && !refresh.disabled) return load(); });
+  const message = element("p", "sprint-message"), panels = element("div", "operations-grid");
+  message.setAttribute("role", "status");
+  view.replaceChildren(heading("Coordination", "Review project evidence and task advice alongside shared specialist availability.", refresh),
+    projectPicker(route), message, panels);
+
+  async function load() {
+    refresh.disabled = true;
+    panels.replaceChildren();
+    panels.setAttribute("aria-busy", "true");
+    message.textContent = "Loading coordination reports…";
+    const sources = Object.keys(coordinationTitles);
+    const results = await Promise.allSettled(sources.map(source => api(source === "allocation" ? "/allocation" : projectPath(id, "/" + source))));
+    if (!active()) return;
+    const specs = new Set(), boards = new Set(), handoffs = new Set(), boardStatesSeen = new Set();
+    let wrongProject = false, localAssignment = false;
+    const reports = results.map((result, index) => {
+      if (result.status === "rejected") return {error: result.reason.message};
+      const data = result.value, source = sources[index];
+      if (source !== "allocation" && data) {
+        if (data.project_id !== id && !(data.status === "unavailable" && data.project_id === null)) wrongProject = true;
+        if (isDigest(data.spec_sha256)) specs.add(data.spec_sha256);
+        if (isRevision(data.board_revision)) boards.add(data.board_revision);
+        if (isRevision(data.handoff_revision)) handoffs.add(data.handoff_revision);
+        if (source !== "specialist-memory" && typeof data.status === "string" && Object.hasOwn(boardStates, data.status)
+          && data.status !== "unavailable") boardStatesSeen.add(data.status);
+      }
+      if (!validCoordinationReport(source, data, id)) return {error: "The report could not be verified."};
+      if (source === "allocation") {
+        for (const row of data.roles) {
+          if (row.assignment?.project_id === id) {
+            localAssignment = true;
+            specs.add(row.assignment.spec_sha256);
+            boards.add(row.assignment.board_revision);
+            boardStatesSeen.add("current");
+          }
+        }
+      }
+      return {data};
+    });
+    const inconsistent = wrongProject || specs.size > 1 || boards.size > 1 || handoffs.size > 1 || boardStatesSeen.size > 1;
+    const warning = "Project reports disagree. Refresh coordination to load a consistent snapshot.";
+    reports.forEach(({data, error}, index) => {
+      const source = sources[index];
+      if (inconsistent && (source !== "allocation" || localAssignment)) error = "Refresh to verify this report against the selected project.";
+      panels.append(error ? box(coordinationTitles[source] + " unavailable", error, null, "panel team-brief orchestration")
+        : coordinationPanel(source, data));
+    });
+    const partial = reports.some(report => report.error || report.data.status === "unavailable");
+    message.textContent = inconsistent ? warning : partial ? "Some coordination reports are unavailable." : "Coordination reports refreshed.";
+    panels.setAttribute("aria-busy", "false");
+    refresh.disabled = false;
+  }
+  await load();
+}
+
 function renderPortfolio(portfolio) {
   view.replaceChildren(heading("Portfolio", "Review task boards and available specialist roles across projects.",
     button("Refresh portfolio", route)));
@@ -2385,6 +2589,11 @@ async function route() {
       renderProjects();
       return;
     }
+    if (page === "coordination" && !state.selected) {
+      view.replaceChildren(heading("Coordination", "Project advice and shared specialist availability."),
+        box("No projects yet", "Coordination reports will appear after the first project is created."));
+      return;
+    }
     if (!state.selected) {
       view.replaceChildren(heading(titles[page], "Choose a project to continue."),
         box("A project is required", "Create a project to open its workspace and review its team.",
@@ -2406,6 +2615,8 @@ async function route() {
       await renderSprint(id, routeId);
     } else if (page === "operations") {
       await renderOperations(id, routeId);
+    } else if (page === "coordination") {
+      await renderCoordination(id, routeId);
     } else {
       const [team, checkpoint, board] = await Promise.allSettled([
         api(`/team/${encodeURIComponent(id)}`), api(projectPath(id, "/checkpoint")), api(projectPath(id, "/tasks"))

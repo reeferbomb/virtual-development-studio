@@ -3,20 +3,31 @@
 import fcntl
 import os
 from collections import defaultdict
+from contextlib import ExitStack, contextmanager
 
 from .checkpoints import _locked_directory
 from .dispatch import default_profile, production_instruction
 from .projects import PROJECT_ID, ProjectStore
+from .priorities import rank_tasks
 from .task_store import TaskStore, _read_json
 
 
-def _project_ids(projects):
-    # ProjectStore.list reads every metadata file eagerly. Enumerate the same
-    # directories first so a damaged project can be reported individually.
-    with _locked_directory(projects.projects, fcntl.LOCK_SH) as directory:
-        with os.scandir(directory) as entries:
-            return sorted(entry.name for entry in entries
-                          if PROJECT_ID.fullmatch(entry.name) and entry.is_dir(follow_symlinks=False))
+@contextmanager
+def _locked_projects(projects):
+    # Keep directory membership and every readable project stable through the scan.
+    # Creators take the list lock; individual board and spec writers take only a project lock.
+    with _locked_directory(projects.projects, fcntl.LOCK_SH) as root, ExitStack() as locks:
+        with os.scandir(root) as entries:
+            ids = sorted(entry.name for entry in entries
+                         if PROJECT_ID.fullmatch(entry.name) and entry.is_dir(follow_symlinks=False))
+        directories = {}
+        for project_id in ids:
+            try:
+                directories[project_id] = locks.enter_context(
+                    _locked_directory(projects.directory(project_id), fcntl.LOCK_SH))
+            except (OSError, ValueError):
+                directories[project_id] = None
+        yield directories
 
 
 def _dispatch_plan(assignments):
@@ -45,52 +56,61 @@ def _dispatch_plan(assignments):
 
 
 def portfolio_plan(projects: ProjectStore, tasks: TaskStore) -> dict:
-    """Take individual locked snapshots. Recommendations neither claim nor launch work."""
+    """Read a coherent workspace snapshot without claiming or launching work."""
     rows = []
     summary = dict.fromkeys(('projects', 'current', 'stale', 'empty', 'unavailable', 'running', 'ready'), 0)
     running_projects = defaultdict(list)
     candidates = []
-    for project_id in _project_ids(projects):
-        name = project_id
-        try:
-            with _locked_directory(projects.directory(project_id), fcntl.LOCK_SH) as directory:
+    roles = {role['id']: role for role in default_profile()['roles']}
+    with _locked_projects(projects) as directories:
+        for project_id, directory in directories.items():
+            name = project_id
+            try:
+                if directory is None:
+                    raise ValueError('Could not lock project directory')
                 metadata = _read_json(directory, 'project.json')
                 if not isinstance(metadata, dict):
                     raise ValueError('Invalid project metadata')
                 if isinstance(metadata.get('name'), str) and metadata['name']:
                     name = metadata['name']
-            board = tasks.get(project_id)
-        except (OSError, ValueError, RecursionError):
-            rows.append({'project_id': project_id, 'name': name, 'state': 'unavailable',
-                         'revision': None, 'spec_sha256': None, 'summary': None,
-                         'error': 'Could not read the project metadata, specification or task board.'})
-            summary['unavailable'] += 1
-            continue
+                project = {**metadata, 'spec': _read_json(directory, 'spec.json')}
+                board = tasks.get(project_id)
+                ranked = rank_tasks(project, board)
+                if ranked['status'] == 'unavailable':
+                    raise ValueError('Invalid scheduling snapshot')
+            except (OSError, ValueError, RecursionError):
+                rows.append({'project_id': project_id, 'name': name, 'state': 'unavailable',
+                             'revision': None, 'spec_sha256': None, 'summary': None,
+                             'error': 'Could not read the project metadata, specification or task board.'})
+                summary['unavailable'] += 1
+                continue
 
-        state = board['state']
-        rows.append({'project_id': project_id, 'name': name, 'state': state,
-                     'revision': board['revision'], 'spec_sha256': board['spec_sha256'],
-                     'summary': board['summary']})
-        summary[state] += 1
-        summary['running'] += board['summary']['running']
-        summary['ready'] += board['summary']['ready']
-        for task in board['tasks']:
-            # A stale board cannot offer work, but its specialist may still be running.
-            if task['status'] == 'running':
-                running_projects[task['role']].append(project_id)
-        if state == 'current':
-            by_id = {task['id']: task for task in board['tasks']}
-            for assignment in board['assignments']:
-                task = by_id[assignment['task_id']]
-                candidates.append({**assignment, 'project_id': project_id, 'title': task['title'],
-                                   'priority': task['priority'], 'board_revision': board['revision'],
-                                   'spec_sha256': board['spec_sha256']})
+            state = board['state']
+            rows.append({'project_id': project_id, 'name': name, 'state': state,
+                         'revision': board['revision'], 'spec_sha256': board['spec_sha256'],
+                         'summary': board['summary']})
+            summary[state] += 1
+            summary['running'] += board['summary']['running']
+            summary['ready'] += board['summary']['ready']
+            for task in board['tasks']:
+                # A stale board cannot offer work, but its specialist may still be running.
+                if task['status'] == 'running':
+                    running_projects[task['role']].append(project_id)
+            if state == 'current':
+                for task in ranked['recommendations']:
+                    role = roles[task['role']]
+                    candidate = {'task_id': task['task_id'], 'role': task['role'],
+                                 'model_id': role['model_id'], 'reasoning_effort': role['reasoning_effort'],
+                                 'project_id': project_id, 'title': task['title'], 'priority': task['priority'],
+                                 'board_revision': board['revision'], 'spec_sha256': board['spec_sha256']}
+                    key = (-task['priority'], -task['downstream_count'], -task['chain_length'], project_id, task['task_id'])
+                    candidates.append((key, candidate))
 
     summary['projects'] = len(rows)
     assignments = []
     if not summary['unavailable']:
         taken = set(running_projects)
-        for candidate in sorted(candidates, key=lambda c: (-c['priority'], c['project_id'], c['task_id'])):
+        for _, candidate in sorted(candidates, key=lambda entry: entry[0]):
             if candidate['role'] not in taken:
                 assignments.append(candidate)
                 taken.add(candidate['role'])
@@ -99,4 +119,5 @@ def portfolio_plan(projects: ProjectStore, tasks: TaskStore) -> dict:
     conflicts = [{'role': role, 'project_ids': running_projects[role]} for role in occupied_roles
                  if len(running_projects[role]) > 1]
     return {'projects': rows, 'summary': summary, 'occupied_roles': occupied_roles,
-            'assignments': assignments, 'conflicts': conflicts, 'dispatch_plan': _dispatch_plan(assignments)}
+            'role_occupancy': dict(running_projects), 'assignments': assignments,
+            'conflicts': conflicts, 'dispatch_plan': _dispatch_plan(assignments)}
