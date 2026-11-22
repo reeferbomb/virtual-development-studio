@@ -1,4 +1,4 @@
-# Graveforge Studios — Reference Game & Interface Academy v35.0
+# Graveforge Studios — Game Feel & Presentation Academy v36.0
 
 **A free, open-source game development studio toolkit.**
 
@@ -29,7 +29,7 @@ manager and production checklist in one place.
   first, assign jobs to specialists and keep track of unfinished work.
 - **Build and test:** generate a project, read its build logs, check assets
   and record bugs. A build is a generated set of game or asset files.
-- **Learn game development:** study thirty-four training topics and try practical
+- **Learn game development:** study forty training topics and try practical
   exercises in the Academy and Lab, including game design, coding, 3D
   modeling, textures, storytelling, animation, testing, fun, replayability
   and visual quality.
@@ -107,7 +107,7 @@ This produces a starting point for development, not a complete custom FPS.
 
 ### Just want to learn?
 
-Open **Training** to read the thirty-four learning tracks. Open **Lab**, choose an
+Open **Training** to read the forty learning tracks. Open **Lab**, choose an
 exercise, select **Use example**, then **Assess submission**. The studio shows
 which checks passed and why. Change the example to try your own solution,
 and use **Download assessment JSON** to save the result if you want to keep it.
@@ -184,6 +184,26 @@ code and bundled original test assets are MIT-licensed; see [LICENSE](LICENSE).
 Godot, Blender and other external assets retain their respective licenses.
 For contributions see [CONTRIBUTING.md](CONTRIBUTING.md), and for release
 history see [CHANGELOG.md](CHANGELOG.md).
+
+## New in v36 — game feel and presentation
+
+Six additional disciplines teach studio specialists to design, compare and
+verify distinct playstyles, HUD/menu styles, polished startup and recovery,
+art and visual styles, sound/music, and effects. Fallout 3, Fallout: New Vegas
+and Fallout 4 are studied separately as public references for original RPG
+systems. Read the [Game Feel Academy](command_center/GAME_FEEL_ACADEMY.md)
+and six linked production studies for the practical workflow and sources.
+
+- Combat, stealth, social, exploration, crafting and hybrid routes.
+- Minimal, tactical, diegetic, retro, RPG and strategy interface approaches.
+- Responsive startup, accessibility settings, safe save and recovery states.
+- Cohesive realistic, stylized, retro and other visual languages.
+- Original or licensed SFX, spatial audio, dynamic music and mix priority.
+- Readable and bounded VFX with timing, budgets and accessibility review.
+
+All 34 previous exercises, private evidence and production capabilities remain
+intact. Actual quality, accessibility and performance require real review;
+the structured Academy does not upload recordings or train model weights.
 
 ## New in v35 — reference games and interface excellence
 
@@ -439,7 +459,7 @@ or authenticated model identities.
 Records survive restarts. A revision check prevents overwriting newer actions;
 refresh after a conflict and explicitly retry. Historical rubric records remain
 visible but cannot be reviewed or count toward current practice coverage. The
-ledger is bounded to 600 records (increased in v35) and 32 MiB, shared across current and historical
+ledger is bounded to 800 records (increased in v36) and 32 MiB, shared across current and historical
 role-and-exercise assignments and retries. It fails closed on invalid persisted
 data and refuses additional records rather than deleting old evidence.
 Do not place the ledger or exports in the public source checkout.

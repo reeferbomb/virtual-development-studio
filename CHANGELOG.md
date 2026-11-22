@@ -1,5 +1,23 @@
 # Changelog
 
+## 36.0 — Game Feel & Presentation Academy
+
+### Added
+
+- Six source-informed training tracks and original measurable exercises for
+  Fallout-style playstyles, interface styles, startup and recovery, art styles,
+  sound/music and VFX production.
+- Playstyle tradeoffs, visual identity, controller-friendly menus, accessible
+  startup, audio priorities, effect lifetimes and production review guidance.
+- Practice ledger capacity increased to 800 records; the 32 MiB cap remains.
+
+### Preserved
+
+- All thirty-four earlier exercises, historical data, specialist profile,
+  production tools, privacy requirements and release gates.
+- Original/authorized content only; no model training, automatic recordings,
+  or claims of human playtest or visual/audio safety certification.
+
 ## 35.0 — Reference Game & Interface Academy
 
 ### Added

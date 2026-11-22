@@ -25,6 +25,13 @@ separate authorization, informed consent, minimized private records, limited
 access and a deletion policy. Neither the dashboard nor dispatch automatically
 collects player reactions or transmits telemetry.
 
+Game Feel and Presentation practices use bounded synthetic data, not actual
+save files, personal settings, recordings or commercial game assets. Do not
+submit private player sessions, copyrighted music, proprietary logos or game
+files. Use authorized original or licensed production materials, and keep
+practice submissions outside the public checkout. Numerical VFX checks do not
+certify photosensitivity safety; real frame review remains separate.
+
 Reference Game and Interface exercises use original bounded synthetic scenarios.
 Do not submit commercial game binaries, extracted assets, source code, private
 game designs or player recordings. Public reference material is for analysis,

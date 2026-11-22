@@ -2633,7 +2633,7 @@ async function renderQuality(id, routeId) {
 }
 
 function validCurriculum(data) {
-  if (![1, 2, 3, 4, 5].includes(data?.version) || !isDigest(data.curriculum_sha256) || !coordinationText(data.note)
+  if (![1, 2, 3, 4, 5, 6].includes(data?.version) || !isDigest(data.curriculum_sha256) || !coordinationText(data.note)
     || !Array.isArray(data.tracks) || !data.tracks.length) return false;
   return new Set(data.tracks.map(track => track?.id)).size === data.tracks.length && data.tracks.every(track =>
     coordinationText(track?.id) && coordinationText(track.title) && coordinationText(track.exercise)
@@ -2825,7 +2825,7 @@ function labArtifactViewer(active) {
 }
 
 function validLab(data) {
-  if (![1, 2, 3, 4, 5].includes(data?.version) || !isDigest(data.lab_sha256) || !coordinationText(data.note)
+  if (![1, 2, 3, 4, 5, 6].includes(data?.version) || !isDigest(data.lab_sha256) || !coordinationText(data.note)
     || !Array.isArray(data.exercises) || !data.exercises.length) return false;
   const uniqueIds = rows => new Set(rows.map(row => row?.id)).size === rows.length;
   return uniqueIds(data.exercises) && data.exercises.every(exercise =>
@@ -3159,6 +3159,15 @@ function renderLab(lab, routeId) {
       guide.append(element("summary", null, "Reference games and interface quality"),
         element("p", null, "Read the title-specific lessons in command_center/REFERENCE_GAME_ACADEMY.md. Select a mechanic that supports your original game's player fantasy; measure its intended effect and failure cases. Do not copy assets, scripts, layouts, or branded designs."),
         element("p", "dim", "Review the real HUD at gameplay speed and target display size, including a controller, text scaling, alternate input, and non-color cues. Test menus, pause, error, death and recovery. The Lab evaluates declared practice data, not the actual game or enjoyment."));
+      brief.append(guide);
+    }
+
+    if (["fallout-playstyles", "interface-styles", "startup-sequences", "art-styles",
+      "sound-music", "vfx-design"].includes(exercise.id)) {
+      const guide = element("details");
+      guide.append(element("summary", null, "Game feel and presentation review"),
+        element("p", null, "See command_center/GAME_FEEL_ACADEMY.md. Choose a playstyle and coherent audiovisual language for the original game; compare viable alternatives, startup and recovery, HUD hierarchy, and the timing of cues with gameplay."),
+        element("p", "dim", "Verify actual menus, frames, sound and input on the target device with accessible settings. Use original or licensed assets. Structured checks cannot establish aesthetic quality, audible quality, photosensitivity safety or real player enjoyment."));
       brief.append(guide);
     }
 

@@ -23,14 +23,27 @@ class CurriculumTests(unittest.TestCase):
         self.assertIn('1280×720', guide)
         self.assertIn('controller focus', guide)
 
+    def test_game_feel_syllabus_covers_requested_styles_and_production_guides(self):
+        root = Path(__file__).resolve().parents[1] / 'command_center'
+        guide = (root / 'GAME_FEEL_ACADEMY.md').read_text(encoding='utf-8')
+        for topic in ('Fallout 3', 'Fallout: New Vegas', 'Fallout 4', 'Stealth',
+                      'Diegetic', '1280×720', 'Startup', 'Photorealistic',
+                      'Semi-realistic', 'Pixel', 'Music', 'VFX'):
+            self.assertIn(topic, guide)
+        for file in ('FALLOUT_PLAYSTYLES.md', 'INTERFACE_STYLES.md', 'STARTUP_SEQUENCES.md',
+                     'ART_STYLES.md', 'SOUND_MUSIC.md', 'VFX_DESIGN.md'):
+            self.assertIn('presentation_studies/' + file, guide)
+            study = (root / 'presentation_studies' / file).read_text(encoding='utf-8')
+            self.assertIn('https://', study)
+
     def test_core_disciplines_and_role_coverage_are_versioned(self):
         result = curriculum()
-        self.assertEqual(result['version'], 5)
+        self.assertEqual(result['version'], 6)
         self.assertEqual(result['curriculum_sha256'], spec_digest({k: v for k, v in result.items()
                                                                 if k != 'curriculum_sha256'}))
         ids = {track['id'] for track in result['tracks']}
         self.assertTrue({'game-design', 'game-development', 'modeling', 'textures', 'storytelling'} <= ids)
-        self.assertEqual(len(ids), 34)
+        self.assertEqual(len(ids), 40)
         self.assertTrue({'cutscenes', 'game-audio', 'multiplayer', 'persistence', 'ai-encounters',
                          'production-pipeline'} <= ids)
         self.assertTrue({'player-enjoyment', 'replayability', 'player-research', 'visual-direction',
@@ -39,6 +52,8 @@ class CurriculumTests(unittest.TestCase):
                          'diegetic-narrative', 'voice-direction', 'voice-integration'} <= ids)
         self.assertTrue({'reference-narrative', 'reference-combat', 'reference-worlds',
                          'reference-traversal', 'reference-strategy', 'hud-excellence'} <= ids)
+        self.assertTrue({'fallout-playstyles', 'interface-styles', 'startup-sequences',
+                         'art-styles', 'sound-music', 'vfx-design'} <= ids)
         roles = {row['id'] for row in default_profile()['roles']}
         self.assertEqual({role for track in result['tracks'] for role in track['roles']}, roles)
         self.assertEqual(len(ids), len(result['tracks']))

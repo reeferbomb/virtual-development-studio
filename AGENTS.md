@@ -1,5 +1,21 @@
 # Graveforge Studios agent deployment policy
 
+## Game feel and presentation academy (v36)
+
+Use the six version-6 tracks and `command_center/GAME_FEEL_ACADEMY.md` for
+authorized playstyle, UI, startup, art, sound, music and VFX production. Study
+Fallout 3, New Vegas and Fallout 4 separately; distinguish source-verified
+mechanics from design inference and create original content. Design viable
+alternatives with meaningful tradeoffs; choose HUD, menus, art and audio to
+support player fantasy and target hardware. Make first-launch accessibility,
+skip where permitted, input focus, save validation and recovery reliable.
+Prioritize critical feedback, mix intelligibility, reduced-motion alternatives,
+and effect lifecycle/performance. Verify real builds, rendered frames, audio
+and devices separately; simulated practice cannot certify artistic quality,
+photosensitivity safety or player enjoyment. Keep all private content and
+practice evidence outside the public repository. Use only licensed or original
+assets, recordings and music. Preserve existing capabilities and release gates.
+
 ## Reference game and interface excellence academy (v35)
 
 Use the six version-5 tracks and `command_center/REFERENCE_GAME_ACADEMY.md`

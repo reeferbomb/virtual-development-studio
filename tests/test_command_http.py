@@ -68,7 +68,7 @@ class CommandHTTPTests(unittest.TestCase):
 
     def test_catalog_and_status(self):
         status=self.call('/api/status')
-        self.assertEqual(status['version'],'35.0')
+        self.assertEqual(status['version'],'36.0')
         executable=next((path for candidate in ('blender52','blender') if (path:=shutil.which(candidate))),None)
         expected=subprocess.check_output([executable,'--version'], text=True).splitlines()[0] if executable else 'Not installed'
         self.assertEqual(status['tools']['blender'],expected)

@@ -168,6 +168,22 @@ class TrainingRecordIntegrityTests(unittest.TestCase):
         self.assertNotEqual(current['lab_sha256'], old_catalog['lab_sha256'])
         self.assertEqual(current['revision'], 2)
 
+    def test_v35_reviewed_records_survive_v36_without_rescoring(self):
+        old_modules = studio_curriculum.extension_modules()[:24]
+        with patch.object(studio_curriculum, 'extension_modules', return_value=old_modules), \
+                patch.object(training_lab, 'VERSION', 5):
+            old_catalog = training_lab.lab_catalog()
+            self.assertEqual(old_catalog['lab_sha256'],
+                             'fc955c7eb7305dc7ca3e68f7361adbf2a5187c887281248391a62d1d12925b71')
+            record, = self.apply(0, record_action())['records']
+            reviewed, = self.apply(1, review_action(record['id']))['records']
+        persisted = self.path.read_bytes()
+        current = self.store.read()
+        self.assertEqual(current['records'], [dict(reviewed, current=False)])
+        self.assertEqual(self.path.read_bytes(), persisted)
+        self.assertNotEqual(current['lab_sha256'], old_catalog['lab_sha256'])
+        self.assertEqual(current['revision'], 2)
+
     def test_stale_unreviewed_record_cannot_be_reviewed(self):
         written = self.apply(0, record_action())
         record, = written['records']
