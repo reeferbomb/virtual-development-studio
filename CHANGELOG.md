@@ -1,5 +1,24 @@
 # Changelog
 
+## 35.0 — Reference Game & Interface Academy
+
+### Added
+
+- Six new training tracks and measurable original practice exercises for
+  narrative, combat, living worlds, traversal, strategic simulation and HUD/UI.
+- Reference-game studies and production guidance covering the requested
+  franchises, with public-source provenance and original implementation prompts.
+- Handheld and controller-aware HUD, navigation, feedback and accessibility
+  acceptance guidance, integrated into dispatch and Lab.
+- Practice ledger capacity increased to 600 records; the 32 MiB cap remains.
+
+### Preserved
+
+- All twenty-eight earlier exercises, historical records, specialist profile,
+  production tools, factories, privacy requirements and release gates.
+- No copied game assets, personal data collection, automatic execution or
+  model-weight training. Reference exercises are not real playtest evidence.
+
 ## 34.0 — Story and Performance Academy
 
 ### Added

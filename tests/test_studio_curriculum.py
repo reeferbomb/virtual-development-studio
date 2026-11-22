@@ -1,4 +1,5 @@
 import unittest
+from pathlib import Path
 
 from command_center.dispatch import build_dispatch_plan, default_profile
 from command_center.provenance import spec_digest
@@ -6,20 +7,38 @@ from command_center.studio_curriculum import curriculum, training_instruction
 
 
 class CurriculumTests(unittest.TestCase):
+    def test_reference_syllabus_covers_requested_games_and_production_guides(self):
+        root = Path(__file__).resolve().parents[1] / 'command_center'
+        guide = (root / 'REFERENCE_GAME_ACADEMY.md').read_text(encoding='utf-8')
+        for title in ('Mass Effect', 'Mass Effect 2', 'Mass Effect 3', 'The Darkness',
+                      'Soul Reaver', 'Call of Duty', 'Battlefield', 'Naughty Bear',
+                      'Grand Theft Auto', 'Shenmue', "Majora's Mask", 'Super Mario',
+                      'Sonic', 'Ocarina of Time', 'From Dust', 'Civilization Revolution'):
+            self.assertIn(title, guide)
+        for file in ('NARRATIVE.md', 'COMBAT.md', 'WORLDS.md', 'TRAVERSAL.md',
+                     'STRATEGY.md', 'HUD_UI.md'):
+            self.assertIn('reference_studies/' + file, guide)
+            study = (root / 'reference_studies' / file).read_text(encoding='utf-8')
+            self.assertIn('https://', study)
+        self.assertIn('1280×720', guide)
+        self.assertIn('controller focus', guide)
+
     def test_core_disciplines_and_role_coverage_are_versioned(self):
         result = curriculum()
-        self.assertEqual(result['version'], 4)
+        self.assertEqual(result['version'], 5)
         self.assertEqual(result['curriculum_sha256'], spec_digest({k: v for k, v in result.items()
                                                                 if k != 'curriculum_sha256'}))
         ids = {track['id'] for track in result['tracks']}
         self.assertTrue({'game-design', 'game-development', 'modeling', 'textures', 'storytelling'} <= ids)
-        self.assertEqual(len(ids), 28)
+        self.assertEqual(len(ids), 34)
         self.assertTrue({'cutscenes', 'game-audio', 'multiplayer', 'persistence', 'ai-encounters',
                          'production-pipeline'} <= ids)
         self.assertTrue({'player-enjoyment', 'replayability', 'player-research', 'visual-direction',
                          'visual-readability', 'experience-iteration'} <= ids)
         self.assertTrue({'motion-design', 'character-performance', 'environmental-storytelling',
                          'diegetic-narrative', 'voice-direction', 'voice-integration'} <= ids)
+        self.assertTrue({'reference-narrative', 'reference-combat', 'reference-worlds',
+                         'reference-traversal', 'reference-strategy', 'hud-excellence'} <= ids)
         roles = {row['id'] for row in default_profile()['roles']}
         self.assertEqual({role for track in result['tracks'] for role in track['roles']}, roles)
         self.assertEqual(len(ids), len(result['tracks']))

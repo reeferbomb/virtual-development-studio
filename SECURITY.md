@@ -25,6 +25,12 @@ separate authorization, informed consent, minimized private records, limited
 access and a deletion policy. Neither the dashboard nor dispatch automatically
 collects player reactions or transmits telemetry.
 
+Reference Game and Interface exercises use original bounded synthetic scenarios.
+Do not submit commercial game binaries, extracted assets, source code, private
+game designs or player recordings. Public reference material is for analysis,
+not authorization to reproduce protected content. The Lab does not download
+or execute reference games or transmit your practice records.
+
 Story and Performance exercises use original synthetic metadata, not recordings,
 voice profiles or imported game assets. Do not submit private scripts, actor
 identifiers, recordings or biometric information to the Academy. Obtain explicit

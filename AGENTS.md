@@ -1,5 +1,21 @@
 # Graveforge Studios agent deployment policy
 
+## Reference game and interface excellence academy (v35)
+
+Use the six version-5 tracks and `command_center/REFERENCE_GAME_ACADEMY.md`
+to study the user's requested reference games, genre-specific mechanics and
+HUD/UI design. Read the relevant linked study before applying a technique to
+an authorized project. Distinguish source-verified design from inference; use
+original characters, systems, art, levels, dialogue and interface designs.
+Compare the mechanic's intended player experience against a baseline and
+test meaningful choices, failure, recovery, accessibility and replayability.
+For UI, prioritize critical information and readable feedback, configurable
+scale and contrast, handheld/controller navigation, non-color cues, safe
+layout and reliable menu/death/restart/save transitions. Verify the actual
+render and input behavior when authorized; numeric practice is not visual
+certification or evidence of human enjoyment. Keep all private artifacts and
+observations outside the public repository; do not reproduce reference IP.
+
 ## Story and performance academy (v34)
 
 Use the six version-4 Academy tracks and `command_center/STORY_AND_PERFORMANCE.md`

@@ -22,7 +22,7 @@ from .task_store import JOB_ID, _valid_digest
 REGISTRY = 'training-records.json'
 # Keep room for the expanded role/exercise matrix alongside historical reviews.
 # The independent file-size cap still bounds total persisted data.
-MAX_RECORDS = 400
+MAX_RECORDS = 600
 MAX_FILE_BYTES = 32 * 1024 * 1024
 VERSION = 1
 RECORD_FIELDS = {'id', 'exercise_id', 'role', 'created_at', 'reference', 'submission', 'report', 'review'}

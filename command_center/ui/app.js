@@ -2633,7 +2633,7 @@ async function renderQuality(id, routeId) {
 }
 
 function validCurriculum(data) {
-  if (![1, 2, 3, 4].includes(data?.version) || !isDigest(data.curriculum_sha256) || !coordinationText(data.note)
+  if (![1, 2, 3, 4, 5].includes(data?.version) || !isDigest(data.curriculum_sha256) || !coordinationText(data.note)
     || !Array.isArray(data.tracks) || !data.tracks.length) return false;
   return new Set(data.tracks.map(track => track?.id)).size === data.tracks.length && data.tracks.every(track =>
     coordinationText(track?.id) && coordinationText(track.title) && coordinationText(track.exercise)
@@ -2825,7 +2825,7 @@ function labArtifactViewer(active) {
 }
 
 function validLab(data) {
-  if (![1, 2, 3, 4].includes(data?.version) || !isDigest(data.lab_sha256) || !coordinationText(data.note)
+  if (![1, 2, 3, 4, 5].includes(data?.version) || !isDigest(data.lab_sha256) || !coordinationText(data.note)
     || !Array.isArray(data.exercises) || !data.exercises.length) return false;
   const uniqueIds = rows => new Set(rows.map(row => row?.id)).size === rows.length;
   return uniqueIds(data.exercises) && data.exercises.every(exercise =>
@@ -3150,6 +3150,15 @@ function renderLab(lab, routeId) {
       guide.append(element("summary", null, "From practice to performance review"),
         element("p", null, "Study documented game-production techniques, then design an original scene. Inspect gameplay camera motion, contact, visible and audible cues, alternate paths, and speech timing in the exact build."),
         element("p", "dim", "Structured checks do not verify actual animation quality, story comprehension or audible performance. Use only authorized recordings and assets; no audio uploads or voice imitation. See command_center/STORY_AND_PERFORMANCE.md."));
+      brief.append(guide);
+    }
+
+    if (["reference-narrative", "reference-combat", "reference-worlds", "reference-traversal",
+      "reference-strategy", "hud-excellence"].includes(exercise.id)) {
+      const guide = element("details");
+      guide.append(element("summary", null, "Reference games and interface quality"),
+        element("p", null, "Read the title-specific lessons in command_center/REFERENCE_GAME_ACADEMY.md. Select a mechanic that supports your original game's player fantasy; measure its intended effect and failure cases. Do not copy assets, scripts, layouts, or branded designs."),
+        element("p", "dim", "Review the real HUD at gameplay speed and target display size, including a controller, text scaling, alternate input, and non-color cues. Test menus, pause, error, death and recovery. The Lab evaluates declared practice data, not the actual game or enjoyment."));
       brief.append(guide);
     }
 

@@ -1,4 +1,4 @@
-# Graveforge Studios — Story and Performance Academy v34.0
+# Graveforge Studios — Reference Game & Interface Academy v35.0
 
 **A free, open-source game development studio toolkit.**
 
@@ -29,7 +29,7 @@ manager and production checklist in one place.
   first, assign jobs to specialists and keep track of unfinished work.
 - **Build and test:** generate a project, read its build logs, check assets
   and record bugs. A build is a generated set of game or asset files.
-- **Learn game development:** study twenty-eight training topics and try practical
+- **Learn game development:** study thirty-four training topics and try practical
   exercises in the Academy and Lab, including game design, coding, 3D
   modeling, textures, storytelling, animation, testing, fun, replayability
   and visual quality.
@@ -107,7 +107,7 @@ This produces a starting point for development, not a complete custom FPS.
 
 ### Just want to learn?
 
-Open **Training** to read the twenty-eight learning tracks. Open **Lab**, choose an
+Open **Training** to read the thirty-four learning tracks. Open **Lab**, choose an
 exercise, select **Use example**, then **Assess submission**. The studio shows
 which checks passed and why. Change the example to try your own solution,
 and use **Download assessment JSON** to save the result if you want to keep it.
@@ -184,6 +184,28 @@ code and bundled original test assets are MIT-licensed; see [LICENSE](LICENSE).
 Godot, Blender and other external assets retain their respective licenses.
 For contributions see [CONTRIBUTING.md](CONTRIBUTING.md), and for release
 history see [CHANGELOG.md](CHANGELOG.md).
+
+## New in v35 — reference games and interface excellence
+
+Six new tracks and original structured exercises study the Mass Effect trilogy,
+The Darkness, Soul Reaver, Call of Duty, Battlefield, Naughty Bear, GTA, Shenmue,
+Majora's Mask, Mario, Sonic, Ocarina of Time, From Dust and Civilization
+Revolution, plus advanced HUD and UI design. See the [reference syllabus and
+interface acceptance guide](command_center/REFERENCE_GAME_ACADEMY.md), including
+title-specific primary sources, original design prompts and production checks.
+
+- Narrative continuity, context-dependent abilities and dual-state exploration.
+- Combat responsiveness, combined arms and systemic NPC reactions.
+- Living world schedules, escalation and time resets.
+- Traversal, momentum, item-gated exploration and puzzle progression.
+- Terrain simulation, consequences and strategic choices.
+- Game HUD and menu readability, handheld/controller support, feedback,
+  interface accessibility, visual hierarchy and recovery states.
+
+These are original instructional exercises, not cloned game assets or model
+weights. All 28 previous exercises and production capabilities remain intact.
+Earlier practice records remain historical; no personal data, new provider
+credentials, or paid dependencies are required.
 
 ## New in v34 — story and performance academy
 
@@ -417,7 +439,7 @@ or authenticated model identities.
 Records survive restarts. A revision check prevents overwriting newer actions;
 refresh after a conflict and explicitly retry. Historical rubric records remain
 visible but cannot be reviewed or count toward current practice coverage. The
-ledger is bounded to 400 records (increased in v34) and 32 MiB, shared across current and historical
+ledger is bounded to 600 records (increased in v35) and 32 MiB, shared across current and historical
 role-and-exercise assignments and retries. It fails closed on invalid persisted
 data and refuses additional records rather than deleting old evidence.
 Do not place the ledger or exports in the public source checkout.

@@ -174,8 +174,8 @@ async function actualAcademyWorkflow() {
     assert.equal(run.status, 0, run.stderr); return JSON.parse(run.stdout);
   };
   const actual = fromPython(["-m", "command_center.training_lab_cli", "catalog"]);
-  assert.equal(actual.version, 4);
-  assert.equal(actual.exercises.length, 28);
+  assert.equal(actual.version, 5);
+  assert.equal(actual.exercises.length, 34);
   const empty = {...emptyRecords, lab_sha256: actual.lab_sha256};
   location.hash = "#lab";
   respond = request => [200, request.url === "/api/training-records" ? empty : actual];
@@ -184,12 +184,15 @@ async function actualAcademyWorkflow() {
     "visual-readability", "experience-iteration"];
   const performanceIds = ["motion-design", "character-performance", "environmental-storytelling",
     "diegetic-narrative", "voice-direction", "voice-integration"];
-  for (const id of ["cutscenes", "game-audio", "multiplayer", "persistence", "ai-encounters", "production-pipeline", ...experienceIds, ...performanceIds]) {
+  const referenceIds = ["reference-narrative", "reference-combat", "reference-worlds",
+    "reference-traversal", "reference-strategy", "hud-excellence"];
+  for (const id of ["cutscenes", "game-audio", "multiplayer", "persistence", "ai-encounters", "production-pipeline", ...experienceIds, ...performanceIds, ...referenceIds]) {
     const exercise = actual.exercises.find(row => row.id === id);
     assert(exercise, id); change(id); assert(text(exercise.brief));
     assert.equal(Boolean(text("Run a real Godot cutscene")), id === "cutscenes");
     assert.equal(Boolean(text("Apply this to a real game")), experienceIds.includes(id));
     assert.equal(Boolean(text("From practice to performance review")), performanceIds.includes(id));
+    assert.equal(Boolean(text("Reference games and interface quality")), referenceIds.includes(id));
     if (id === "cutscenes") {
       assert([...view.all()].some(node => node.tag === "pre" && node.textContent.includes("cinematic.production.runner") && node.textContent.includes("--engine")));
     }

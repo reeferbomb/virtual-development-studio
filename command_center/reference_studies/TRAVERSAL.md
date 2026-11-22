@@ -1,0 +1,30 @@
+# Traversal reference study
+
+For a wind-station courier, the design question is whether a first-time player can see where to land, understand how to open the exit, and later save time by carrying speed. The following observations come from published developer interviews, a publisher’s level description and official manuals. The wind station and its measurements are original Academy designs.
+
+## Mario — reading a jump in two and three dimensions
+
+**What the developers describe.** Discussing the original *Super Mario Bros.*, the developers recall building more demanding situations, trying them with beginners, then putting easier introductions near the start. They describe the opening encounter with the mushroom as deliberately arranged. For *Super Mario 3D Land*, the team describes stretches that lead rightward or into the screen, with an early view of the destination. An airborne object's shadow directly below it helps locate its position even with stereoscopic depth switched off. [Nintendo on the original 2D level design](https://www.nintendo.com/en-gb/Iwata-Asks/Iwata-Asks-New-Super-Mario-Bros-Wii/Volume-2/4-Adjusting-the-Map-in-a-Daily-Cycle/4-Adjusting-the-Map-in-a-Daily-Cycle-233027.html) · [Nintendo on guiding the player in 3D](https://www.nintendo.com/en-gb/Iwata-Asks/Iwata-Asks-SUPER-MARIO-3D-LAND/Vol-1-SUPER-MARIO-3D-LAND/2-A-Missing-Link-Between-2D-and-3D-Mario/2-A-Missing-Link-Between-2D-and-3D-Mario-216918.html) · [Nintendo on shadows and depth](https://www.nintendo.com/en-gb/Iwata-Asks/Iwata-Asks-SUPER-MARIO-3D-LAND/Vol-1-SUPER-MARIO-3D-LAND/4-It-s-So-High-I-m-Scared-/4-It-s-So-High-I-m-Scared--216999.html)
+
+**Original application.** Introduce the courier's first jump in profile across a narrow drainage cut. A broad grate catches a short jump. Next, turn the course into depth and place a striped receiving bay under a suspended weather gauge. Keep the wind clock visible above both bays. Our hypothesis is that a player can identify the far edge before launching. In a greybox, ask players to indicate the intended landing from the takeoff view, then compare that answer with the actual landing. Record whether an error came from choosing the wrong bay or misjudging its distance.
+
+## Sonic — investing in speed and selecting a route
+
+**What Sega documents.** In the *Sonic Origins* manual, the Spin Dash lets a player build power while crouching and release it into a fast launch. Its Drop Dash description ties the launch to touching down and specifies a mode restriction. Sega’s Japanese *Sonic Mania* stage guide describes adding routes to Green Hill Act 1 while retaining recognizable terrain. These examples connect a movement decision before launch with a choice of path through a level. [Sega’s Sonic Origins manual, Actions](https://manuals.sega.com/wp-content/uploads/2022/06/SM_Sonic_Origin_En_220617.pdf) · [Sega’s Sonic Mania stage guide, Green Hill](https://sonic.sega.jp/SonicMania/)
+
+**Original application.** Give the courier a sheltered approach with a wide landing and a gust rail whose second jump uses speed retained from the first. Count the run-up in both times. Draw both receiving platforms before the fork so the player can see what speed buys them. A recovery grate below the rail is a separate proposal for a playable prototype. Test a short jump, an overshoot and a player who deliberately takes the sheltered route. Record rejoin location, recovery time and whether the destination remains in view.
+
+## Ocarina of Time — maintaining orientation around a tool gate
+
+**What Nintendo documents.** The development staff describe how targeting moves the viewpoint behind Link and can maintain attention on a character. On 3DS, the team adjusted the visible target marker for depth. The 3DS quick guide shows the entry position and current position on the mini-map, dungeon floors, and acquired map, compass and keys. The original development team also recalls rechecking earlier dungeons as usable items changed. [Nintendo on target presentation and the original Z button versus the 3DS L button](https://www.nintendo.com/en-gb/Iwata-Asks/Iwata-Asks-The-Legend-of-Zelda-Ocarina-of-Time-3D/Vol-4-Development-Staff/2-The-Idealised-Borderline/2-The-Idealised-Borderline-235850.html) · [Nintendo’s Ocarina of Time 3D quick guide](https://www.nintendo.com/eu/media/downloads/games_8/quick_start_guide/QuickStartGuide_3DS_TheLegendOfZeldaOcarinaOfTime3D_EN.pdf) · [Nintendo’s original developers on checking items against dungeons](https://www.nintendo.com/en-gb/Iwata-Asks/Iwata-Asks-The-Legend-of-Zelda-Ocarina-of-Time-3D/Vol-2-Original-Development-Staff-Part-1/6-Finding-the-Right-Spot-for-the-Opening-Sequence/6-Finding-the-Right-Spot-for-the-Opening-Sequence-231889.html)
+
+**Original application.** Show a pressure socket behind a shutter before the courier reaches the gauge bench. Give the socket a triangular silhouette that also appears on the tool. On return, focusing it should frame the socket and keep the route back visible. A neighboring socket gives a way to test mistaken focus. In a playable scene, verify approach without the tool, return after pickup, an occluded socket, two nearby targets and disengagement. Ask the player to retrace the route from the shutter without a floating waypoint.
+
+## Worked Academy course
+
+| Route | Setup and flight by edge | Landing distances | Narrowest margin | Total |
+| --- | --- | --- | --- | --- |
+| Sheltered | Ramp 2 + 2, steps 3 + 3, relay 1 + 2 | 6, 3, 2 | 1 unit | 13 ticks |
+| Gust rail | Chute 2 + 2, sail gap 0 + 2, relay 1 + 2 | 10, 10, 10 | 0 units | 9 ticks |
+
+Both routes reach the gauge bench before focusing the pressure socket. The faster crossing lands at the near edge of the sail platform. The exercise evaluates every reachable room and speed with the pickup withheld to check whether a third route can bypass the gate. These figures describe the one-axis exercise. Camera framing, vertical collision, jump input timing, recovery and player understanding require a playable build.

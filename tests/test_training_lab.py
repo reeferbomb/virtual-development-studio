@@ -15,11 +15,11 @@ from command_center.training_lab_cli import main
 
 
 class TrainingLabTests(unittest.TestCase):
-    def test_all_twenty_eight_reference_exercises_have_measured_passing_checks(self):
+    def test_all_thirty_four_reference_exercises_have_measured_passing_checks(self):
         catalog = lab_catalog()
         tracks = curriculum()['tracks']
-        self.assertEqual(catalog['version'], 4)
-        self.assertEqual(len(tracks), 28)
+        self.assertEqual(catalog['version'], 5)
+        self.assertEqual(len(tracks), 34)
         # Every original rubric and teaching artifact remains byte-identical
         # under the v2 catalog contract, despite the new catalog identity.
         self.assertEqual(spec_digest({**{k: v for k, v in catalog.items() if k != 'lab_sha256'},
@@ -28,6 +28,9 @@ class TrainingLabTests(unittest.TestCase):
         self.assertEqual(spec_digest({**{k: v for k, v in catalog.items() if k != 'lab_sha256'},
                                       'version': 3, 'exercises': catalog['exercises'][:22]}),
                          'b65506b5b1d6446baf9f62d71a1db6efae37bf1889d18acb75616feba04e3f7c')
+        self.assertEqual(spec_digest({**{k: v for k, v in catalog.items() if k != 'lab_sha256'},
+                                      'version': 4, 'exercises': catalog['exercises'][:28]}),
+                         '4e5f88eb5266c45a8931327e7ac50aeaf99c4f2183e99846c0ca9d977080c2b0')
         self.assertEqual([e['id'] for e in catalog['exercises']], [t['id'] for t in tracks])
         self.assertEqual(catalog['lab_sha256'], spec_digest({k: v for k, v in catalog.items() if k != 'lab_sha256'}))
         for exercise, track in zip(catalog['exercises'], tracks, strict=True):
@@ -93,7 +96,7 @@ class TrainingLabTests(unittest.TestCase):
         with redirect_stdout(io.StringIO()) as output:
             self.assertEqual(main(['examples']), 0)
         summary = json.loads(output.getvalue())
-        self.assertEqual(summary['summary'], {'pass': 28, 'fail': 0})
+        self.assertEqual(summary['summary'], {'pass': 34, 'fail': 0})
         example = next(e['example'] for e in lab_catalog()['exercises'] if e['id'] == 'interface')
         with tempfile.TemporaryDirectory() as temporary:
             path = Path(temporary) / 'submission.json'
