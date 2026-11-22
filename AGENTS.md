@@ -1,5 +1,19 @@
 # Graveforge Studios agent deployment policy
 
+## Production intelligence (v37)
+
+For authorized production review, use `command_center/PRODUCTION_INTELLIGENCE.md`
+and the offline `production_intelligence_cli`. Prefer actual matched anonymous
+observations over synthetic practice for production claims. Compare build
+viability, player experience signals, frame times, UI geometry/focus, audio and
+asset footprint independently, using target-specific constraints. Report missing
+domains explicitly; treat checks as advisory, not acceptance gates. Use only
+authorized anonymized aggregates, non-identifying labels and measurements; do
+not collect telemetry automatically, ingest participant records or publish
+private captures. Keep private outputs outside the checkout. The Intelligence
+viewer is a browser-local report reader, not an authenticated evidence service.
+Verify the real build and original evidence through the current project workflow.
+
 ## Game feel and presentation academy (v36)
 
 Use the six version-6 tracks and `command_center/GAME_FEEL_ACADEMY.md` for

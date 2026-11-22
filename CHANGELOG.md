@@ -1,5 +1,22 @@
 # Changelog
 
+## 37.0 — Production Intelligence
+
+### Added
+
+- Six offline production diagnostics for encounter balance, anonymous playtest
+  aggregates, frame pacing, interface/localization, audio, and asset footprint.
+- Bounded example and analysis CLI; deterministic capture and report digests,
+  explicit missing-domain warnings, and a privacy-preserving dashboard viewer.
+- A production review workflow connecting specialist responsibilities with
+  actual authorized observations and retesting.
+
+### Preserved
+
+- All 40 Academy exercises and historical evidence, specialist configuration,
+  existing factories, release gates and privacy requirements. No automatic
+  telemetry, commercial data collection, model calls, or release approval.
+
 ## 36.0 — Game Feel & Presentation Academy
 
 ### Added

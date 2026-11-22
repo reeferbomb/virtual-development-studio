@@ -124,6 +124,7 @@ dialog .actions { justify-content: end; margin-top: .65rem; }
 .checkpoint-facts dt { color: var(--subtle); }
 .checkpoint-facts dd, .checkpoint-facts ul { margin: 0; }
 .checkpoint-facts dd { white-space: pre-line; }
+.checkpoint-facts dd { overflow-wrap: anywhere; }
 .checkpoint-facts ul { padding-left: 1.2rem; }
 .checkpoint form { display: grid; gap: .6rem; margin-top: .65rem; }
 .checkpoint form > button, .checkpoint-fields > button { justify-self: start; }

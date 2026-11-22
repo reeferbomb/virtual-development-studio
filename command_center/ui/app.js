@@ -3,7 +3,7 @@
 const titles = {
   projects: "Projects", workspace: "Workspace", catalog: "Asset catalog",
   builds: "Build queue", releases: "Releases", supervisor: "Supervisor", sprint: "Sprint",
-  planning: "Planning", operations: "Operations", coordination: "Coordination", quality: "Quality", training: "Training", lab: "Lab", team: "Team", portfolio: "Portfolio"
+  planning: "Planning", operations: "Operations", coordination: "Coordination", quality: "Quality", intelligence: "Production intelligence", training: "Training", lab: "Lab", team: "Team", portfolio: "Portfolio"
 };
 const kinds = {
   assets: "Asset factory", world: "World", gameplay: "Gameplay",
@@ -2824,6 +2824,106 @@ function labArtifactViewer(active) {
   return panel;
 }
 
+const intelligenceDomains = {balance: "Encounter balance", playtest: "Playtest observations", frame: "Frame pacing",
+  ui: "Interface and localization", audio: "Audio mix", build: "Build footprint"};
+const intelligenceStatuses = ["pass", "warn", "fail"];
+function intelligenceWorst(statuses) {
+  return intelligenceStatuses[Math.max(...statuses.map(status => intelligenceStatuses.indexOf(status)))];
+}
+function validIntelligenceReport(report) {
+  if (!labObject(report) || report.schema_version !== 1 || report.kind !== "production-intelligence"
+    || !isDigest(report.input_sha256) || !isDigest(report.report_sha256) || !coordinationText(report.advisory)
+    || !intelligenceStatuses.includes(report.status) || !Array.isArray(report.missing) || !Array.isArray(report.reports)
+    || !report.reports.length || report.reports.length + report.missing.length !== Object.keys(intelligenceDomains).length) return false;
+  const domains = new Set();
+  for (const kind of report.missing) {
+    if (!Object.hasOwn(intelligenceDomains, kind) || domains.has(kind)) return false;
+    domains.add(kind);
+  }
+  for (const part of report.reports) {
+    if (!labObject(part) || part.schema_version !== 1 || !Object.hasOwn(intelligenceDomains, part.kind)
+      || domains.has(part.kind) || !isDigest(part.capture_sha256) || !coordinationText(part.advisory)
+      || !labObject(part.metrics) || !intelligenceStatuses.includes(part.status)
+      || !Array.isArray(part.checks) || !part.checks.length || part.checks.length > 10000) return false;
+    domains.add(part.kind);
+    const ids = new Set();
+    for (const check of part.checks) {
+      if (!labObject(check) || !coordinationText(check.id) || ids.has(check.id) || !coordinationText(check.label)
+        || !coordinationText(check.detail) || !intelligenceStatuses.includes(check.status)) return false;
+      ids.add(check.id);
+    }
+    if (intelligenceWorst(part.checks.map(check => check.status)) !== part.status) return false;
+  }
+  return report.status === intelligenceWorst([...report.reports.map(part => part.status), ...(report.missing.length ? ["warn"] : [])]);
+}
+
+function intelligenceContents(report) {
+  const body = element("div", "queue"), summary = supervisorPanel("Reported production findings");
+  summary.append(auditBadge(report.status), element("p", null, `${report.reports.length} of 6 domains supplied`),
+    element("p", "dim", report.advisory));
+  const facts = element("dl", "checkpoint-facts");
+  facts.append(element("dt", null, "Reported capture bundle SHA-256"), element("dd", null, report.input_sha256),
+    element("dt", null, "Reported report SHA-256"), element("dd", null, report.report_sha256));
+  summary.append(facts);
+  if (report.missing.length) summary.append(element("p", "dim", `Not evaluated: ${report.missing.map(kind => intelligenceDomains[kind]).join(", ")}`));
+  body.append(summary);
+  for (const part of report.reports) {
+    const panel = supervisorPanel(intelligenceDomains[part.kind]);
+    panel.append(auditBadge(part.status), element("p", "dim", `Reported capture SHA-256: ${part.capture_sha256}`),
+      element("p", null, part.advisory));
+    for (const check of part.checks) {
+      const row = element("article", "task-row"), heading = element("div", "task-heading");
+      heading.append(element("h3", null, check.label), auditBadge(check.status));
+      row.append(heading, element("p", null, check.detail));
+      panel.append(row);
+    }
+    const details = element("details");
+    details.append(element("summary", null, "Reported measurements"), element("pre", "log", JSON.stringify(part.metrics, null, 2)));
+    panel.append(details); body.append(panel);
+  }
+  return body;
+}
+
+function renderIntelligence(routeId) {
+  const active = () => state.route === routeId && location.hash === "#intelligence";
+  const panel = supervisorPanel("Open a local diagnostic report"), guide = element("details");
+  guide.append(element("summary", null, "Create an example report from the command line"),
+    element("p", "dim", "Use a private directory outside this checkout. Replace the synthetic capture data with authorized, anonymous measurements. A report may contain private game information."),
+    element("pre", "log", "python3 -m command_center.production_intelligence_cli example > ../capture-example.json\npython3 -m command_center.production_intelligence_cli analyze ../capture-example.json > ../intelligence-report.json"));
+  const picker = element("input"), label = element("label", null, "Report JSON (up to 2 MiB)"), status = element("p", "dim"), result = element("div");
+  picker.id = "intelligence-report-file"; picker.type = "file"; picker.accept = ".json,application/json";
+  label.htmlFor = picker.id; status.id = "intelligence-report-status"; status.setAttribute("role", "status");
+  picker.setAttribute("aria-describedby", status.id);
+  let selection = 0;
+  picker.addEventListener("change", async () => {
+    if (!active()) return;
+    const chosen = ++selection, file = picker.files[0];
+    const current = () => active() && chosen === selection;
+    result.replaceChildren(); status.textContent = ""; picker.removeAttribute("aria-invalid");
+    if (!file) return;
+    if (file.size > 2 * 1024 * 1024) {
+      status.textContent = "Choose a report of 2 MiB or less."; picker.setAttribute("aria-invalid", "true"); return;
+    }
+    status.textContent = "Reading report…";
+    try {
+      const data = JSON.parse(await file.text(), (key, value) => {
+        if (typeof value === "number" && !Number.isFinite(value)) throw new Error("Non-finite measurement");
+        return value;
+      });
+      if (!current()) return;
+      if (!validIntelligenceReport(data)) throw new Error("Invalid report");
+      result.append(intelligenceContents(data)); status.textContent = "Local diagnostic report opened.";
+    } catch {
+      if (!current()) return;
+      result.replaceChildren(); picker.setAttribute("aria-invalid", "true");
+      status.textContent = "Could not validate the report structure. Choose a report from the production intelligence CLI.";
+    }
+  });
+  panel.append(element("p", "dim", "The selected file stays in this tab. Values and hashes are reported, not authenticated. No project records or release gates are changed."),
+    guide, label, picker, status, result);
+  view.replaceChildren(heading("Production intelligence", "Review supplied measurements across six production domains without recording player data or uploading reports."), panel);
+}
+
 function validLab(data) {
   if (![1, 2, 3, 4, 5, 6].includes(data?.version) || !isDigest(data.lab_sha256) || !coordinationText(data.note)
     || !Array.isArray(data.exercises) || !data.exercises.length) return false;
@@ -3400,6 +3500,10 @@ async function route() {
   view.replaceChildren(heading(titles[page], "Loading workstation data…"));
   view.setAttribute("aria-busy", "true");
   try {
+    if (page === "intelligence") {
+      renderIntelligence(routeId);
+      return;
+    }
     if (page === "lab") {
       const lab = await api("/training-lab");
       if (routeId === state.route && location.hash === "#lab") await renderLab(lab, routeId);

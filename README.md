@@ -1,4 +1,4 @@
-# Graveforge Studios — Game Feel & Presentation Academy v36.0
+# Graveforge Studios — Production Intelligence v37.0
 
 **A free, open-source game development studio toolkit.**
 
@@ -184,6 +184,25 @@ code and bundled original test assets are MIT-licensed; see [LICENSE](LICENSE).
 Godot, Blender and other external assets retain their respective licenses.
 For contributions see [CONTRIBUTING.md](CONTRIBUTING.md), and for release
 history see [CHANGELOG.md](CHANGELOG.md).
+
+## New in v37 — production intelligence
+
+The Studio now has six offline production diagnostics and a private report
+viewer in the **Intelligence** tab. Analyze measured build/encounter balance,
+anonymous aggregate playtest observations, frame pacing, localized interface
+geometry and focus, audio mix/cues, and build footprint before deciding on
+iterations. See the [Production Intelligence guide](command_center/PRODUCTION_INTELLIGENCE.md)
+for input schemas, examples, workflow and limits.
+
+```sh
+python3 -m command_center.production_intelligence_cli example > ../capture-example.json
+python3 -m command_center.production_intelligence_cli analyze ../capture-example.json > ../intelligence-report.json
+```
+
+These are advisory observations, not release gates or automatic telemetry.
+Missing domains are reported explicitly. Keep all real captures and reports
+outside this public checkout. All 40 Academy exercises and prior production
+capabilities remain unchanged.
 
 ## New in v36 — game feel and presentation
 

@@ -4,6 +4,16 @@ Studio is designed for trusted local development. The Command Center listens
 on loopback and uses local request checks, not Internet-facing authentication.
 Do not expose its port through a public reverse proxy or tunnel.
 
+Production Intelligence is an offline analyzer of deliberately supplied bounded
+JSON. Use anonymous aggregate playtest observations only, with prior authorization
+and consent; do not submit participant identifiers, real names, recordings, raw
+session logs, contact details, paths or credentials. Keep captures and reports
+private outside the checkout. The dashboard's Intelligence tab reads report
+files in the browser without uploading or persisting them. It displays reported
+hashes, not authenticated evidence. No analyzer changes project, practice or
+release state, and a passing check does not certify player enjoyment, hardware,
+accessibility, hearing safety or release readiness.
+
 Do not commit API keys, private keys, tokens, personal project material,
 credential files, user-generated logs, or exported project recovery/dossier
 records. Keep the working workspace outside the checkout. No provider API
