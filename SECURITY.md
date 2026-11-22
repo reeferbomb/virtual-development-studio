@@ -4,6 +4,13 @@ Studio is designed for trusted local development. The Command Center listens
 on loopback and uses local request checks, not Internet-facing authentication.
 Do not expose its port through a public reverse proxy or tunnel.
 
+The Runtime Lab exports only fixed Studio-authored Godot scripts to a new
+private directory outside the checkout. Its explicit `--engine` option requires
+network isolation and runs only that project with a bounded process and output.
+Never use it to execute externally supplied scenes, plugins or scripts. Keep
+captures, generated projects and reports private; the original benchmark is
+not a telemetry collector or an authenticated release certification.
+
 Production Intelligence is an offline analyzer of deliberately supplied bounded
 JSON. Use anonymous aggregate playtest observations only, with prior authorization
 and consent; do not submit participant identifiers, real names, recordings, raw

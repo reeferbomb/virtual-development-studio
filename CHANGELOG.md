@@ -1,5 +1,20 @@
 # Changelog
 
+## 38.0 — Engine-integrated Runtime Lab
+
+### Added
+
+- Six original Godot runtime probes for NPC behavior, adaptive difficulty,
+  automatic frame intervals, UI flow, presentation and deterministic replay.
+- Explicit offline execution of the trusted fixed project with bounded output,
+  source integrity checks, and private reports compatible with Intelligence.
+
+### Preserved
+
+- All 40 Academy exercises, prior production factories, specialist configuration,
+  privacy boundaries and release acceptance gates. No arbitrary game execution,
+  background player tracking, paid providers or automatic release decisions.
+
 ## 37.0 — Production Intelligence
 
 ### Added

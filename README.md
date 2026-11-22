@@ -1,4 +1,4 @@
-# Graveforge Studios — Production Intelligence v37.0
+# Graveforge Studios — Runtime Lab v38.0
 
 **A free, open-source game development studio toolkit.**
 
@@ -184,6 +184,23 @@ code and bundled original test assets are MIT-licensed; see [LICENSE](LICENSE).
 Godot, Blender and other external assets retain their respective licenses.
 For contributions see [CONTRIBUTING.md](CONTRIBUTING.md), and for release
 history see [CHANGELOG.md](CHANGELOG.md).
+
+## New in v38 — engine-integrated runtime lab
+
+The [Runtime Lab](gameplay/runtime_lab/README.md) runs six original Godot
+probes for NPC behavior, opt-in adaptive difficulty, frame capture, HUD/menu
+logic, environmental presentation, and deterministic replay/checkpoints.
+Export or explicitly run a private fixed test project:
+
+```sh
+python3 -m gameplay.runtime_lab.runner --output ../runtime-lab-test --engine
+```
+
+The isolated execution path requires Godot 4 and Linux network namespaces.
+It produces real test-scene observations and a v37-compatible private
+Intelligence report; headless observations do not certify rendering, target
+hardware, enjoyment or production release. Existing factories and all 40
+Academy exercises remain unchanged.
 
 ## New in v37 — production intelligence
 

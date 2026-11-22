@@ -1,5 +1,18 @@
 # Graveforge Studios agent deployment policy
 
+## Engine-backed Runtime Lab (v38)
+
+For authorized runtime prototyping use `gameplay/runtime_lab/README.md` and
+`python3 -m gameplay.runtime_lab.runner --output NEW_PRIVATE_PATH --engine`.
+The explicit engine option runs only the fixed original Godot test project in
+offline isolation. Exercise NPC perception and recovery, bounded opt-in
+difficulty, measured frame capture, interface state, presentation cues and
+deterministic replay. Export alone is not execution evidence. Distinguish
+headless behavior from real rendered/device experience and keep generated
+projects, captures and logs private and outside the checkout. The new capture
+bundle may be analyzed through Production Intelligence, but no probe or
+advisory result replaces current project evidence or release gates.
+
 ## Production intelligence (v37)
 
 For authorized production review, use `command_center/PRODUCTION_INTELLIGENCE.md`
