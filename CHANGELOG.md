@@ -1,5 +1,19 @@
 # Changelog
 
+## 40.0 — Integrated Game Simulation
+
+### Added
+
+- The Morning Crossing, an original connected playable Godot scene with
+  meaningful route choices, citizen activity, weather, visible consequences,
+  mission progression and a controller-oriented HUD.
+- A private fixed-project exporter and two-run integrated input/scene QA.
+
+### Preserved
+
+- All previous labs, factories, Academy disciplines, role/model settings and
+  private evidence and release controls.
+
 ## 39.0 — Living World Lab
 
 ### Added

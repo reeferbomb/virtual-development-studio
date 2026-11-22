@@ -4,6 +4,13 @@ Studio is designed for trusted local development. The Command Center listens
 on loopback and uses local request checks, not Internet-facing authentication.
 Do not expose its port through a public reverse proxy or tunnel.
 
+Integrated Game Lab exports only the fixed original playable Godot project
+to a new private directory. Explicit offline QA runs the reviewed input and
+scene checks twice, verifies source integrity and compares structured results.
+Do not run untrusted scenes or attach private telemetry. Keep reports and
+generated projects outside the checkout; this is not an authenticated release
+or player-data service.
+
 Living World Lab runs only its fixed original Godot fixtures, twice with
 separate isolated engine processes, after explicit opt-in. It checks exact
 source and report identity; those checks do not authenticate evidence or

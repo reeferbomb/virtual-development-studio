@@ -1,4 +1,4 @@
-# Graveforge Studios — Living World Lab v39.0
+# Graveforge Studios — Integrated Game Simulation v40.0
 
 **A free, open-source game development studio toolkit.**
 
@@ -184,6 +184,21 @@ code and bundled original test assets are MIT-licensed; see [LICENSE](LICENSE).
 Godot, Blender and other external assets retain their respective licenses.
 For contributions see [CONTRIBUTING.md](CONTRIBUTING.md), and for release
 history see [CHANGELOG.md](CHANGELOG.md).
+
+## New in v40 — integrated game simulation
+
+The [Integrated Game Lab](gameplay/integrated_lab/README.md) combines player
+input, mission branches, scheduled workers, weather, observable world changes,
+and a controller-friendly journal in one original playable Godot scene.
+
+```sh
+python3 -m gameplay.integrated_lab.runner --output ../morning-crossing --engine
+```
+
+The private export can be opened in Godot 4 to play The Morning Crossing.
+The explicit engine QA runs twice, using the same input dispatch as the game.
+Prior labs remain independent and unchanged. Scripted play is not evidence of
+human enjoyment, visual quality or target hardware performance.
 
 ## New in v39 — living-world gameplay systems
 

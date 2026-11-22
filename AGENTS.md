@@ -1,5 +1,16 @@
 # Graveforge Studios agent deployment policy
 
+## Integrated Game Simulation (v40)
+
+Use `gameplay/integrated_lab/README.md` for authorized connected gameplay
+prototyping. Keep progression and world facts under one authoritative session;
+route real input through the same dispatch used in QA. Verify both branches,
+observable consequences, UI synchronization, modal input, idempotent rewards
+and retry isolation. Use two fresh isolated runs on identical fixed sources.
+Keep exports and reports private outside the checkout. Playable prototype and
+scripted checks do not establish human enjoyment, physical controller comfort,
+or release readiness. Preserve v39 and all prior production workflows.
+
 ## Living World Lab (v39)
 
 Use `gameplay/world_lab/README.md` and the `gameplay.world_lab.runner` for
