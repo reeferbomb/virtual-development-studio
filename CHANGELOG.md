@@ -1,5 +1,23 @@
 # Changelog
 
+## 34.0 — Story and Performance Academy
+
+### Added
+
+- Six original training tracks and deterministic practice exercises covering
+  motion design, character performance, environmental storytelling, diegetic
+  narrative, voice direction and voice integration.
+- Developer-source-informed field guide, role-specific dispatch workflows and
+  a Lab guide for moving from synthetic exercises to real production review.
+- Practice ledger capacity increased to 400 records, retaining the 32 MiB cap.
+
+### Preserved
+
+- All twenty-two earlier exercises, specialist configuration, factories, privacy
+  boundaries and release gates. Version-4 records do not rewrite history.
+- No recording, voice cloning, personal data collection or automatic engine
+  execution. Structural assessments cannot certify performance or comprehension.
+
 ## 33.0 — Player Experience Academy
 
 ### Added

@@ -1,5 +1,20 @@
 # Graveforge Studios agent deployment policy
 
+## Story and performance academy (v34)
+
+Use the six version-4 Academy tracks and `command_center/STORY_AND_PERFORMANCE.md`
+for authorized animation, world storytelling and voice production. Study
+documented techniques from other games; create original characters, scenes,
+scripts and assets. Synchronize pose, contact, game events, speech, captions
+and interruption states. Build environmental clues that support inference
+through multiple routes and accessible channels. Direct voices with character
+intent and context; verify consent and usage rights before recording or synthesis.
+Never imitate or clone an identifiable voice without express authorization and
+applicable rights. Use only synthetic structured practice data. Keep source
+recordings and production evidence private. Inspect real gameplay and listen to
+authorized recordings separately. No claim of model-weight training, artistic
+quality, player comprehension or release approval follows from a rubric pass.
+
 ## Player experience academy (v33)
 
 Use the six new tracks in the version-3 Academy and Lab and the field guide

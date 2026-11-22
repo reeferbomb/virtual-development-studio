@@ -8,7 +8,7 @@ from copy import deepcopy
 
 from .provenance import spec_digest
 
-VERSION = 3
+VERSION = 4
 
 
 def _track(identifier, title, roles, workflow, deliverables, verification, exercise):
@@ -105,9 +105,13 @@ def extension_modules():
     from . import lab_cutscenes, lab_audio, lab_multiplayer, lab_persistence, lab_encounters, lab_production
     from . import lab_fun, lab_replayability, lab_player_research, lab_visual_direction
     from . import lab_visual_readability, lab_experience_iteration
+    from . import lab_motion_design, lab_character_performance, lab_environmental_story
+    from . import lab_diegetic_narrative, lab_voice_direction, lab_voice_integration
     return (lab_cutscenes, lab_audio, lab_multiplayer, lab_persistence, lab_encounters, lab_production,
             lab_fun, lab_replayability, lab_player_research, lab_visual_direction,
-            lab_visual_readability, lab_experience_iteration)
+            lab_visual_readability, lab_experience_iteration,
+            lab_motion_design, lab_character_performance, lab_environmental_story,
+            lab_diegetic_narrative, lab_voice_direction, lab_voice_integration)
 
 
 def _all_tracks():

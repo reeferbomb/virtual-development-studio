@@ -2633,7 +2633,7 @@ async function renderQuality(id, routeId) {
 }
 
 function validCurriculum(data) {
-  if (![1, 2, 3].includes(data?.version) || !isDigest(data.curriculum_sha256) || !coordinationText(data.note)
+  if (![1, 2, 3, 4].includes(data?.version) || !isDigest(data.curriculum_sha256) || !coordinationText(data.note)
     || !Array.isArray(data.tracks) || !data.tracks.length) return false;
   return new Set(data.tracks.map(track => track?.id)).size === data.tracks.length && data.tracks.every(track =>
     coordinationText(track?.id) && coordinationText(track.title) && coordinationText(track.exercise)
@@ -2825,7 +2825,7 @@ function labArtifactViewer(active) {
 }
 
 function validLab(data) {
-  if (![1, 2, 3].includes(data?.version) || !isDigest(data.lab_sha256) || !coordinationText(data.note)
+  if (![1, 2, 3, 4].includes(data?.version) || !isDigest(data.lab_sha256) || !coordinationText(data.note)
     || !Array.isArray(data.exercises) || !data.exercises.length) return false;
   const uniqueIds = rows => new Set(rows.map(row => row?.id)).size === rows.length;
   return uniqueIds(data.exercises) && data.exercises.every(exercise =>
@@ -3141,6 +3141,15 @@ function renderLab(lab, routeId) {
       guide.append(element("summary", null, "Apply this to a real game"),
         element("p", null, "Choose the audience, intended experience, platform and exact build. Test a concrete hypothesis, compare observations against a baseline, and check for regression or unintended tradeoffs."),
         element("p", "dim", "The Lab measures structured practice only. Record real player reactions only with consent and separately from simulated data. Review actual gameplay visuals and responsiveness on target devices; no rubric can certify fun or artistic quality. See command_center/PLAYER_EXPERIENCE.md."));
+      brief.append(guide);
+    }
+
+    if (["motion-design", "character-performance", "environmental-storytelling", "diegetic-narrative",
+      "voice-direction", "voice-integration"].includes(exercise.id)) {
+      const guide = element("details");
+      guide.append(element("summary", null, "From practice to performance review"),
+        element("p", null, "Study documented game-production techniques, then design an original scene. Inspect gameplay camera motion, contact, visible and audible cues, alternate paths, and speech timing in the exact build."),
+        element("p", "dim", "Structured checks do not verify actual animation quality, story comprehension or audible performance. Use only authorized recordings and assets; no audio uploads or voice imitation. See command_center/STORY_AND_PERFORMANCE.md."));
       brief.append(guide);
     }
 

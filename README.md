@@ -1,4 +1,4 @@
-# Graveforge Studios — Player Experience Academy v33.0
+# Graveforge Studios — Story and Performance Academy v34.0
 
 **A free, open-source game development studio toolkit.**
 
@@ -29,7 +29,7 @@ manager and production checklist in one place.
   first, assign jobs to specialists and keep track of unfinished work.
 - **Build and test:** generate a project, read its build logs, check assets
   and record bugs. A build is a generated set of game or asset files.
-- **Learn game development:** study twenty-two training topics and try practical
+- **Learn game development:** study twenty-eight training topics and try practical
   exercises in the Academy and Lab, including game design, coding, 3D
   modeling, textures, storytelling, animation, testing, fun, replayability
   and visual quality.
@@ -107,7 +107,7 @@ This produces a starting point for development, not a complete custom FPS.
 
 ### Just want to learn?
 
-Open **Training** to read the twenty-two learning tracks. Open **Lab**, choose an
+Open **Training** to read the twenty-eight learning tracks. Open **Lab**, choose an
 exercise, select **Use example**, then **Assess submission**. The studio shows
 which checks passed and why. Change the example to try your own solution,
 and use **Download assessment JSON** to save the result if you want to keep it.
@@ -184,6 +184,27 @@ code and bundled original test assets are MIT-licensed; see [LICENSE](LICENSE).
 Godot, Blender and other external assets retain their respective licenses.
 For contributions see [CONTRIBUTING.md](CONTRIBUTING.md), and for release
 history see [CHANGELOG.md](CHANGELOG.md).
+
+## New in v34 — story and performance academy
+
+Six original practice exercises extend the previous twenty-two:
+
+| Discipline | What specialists practice |
+| --- | --- |
+| Motion design | Locomotion, transitions, contact, root motion and action timing |
+| Character performance | Facial acting, gesture, gaze and retargeting |
+| Environmental storytelling | Physical clues, chronology, inference and alternate routes |
+| Diegetic narrative | Layered visual and audible clues, discovery and accessibility |
+| Voice direction | Casting, delivery, pronunciation, rights and take selection |
+| Voice integration | Reactive speech, interruptions, synchronization and localization |
+
+Study developer-documented methods and original production checklists in the
+[Story and Performance field guide](command_center/STORY_AND_PERFORMANCE.md).
+Training dispatch supplies role-specific workflows; Lab accepts original
+bounded JSON practice, not source recordings, game files or personal data.
+Actual motion, storytelling comprehension and voice quality require separate
+engine playback, listening and human review. All previous exercises remain
+intact; older records remain historical. No new dependencies or permissions.
 
 ## New in v33 — player experience academy
 
@@ -396,7 +417,7 @@ or authenticated model identities.
 Records survive restarts. A revision check prevents overwriting newer actions;
 refresh after a conflict and explicitly retry. Historical rubric records remain
 visible but cannot be reviewed or count toward current practice coverage. The
-ledger is bounded to 200 records (increased in v31) and 32 MiB, shared across current and historical
+ledger is bounded to 400 records (increased in v34) and 32 MiB, shared across current and historical
 role-and-exercise assignments and retries. It fails closed on invalid persisted
 data and refuses additional records rather than deleting old evidence.
 Do not place the ledger or exports in the public source checkout.

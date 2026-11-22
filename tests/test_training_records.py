@@ -186,7 +186,7 @@ class TrainingRecordTests(unittest.TestCase):
                 self.assertEqual(raw, self.file.read_text())
 
     def test_full_ledger_preserves_all_records_and_still_allows_review(self):
-        self.assertEqual(training_records.MAX_RECORDS, 200)
+        self.assertEqual(training_records.MAX_RECORDS, 400)
         with patch.object(training_records, 'MAX_RECORDS', 2):
             first = self.apply(self.record())['records'][0]
             self.apply(self.record(), 1)

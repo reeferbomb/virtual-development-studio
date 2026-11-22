@@ -25,6 +25,14 @@ separate authorization, informed consent, minimized private records, limited
 access and a deletion policy. Neither the dashboard nor dispatch automatically
 collects player reactions or transmits telemetry.
 
+Story and Performance exercises use original synthetic metadata, not recordings,
+voice profiles or imported game assets. Do not submit private scripts, actor
+identifiers, recordings or biometric information to the Academy. Obtain explicit
+authorization and applicable usage rights for voice recording, reuse and synthesis;
+never imitate or clone identifiable voices without consent. Keep authorized
+production assets and review evidence in the private project workspace. Reference
+studies do not authorize extraction or reuse of third-party game assets.
+
 Asset validation reports identify the inspected bytes by SHA-256 and are not
 authenticated certificates of quality or safety. The Lab's report viewer reads
 selected JSON files in the browser; it does not upload, store or approve them.
