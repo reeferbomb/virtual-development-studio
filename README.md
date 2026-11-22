@@ -1,4 +1,4 @@
-# Graveforge Studios — Runtime Lab v38.0
+# Graveforge Studios — Living World Lab v39.0
 
 **A free, open-source game development studio toolkit.**
 
@@ -184,6 +184,22 @@ code and bundled original test assets are MIT-licensed; see [LICENSE](LICENSE).
 Godot, Blender and other external assets retain their respective licenses.
 For contributions see [CONTRIBUTING.md](CONTRIBUTING.md), and for release
 history see [CHANGELOG.md](CHANGELOG.md).
+
+## New in v39 — living-world gameplay systems
+
+The [Living World Lab](gameplay/world_lab/README.md) provides six original
+Godot fixtures for NPC goal selection and path recovery, squad coordination,
+dynamic encounter waves, branching mission presentation, scheduled citizens
+and validated procedural missions. It verifies identical structured outcomes
+across two independent engine runs.
+
+```sh
+python3 -m gameplay.world_lab.runner --output ../living-world-lab --engine
+```
+
+These are reusable original prototypes, not a connected open-world game.
+Private exports and isolated headless runs never collect player telemetry;
+existing factories, Runtime Lab and all Academy exercises are preserved.
 
 ## New in v38 — engine-integrated runtime lab
 

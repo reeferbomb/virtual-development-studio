@@ -37,20 +37,20 @@ SCOPE = ('Fixed original Godot headless runtime probes; no human participants, v
          'GPU/target-device performance, accessibility or release certification.')
 
 
-def _parse_marker(raw, code, digest):
+def _parse_marker(raw, code, digest, *, domains=DOMAINS, checks=CHECKS, marker=MARKER):
     if len(raw) > MAX_OUTPUT or _has_engine_error(raw):
         raise ValueError('Godot emitted an error or exceeded the output limit.')
-    lines = [line for line in raw.splitlines() if line.lstrip().startswith(MARKER.rstrip())]
-    if len(lines) != 1 or not lines[0].startswith(MARKER):
+    lines = [line for line in raw.splitlines() if line.lstrip().startswith(marker.rstrip())]
+    if len(lines) != 1 or not lines[0].startswith(marker):
         raise ValueError('Expected exactly one Runtime Lab marker.')
-    doc = _decode_json(lines[0][len(MARKER):], 'Runtime Lab marker')
+    doc = _decode_json(lines[0][len(marker):], 'Runtime Lab marker')
     if (type(doc) is not dict or set(doc) != {'schema_version', 'source_sha256', 'passed', 'reports'}
             or type(doc['schema_version']) is not int or doc['schema_version'] != 1
             or doc['source_sha256'] != digest or type(doc['passed']) is not bool
-            or type(doc['reports']) is not list or len(doc['reports']) != len(DOMAINS)):
+            or type(doc['reports']) is not list or len(doc['reports']) != len(domains)):
         raise ValueError('Runtime marker does not match the exported source or expected domains.')
     all_passed = True
-    for domain, report in zip(DOMAINS, doc['reports'], strict=True):
+    for domain, report in zip(domains, doc['reports'], strict=True):
         if (type(report) is not dict or set(report) != {'id', 'checks', 'metrics'} or report['id'] != domain
                 or type(report['metrics']) is not dict or type(report['checks']) is not list
                 or not 4 <= len(report['checks']) <= 8):
@@ -64,17 +64,17 @@ def _parse_marker(raw, code, digest):
                 raise ValueError('Invalid or duplicate runtime check.')
             seen.add(row['id'])
             all_passed &= row['passed']
-        if seen != set(CHECKS[domain]):
+        if seen != set(checks[domain]):
             raise ValueError('Runtime domain has different check IDs from the fixed probe contract.')
     if doc['passed'] != all_passed or code != (0 if all_passed else 1):
         raise ValueError('Runtime marker checks, summary and exit code disagree.')
     return doc
 
 
-def _export(output):
-    if TEMPLATE.resolve() != TEMPLATE:
+def _export(output, *, template=TEMPLATE, files=FILES):
+    if template.resolve() != template or not template.is_relative_to(ROOT):
         raise ValueError('Runtime template must be inside the Studio checkout.')
-    sources = {name: _read_regular(TEMPLATE / name, 256 * 1024, 'Runtime template') for name in FILES}
+    sources = {name: _read_regular(template / name, 256 * 1024, 'Runtime template') for name in files}
     inventory = [{'path': name, 'bytes': len(data), 'sha256': hashlib.sha256(data).hexdigest()}
                  for name, data in sorted(sources.items())]
     output.mkdir(mode=0o700)
@@ -85,8 +85,8 @@ def _export(output):
     return inventory
 
 
-def _runtime(output, digest):
-    result = {'status': 'unavailable', 'scope': SCOPE}
+def _runtime(output, digest, *, parser=_parse_marker, scope=SCOPE, log_name='qa.log'):
+    result = {'status': 'unavailable', 'scope': scope}
     godot, offline = _installed_godot(), _offline_prefix()
     if godot is None or offline is None:
         return dict(result, reason='Local Godot 4 and Linux network isolation are required.')
@@ -99,9 +99,9 @@ def _runtime(output, digest):
             result.update(status='failed', godot_version=version.stdout.strip().decode('ascii'))
             qa = _run_bounded([*offline, godot, '--headless', '--path', str(output), '--script', 'res://qa.gd', '--', digest],
                               output, env, timeout=45, max_output=MAX_OUTPUT)
-            (output / 'reports/qa.log').write_bytes(qa.stdout)
+            (output / 'reports' / log_name).write_bytes(qa.stdout)
             result['log_sha256'] = hashlib.sha256(qa.stdout).hexdigest()
-            result['qa'] = _parse_marker(qa.stdout, qa.returncode, digest)
+            result['qa'] = parser(qa.stdout, qa.returncode, digest)
             result['status'] = 'passed' if result['qa']['passed'] else 'failed'
             return result
     except (ValueError, OSError, RuntimeError) as exc:

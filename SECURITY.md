@@ -4,6 +4,12 @@ Studio is designed for trusted local development. The Command Center listens
 on loopback and uses local request checks, not Internet-facing authentication.
 Do not expose its port through a public reverse proxy or tunnel.
 
+Living World Lab runs only its fixed original Godot fixtures, twice with
+separate isolated engine processes, after explicit opt-in. It checks exact
+source and report identity; those checks do not authenticate evidence or
+permit arbitrary scenes, user scripts or telemetry collection. Keep both
+generated logs and all runtime reports outside the public checkout.
+
 The Runtime Lab exports only fixed Studio-authored Godot scripts to a new
 private directory outside the checkout. Its explicit `--engine` option requires
 network isolation and runs only that project with a bounded process and output.

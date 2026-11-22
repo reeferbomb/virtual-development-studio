@@ -1,5 +1,20 @@
 # Changelog
 
+## 39.0 — Living World Lab
+
+### Added
+
+- Six Godot fixtures for NPC utility and path recovery, squad coordination,
+  dynamic encounters, branching mission UI, citizen schedules and procedural
+  missions with validation.
+- Isolated repeated-runtime QA with exact check identities, source integrity
+  and equality of structured observations, preserving both private logs.
+
+### Preserved
+
+- Existing Runtime Lab contract, Production Intelligence, factories, all 40
+  Academy disciplines, specialist configuration and privacy/release controls.
+
 ## 38.0 — Engine-integrated Runtime Lab
 
 ### Added

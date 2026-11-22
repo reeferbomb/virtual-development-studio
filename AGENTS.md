@@ -1,5 +1,17 @@
 # Graveforge Studios agent deployment policy
 
+## Living World Lab (v39)
+
+Use `gameplay/world_lab/README.md` and the `gameplay.world_lab.runner` for
+authorized procedural gameplay prototyping. Study the six original fixtures:
+goal selection from bounded observations, game squad roles, fair encounter
+eligibility and waves, visible quest progression, citizen routines and
+validated procedural missions. Two explicit isolated runs must produce the
+same exact check coverage and structured observations. Keep generated scenes,
+reports and logs private; no arbitrary projects or human telemetry are accepted.
+The lab is not a complete connected game or evidence of player enjoyment,
+physical-device performance, rendered quality or release acceptance.
+
 ## Engine-backed Runtime Lab (v38)
 
 For authorized runtime prototyping use `gameplay/runtime_lab/README.md` and
