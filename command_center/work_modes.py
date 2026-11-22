@@ -111,6 +111,13 @@ def _synthesis(mode, output):
     _strings(output['risks'])
 
 
+def _open_planning(session):
+    """Archive the exact creative result and initialize a fresh planning round."""
+    session['creative_stage'] = deepcopy({k: session[k] for k in ('reports', 'synthesis', 'synthesis_sha256', 'decision')})
+    session['parent_concept'] = deepcopy(next(o for o in session['synthesis']['alternatives'] if o['id'] == session['decision']['choice']))
+    session.update(phase='planning', reports={}, synthesis=None, synthesis_sha256=None, decision=None)
+
+
 def apply(project, event):
     """Apply one validated session event to the registry's detached project copy."""
     shapes = {'start': 'mode brief constraints from_session', 'report': 'role status summary',
@@ -118,14 +125,20 @@ def apply(project, event):
     if type(event) is not dict or type(event.get('op')) is not str or event['op'] not in shapes:
         raise ValueError('Invalid work-mode event.')
     op = event['op']
-    _fields(event, 'op session_id ' + shapes[op])
+    # Legacy session events remain byte-compatible; the unified mode requires
+    # an explicit phase on every write to prevent late creative reports from
+    # being mistaken for planning findings.
+    optional = ' autonomous' if op == 'start' and 'autonomous' in event else (' phase' if op != 'start' and 'phase' in event else '')
+    _fields(event, 'op session_id ' + shapes[op] + optional)
     sid = event['session_id']
     _id(sid)
     if op == 'start':
         sessions = project.setdefault('work_modes', {})
         mode = event['mode']
-        if mode not in ('creative', 'planning') or sid in sessions or len(sessions) >= _LIMIT:
+        if mode not in ('creative', 'planning', 'creative-planning') or sid in sessions or len(sessions) >= _LIMIT:
             raise ValueError('Invalid or duplicate work-mode session.')
+        if 'autonomous' in event and (mode != 'creative-planning' or type(event['autonomous']) is not bool):
+            raise ValueError('Autonomous drafting is available only in the combined mode.')
         if any(s['decision'] is None for s in sessions.values()):
             raise ValueError('Close the existing work-mode session first.')
         _text(event['brief'])
@@ -140,11 +153,19 @@ def apply(project, event):
                                       from_session=event['from_session'], parent_concept=parent, identity=_identity(project),
                                       source=project['source'], environment=project['environment'], reports={}, synthesis=None,
                                       synthesis_sha256=None, decision=None))
+        if mode == 'creative-planning':
+            sessions[sid].update(phase='creative', creative_stage=None, autonomous=event.get('autonomous', False))
         return
     s = _session(project, sid)
     if s['decision'] is not None:
         raise ValueError('Closed work-mode session is immutable.')
     fresh = s['identity'] == _identity(project)
+    stage = s.get('phase', s['mode'])
+    if s['mode'] == 'creative-planning':
+        if event.get('phase') != stage:
+            raise ValueError('Work-mode event must match the current phase.')
+    elif 'phase' in event:
+        raise ValueError('Legacy sessions do not accept a phase field.')
     if op == 'report':
         role = event['role']
         if not fresh or s['synthesis'] is not None or role not in _roles() or role in s['reports'] or event['status'] not in ('reported', 'unavailable'):
@@ -154,9 +175,13 @@ def apply(project, event):
     elif op == 'synthesize':
         if not fresh or s['synthesis'] is not None or event['actor'] != 'lead' or set(s['reports']) != set(_roles()):
             raise ValueError('Synthesis requires current session and all six report dispositions.')
-        _synthesis(s['mode'], event['output'])
+        _synthesis(stage, event['output'])
         s['synthesis'] = deepcopy(event['output'])
         s['synthesis_sha256'] = spec_digest(s)
+        if s.get('autonomous') and stage == 'creative' and s['reports']['verification']['status'] == 'reported':
+            s['decision'] = dict(actor='lead', decision='provisional', choice=s['synthesis']['recommendation'],
+                                 digest=s['synthesis_sha256'], rationale='Delegated autonomous drafting; final user approval remains pending.')
+            _open_planning(s)
     else:
         decision = event['decision']
         if event['actor'] != 'user' or decision not in ('approve', 'defer', 'reject'):
@@ -165,12 +190,14 @@ def apply(project, event):
         if decision == 'approve':
             if not fresh or s['synthesis'] is None or event['digest'] != s['synthesis_sha256'] or s['reports']['verification']['status'] != 'reported':
                 raise ValueError('Approval needs current synthesis and independent verification-role critique.')
-            choices = [o['id'] for o in s['synthesis']['alternatives']] if s['mode'] == 'creative' else [None]
+            choices = [o['id'] for o in s['synthesis']['alternatives']] if stage == 'creative' else [None]
             if event['choice'] not in choices:
                 raise ValueError('Select an actual creative alternative or approve the plan.')
         elif event['choice'] is not None or event['digest'] not in (None, s['synthesis_sha256']):
             raise ValueError('A non-approval cannot select an alternative.')
         s['decision'] = deepcopy({k: event[k] for k in ('actor', 'decision', 'choice', 'digest', 'rationale')})
+        if s['mode'] == 'creative-planning' and stage == 'creative' and decision == 'approve':
+            _open_planning(s)
 
 
 def dispatch(project, sid):
@@ -179,15 +206,46 @@ def dispatch(project, sid):
     if s['decision'] is not None or s['identity'] != _identity(project):
         raise ValueError('Work-mode dispatch is closed or stale.')
     profile = default_profile()
+    stage = s.get('phase', s['mode'])
     instructions = [dict(role=role['id'], instruction=task + ' Return independent ideas or planning findings, not implementation or evidence of execution.')
-                    for role, task in zip(profile['roles'], _TASKS[s['mode']], strict=True)]
-    return deepcopy(dict(status='dispatch-plan-only', mode=s['mode'], session_id=sid, profile=profile,
+                    for role, task in zip(profile['roles'], _TASKS[stage], strict=True)]
+    result = dict(status='dispatch-plan-only', mode=s['mode'], session_id=sid, profile=profile,
                          brief=s['brief'], constraints=s['constraints'], parent_concept=s['parent_concept'], source=s['source'],
                          assignments=instructions, private=True, launches_agents=False, authorizes_execution=False,
-                         phase_policy='Stop at user decision. Sustained-work settings do not authorize implementation or publication.'))
+                         phase_policy='Stop at user decision. Sustained-work settings do not authorize implementation or publication.')
+    if s['mode'] == 'creative-planning':
+        from . import lab_creative_ideation, lab_autonomous_planning
+        result['training'] = (lab_creative_ideation if stage == 'creative' else lab_autonomous_planning).TRACK
+        result['phase'] = stage
+        result['autonomous'] = s['autonomous']
+        result['phase_policy'] = ('Use a provisional lead recommendation to open planning; stop at final user approval or blockers.' if s['autonomous'] else 'User concept selection opens planning in the same session.') + ' Final plan approval does not authorize implementation or publication.'
+    return deepcopy(result)
 
 
 def handoff(project, sid):
     s = _session(project, sid)
     return deepcopy(dict(s, session_id=sid, fresh=s['identity'] == _identity(project), private=True,
                          authorizes_execution=False, authorizes_release=False))
+
+
+def next_action(project, sid):
+    """Read-only continuation instruction for a host; never launches or fabricates a report."""
+    s = _session(project, sid)
+    phase = s.get('phase', s['mode'])
+    missing = [role for role in _roles() if role not in s['reports']]
+    fresh = s['identity'] == _identity(project)
+    if s['decision'] is not None:
+        action = 'complete'
+    elif not fresh:
+        action = 'stale'
+    elif missing:
+        action = 'dispatch'
+    elif s['synthesis'] is None:
+        action = 'synthesize'
+    elif s['reports']['verification']['status'] != 'reported':
+        action = 'blocked'
+    else:
+        action = 'await-user'
+    return dict(session_id=sid, mode=s['mode'], phase=phase, action=action, pending_roles=missing,
+                autonomous=s.get('autonomous',False), fresh=fresh, authorizes_execution=False,
+                launches_agents=False, private=True)

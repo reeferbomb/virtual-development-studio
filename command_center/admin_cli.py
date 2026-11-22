@@ -64,7 +64,8 @@ def parser():
     t = sub.add_parser('review-handoff', help='Export the private review history and decision')
     t.add_argument('review')
     for action, help_text in [('mode-dispatch', 'Export independent private Midnight Shift assignments'),
-                              ('mode-handoff', 'Export current creative or planning session and approval')]:
+                              ('mode-handoff', 'Export current creative or planning session and approval'),
+                              ('mode-next', 'Inspect the next safe work-mode action and pending roles')]:
         mode = sub.add_parser(action, help=help_text)
         mode.add_argument('project')
         mode.add_argument('session')
@@ -75,10 +76,11 @@ def parser():
         mode.add_argument('--revision', required=True, type=int)
         return mode
     start = mode_writer('mode-start', 'Start a project-scoped pre-production session')
-    start.add_argument('mode', choices=('creative', 'planning'))
+    start.add_argument('mode', nargs='?', default='creative-planning', choices=('creative-planning', 'creative', 'planning'))
     start.add_argument('--brief', required=True)
     start.add_argument('--constraint', action='append', default=[])
     start.add_argument('--from-session')
+    start.add_argument('--autonomous', action='store_true', help='Delegate provisional concept selection and drafting; final user decision remains required')
     report = mode_writer('mode-report', 'Record an actual specialist report or unavailable status')
     report.add_argument('role')
     report.add_argument('status', choices=('reported', 'unavailable'))
@@ -90,6 +92,8 @@ def parser():
     decide.add_argument('--choice')
     decide.add_argument('--digest')
     decide.add_argument('--rationale', required=True)
+    for writer in (report, synthesis, decide):
+        writer.add_argument('--phase', choices=('creative', 'planning'), help='Required for unified creative-planning sessions')
     packet = sub.add_parser('packet', help='Generate a deliberately shareable review packet')
     packet.add_argument('review')
     packet.add_argument('provider')
@@ -150,12 +154,16 @@ def run(args):
         op = action.removeprefix('mode-')
         if op == 'start':
             fields = dict(mode=args.mode, brief=args.brief, constraints=args.constraint, from_session=args.from_session)
+            if args.autonomous:
+                fields['autonomous'] = True
         elif op == 'report':
             fields = dict(role=args.role, status=args.status, summary=args.summary)
         elif op == 'synthesize':
             fields = dict(actor='lead', output=_json(args.output))
         else:
             fields = dict(actor='user', decision=args.decision, choice=args.choice, digest=args.digest, rationale=args.rationale)
+        if op != 'start' and args.phase is not None:
+            fields['phase'] = args.phase
         event = dict(type='work-mode', project_id=args.project, event=dict(op=op, session_id=args.session, **fields))
         return replay(admin_store.append(args.journal, args.revision, 'registry', event, validator=replay))
     if action == 'receive':
@@ -169,11 +177,11 @@ def run(args):
         return admin_registry.handoff(state['registry'], args.project, args.checkpoint)
     if action == 'review-handoff':
         return tribunal.handoff(state['tribunal'], args.review)
-    if action in ('mode-dispatch', 'mode-handoff'):
+    if action in ('mode-dispatch', 'mode-handoff', 'mode-next'):
         project = state['registry']['projects'].get(args.project)
         if project is None:
             raise ValueError('Unknown project.')
-        result = (work_modes.dispatch if action == 'mode-dispatch' else work_modes.handoff)(project, args.session)
+        result = {'mode-dispatch':work_modes.dispatch, 'mode-handoff':work_modes.handoff, 'mode-next':work_modes.next_action}[action](project, args.session)
         return dict(result, project_id=args.project, project_name=project['name'])
     if action == 'packet':
         return tribunal.packet(state['tribunal'], args.review, args.provider, args.round)

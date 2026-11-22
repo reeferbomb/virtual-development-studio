@@ -130,7 +130,7 @@ async function run() {
   assert.equal(filter.id, all().find(node => node.tag === "label").htmlFor);
   filter.value = "gameplay"; filter.events.change(); assert(find(lesson.title)); assert(!find("Modeling practice"));
   assert.equal(requests.length, start + 1);
-  for (const malformed of [{version: 7}, {tracks: [lesson, lesson]}, {tracks: [{...lesson, roles: ["unknown"]}]},
+  for (const malformed of [{version: 8}, {tracks: [lesson, lesson]}, {tracks: [{...lesson, roles: ["unknown"]}]},
     {tracks: [{...lesson, workflow: []}]}, {curriculum_sha256: null}]) {
     patch("training", malformed); await route(); assert(find("Training unavailable")); assert(!find(lesson.exercise));
   }
@@ -145,8 +145,8 @@ async function run() {
     {cwd: path.join(__dirname, ".."), encoding: "utf8", timeout: 20000});
   assert.equal(generated.status, 0, generated.stderr);
   const actual = JSON.parse(generated.stdout);
-  assert.equal(actual.version, 6);
-  assert.equal(actual.tracks.length, 40);
+  assert.equal(actual.version, 7);
+  assert.equal(actual.tracks.length, 42);
   location.hash = "#training"; override = url => url === "/api/training" ? [200, actual] : null;
   await route();
   assert(actual.tracks.every(track => find(track.title)));

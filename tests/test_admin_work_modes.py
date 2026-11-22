@@ -50,6 +50,88 @@ def approved(state):
 
 
 class WorkModeTests(unittest.TestCase):
+    def test_autonomous_combined_mode_drafts_plan_without_intermediate_user_decision(self):
+        s = change(registry(), 'start', 'auto', mode='creative-planning', brief='Explore', constraints=['No fees'], from_session=None, autonomous=True)
+        self.assertEqual(work_modes.next_action(s['projects']['yard'],'auto')['action'],'dispatch')
+        for role in ROLES:
+            s = change(s,'report','auto',phase='creative',role=role,status='reported',summary='Creative fixture')
+        self.assertEqual(work_modes.next_action(s['projects']['yard'],'auto')['action'],'synthesize')
+        s = change(s,'synthesize','auto',phase='creative',actor='lead',output=dict(alternatives=OPTIONS,recommendation='a',risks=[]))
+        p = work_modes.handoff(s['projects']['yard'],'auto')
+        self.assertEqual(p['phase'],'planning')
+        self.assertEqual(p['creative_stage']['decision']['decision'],'provisional')
+        self.assertEqual(p['creative_stage']['decision']['actor'],'lead')
+        self.assertEqual(p['parent_concept']['id'],'a')
+        self.assertEqual(work_modes.next_action(s['projects']['yard'],'auto')['phase'],'planning')
+        for role in ROLES:
+            s = change(s,'report','auto',phase='planning',role=role,status='reported',summary='Plan fixture')
+        s = change(s,'synthesize','auto',phase='planning',actor='lead',output=dict(tasks=TASKS,risks=[]))
+        p = work_modes.handoff(s['projects']['yard'],'auto')
+        self.assertIsNone(p['decision'])
+        self.assertEqual(work_modes.next_action(s['projects']['yard'],'auto')['action'],'await-user')
+        self.assertFalse(p['authorizes_execution'])
+        with self.assertRaises(ValueError):
+            change(s,'decide','auto',phase='planning',actor='lead',decision='approve',choice=None,digest=p['synthesis_sha256'],rationale='Not the owner')
+        s = change(s,'decide','auto',phase='planning',actor='user',decision='approve',choice=None,digest=p['synthesis_sha256'],rationale='Approve selected concept and plan')
+        self.assertEqual(work_modes.handoff(s['projects']['yard'],'auto')['decision']['decision'],'approve')
+        self.assertEqual(work_modes.next_action(s['projects']['yard'],'auto')['action'],'complete')
+
+    def test_autonomous_mode_stops_for_unavailable_verifier(self):
+        s = change(registry(),'start','auto',mode='creative-planning',brief='Explore',constraints=[],from_session=None,autonomous=True)
+        for role in ROLES:
+            s = change(s,'report','auto',phase='creative',role=role,status='unavailable' if role=='verification' else 'reported',summary='Fixture')
+        s = change(s,'synthesize','auto',phase='creative',actor='lead',output=dict(alternatives=OPTIONS,recommendation='a',risks=[]))
+        p = work_modes.handoff(s['projects']['yard'],'auto')
+        self.assertEqual(p['phase'],'creative')
+        self.assertIsNone(p['creative_stage'])
+        self.assertIsNone(p['decision'])
+        self.assertEqual(work_modes.next_action(s['projects']['yard'],'auto')['action'],'blocked')
+
+    def test_combined_mode_preserves_concept_and_plans_in_same_session(self):
+        s = start(registry(), 'creative-planning', 'design')
+        p = work_modes.dispatch(s['projects']['yard'], 'design')
+        self.assertEqual((p['mode'], p['phase']), ('creative-planning', 'creative'))
+        for role in ROLES:
+            s = change(s, 'report', 'design', phase='creative', role=role, status='reported', summary='Creative fixture')
+        s = change(s, 'synthesize', 'design', phase='creative', actor='lead', output=dict(alternatives=OPTIONS,recommendation='a',risks=[]))
+        p = work_modes.handoff(s['projects']['yard'], 'design')
+        s = change(s, 'decide', 'design', phase='creative', actor='user', decision='approve', choice='b', digest=p['synthesis_sha256'], rationale='Choose the other concept')
+        p = work_modes.handoff(s['projects']['yard'], 'design')
+        self.assertEqual(p['phase'], 'planning')
+        self.assertEqual(p['parent_concept']['id'], 'b')
+        self.assertEqual(p['creative_stage']['decision']['choice'], 'b')
+        self.assertEqual(p['reports'], {})
+        self.assertIsNone(p['decision'])
+        dispatch = work_modes.dispatch(s['projects']['yard'], 'design')
+        self.assertEqual(dispatch['phase'], 'planning')
+        self.assertNotIn('Creative fixture', json.dumps(dispatch))
+        with self.assertRaises(ValueError):
+            change(s,'report','design',phase='creative',role='content',status='reported',summary='Late report')
+        with self.assertRaises(ValueError):
+            change(s,'report','design',role='content',status='reported',summary='Missing phase')
+        for role in ROLES:
+            s = change(s,'report','design',phase='planning',role=role,status='reported',summary='Planning fixture')
+        s = change(s,'synthesize','design',phase='planning',actor='lead',output=dict(tasks=TASKS,risks=[]))
+        p = work_modes.handoff(s['projects']['yard'],'design')
+        s = change(s,'decide','design',phase='planning',actor='user',decision='approve',choice=None,digest=p['synthesis_sha256'],rationale='Approve plan')
+        p = work_modes.handoff(s['projects']['yard'],'design')
+        self.assertEqual(p['decision']['decision'],'approve')
+        self.assertEqual(p['creative_stage']['decision']['choice'],'b')
+        self.assertFalse(p['authorizes_execution'])
+        self.assertEqual(list(s['projects']['yard']['work_modes']), ['design'])
+
+    def test_combined_mode_can_defer_and_default_cli_starts_combined(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            journal=Path(tmp)/'journal.json'
+            def call(*args): return admin_cli.run(admin_cli.parser().parse_args(['--journal',str(journal),*args]))
+            file=Path(tmp)/'project.json'; file.write_text(json.dumps(dict(type='project',project_id='yard',name='Yard',source=SOURCE,environment={'engine':'fixture'})))
+            call('append','registry',str(file),'--revision','0')
+            call('mode-start','yard','unified','--brief','Explore and plan','--revision','1')
+            self.assertEqual(call('mode-dispatch','yard','unified')['mode'],'creative-planning')
+            call('mode-report','yard','unified','content','reported','--phase','creative','--summary','Original design','--revision','2')
+            call('mode-decide','yard','unified','defer','--phase','creative','--rationale','Wait','--revision','3')
+            self.assertEqual(call('mode-handoff','yard','unified')['decision']['decision'],'defer')
+
     def test_creative_dispatch_preserves_profiles_and_independence(self):
         s = start(registry())
         initial = work_modes.dispatch(s['projects']['yard'], 'creative1')

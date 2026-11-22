@@ -51,7 +51,7 @@ from .work_orders import work_orders
 from world.procedural import generate, plan_route
 
 ROOT = Path(__file__).resolve().parents[1]
-VERSION = '41.1'
+VERSION = '41.2'
 LIMIT = 1024 * 1024
 STATIC = {'/': 'index.html', '/index.html': 'index.html', '/app.js': 'app.js',
           '/editor.js': 'editor.js', '/style.css': 'style.css', '/editor.css': 'editor.css'}

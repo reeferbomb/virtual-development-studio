@@ -1,4 +1,4 @@
-# Graveforge Studios — Creative & Planning Modes v41.1
+# Graveforge Studios — Autonomous Creative & Planning v41.2
 
 **A free, open-source game development studio toolkit.**
 
@@ -107,7 +107,7 @@ This produces a starting point for development, not a complete custom FPS.
 
 ### Just want to learn?
 
-Open **Training** to read the forty learning tracks. Open **Lab**, choose an
+Open **Training** to read the 42 learning tracks. Open **Lab**, choose an
 exercise, select **Use example**, then **Assess submission**. The studio shows
 which checks passed and why. Change the example to try your own solution,
 and use **Download assessment JSON** to save the result if you want to keep it.
@@ -185,15 +185,16 @@ Godot, Blender and other external assets retain their respective licenses.
 For contributions see [CONTRIBUTING.md](CONTRIBUTING.md), and for release
 history see [CHANGELOG.md](CHANGELOG.md).
 
-## New in v41.1 — Creative Mode and Planning Mode
+## New in v41.2 — Unified Creative & Planning Mode
 
-Ask Graveforge to **activate Creative Mode** to explore different original
-game ideas, mechanics, visual styles, storytelling and player experiences.
-Ask for **Planning Mode** to turn an approved direction into a practical plan
-with ordered tasks, owners, risks and acceptance criteria. The Midnight Shift
-keeps its existing six roles and model settings. Both modes preserve private
-independent findings and wait for a user decision before moving forward.
-They do not automatically launch agents or start building a game.
+Ask Graveforge to **activate Creative & Planning Mode** to explore original
+concepts and turn a selected direction into a practical plan in one private
+session. With explicit autonomous drafting authorization, the lead selects a
+provisional concept and carries it into planning without routine pauses.
+Final approval remains with the user. The six Midnight Shift roles remain
+unchanged. Academy v7 adds creative ideation and autonomous planning practice,
+for 42 role-specific tracks. No model-weight training, automatic agent calls
+or development authorization is implied.
 
 See the [work modes guide](command_center/WORK_MODES.md) for commands,
 examples, role assignments and how to resume a session in a later chat.

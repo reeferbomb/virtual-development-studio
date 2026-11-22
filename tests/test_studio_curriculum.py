@@ -38,12 +38,12 @@ class CurriculumTests(unittest.TestCase):
 
     def test_core_disciplines_and_role_coverage_are_versioned(self):
         result = curriculum()
-        self.assertEqual(result['version'], 6)
+        self.assertEqual(result['version'], 7)
         self.assertEqual(result['curriculum_sha256'], spec_digest({k: v for k, v in result.items()
                                                                 if k != 'curriculum_sha256'}))
         ids = {track['id'] for track in result['tracks']}
         self.assertTrue({'game-design', 'game-development', 'modeling', 'textures', 'storytelling'} <= ids)
-        self.assertEqual(len(ids), 40)
+        self.assertEqual(len(ids), 42)
         self.assertTrue({'cutscenes', 'game-audio', 'multiplayer', 'persistence', 'ai-encounters',
                          'production-pipeline'} <= ids)
         self.assertTrue({'player-enjoyment', 'replayability', 'player-research', 'visual-direction',

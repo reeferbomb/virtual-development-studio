@@ -18,7 +18,7 @@ MAX_DEPTH = 12
 MAX_STRING = 4096
 # Bump on any change to rubric or evaluator behavior, even if catalog text is
 # unchanged: saved records are re-evaluated only under the exact current digest.
-VERSION = 6
+VERSION = 7
 
 
 def reject_duplicate_keys(pairs):

@@ -2,9 +2,9 @@ name: Admin and Tribunal deterministic checks
 
 on:
   push:
-    paths: ['command_center/admin_*.py', 'command_center/work_modes.py', 'command_center/dispatch.py', 'command_center/tribunal*.py', 'command_center/strict_engine_log.py', 'cinematic/production/runner.py', 'studio.py', 'tests/test_admin*.py', 'tests/test_tribunal*.py', 'tests/test_strict_engine_log.py', '.github/workflows/admin-tribunal.yml']
+    paths: ['command_center/admin_*.py', 'command_center/work_modes.py', 'command_center/dispatch.py', 'command_center/lab_creative_ideation.py', 'command_center/lab_autonomous_planning.py', 'command_center/studio_curriculum.py', 'command_center/training_lab.py', 'command_center/tribunal*.py', 'command_center/strict_engine_log.py', 'cinematic/production/runner.py', 'studio.py', 'tests/test_admin*.py', 'tests/test_creative_planning_training.py', 'tests/test_training_lab.py', 'tests/test_tribunal*.py', 'tests/test_strict_engine_log.py', '.github/workflows/admin-tribunal.yml']
   pull_request:
-    paths: ['command_center/admin_*.py', 'command_center/work_modes.py', 'command_center/dispatch.py', 'command_center/tribunal*.py', 'command_center/strict_engine_log.py', 'cinematic/production/runner.py', 'studio.py', 'tests/test_admin*.py', 'tests/test_tribunal*.py', 'tests/test_strict_engine_log.py', '.github/workflows/admin-tribunal.yml']
+    paths: ['command_center/admin_*.py', 'command_center/work_modes.py', 'command_center/dispatch.py', 'command_center/lab_creative_ideation.py', 'command_center/lab_autonomous_planning.py', 'command_center/studio_curriculum.py', 'command_center/training_lab.py', 'command_center/tribunal*.py', 'command_center/strict_engine_log.py', 'cinematic/production/runner.py', 'studio.py', 'tests/test_admin*.py', 'tests/test_creative_planning_training.py', 'tests/test_training_lab.py', 'tests/test_tribunal*.py', 'tests/test_strict_engine_log.py', '.github/workflows/admin-tribunal.yml']
 
 permissions:
   contents: read
@@ -22,6 +22,8 @@ jobs:
       - name: Run deterministic checks (no provider accounts)
         run: |
           python -m unittest discover -s tests -p 'test_admin*.py' -v
+          python -m unittest discover -s tests -p 'test_creative_planning_training.py' -v
+          python -m unittest discover -s tests -p 'test_training_lab.py' -v
           python -m unittest discover -s tests -p 'test_tribunal*.py' -v
           python -m unittest discover -s tests -p 'test_strict_engine_log.py' -v
           python -m unittest discover -s tests -p 'test_studio.py' -v

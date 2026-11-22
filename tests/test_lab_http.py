@@ -58,9 +58,9 @@ class LabHTTPTests(unittest.TestCase):
 
         catalog = self.request(CATALOG, headers={'Origin': self.origin})
         self.assertEqual(self.request(CATALOG), catalog)
-        self.assertEqual(catalog['version'], 6)
+        self.assertEqual(catalog['version'], 7)
         self.assertRegex(catalog['lab_sha256'], r'^[0-9a-f]{64}\Z')
-        self.assertEqual(len(catalog['exercises']), 40)
+        self.assertEqual(len(catalog['exercises']), 42)
         self.assertTrue(catalog['note'])
         exercise = self.interface_exercise(catalog)
         for field in ('title', 'brief', 'roles', 'criteria', 'example'):
@@ -68,7 +68,7 @@ class LabHTTPTests(unittest.TestCase):
 
         submission = {'exercise_id': exercise['id'], 'submission': exercise['example']}
         assessment = self.request(ASSESS, 'POST', submission, headers={**JSON_HEADERS, 'Origin': self.origin})
-        self.assertEqual(assessment['version'], 6)
+        self.assertEqual(assessment['version'], 7)
         self.assertEqual(assessment['exercise_id'], 'interface')
         self.assertEqual(assessment['lab_sha256'], catalog['lab_sha256'])
         self.assertRegex(assessment['submission_sha256'], r'^[0-9a-f]{64}\Z')
@@ -110,7 +110,7 @@ class LabHTTPTests(unittest.TestCase):
                 self.assertEqual(track['roles'], exercise['roles'])
                 result = self.request(ASSESS, 'POST', {'exercise_id': exercise['id'], 'submission': exercise['example']})
                 self.assertEqual(result['status'], 'pass')
-                self.assertEqual(result['version'], 6)
+                self.assertEqual(result['version'], 7)
                 self.assertGreaterEqual(len(result['checks']), 3)
                 self.assert_error(400, ASSESS, 'POST', {'exercise_id': exercise['id'], 'submission': {}})
                 titles.remove(exercise['id'])

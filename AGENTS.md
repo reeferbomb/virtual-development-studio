@@ -1,20 +1,23 @@
 # Graveforge Studios agent deployment policy
 
-## Creative and Planning modes (v41.1)
+## Unified Creative & Planning Mode (v41.2)
 
-When the owner says “Activate Creative Mode” or “Activate Planning Mode”,
+When the owner says “Activate Creative & Planning Mode” (or either former name),
 use the project-scoped workflow in `command_center/WORK_MODES.md` and the
-`command_center.admin_cli mode-*` commands. Creative Mode generates independent
+`command_center.admin_cli mode-*` commands. The creative phase generates independent
 original alternatives, including player experience and presentation, before the
-lead synthesizes tradeoffs. Planning Mode produces owned, dependency-checked
-tasks, risks and measurable acceptance criteria; it can start from an approved
-Creative Mode concept or an already established project direction.
+lead synthesizes tradeoffs. The planning phase follows within the same session
+and produces owned, dependency-checked tasks, risks and measurable criteria.
+Use `--autonomous` when authorized to recommend a provisional direction and
+finish the plan without intermediate owner confirmation; stop for blockers.
+Use `mode-next` to resume the next safe step and dispatch only pending roles.
+Apply the new Academy v7 Creative Ideation and Autonomous Planning tracks.
 Use the unchanged Midnight Shift profile and the exported role-specific briefs;
 do not expose one specialist's initial findings to another before synthesis.
 Record actual reports or explicit unavailable slots, never inferred responses.
 Doctor Doomcheck independently critiques assumptions and verification plans;
-the lead coordinates and only the user approves the exact synthesis. Modes
-stop at that decision, even under sustained-work settings. Approval does not
+the lead coordinates; only the user approves the final exact synthesis. Stop
+at final approval, even under sustained-work settings. Approval does not
 authorize development, asset acquisition, test certification or publication.
 The Tribunal is optional and uses only separately approved shareable summaries.
 Keep session and checkpoint history private; source, environment or decision

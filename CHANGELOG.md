@@ -1,5 +1,15 @@
 # Changelog
 
+## 41.2 — Unified autonomous creative and planning
+
+- One default combined session with independent creative and planning rounds,
+  preserved concept decisions and phase-bound reports. Existing v41.1 single
+  phase sessions remain readable and writable.
+- Opt-in autonomous drafting advances a provisional lead recommendation into
+  planning; final user approval, independent critique and source gates remain.
+- Academy v7 adds creative ideation and autonomous planning assessments,
+  increasing coverage to 42 tracks without changing previous exercise content.
+
 ## 41.1 — Creative and Planning modes
 
 ### Added

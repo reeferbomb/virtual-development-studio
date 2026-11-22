@@ -23,11 +23,11 @@ class PracticeProgressTests(unittest.TestCase):
                             for r in result['roles']))
         assignments = sum(r['assigned_exercises'] for r in result['roles'])
         self.assertEqual(assignments, sum(len(e['roles']) for e in lab_catalog()['exercises']))
-        self.assertEqual(assignments, 177)
+        self.assertEqual(assignments, 189)
         from command_center.training_records import MAX_RECORDS
         # Leave room for all earlier catalogs' complete role/exercise
         # coverage and one fresh current submission per assignment.
-        self.assertGreater(MAX_RECORDS, 39 + 64 + 93 + 119 + 148 + assignments)
+        self.assertGreater(MAX_RECORDS, 39 + 64 + 93 + 119 + 148 + 177 + assignments)
 
     def test_reference_failed_pending_historical_and_duplicate_evidence_do_not_inflate_coverage(self):
         changed = copy.deepcopy(self.example)

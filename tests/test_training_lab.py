@@ -15,11 +15,11 @@ from command_center.training_lab_cli import main
 
 
 class TrainingLabTests(unittest.TestCase):
-    def test_all_forty_reference_exercises_have_measured_passing_checks(self):
+    def test_all_reference_exercises_have_measured_passing_checks(self):
         catalog = lab_catalog()
         tracks = curriculum()['tracks']
-        self.assertEqual(catalog['version'], 6)
-        self.assertEqual(len(tracks), 40)
+        self.assertEqual(catalog['version'], 7)
+        self.assertEqual(len(tracks), 42)
         # Every original rubric and teaching artifact remains byte-identical
         # under the v2 catalog contract, despite the new catalog identity.
         self.assertEqual(spec_digest({**{k: v for k, v in catalog.items() if k != 'lab_sha256'},
@@ -99,7 +99,7 @@ class TrainingLabTests(unittest.TestCase):
         with redirect_stdout(io.StringIO()) as output:
             self.assertEqual(main(['examples']), 0)
         summary = json.loads(output.getvalue())
-        self.assertEqual(summary['summary'], {'pass': 40, 'fail': 0})
+        self.assertEqual(summary['summary'], {'pass': 42, 'fail': 0})
         example = next(e['example'] for e in lab_catalog()['exercises'] if e['id'] == 'interface')
         with tempfile.TemporaryDirectory() as temporary:
             path = Path(temporary) / 'submission.json'

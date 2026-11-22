@@ -8,7 +8,7 @@ from copy import deepcopy
 
 from .provenance import spec_digest
 
-VERSION = 6
+VERSION = 7
 
 
 def _track(identifier, title, roles, workflow, deliverables, verification, exercise):
@@ -111,6 +111,7 @@ def extension_modules():
     from . import lab_reference_traversal, lab_reference_strategy, lab_hud_excellence
     from . import lab_fallout_playstyles, lab_interface_styles, lab_startup_sequences
     from . import lab_art_styles, lab_sound_music, lab_vfx_design
+    from . import lab_creative_ideation, lab_autonomous_planning
     return (lab_cutscenes, lab_audio, lab_multiplayer, lab_persistence, lab_encounters, lab_production,
             lab_fun, lab_replayability, lab_player_research, lab_visual_direction,
             lab_visual_readability, lab_experience_iteration,
@@ -119,7 +120,7 @@ def extension_modules():
             lab_reference_narrative, lab_reference_combat, lab_reference_worlds,
             lab_reference_traversal, lab_reference_strategy, lab_hud_excellence,
             lab_fallout_playstyles, lab_interface_styles, lab_startup_sequences,
-            lab_art_styles, lab_sound_music, lab_vfx_design)
+            lab_art_styles, lab_sound_music, lab_vfx_design, lab_creative_ideation, lab_autonomous_planning)
 
 
 def _all_tracks():
