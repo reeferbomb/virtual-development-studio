@@ -11,6 +11,7 @@ Every event has type and project_id. Additional exact fields:
  checkpoint: checkpoint_id, summary, log_ids, criteria, tests, pending, gaps.
  request: checkpoint_id, reason (user-request/platform-warning), detail.
  receipt: checkpoint_id, packet_sha256, actual_project_id, mode, chat_id, ref.
+ work-mode: event (see work_modes.py; private creative/planning session).
 
 Source is {commit, release_ref, library_ref, sha256, dirty}. Commit is full Git
 hex or null; at least one of commit/release_ref/library_ref must identify the
@@ -34,6 +35,7 @@ import re
 
 from .provenance import spec_digest
 from .admin_lineage import triage_proposal
+from . import work_modes
 
 
 _FIELDS = {
@@ -42,6 +44,7 @@ _FIELDS = {
     'proposal': 'proposal_id owner source_sha256 candidate_ref description status supersedes',
     'checkpoint': 'checkpoint_id summary log_ids criteria tests pending gaps', 'request': 'checkpoint_id reason detail',
     'receipt': 'checkpoint_id packet_sha256 actual_project_id mode chat_id ref',
+    'work-mode': 'event',
 }
 _DECISION_STATUSES = ('proposed', 'accepted', 'rejected', 'deferred')
 
@@ -229,6 +232,8 @@ def _store_checkpoint(project, event):
     checkpoint = deepcopy({k: v for k, v in event.items() if k not in ('type', 'project_id')})
     checkpoint.update(source=dict(project['source']), environment=dict(project['environment']),
                       decision_ids=project['decision_order'].copy(), proposal_ids=project.get('proposal_order', []).copy())
+    if project.get('work_modes'):
+        checkpoint['work_modes'] = deepcopy(project['work_modes'])
     project['checkpoints'][event['checkpoint_id']] = checkpoint
 
 
@@ -290,6 +295,10 @@ def handoff(state: dict, project_id: str, checkpoint_id: str) -> dict:
         successors = {p['supersedes']: p['proposal_id'] for p in captured if p['supersedes'] is not None}
         packet['proposals'] = [dict(p, superseded_by=successors.get(p['proposal_id'])) for p in captured]
         packet['subsequent_proposals'] = [project['proposals'][key] for key in later]
+    if project.get('work_modes'):
+        packet['work_modes'] = {'captured': cp.get('work_modes', {}),
+                                'current': {sid: work_modes.handoff(project, sid) for sid in project['work_modes']},
+                                'changed_since_checkpoint': cp.get('work_modes', {}) != project['work_modes']}
     return deepcopy(dict(packet, packet_sha256=spec_digest(packet)))
 
 
@@ -353,6 +362,8 @@ def apply(state: dict, event: dict) -> dict:
             _store_proposal(project, event)
         elif kind == 'checkpoint':
             _store_checkpoint(project, event)
+        elif kind == 'work-mode':
+            work_modes.apply(project, event['event'])
         else:
             _continuation(updated, project, event)
     return updated

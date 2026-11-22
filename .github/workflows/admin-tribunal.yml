@@ -2,9 +2,9 @@ name: Admin and Tribunal deterministic checks
 
 on:
   push:
-    paths: ['command_center/admin_*.py', 'command_center/tribunal*.py', 'command_center/strict_engine_log.py', 'cinematic/production/runner.py', 'studio.py', 'tests/test_admin*.py', 'tests/test_tribunal*.py', 'tests/test_strict_engine_log.py', '.github/workflows/admin-tribunal.yml']
+    paths: ['command_center/admin_*.py', 'command_center/work_modes.py', 'command_center/dispatch.py', 'command_center/tribunal*.py', 'command_center/strict_engine_log.py', 'cinematic/production/runner.py', 'studio.py', 'tests/test_admin*.py', 'tests/test_tribunal*.py', 'tests/test_strict_engine_log.py', '.github/workflows/admin-tribunal.yml']
   pull_request:
-    paths: ['command_center/admin_*.py', 'command_center/tribunal*.py', 'command_center/strict_engine_log.py', 'cinematic/production/runner.py', 'studio.py', 'tests/test_admin*.py', 'tests/test_tribunal*.py', 'tests/test_strict_engine_log.py', '.github/workflows/admin-tribunal.yml']
+    paths: ['command_center/admin_*.py', 'command_center/work_modes.py', 'command_center/dispatch.py', 'command_center/tribunal*.py', 'command_center/strict_engine_log.py', 'cinematic/production/runner.py', 'studio.py', 'tests/test_admin*.py', 'tests/test_tribunal*.py', 'tests/test_strict_engine_log.py', '.github/workflows/admin-tribunal.yml']
 
 permissions:
   contents: read

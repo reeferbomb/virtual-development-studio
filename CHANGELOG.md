@@ -1,5 +1,18 @@
 # Changelog
 
+## 41.1 — Creative and Planning modes
+
+### Added
+
+- Project-scoped pre-production sessions with distinct Creative and Planning
+  assignments for the existing Midnight Shift profile, private report history,
+  independent critique and explicit user approval of source-bound syntheses.
+- Creative alternatives and tradeoffs, dependency-checked planning tasks,
+  measurable acceptance criteria, and continuation snapshots. Planning can
+  inherit a current user-selected concept without automatically starting work.
+- Local `mode-*` commands and deterministic regression coverage. Existing v41
+  journals and unrelated project histories remain compatible.
+
 ## 41.0 — Administration and Tribunal
 
 ### Added

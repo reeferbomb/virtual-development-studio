@@ -1,5 +1,9 @@
 # Graveforge Administration and Tribunal — v41
 
+For the v41.1 project-scoped Creative and Planning workflows, see
+[Creative & Planning modes](WORK_MODES.md). They use the same private journal
+and preserve independent reports, decisions and continuation history.
+
 ## What this does
 
 Use this local toolkit to resume long projects without losing decisions or

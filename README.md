@@ -1,4 +1,4 @@
-# Graveforge Studios — Administration & Tribunal v41.0
+# Graveforge Studios — Creative & Planning Modes v41.1
 
 **A free, open-source game development studio toolkit.**
 
@@ -184,6 +184,19 @@ code and bundled original test assets are MIT-licensed; see [LICENSE](LICENSE).
 Godot, Blender and other external assets retain their respective licenses.
 For contributions see [CONTRIBUTING.md](CONTRIBUTING.md), and for release
 history see [CHANGELOG.md](CHANGELOG.md).
+
+## New in v41.1 — Creative Mode and Planning Mode
+
+Ask Graveforge to **activate Creative Mode** to explore different original
+game ideas, mechanics, visual styles, storytelling and player experiences.
+Ask for **Planning Mode** to turn an approved direction into a practical plan
+with ordered tasks, owners, risks and acceptance criteria. The Midnight Shift
+keeps its existing six roles and model settings. Both modes preserve private
+independent findings and wait for a user decision before moving forward.
+They do not automatically launch agents or start building a game.
+
+See the [work modes guide](command_center/WORK_MODES.md) for commands,
+examples, role assignments and how to resume a session in a later chat.
 
 ## New in v41 — cross-chat administration and Tribunal
 

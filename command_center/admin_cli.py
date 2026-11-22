@@ -6,7 +6,7 @@ import math
 from pathlib import Path
 import sys
 
-from . import admin_registry, admin_store, tribunal, tribunal_relay, admin_lineage
+from . import admin_registry, admin_store, tribunal, tribunal_relay, admin_lineage, work_modes
 
 
 def _json(path):
@@ -63,6 +63,33 @@ def parser():
     h.add_argument('checkpoint')
     t = sub.add_parser('review-handoff', help='Export the private review history and decision')
     t.add_argument('review')
+    for action, help_text in [('mode-dispatch', 'Export independent private Midnight Shift assignments'),
+                              ('mode-handoff', 'Export current creative or planning session and approval')]:
+        mode = sub.add_parser(action, help=help_text)
+        mode.add_argument('project')
+        mode.add_argument('session')
+    def mode_writer(action, help_text):
+        mode = sub.add_parser(action, help=help_text)
+        mode.add_argument('project')
+        mode.add_argument('session')
+        mode.add_argument('--revision', required=True, type=int)
+        return mode
+    start = mode_writer('mode-start', 'Start a project-scoped pre-production session')
+    start.add_argument('mode', choices=('creative', 'planning'))
+    start.add_argument('--brief', required=True)
+    start.add_argument('--constraint', action='append', default=[])
+    start.add_argument('--from-session')
+    report = mode_writer('mode-report', 'Record an actual specialist report or unavailable status')
+    report.add_argument('role')
+    report.add_argument('status', choices=('reported', 'unavailable'))
+    report.add_argument('--summary', required=True)
+    synthesis = mode_writer('mode-synthesize', 'Record lead synthesis from a private JSON file')
+    synthesis.add_argument('output', type=Path)
+    decide = mode_writer('mode-decide', 'Record the user’s explicit decision; not build or release approval')
+    decide.add_argument('decision', choices=('approve', 'defer', 'reject'))
+    decide.add_argument('--choice')
+    decide.add_argument('--digest')
+    decide.add_argument('--rationale', required=True)
     packet = sub.add_parser('packet', help='Generate a deliberately shareable review packet')
     packet.add_argument('review')
     packet.add_argument('provider')
@@ -119,6 +146,18 @@ def run(args):
         raise ValueError('--journal is required for this command.')
     if action == 'append':
         return replay(admin_store.append(args.journal, args.revision, args.stream, _json(args.event), validator=replay))
+    if action in ('mode-start', 'mode-report', 'mode-synthesize', 'mode-decide'):
+        op = action.removeprefix('mode-')
+        if op == 'start':
+            fields = dict(mode=args.mode, brief=args.brief, constraints=args.constraint, from_session=args.from_session)
+        elif op == 'report':
+            fields = dict(role=args.role, status=args.status, summary=args.summary)
+        elif op == 'synthesize':
+            fields = dict(actor='lead', output=_json(args.output))
+        else:
+            fields = dict(actor='user', decision=args.decision, choice=args.choice, digest=args.digest, rationale=args.rationale)
+        event = dict(type='work-mode', project_id=args.project, event=dict(op=op, session_id=args.session, **fields))
+        return replay(admin_store.append(args.journal, args.revision, 'registry', event, validator=replay))
     if action == 'receive':
         imported = tribunal_relay.import_response(_json(args.packet), _json(args.response),
                                                   event_id=args.event_id, confirmed=args.share_confirmed)
@@ -130,6 +169,12 @@ def run(args):
         return admin_registry.handoff(state['registry'], args.project, args.checkpoint)
     if action == 'review-handoff':
         return tribunal.handoff(state['tribunal'], args.review)
+    if action in ('mode-dispatch', 'mode-handoff'):
+        project = state['registry']['projects'].get(args.project)
+        if project is None:
+            raise ValueError('Unknown project.')
+        result = (work_modes.dispatch if action == 'mode-dispatch' else work_modes.handoff)(project, args.session)
+        return dict(result, project_id=args.project, project_name=project['name'])
     if action == 'packet':
         return tribunal.packet(state['tribunal'], args.review, args.provider, args.round)
     raise ValueError('Unknown command.')
