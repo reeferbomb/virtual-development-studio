@@ -14,6 +14,7 @@ import tempfile
 from command_center.lab_engine_import import (
     MAX_OUTPUT, _installed_godot, _offline_prefix, _run_bounded, _sandbox_env,
 )
+from command_center.strict_engine_log import has_engine_error as _has_engine_error
 from command_center.training_lab import MAX_BYTES, _validate_data, reject_duplicate_keys
 
 from .plan import compile_plan
@@ -166,10 +167,6 @@ def _engine_step(project, env, steps, name, command, timeout):
     step.update({'log': relative, 'exit_code': result.returncode,
                  'log_sha256': hashlib.sha256(result.stdout).hexdigest()})
     return result
-
-
-def _has_engine_error(output):
-    return any(line.lstrip().startswith((b'ERROR:', b'SCRIPT ERROR:')) for line in output.splitlines())
 
 
 def _verify_runtime(project, production_sha256):

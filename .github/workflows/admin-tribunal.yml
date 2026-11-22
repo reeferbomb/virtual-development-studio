@@ -1,0 +1,27 @@
+name: Admin and Tribunal deterministic checks
+
+on:
+  push:
+    paths: ['command_center/admin_*.py', 'command_center/tribunal*.py', 'command_center/strict_engine_log.py', 'cinematic/production/runner.py', 'studio.py', 'tests/test_admin*.py', 'tests/test_tribunal*.py', 'tests/test_strict_engine_log.py', '.github/workflows/admin-tribunal.yml']
+  pull_request:
+    paths: ['command_center/admin_*.py', 'command_center/tribunal*.py', 'command_center/strict_engine_log.py', 'cinematic/production/runner.py', 'studio.py', 'tests/test_admin*.py', 'tests/test_tribunal*.py', 'tests/test_strict_engine_log.py', '.github/workflows/admin-tribunal.yml']
+
+permissions:
+  contents: read
+
+jobs:
+  offline-core:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Run deterministic checks (no provider accounts)
+        run: |
+          python -m unittest discover -s tests -p 'test_admin*.py' -v
+          python -m unittest discover -s tests -p 'test_tribunal*.py' -v
+          python -m unittest discover -s tests -p 'test_strict_engine_log.py' -v
+          python -m unittest discover -s tests -p 'test_studio.py' -v

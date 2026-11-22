@@ -1,5 +1,21 @@
 # Graveforge Studios agent deployment policy
 
+## Administration and Tribunal (v41)
+
+Use `command_center/ADMIN_TRIBUNAL.md` and `command_center.admin_cli` for
+authorized cross-chat continuation, candidate reconciliation and external
+review. Keep the registry and raw logs in a private journal outside the
+checkout. Only explicitly selected relevant shareable summaries may leave the
+workspace; no credentials, private raw material or automatic provider calls.
+Separate author, critic, independent verifier and coordinating lead. The
+owner alone records the final decision; consensus is not test evidence.
+Retain prior checkpoints and decisions, identify the source and environment,
+and quarantine unknown lineage/version collisions instead of overwriting.
+Never invent chat fullness, provider availability or a chat creation receipt.
+Use regular Chat in the same project by default and verify its identity before
+recording a receipt. Never delete old chats or checkpoints automatically.
+Keep central studio releases distinct from namespaced project candidates.
+
 ## Integrated Game Simulation (v40)
 
 Use `gameplay/integrated_lab/README.md` for authorized connected gameplay

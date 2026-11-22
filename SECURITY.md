@@ -4,6 +4,16 @@ Studio is designed for trusted local development. The Command Center listens
 on loopback and uses local request checks, not Internet-facing authentication.
 Do not expose its port through a public reverse proxy or tunnel.
 
+Administration and Tribunal are local, explicit workflows. Their append-only
+journal is private, digest-bound and revision-checked, not an authentication
+service or protection against full local rollback. Keep retained raw logs,
+source references and provider receipts outside the public checkout. Only an
+operator-approved minimal summary is eligible for browser relay; external
+provider availability and attribution are reported, not authenticated.
+Never auto-send raw replies, credentials, file attachments or unrelated logs.
+Do not execute provider suggestions or candidate archives. No adapter creates,
+deletes or inspects chats automatically. Verify chat receipts externally.
+
 Integrated Game Lab exports only the fixed original playable Godot project
 to a new private directory. Explicit offline QA runs the reviewed input and
 scene checks twice, verifies source integrity and compares structured results.

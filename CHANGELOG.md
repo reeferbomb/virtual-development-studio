@@ -1,5 +1,21 @@
 # Changelog
 
+## 41.0 — Administration and Tribunal
+
+### Added
+
+- Private cross-chat project registry, append-only checkpoint and decision
+  history, scoped regular-Chat handoffs and explicit creation receipts.
+- Provider-neutral independent proposals, cross-critique, disagreements,
+  evidence and final user decisions, with a manual free-browser relay.
+- Local candidate fingerprints, Git lineage and version-collision checks;
+  opt-in strict standalone Godot log verification and deterministic CI.
+
+### Preserved
+
+- Prior gameplay laboratories, agent profiles, release gates, and recovery
+  workflows. No external provider is required and no chats are auto-deleted.
+
 ## 40.0 — Integrated Game Simulation
 
 ### Added

@@ -1,4 +1,4 @@
-# Graveforge Studios — Integrated Game Simulation v40.0
+# Graveforge Studios — Administration & Tribunal v41.0
 
 **A free, open-source game development studio toolkit.**
 
@@ -184,6 +184,20 @@ code and bundled original test assets are MIT-licensed; see [LICENSE](LICENSE).
 Godot, Blender and other external assets retain their respective licenses.
 For contributions see [CONTRIBUTING.md](CONTRIBUTING.md), and for release
 history see [CHANGELOG.md](CHANGELOG.md).
+
+## New in v41 — cross-chat administration and Tribunal
+
+Graveforge can maintain a private project history across conversations, prepare
+same-project regular Chat continuations, and coordinate independent reviews
+from ChatGPT, Claude, Gemini, or another named provider without paid APIs.
+It keeps source fingerprints, decisions, test evidence and pending work separate
+from the reviewers' opinions. It never automatically creates or deletes chats,
+sends credentials, or claims that a provider replied when it did not.
+
+See the [step-by-step Admin & Tribunal guide](command_center/ADMIN_TRIBUNAL.md).
+Start with `python3 -m command_center.admin_cli --help`. The standalone Studio
+coordinator also offers opt-in strict Godot log checking (`run --godot-clean`).
+All v40 gameplay and earlier studio capabilities remain available.
 
 ## New in v40 — integrated game simulation
 

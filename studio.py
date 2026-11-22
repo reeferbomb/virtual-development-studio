@@ -12,6 +12,8 @@ import uuid
 from datetime import datetime, timezone
 from pathlib import Path
 
+from command_center.strict_engine_log import inspect_log
+
 
 def now():
     return datetime.now(timezone.utc).isoformat()
@@ -66,8 +68,17 @@ def valid_evidence(task):
         return False
     ev = task["evidence"][-1]
     try:
-        return ev["exit_code"] == 0 and hash_file(Path(ev["log"])) == ev["sha256"]
-    except (OSError, KeyError):
+        if ev["exit_code"] != 0 or ev.get("policy_passed", True) is not True:
+            return False
+        if ev.get("policy") == "godot-clean":
+            with Path(ev["log"]).open("rb") as stream:
+                digest, counts = inspect_log(stream)
+            return (ev.get("policy_passed") is True and ev.get("diagnostics") == counts
+                    and not counts and digest == ev["sha256"])
+        if ev.get("policy", "exit-code") != "exit-code" or ("diagnostics" in ev and "policy" not in ev):
+            return False
+        return hash_file(Path(ev["log"])) == ev["sha256"]
+    except (OSError, KeyError, TypeError):
         return False
 
 
@@ -87,7 +98,7 @@ def invalidate_dependents(tasks, task_id):
             task["detail"] = f"Upstream task {task_id} is being re-verified."
 
 
-def run_verification(path, state, project, task, cmd, timeout):
+def run_verification(path, state, project, task, cmd, timeout, *, godot_clean=False):
     if cmd and cmd[0] == "--":
         cmd = cmd[1:]
     if not cmd:
@@ -127,16 +138,27 @@ def run_verification(path, state, project, task, cmd, timeout):
             exit_code = 127
             detail = f"Unable to execute verification: {exc}"
             handle.write((detail + "\n").encode())
-    task["evidence"].append({
+    evidence = {
         "command": cmd, "cwd": str(source), "started": started, "finished": now(),
         "duration_seconds": round(time.monotonic() - start, 3), "exit_code": exit_code,
-        "log": str(log_path), "sha256": hash_file(log_path),
-    })
-    task["status"] = "passed" if exit_code == 0 else "failed"
+        "log": str(log_path),
+    }
+    passed = exit_code == 0
+    if godot_clean:
+        with log_path.open("rb") as stream:
+            digest, counts = inspect_log(stream)
+        passed = passed and not counts
+        evidence.update(sha256=digest, policy="godot-clean", diagnostics=counts, policy_passed=passed)
+        if counts:
+            detail += ". Godot diagnostics: " + ", ".join(f"{name}={count}" for name, count in counts.items())
+    else:
+        evidence["sha256"] = hash_file(log_path)
+    task["evidence"].append(evidence)
+    task["status"] = "passed" if passed else "failed"
     task["detail"] = detail
     write(path, state)
     print(f"{task['status'].upper()}: {detail}; log: {log_path}")
-    return 0 if exit_code == 0 else 1
+    return 0 if passed else 1
 
 
 def parser():
@@ -169,6 +191,8 @@ def parser():
     run.add_argument("project")
     run.add_argument("id")
     run.add_argument("--timeout", type=int, default=120)
+    run.add_argument("--godot-clean", action="store_true",
+                     help="Require exit zero and a log free of Godot errors, warnings and test failures.")
     # main splits at -- before parsing so timeout/options remain unambiguous.
     commands.add_parser("report", help="Report evidence-backed task status.")
     dash = commands.add_parser("dashboard", help="Generate an offline HTML report.")
@@ -230,7 +254,7 @@ def main(argv=None):
         else:
             task = find(tasks, task_id)
             if args.action == "run":
-                return run_verification(path, state, project, task, cmd, args.timeout)
+                return run_verification(path, state, project, task, cmd, args.timeout, godot_clean=args.godot_clean)
             print(f"# Work order: {task['title']}\nProject: {project['name']}"
                   f"\nSource: {project['source']}\nObjective: {project['objective']}"
                   f"\nEngine/platform: {project['engine']} / {project['platform']}"
